@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CreditNote xmlns="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2"
+    xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+    xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+    xmlns:ccts="urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2"
+    xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2"
+    xmlns:ns7="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2"
+    xmlns:sdt="urn:oasis:names:specification:ubl:schema:xsd:SpecializedDatatypes-2"
+    xmlns:udt="urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2">
+    <cbc:UBLVersionID>2.0</cbc:UBLVersionID>
+    <cbc:CustomizationID>urn:tradeshift.com:ubl-2.0-customizations:2010-06</cbc:CustomizationID>
+    <cbc:ProfileID schemeAgencyID="CEN/ISSS WS/BII" schemeID="CWA 16073:2010" schemeVersionID="1">urn:www.cenbii.eu:profile:bii04:ver1.0</cbc:ProfileID>
+    <cbc:ID>038/0116297</cbc:ID>
+    <cbc:IssueDate>2020-01-22</cbc:IssueDate>
+    <cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>
+    <cac:OrderReference>
+        <cbc:ID>C180001053</cbc:ID>
+    </cac:OrderReference>
+    <cac:BillingReference>
+        <cac:InvoiceDocumentReference>
+            <cbc:ID>038/0115616</cbc:ID>
+        </cac:InvoiceDocumentReference>
+    </cac:BillingReference>
+    <cac:AdditionalDocumentReference>
+        <cbc:ID>1100000 EUR</cbc:ID>
+        <cbc:DocumentTypeCode listID="urn:tradeshift.com:api:1.0:documenttypecode">SenderShareCapital</cbc:DocumentTypeCode>
+    </cac:AdditionalDocumentReference>
+    <cac:AdditionalDocumentReference>
+        <cbc:ID>attachment-0</cbc:ID>
+        <cbc:DocumentTypeCode listID="urn:tradeshift.com:api:1.0:documenttypecode">attachment</cbc:DocumentTypeCode>
+        <cac:Attachment>
+            <cbc:EmbeddedDocumentBinaryObject encodingCode="Base64" filename="avoir eiffage 1.pdf" mimeCode="application/pdf">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z3/2slMYC9Myj427AbxL1yd30P+FBD6+t4UZWaY+/mxJ8UusjzdVXHJW3Df4mLmdYfGCIy1TigUdgF9SFXhi48enl6vT6LOto6BTXF7HrO/IaFP7kAvKik8ZX5J89iHIQN8gJ+RzxAsXPqF8GJyY+/MyKyWTrQkl/p22Yh0Di4EXUMALpvCPhnP3jFjTQSsJgRi+fwBFTymhCTE031lqOioghs8/8AjF4+YythoqxcaDH9RxvA7iR6TLlFTLPP8JOjkJemtgU08Og478+Rn/z3QWeF2wvpMTkHtGzf7xOOrvNEzZfuiFPxXmz1/58PmzkGdULq+91vfQhT9I4O9tLPPKC388yR8FBW0eYJDzHej/AaYPtzYKZW5kc3RyZWFtCmVuZG9iagoxIDAgb2JqCjw8L1R5cGUgL1BhZ2VzCi9LaWRzIFszIDAgUiBdCi9Db3VudCAxCj4+CmVuZG9iago1IDAgb2JqCjw8L1R5cGUgL0ZvbnQKL05hbWUgL0YxCi9CYXNlRm9udCAvSGVsdmV0aWNhCi9TdWJ0eXBlIC9UeXBlMQovRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZwo+PgplbmRvYmoKNiAwIG9iago8PC9UeXBlIC9Gb250Ci9OYW1lIC9GMgovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkCi9TdWJ0eXBlIC9UeXBlMQovRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZwo+PgplbmRvYmoKMiAwIG9iago8PC9Qcm9jU2V0IFsvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJXQovRm9udCA8PAovRjEgNSAwIFIKL0YyIDYgMCBSCj4+Cj4+CmVuZG9iago3IDAgb2JqCjw8Ci9Qcm9kdWNlciAoV2luRGV2IDE5LjAgKDE5LjAuNzYuMikpCi9DcmVhdGlvbkRhdGUgKEQ6MjAyMTA2MDExNDE1MTIpCj4+CmVuZG9iago4IDAgb2JqCjw8Ci9UeXBlIC9DYXRhbG9nCi9QYWdlcyAxIDAgUgovT3BlbkFjdGlvbiBbMyAwIFIgL0ZpdEggbnVsbF0KL1BhZ2VMYXlvdXQgL09uZUNvbHVtbgo+PgplbmRvYmoKeHJlZgowIDkKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAzODk2IDAwMDAwIG4gCjAwMDAwMDQxNzAgMDAwMDAgbiAKMDAwMDAwMDAxNSAwMDAwMCBuIAowMDAwMDAwMTUzIDAwMDAwIG4gCjAwMDAwMDM5NTMgMDAwMDAgbiAKMDAwMDAwNDA1OSAwMDAwMCBuIAowMDAwMDA0MjY4IDAwMDAwIG4gCjAwMDAwMDQzNTggMDAwMDAgbiAKdHJhaWxlcgo8PAovU2l6ZSA5Ci9Sb290IDggMCBSCi9JbmZvIDcgMCBSCi9JRFs8ZTE0YjE1YTZkOTFiYmJhZTAwY2E5OGMxOTM1MmY5NmM+PGUxNGIxNWE2ZDkxYmJiYWUwMGNhOThjMTkzNTJmOTZjPl0KPj4Kc3RhcnR4cmVmCjQ0NjEKJSVFT0YK</cbc:EmbeddedDocumentBinaryObject>
+        </cac:Attachment>
+    </cac:AdditionalDocumentReference>
+    <cac:AdditionalDocumentReference>
+        <cbc:ID>HALF_EVEN</cbc:ID>
+        <cbc:DocumentTypeCode listID="urn:tradeshift.com:api:1.0:documenttypecode">RoundingRule</cbc:DocumentTypeCode>
+    </cac:AdditionalDocumentReference>
+    <cac:AccountingSupplierParty>
+        <cac:Party>
+            <cac:PartyIdentification>
+                <cbc:ID schemeID="FR:VAT">FR21314887126</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PartyIdentification>
+                <cbc:ID schemeID="FR:SIRET">31488712600253</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PartyName>
+                <cbc:Name>Groupe SOVITRAT</cbc:Name>
+            </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:AddressFormatCode listAgencyID="6" listID="UN/ECE 3477" listVersionID="D08B">5</cbc:AddressFormatCode>
+                <cbc:Postbox>69006</cbc:Postbox>
+                <cbc:StreetName>4 RUE DUGUESCLIN</cbc:StreetName>
+                <cbc:BuildingNumber></cbc:BuildingNumber>
+                <cbc:CityName>LYON</cbc:CityName>
+                <cbc:PostalZone>69006</cbc:PostalZone>
+                <cac:Country>
+                    <cbc:IdentificationCode>FR</cbc:IdentificationCode>
+                </cac:Country>
+            </cac:PostalAddress>
+            <cac:PartyTaxScheme>
+                <cbc:CompanyID schemeID="FR:VAT">FR21314887126</cbc:CompanyID>
+                <cac:TaxScheme>
+                    <cbc:Name>VAT</cbc:Name>
+                </cac:TaxScheme>
+            </cac:PartyTaxScheme>
+            <cac:PartyLegalEntity>
+                <cbc:RegistrationName>Groupe SOVITRAT</cbc:RegistrationName>
+                <cbc:CompanyID schemeID="FR:SIRET">31488712600253</cbc:CompanyID>
+                <cac:RegistrationAddress>
+                    <cbc:ID schemeID="FR:RCS">LYON</cbc:ID>
+                    <cbc:AddressFormatCode listAgencyID="6" listID="UN/ECE 3477">5</cbc:AddressFormatCode>
+                    <cbc:Postbox>69006</cbc:Postbox>
+                    <cbc:StreetName>4 RUE DUGUESCLIN</cbc:StreetName>
+                    <cbc:BuildingNumber>NOVALI</cbc:BuildingNumber>
+                    <cbc:CityName>LYON</cbc:CityName>
+                    <cbc:PostalZone>69006</cbc:PostalZone>
+                </cac:RegistrationAddress>
+                <cac:CorporateRegistrationScheme>
+                    <cbc:ID>PUBLIC_LIMITED</cbc:ID>
+                </cac:CorporateRegistrationScheme>
+            </cac:PartyLegalEntity>
+            <cac:Contact>
+                <cbc:ID schemeURI="http://tradeshift.com/api/1.0/userId">5a59bb3c-adf8-4b72-b45b-f4f2f33676f1</cbc:ID>
+                <cbc:Name>Amor BOUGHZALA</cbc:Name>
+                <cbc:Telephone>0472699760</cbc:Telephone>
+                <cbc:ElectronicMail>master@sovitrat.fr</cbc:ElectronicMail>
+                <cbc:Note>Groupe SOVITRAT PUBLIC_LIMITED with share capital 1100000 EUR VAT FR21314887126 SIRET 31488712600253 FR:RCS LYON 4 RUE DUGUESCLIN 69006 NOVALI 69006 LYON</cbc:Note>
+            </cac:Contact>
+            <cac:Person>
+                <cbc:FirstName>Amor</cbc:FirstName>
+                <cbc:FamilyName>BOUGHZALA</cbc:FamilyName>
+            </cac:Person>
+        </cac:Party>
+    </cac:AccountingSupplierParty>
+    <cac:AccountingCustomerParty>
+        <cac:Party>
+            <cac:PartyIdentification>
+                <cbc:ID schemeID="FR:SIRET" schemeName="SIRET">35274574900783</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PartyIdentification>
+                <cbc:ID schemeID="FR:VAT" schemeName="TVA">FR45352745749</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PartyIdentification>
+                <cbc:ID schemeID="TS:GLI" schemeName="TS:GLI">com.eiffage.branch:FRA</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PartyIdentification>
+                <cbc:ID schemeID="TS:REGNO" schemeName="BU/Entité">02344</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PartyIdentification>
+                <cbc:ID schemeID="TS:LID" schemeName="TS:LID">24d722e6-7631-4e7d-9ebb-3971c7dd127a</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PartyIdentification>
+                <cbc:ID schemeID="TS:LEID" schemeName="TS:LEID">24d722e6-7631-4e7d-9ebb-3971c7dd127a</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PartyName>
+                <cbc:Name>02344-EIFFAGE GENIE CIVIL</cbc:Name>
+            </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:AddressFormatCode listAgencyID="6" listID="UN/ECE 3477" listVersionID="D08B">5</cbc:AddressFormatCode>
+                <cbc:StreetName>3 À 7 PLACE DE L’EUROPE</cbc:StreetName>
+                <cbc:BuildingNumber></cbc:BuildingNumber>
+                <cbc:CityName>VELIZY VILLACOUBLAY</cbc:CityName>
+                <cbc:PostalZone>78140</cbc:PostalZone>
+                <cac:Country>
+                    <cbc:IdentificationCode>FR</cbc:IdentificationCode>
+                </cac:Country>
+            </cac:PostalAddress>
+            <cac:PartyTaxScheme>
+                <cbc:CompanyID schemeID="FR:VAT">FR45352745749</cbc:CompanyID>
+                <cac:TaxScheme>
+                    <cbc:Name>VAT</cbc:Name>
+                </cac:TaxScheme>
+            </cac:PartyTaxScheme>
+            <cac:PartyLegalEntity>
+                <cbc:RegistrationName>02344-EIFFAGE GENIE CIVIL</cbc:RegistrationName>
+                <cbc:CompanyID schemeID="FR:SIRET">35274574900783</cbc:CompanyID>
+            </cac:PartyLegalEntity>
+            <cac:Contact></cac:Contact>
+        </cac:Party>
+    </cac:AccountingCustomerParty>
+    <cac:TaxTotal>
+        <cbc:TaxAmount currencyID="EUR">49.15</cbc:TaxAmount>
+        <cac:TaxSubtotal>
+            <cbc:TaxableAmount currencyID="EUR">245.74</cbc:TaxableAmount>
+            <cbc:TaxAmount currencyID="EUR">49.15</cbc:TaxAmount>
+            <cac:TaxCategory>
+                <cbc:ID schemeAgencyID="6" schemeID="UN/ECE 5305" schemeVersionID="D08B">S</cbc:ID>
+                <cbc:Percent>20</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID schemeAgencyID="6" schemeID="UN/ECE 5153 Subset" schemeVersionID="D08B">VAT</cbc:ID>
+                    <cbc:Name>FR TVA 20%</cbc:Name>
+                </cac:TaxScheme>
+            </cac:TaxCategory>
+        </cac:TaxSubtotal>
+    </cac:TaxTotal>
+    <cac:LegalMonetaryTotal>
+        <cbc:LineExtensionAmount currencyID="EUR">245.74</cbc:LineExtensionAmount>
+        <cbc:TaxExclusiveAmount currencyID="EUR">49.15</cbc:TaxExclusiveAmount>
+        <cbc:TaxInclusiveAmount currencyID="EUR">294.89</cbc:TaxInclusiveAmount>
+        <cbc:PayableAmount currencyID="EUR">294.89</cbc:PayableAmount>
+    </cac:LegalMonetaryTotal>
+    <cac:CreditNoteLine>
+        <cbc:ID>1</cbc:ID>
+        <cbc:CreditedQuantity unitCode="EA">1</cbc:CreditedQuantity>
+        <cbc:LineExtensionAmount currencyID="EUR">109.24</cbc:LineExtensionAmount>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="EUR">21.85</cbc:TaxAmount>
+            <cac:TaxSubtotal>
+                <cbc:TaxableAmount currencyID="EUR">109.24</cbc:TaxableAmount>
+                <cbc:TaxAmount currencyID="EUR">21.85</cbc:TaxAmount>
+                <cbc:CalculationSequenceNumeric>1</cbc:CalculationSequenceNumeric>
+                <cac:TaxCategory>
+                    <cbc:ID schemeAgencyID="6" schemeID="UN/ECE 5305" schemeVersionID="D08B">S</cbc:ID>
+                    <cbc:Percent>20</cbc:Percent>
+                    <cac:TaxScheme>
+                        <cbc:ID schemeAgencyID="6" schemeID="UN/ECE 5153 Subset" schemeVersionID="D08B">VAT</cbc:ID>
+                        <cbc:Name>FR TVA 20%</cbc:Name>
+                    </cac:TaxScheme>
+                </cac:TaxCategory>
+            </cac:TaxSubtotal>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Description>PRIME</cbc:Description>
+            <cbc:Name>PRIME</cbc:Name>
+            <cac:SellersItemIdentification>
+                <cbc:ID>129</cbc:ID>
+            </cac:SellersItemIdentification>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="EUR">109.24</cbc:PriceAmount>
+            <cbc:BaseQuantity unitCode="EA">1</cbc:BaseQuantity>
+            <cbc:OrderableUnitFactorRate>1</cbc:OrderableUnitFactorRate>
+        </cac:Price>
+    </cac:CreditNoteLine>
+    <cac:CreditNoteLine>
+        <cbc:ID>2</cbc:ID>
+        <cbc:CreditedQuantity unitCode="EA">1</cbc:CreditedQuantity>
+        <cbc:LineExtensionAmount currencyID="EUR">136.50</cbc:LineExtensionAmount>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="EUR">27.30</cbc:TaxAmount>
+            <cac:TaxSubtotal>
+                <cbc:TaxableAmount currencyID="EUR">136.50</cbc:TaxableAmount>
+                <cbc:TaxAmount currencyID="EUR">27.30</cbc:TaxAmount>
+                <cbc:CalculationSequenceNumeric>1</cbc:CalculationSequenceNumeric>
+                <cac:TaxCategory>
+                    <cbc:ID schemeAgencyID="6" schemeID="UN/ECE 5305" schemeVersionID="D08B">S</cbc:ID>
+                    <cbc:Percent>20</cbc:Percent>
+                    <cac:TaxScheme>
+                        <cbc:ID schemeAgencyID="6" schemeID="UN/ECE 5153 Subset" schemeVersionID="D08B">VAT</cbc:ID>
+                        <cbc:Name>FR TVA 20%</cbc:Name>
+                    </cac:TaxScheme>
+                </cac:TaxCategory>
+            </cac:TaxSubtotal>
+        </cac:TaxTotal>
+        <cac:Item>
+            <cbc:Description>prime</cbc:Description>
+            <cbc:Name>prime</cbc:Name>
+            <cac:SellersItemIdentification>
+                <cbc:ID>129</cbc:ID>
+            </cac:SellersItemIdentification>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="EUR">136.50</cbc:PriceAmount>
+            <cbc:BaseQuantity unitCode="EA">1</cbc:BaseQuantity>
+            <cbc:OrderableUnitFactorRate>1</cbc:OrderableUnitFactorRate>
+        </cac:Price>
+    </cac:CreditNoteLine>
+</CreditNote>

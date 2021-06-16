@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ph-ubl-api-6.2.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../Legalyspace/DEV/ph-ubl-api-6.2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

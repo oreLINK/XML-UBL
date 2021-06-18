@@ -32,7 +32,9 @@
 
 ## Release history
 
-`Description coming soon...`
+| Release | Description | Release date |
+| ------- | ----------- | ------------ |
+|  1.0.0  | **Launch of the tool with basic and limited functionality** : *Generation of a partially supported UBL CreditNote version 2.0 template (some modules, elements and / or attributes are not available), complete code documentation* | Jun. 18 2021 |
     
 ## License
 

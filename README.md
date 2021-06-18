@@ -1,6 +1,7 @@
 # XML-UBL
 
 ![version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+[![CodeFactor](https://www.codefactor.io/repository/github/orelink/xml-ubl/badge?s=03295c42823b0c8be2bb295524bc2791b93da76d)](https://www.codefactor.io/repository/github/orelink/xml-ubl)
 ![contribution](https://img.shields.io/badge/contribution-yes-green.svg)
 
 `Description coming soon...` 

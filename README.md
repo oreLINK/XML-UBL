@@ -34,7 +34,8 @@
 
 | Release | Description | Release date |
 | ------- | ----------- | ------------ |
-|  1.0.0  | **Launch of the tool with basic and limited functionality** : *Generation of a partially supported UBL CreditNote version 2.0 template (some modules, elements and / or attributes are not available), complete code documentation* | Jun. 18 2021 |
+|  *to come up*  | **This same tool with additional features** : *Generation of a complete UBL CreditNote 2.0 template, generation of a complete Invoice 2.0 template, creation of the user manual, improvement of README...etc* | *to come up* |
+|  1.0.0  | **Launch of the tool with basic functionalities** : *Generation of a partially supported UBL CreditNote version 2.0 template (the most common modules, elements and attributes are available), complete code documentation* | Jun. 18 2021 |
     
 ## License
 

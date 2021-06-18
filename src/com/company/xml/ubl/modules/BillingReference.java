@@ -1,6 +1,7 @@
 package com.company.xml.ubl.modules;
 
 import com.company.xml.ubl.axioms.ElementT;
+import com.company.xml.ubl.axioms.Tips;
 import com.company.xml.ubl.data.ElementsName;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -17,16 +18,37 @@ public class BillingReference {
     private Element element;
     private List<InvoiceDocumentReference> invoiceDocumentReferenceList;
 
-    /**
-     * Constructor to declare this tag if it will be declared in another tag already declared
-     * @param doc document where this tag will be declared
-     * @param element element from which this tag will inherit
-     * @param invoiceDocumentReferenceList parameter to enter (obligatory)
-     */
-    public BillingReference(Document doc, Element element, List<InvoiceDocumentReference> invoiceDocumentReferenceList) {
-        this.doc = doc;
-        this.element = element;
-        this.invoiceDocumentReferenceList = invoiceDocumentReferenceList;
+    private BillingReference(BillingReferenceBuilder builder) {
+        this.doc = builder.doc;
+        this.element = builder.element;
+        this.invoiceDocumentReferenceList = builder.invoiceDocumentReferenceList;
+    }
+
+    public static class BillingReferenceBuilder {
+
+        private Document doc;
+        private Element element;
+        private List<InvoiceDocumentReference> invoiceDocumentReferenceList;
+
+        public BillingReferenceBuilder() {}
+
+        public BillingReferenceBuilder documentLinked(Document doc){
+            this.doc = doc;
+            return this;
+        }
+        public BillingReferenceBuilder elementFather(Element element){
+            this.element = element;
+            return this;
+        }
+        public BillingReferenceBuilder invoiceDocumentReferenceList(List<InvoiceDocumentReference> invoiceDocumentReferenceList){
+            this.invoiceDocumentReferenceList = invoiceDocumentReferenceList;
+            return this;
+        }
+        public BillingReference build(){
+            BillingReference billingReference = new BillingReference(this);
+            return billingReference;
+        }
+
     }
 
     /**
@@ -34,13 +56,17 @@ public class BillingReference {
      * @return the generated element
      */
     public Element load() {
-        Element eleBillingReference = new ElementT(doc, element, ElementsName.BILLING_REFERENCE.label).load();
-        if(!invoiceDocumentReferenceList.isEmpty() && invoiceDocumentReferenceList.size() != 0) {
+        Element elementBillingReference = new ElementT(doc, element, ElementsName.BILLING_REFERENCE.label).load();
+        if(!Tips.listIsNull(invoiceDocumentReferenceList)) {
             for (InvoiceDocumentReference invoiceDocumentReference : invoiceDocumentReferenceList) {
-                Element eleInvoiceDocumentReference = new InvoiceDocumentReference(doc, eleBillingReference, invoiceDocumentReference.getId()).load();
+                Element elementInvoiceDocumentReference = new InvoiceDocumentReference.InvoiceDocumentReferenceBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementBillingReference)
+                        .id(invoiceDocumentReference.getId())
+                        .build().load();
             }
         }
-        return eleBillingReference;
+        return elementBillingReference;
     }
 
 }

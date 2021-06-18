@@ -2,6 +2,7 @@ package com.company.xml.ubl.modules;
 
 import com.company.xml.ubl.axioms.AttributeT;
 import com.company.xml.ubl.axioms.ElementT;
+import com.company.xml.ubl.axioms.Tips;
 import com.company.xml.ubl.data.AttributesName;
 import com.company.xml.ubl.data.ElementsName;
 import org.w3c.dom.Attr;
@@ -72,28 +73,6 @@ public class Attachment {
 
     }
 
-    public Attachment(Document doc, Element element, String embeddedDocumentBinaryObject_AttributeEncodingCode, String embeddedDocumentBinaryObject_AttributeFilename, String embeddedDocumentBinaryObject_AttributeMimeCode, String embeddedDocumentBinaryObject) {
-        this.doc = doc;
-        this.element = element;
-        this.embeddedDocumentBinaryObject_AttributeEncodingCode = embeddedDocumentBinaryObject_AttributeEncodingCode;
-        this.embeddedDocumentBinaryObject_AttributeFilename = embeddedDocumentBinaryObject_AttributeFilename;
-        this.embeddedDocumentBinaryObject_AttributeMimeCode = embeddedDocumentBinaryObject_AttributeMimeCode;
-        this.embeddedDocumentBinaryObject = embeddedDocumentBinaryObject;
-    }
-
-    public Attachment(String embeddedDocumentBinaryObject_AttributeEncodingCode, String embeddedDocumentBinaryObject_AttributeFilename, String embeddedDocumentBinaryObject_AttributeMimeCode, String embeddedDocumentBinaryObject) {
-        this.embeddedDocumentBinaryObject_AttributeEncodingCode = embeddedDocumentBinaryObject_AttributeEncodingCode;
-        this.embeddedDocumentBinaryObject_AttributeFilename = embeddedDocumentBinaryObject_AttributeFilename;
-        this.embeddedDocumentBinaryObject_AttributeMimeCode = embeddedDocumentBinaryObject_AttributeMimeCode;
-        this.embeddedDocumentBinaryObject = embeddedDocumentBinaryObject;
-    }
-
-    public Attachment(String embeddedDocumentBinaryObject_AttributeFilename, String embeddedDocumentBinaryObject_AttributeMimeCode, String embeddedDocumentBinaryObject) {
-        this.embeddedDocumentBinaryObject_AttributeFilename = embeddedDocumentBinaryObject_AttributeFilename;
-        this.embeddedDocumentBinaryObject_AttributeMimeCode = embeddedDocumentBinaryObject_AttributeMimeCode;
-        this.embeddedDocumentBinaryObject = embeddedDocumentBinaryObject;
-    }
-
     public String getEmbeddedDocumentBinaryObject_AttributeEncodingCode() {
         return embeddedDocumentBinaryObject_AttributeEncodingCode;
     }
@@ -115,11 +94,19 @@ public class Attachment {
      * @return the generated element
      */
     public Element load() {
-        Element eleAttachment = new ElementT(doc, element, ElementsName.ATTACHMENT.label).load();
-        Element eleEmbeddedDocumentBinaryObject = new ElementT(doc, eleAttachment, ElementsName.EMBEDDED_DOCUMENT_BINARY_OBJECT.label, embeddedDocumentBinaryObject).load();
-        Attr attrEleEmbeddedDocumentBinaryObject_encodingCode1 = new AttributeT(doc, eleEmbeddedDocumentBinaryObject, AttributesName.EMBEDDED_DOCUMENT_BINARY_OBJECT_ENCODING_CODE.label, embeddedDocumentBinaryObject_AttributeEncodingCode).load();
-        Attr attrEleEmbeddedDocumentBinaryObject_encodingCode2 = new AttributeT(doc, eleEmbeddedDocumentBinaryObject, AttributesName.EMBEDDED_DOCUMENT_BINARY_OBJECT_FILE_NAME.label, embeddedDocumentBinaryObject_AttributeFilename).load();
-        Attr attrEleEmbeddedDocumentBinaryObject_encodingCode3 = new AttributeT(doc, eleEmbeddedDocumentBinaryObject, AttributesName.EMBEDDED_DOCUMENT_BINARY_OBJECT_MIME_CODE.label, embeddedDocumentBinaryObject_AttributeMimeCode).load();
-        return eleAttachment;
+        Element elementAttachment = new ElementT(doc, element, ElementsName.ATTACHMENT.label).load();
+        if(!Tips.stringIsNull(embeddedDocumentBinaryObject)){
+            Element elementEmbeddedDocumentBinaryObject = new ElementT(doc, elementAttachment, ElementsName.ATTACHMENT_EMBEDDED_DOCUMENT_BINARY_OBJECT.label, embeddedDocumentBinaryObject).load();
+            if(!Tips.stringIsNull(embeddedDocumentBinaryObject_AttributeEncodingCode)){
+                Attr elementEmbeddedDocumentBinaryObject_Attr1 = new AttributeT(doc, elementEmbeddedDocumentBinaryObject, AttributesName.ENCODING_CODE.label, embeddedDocumentBinaryObject_AttributeEncodingCode).load();
+            }
+            if(!Tips.stringIsNull(embeddedDocumentBinaryObject_AttributeFilename)){
+                Attr elementEmbeddedDocumentBinaryObject_Attr2 = new AttributeT(doc, elementEmbeddedDocumentBinaryObject, AttributesName.FILE_NAME.label, embeddedDocumentBinaryObject_AttributeFilename).load();
+            }
+            if(!Tips.stringIsNull(embeddedDocumentBinaryObject_AttributeMimeCode)){
+                Attr elementEmbeddedDocumentBinaryObject_Attr3 = new AttributeT(doc, elementEmbeddedDocumentBinaryObject, AttributesName.MIME_CODE.label, embeddedDocumentBinaryObject_AttributeMimeCode).load();
+            }
+        }
+        return elementAttachment;
     }
 }

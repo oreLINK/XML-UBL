@@ -76,38 +76,6 @@ public class AdditionalDocumentReference {
 
     }
 
-    public AdditionalDocumentReference(Document doc, Element element, String id, String documentTypeCode_AttributeListID, String documentTypeCode, List<Attachment> attachmentList) {
-        this.doc = doc;
-        this.element = element;
-        this.id = id;
-        this.documentTypeCode_AttributeListID = documentTypeCode_AttributeListID;
-        this.documentTypeCode = documentTypeCode;
-        this.attachmentList = attachmentList;
-    }
-
-    public AdditionalDocumentReference(Document doc, Element element, String id, String documentTypeCode_AttributeListID, String documentTypeCode) {
-        this.doc = doc;
-        this.element = element;
-        this.id = id;
-        this.documentTypeCode_AttributeListID = documentTypeCode_AttributeListID;
-        this.documentTypeCode = documentTypeCode;
-    }
-
-    public AdditionalDocumentReference(Document doc, Element element, String id, String documentTypeCode, List<Attachment> attachmentList) {
-        this.doc = doc;
-        this.element = element;
-        this.id = id;
-        this.documentTypeCode = documentTypeCode;
-        this.attachmentList = attachmentList;
-    }
-
-    public AdditionalDocumentReference(Document doc, Element element, String id, String documentTypeCode) {
-        this.doc = doc;
-        this.element = element;
-        this.id = id;
-        this.documentTypeCode = documentTypeCode;
-    }
-
     /**
      * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
      * @return the generated element
@@ -125,8 +93,14 @@ public class AdditionalDocumentReference {
         }
         if(!Tips.listIsNull(attachmentList)){
             for (Attachment attachment : attachmentList) {
-                Element elementAttachment = new Attachment(doc, elementAdditionalDocumentReference, attachment.getEmbeddedDocumentBinaryObject_AttributeEncodingCode(), attachment.getEmbeddedDocumentBinaryObject_AttributeFilename(), attachment.getEmbeddedDocumentBinaryObject_AttributeMimeCode(), attachment.getEmbeddedDocumentBinaryObject()).load();
-                /* TODO */
+                Element elementAttachment = new Attachment.AttachmentBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementAdditionalDocumentReference)
+                        .embeddedDocumentBinaryObject(attachment.getEmbeddedDocumentBinaryObject())
+                        .embeddedDocumentBinaryObject_AttributeEncodingCode(attachment.getEmbeddedDocumentBinaryObject_AttributeEncodingCode())
+                        .embeddedDocumentBinaryObject_AttributeFilename(attachment.getEmbeddedDocumentBinaryObject_AttributeFilename())
+                        .embeddedDocumentBinaryObject_AttributeMimeCode(attachment.getEmbeddedDocumentBinaryObject_AttributeMimeCode())
+                        .build().load();
             }
         }
         return elementAdditionalDocumentReference;

@@ -7,12 +7,12 @@ import org.w3c.dom.Element;
 
 public class ElementT {
 
-    private Document doc;
-    private Element elemFather;
-    private String name;
-    private String value;
+    protected Document doc;
+    protected Element elemFather;
+    protected String name;
+    protected String value;
 
-    private ElementT(ElementTBuilder builder) {
+    protected ElementT(ElementTBuilder builder) {
         this.doc = builder.doc;
         this.elemFather = builder.elemFather;
         this.name = builder.name;

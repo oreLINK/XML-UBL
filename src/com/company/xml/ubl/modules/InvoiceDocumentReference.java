@@ -1,6 +1,7 @@
 package com.company.xml.ubl.modules;
 
 import com.company.xml.ubl.axioms.ElementT;
+import com.company.xml.ubl.axioms.Tips;
 import com.company.xml.ubl.data.ElementsName;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -13,26 +14,39 @@ public class InvoiceDocumentReference {
 
     private Document doc;
     private Element element;
-    private String id; //obligatory
+    private String id;
 
-    /**
-     * Constructor to declare this tag if it will be declared in another tag to declare and / or because this tag is not the only one in the other tag to declare (to put in a list)
-     * @param id parameter to enter
-     */
-    public InvoiceDocumentReference(String id) {
-        this.id = id;
+    private InvoiceDocumentReference(InvoiceDocumentReferenceBuilder builder) {
+        this.doc = builder.doc;
+        this.element = builder.element;
+        this.id = builder.id;
     }
 
-    /**
-     * Constructor to declare this tag if it will be declared in another tag already declared
-     * @param doc document where this tag will be declared
-     * @param element element from which this tag will inherit
-     * @param id parameter to enter (obligatory)
-     */
-    public InvoiceDocumentReference(Document doc, Element element, String id) {
-        this.doc = doc;
-        this.element = element;
-        this.id = id;
+    public static class InvoiceDocumentReferenceBuilder {
+
+        private Document doc;
+        private Element element;
+        private String id;
+
+        public InvoiceDocumentReferenceBuilder() {}
+
+        public InvoiceDocumentReferenceBuilder documentLinked(Document doc){
+            this.doc = doc;
+            return this;
+        }
+        public InvoiceDocumentReferenceBuilder elementFather(Element element){
+            this.element = element;
+            return this;
+        }
+        public InvoiceDocumentReferenceBuilder id(String id){
+            this.id = id;
+            return this;
+        }
+        public InvoiceDocumentReference build(){
+            InvoiceDocumentReference invoiceDocumentReference = new InvoiceDocumentReference(this);
+            return invoiceDocumentReference;
+        }
+
     }
 
     public String getId() {
@@ -44,8 +58,10 @@ public class InvoiceDocumentReference {
      * @return the generated element
      */
     public Element load() {
-        Element eleInvoiceDocumentReference = new ElementT(doc, element, ElementsName.INVOICE_DOCUMENT_REFERENCE.label).load();
-        Element eleInvoiceDocumentReference_id = new ElementT(doc, eleInvoiceDocumentReference, ElementsName.ID.label, id).load();
-        return eleInvoiceDocumentReference;
+        Element elementInvoiceDocumentReference = new ElementT(doc, element, ElementsName.INVOICE_DOCUMENT_REFERENCE.label).load();
+        if(!Tips.stringIsNull(id)){
+            Element elementId = new ElementT(doc, elementInvoiceDocumentReference, ElementsName.INVOICE_DOCUMENT_REFERENCE_ID.label, id).load();
+        }
+        return elementInvoiceDocumentReference;
     }
 }

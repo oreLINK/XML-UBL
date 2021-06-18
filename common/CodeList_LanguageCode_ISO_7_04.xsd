@@ -1517,7 +1517,7 @@ xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attr
           </xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
-      <xsd:enumeration value="id">
+      <xsd:enumeration value="elementId">
         <xsd:annotation>
           <xsd:documentation>
             <ccts:CodeName>Indonesian</ccts:CodeName>

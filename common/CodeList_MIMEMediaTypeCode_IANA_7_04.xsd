@@ -85,7 +85,7 @@ xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attr
       <xsd:enumeration value="application/mikey"/>
       <xsd:enumeration value="application/mpeg4-generic"/>
       <xsd:enumeration value="application/msword"/>
-      <xsd:enumeration value="application/news-message-id"/>
+      <xsd:enumeration value="application/news-message-elementId"/>
       <xsd:enumeration value="application/news-transmission"/>
       <xsd:enumeration value="application/ocsp-request"/>
       <xsd:enumeration value="application/ocsp-response"/>

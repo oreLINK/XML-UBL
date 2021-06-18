@@ -1,7 +1,10 @@
 package com.company.xml.ubl.modules;
 
 import com.company.xml.ubl.axioms.ElementT;
+import com.company.xml.ubl.axioms.Tips;
 import com.company.xml.ubl.data.ElementsName;
+import com.company.xml.ubl.elements.ID;
+import com.company.xml.ubl.elements.IssueDate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -13,18 +16,43 @@ public class OrderReference {
 
     private Document doc;
     private Element element;
-    private String ID;
+    private ID id;
 
-    /**
-     * Constructor to declare this tag if it will be declared in another tag already declared
-     * @param doc document where this tag will be declared
-     * @param element element from which this tag will inherit
-     * @param ID parameter to enter (obligatory)
-     */
-    public OrderReference(Document doc, Element element, String ID) {
-        this.doc = doc;
-        this.element = element;
-        this.ID = ID;
+    private OrderReference(OrderReferenceBuilder builder) {
+        this.doc = builder.doc;
+        this.element = builder.element;
+        this.id = builder.id;
+    }
+
+    public static class OrderReferenceBuilder {
+
+        private Document doc;
+        private Element element;
+        private ID id;
+
+        public OrderReferenceBuilder() {}
+
+        public OrderReferenceBuilder documentLinked(Document doc){
+            this.doc = doc;
+            return this;
+        }
+        public OrderReferenceBuilder elementFather(Element element){
+            this.element = element;
+            return this;
+        }
+        public OrderReferenceBuilder id(ID id){
+            this.id = id;
+            return this;
+        }
+        public OrderReference build(){
+            OrderReference orderReference = new OrderReference(this);
+            return orderReference;
+        }
+
+    }
+
+    public ID getId() {
+        return id;
     }
 
     /**
@@ -32,8 +60,15 @@ public class OrderReference {
      * @return the generated element
      */
     public Element load() {
-        Element eleOrderReference = new ElementT(doc, element, ElementsName.ORDER_REFERENCE.label).load();
-        Element eleOrderReference_id = new ElementT(doc, eleOrderReference, ElementsName.ID.label, ID).load();
-        return eleOrderReference;
+        Element elementOrderReference = new ElementT(doc, element, ElementsName.ORDER_REFERENCE.label).load();
+        if(!Tips.stringIsNull(id.getValue())){
+            Element elementId = new ID.IDBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementOrderReference)
+                    .value(id.getValue())
+                    .attributes(id.getPatternScheme())
+                    .build().load();
+        }
+        return elementOrderReference;
     }
 }

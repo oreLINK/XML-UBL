@@ -17,11 +17,26 @@ public enum AttributesName {
     REGISTRATION_ADDRESS_ADDRESSFORMATCODE_ATTR_LIST_ID("listID"),
     CONTACT_ID_SCHEME_URI("schemeURI"),
     SCHEME_AGENCY_ID("schemeAgencyID"),
+    SCHEME_AGENCY_NAME("schemeAgencyName"),
+    SCHEME_DATA_URI("schemeDataURI"),
     SCHEME_ID("schemeID"),
     SCHEME_VERSION_ID("schemeVersionID"),
+    SCHEME_NAME("schemeName"),
+    SCHEME_URI("schemeURI"),
     CURRENCY_ID("currencyID"),
     UNIT_CODE("unitCode"),
-    LIST_ID("listID");
+    LIST_ID("listID"),
+    LIST_AGENCY_ID("listAgencyID"),
+    LIST_AGENCY_NAME("listAgencyName"),
+    LIST_NAME("listName"),
+    LIST_VERSION_ID("listVersionID"),
+    LIST_URI("listURI"),
+    LIST_SCHEME_URI("listSchemeURI"),
+    NAME("name"),
+    ENCODING_CODE("encodingCode"),
+    FILE_NAME("filename"),
+    LANGUAGE_ID("languageID"),
+    MIME_CODE("mimeCode");
 
     public final String label;
 

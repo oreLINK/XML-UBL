@@ -38,7 +38,7 @@
     
 ## License
 
-`Description coming soon...` 
+The license is available [here](https://github.com/oreLINK/XML-UBL/blob/master/LICENSE.md).
 
 ## Contributors
 

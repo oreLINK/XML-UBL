@@ -12,6 +12,9 @@ import org.w3c.dom.Element;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class CreditNoteLine
+ */
 public class CreditNoteLine {
 
     private Document doc;
@@ -25,6 +28,31 @@ public class CreditNoteLine {
     private List<Item> itemList = new ArrayList<>();
     private List<Price> priceList = new ArrayList<>();
 
+    /**
+     * <h2>Element "CreditNoteLine"</h2>
+     * <i>use in CreditNote <b>[1..*]</b>.</i>
+     * <p>An association to one or more Credit Note Lines. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>id</b> <b>[1..1]</b> : Identifies the Credit Note Line.</li>
+     *         <li>[String] <b>creditedQuantity</b> <b>[0..1]</b> : The quantity of Items credited.</li>
+     *         <li>[String] <b>creditedQuantity_AttributeUnitCode</b> <b>[0..1]</b> : The unit of the quantity (Attribute)</li>
+     *         <li>[String] <b>lineExtensionAmount</b> <b>[0..1]</b> : The total amount for the Credit Note Line, including Allowance Charges but net of taxes.</li>
+     *         <li>[String] <b>lineExtensionAmount_AttributeCurrencyId</b> <b>[1..1]</b> : The currency of the amount. (Attribute)</li>
+     *         <li>[List] <b>taxTotalList</b> <b>[0..*]</b> : [TaxTotal] elements list.</li>
+     *         <li>[List] <b>itemList</b> <b>[0..1]</b> : [Item] elements list.</li>
+     *         <li>[List] <b>priceList</b> <b>[0..1]</b> : [Price] elements list.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private CreditNoteLine(CreditNoteLineBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -38,6 +66,9 @@ public class CreditNoteLine {
         this.priceList = builder.priceList;
     }
 
+    /**
+     * Builder CreditNoteLine
+     */
     public static class CreditNoteLineBuilder {
 
         private Document doc;
@@ -100,6 +131,10 @@ public class CreditNoteLine {
 
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         Element elementCreditNoteLine = new ElementT(doc, element, ElementsName.CREDIT_NOTE_LINE.label).load();
         if(!Tips.stringIsNull(id)){

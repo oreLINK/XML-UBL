@@ -1,5 +1,9 @@
 package com.company.xml.ubl.data;
 
+/**
+ * Class enum AttributesName
+ * Here are stored all the names of the different attributes to avoid duplication errors
+ */
 public enum AttributesName {
     PROFIL_ID_SCHEMA_AGENCY_ID("schemeAgencyID"),
     PROFIL_ID_SCHEMA_ID("schemeID"),

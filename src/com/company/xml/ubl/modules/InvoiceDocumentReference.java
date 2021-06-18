@@ -8,7 +8,6 @@ import org.w3c.dom.Element;
 
 /**
  * Class InvoiceDocumentReference
- * use in BillingReference.
  */
 public class InvoiceDocumentReference {
 
@@ -16,12 +15,33 @@ public class InvoiceDocumentReference {
     private Element element;
     private String id;
 
+    /**
+     * <h2>Element "InvoiceDocumentReference"</h2>
+     * <i>use in BillingReference <b>[0..1]</b>.</i>
+     * <p>An associative reference to Invoice. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>id</b> <b>[1..1]</b> : Identifies the document being referred to.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private InvoiceDocumentReference(InvoiceDocumentReferenceBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
         this.id = builder.id;
     }
 
+    /**
+     * Builder InvoiceDocumentReference
+     */
     public static class InvoiceDocumentReferenceBuilder {
 
         private Document doc;

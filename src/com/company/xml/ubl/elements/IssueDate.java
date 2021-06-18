@@ -10,6 +10,9 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class IssueDate
+ */
 public class IssueDate {
 
     private Document doc;
@@ -17,12 +20,18 @@ public class IssueDate {
     private String name = ElementsName.ISSUE_DATE.label;
     private String value;
 
+    /**
+     * Documentation is coming...
+     */
     private IssueDate(IssueDateBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
         this.value = builder.value;
     }
 
+    /**
+     * Builder IssueDate
+     */
     public static class IssueDateBuilder {
 
         private Document doc;
@@ -54,6 +63,10 @@ public class IssueDate {
         return value;
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         Element elementRoot = new ElementT(doc, element, name, value).load();
         return elementRoot;

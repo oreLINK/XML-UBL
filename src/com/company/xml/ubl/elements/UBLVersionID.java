@@ -11,8 +11,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 /**
- * Element UBLVersionID
- * - value (obligatory)
+ * Class UBLVersionID
  */
 public class UBLVersionID {
 
@@ -22,6 +21,9 @@ public class UBLVersionID {
     private String value;
     private PatternScheme patternScheme;
 
+    /**
+     * Documentation is coming...
+     */
     private UBLVersionID(ElementUBLVersionIDBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -29,6 +31,9 @@ public class UBLVersionID {
         this.patternScheme = builder.patternScheme;
     }
 
+    /**
+     * Builder ElementUBLVersionID
+     */
     public static class ElementUBLVersionIDBuilder {
 
         private Document doc;
@@ -69,6 +74,10 @@ public class UBLVersionID {
         return patternScheme;
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         Element elementRoot = new ElementT(doc, element, name, value).load();
         if(!Tips.stringIsNull(patternScheme.getSchemeID())){

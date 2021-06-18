@@ -9,6 +9,9 @@ import org.w3c.dom.Element;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class Item
+ */
 public class Item {
 
     private Document doc;
@@ -17,6 +20,26 @@ public class Item {
     private String name;
     private List<SellersItemIdentification> sellersItemIdentificationList = new ArrayList<>();
 
+    /**
+     * <h2>Element "Item"</h2>
+     * <i>use in CreditNoteLine <b>[0..1]</b>.</i>
+     * <p>An association to Item. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>description</b> <b>[0..*]</b> : Free-form field that can be used to give a text description of the item.</li>
+     *         <li>[String] <b>name</b> <b>[0..1]</b> : A short name optionally given to an item, such as a name from a Catalogue, as distinct from a description.</li>
+     *         <li>[List] <b>sellersItemIdentificationList</b> <b>[0..1]</b> : [SellersItemIdentification] elements list.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private Item(ItemBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -25,6 +48,9 @@ public class Item {
         this.sellersItemIdentificationList = builder.sellersItemIdentificationList;
     }
 
+    /**
+     * Builder Item
+     */
     public static class ItemBuilder {
 
         private Document doc;
@@ -74,6 +100,10 @@ public class Item {
         return sellersItemIdentificationList;
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         Element elementItem = new ElementT(doc, element, ElementsName.ITEM.label).load();
         if(!Tips.stringIsNull(description)){

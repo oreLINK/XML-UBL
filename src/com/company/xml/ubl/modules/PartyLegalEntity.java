@@ -12,6 +12,9 @@ import org.w3c.dom.Element;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class Item
+ */
 public class PartyLegalEntity {
 
     private Document doc;
@@ -22,6 +25,28 @@ public class PartyLegalEntity {
     private List<RegistrationAddress> registrationAddressList = new ArrayList<>();
     private List<CorporateRegistrationScheme> corporateRegistrationSchemeList = new ArrayList<>();
 
+    /**
+     * <h2>Element "PartyLegalEntity"</h2>
+     * <i>use in Party <b>[0..*]</b>.</i>
+     * <p>An association to Party Legal Entity. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>registrationName</b> <b>[0..1]</b> : The name of a party as registered with the legal authority.</li>
+     *         <li>[String] <b>companyId</b> <b>[0..1]</b> : Identifies a company as registered with the company registration scheme.</li>
+     *         <li>[String] <b>companyId_AttributeSchemeId</b> <b>[0..1]</b> : The identification of the identification scheme. (Attribute)</li>
+     *         <li>[List] <b>registrationAddressList</b> <b>[0..1]</b> : [RegistrationAddress] elements list.</li>
+     *         <li>[List] <b>corporateRegistrationSchemeList</b> <b>[0..1]</b> : [CorporateRegistrationScheme] elements list.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private PartyLegalEntity(PartyLegalEntityBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -32,6 +57,9 @@ public class PartyLegalEntity {
         this.corporateRegistrationSchemeList = builder.corporateRegistrationSchemeList;
     }
 
+    /**
+     * Builder PartyLegalEntity
+     */
     public static class PartyLegalEntityBuilder {
 
         private Document doc;
@@ -99,6 +127,10 @@ public class PartyLegalEntity {
         return corporateRegistrationSchemeList;
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         //Generate root element
         Element elementPartyLegalEntity = new ElementT(doc, element, ElementsName.PARTY_LEGAL_ENTITY.label).load();

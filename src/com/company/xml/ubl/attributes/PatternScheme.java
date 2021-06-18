@@ -1,5 +1,8 @@
 package com.company.xml.ubl.attributes;
 
+/**
+ * Class PatternScheme
+ */
 public class PatternScheme {
 
     private String schemeID;
@@ -10,6 +13,9 @@ public class PatternScheme {
     private String schemeDataURI;
     private String schemeURI;
 
+    /**
+     * Documentation is coming...
+     */
     private PatternScheme(PatternSchemeBuilder builder) {
         this.schemeID = builder.schemeID;
         this.schemeName = builder.schemeName;
@@ -20,6 +26,9 @@ public class PatternScheme {
         this.schemeURI = builder.schemeURI;
     }
 
+    /**
+     * Builder Contact
+     */
     public static class PatternSchemeBuilder {
 
         private String schemeID;

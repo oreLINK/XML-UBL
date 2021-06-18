@@ -11,6 +11,9 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class DocumentCurrencyCode
+ */
 public class DocumentCurrencyCode {
 
     private Document doc;
@@ -19,6 +22,9 @@ public class DocumentCurrencyCode {
     private String value;
     private PatternList patternList;
 
+    /**
+     * Documentation is coming...
+     */
     private DocumentCurrencyCode(DocumentCurrencyCodeBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -26,6 +32,9 @@ public class DocumentCurrencyCode {
         this.patternList = builder.patternList;
     }
 
+    /**
+     * Builder DocumentCurrencyCode
+     */
     public static class DocumentCurrencyCodeBuilder {
 
         private Document doc;
@@ -66,6 +75,10 @@ public class DocumentCurrencyCode {
         return patternList;
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         Element elementRoot = new ElementT(doc, element, name, value).load();
         if(!Tips.stringIsNull(patternList.getListID())){

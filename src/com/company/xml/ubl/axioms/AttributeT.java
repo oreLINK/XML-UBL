@@ -4,6 +4,9 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class AttributeT
+ */
 public class AttributeT {
 
     private Document doc;
@@ -11,6 +14,13 @@ public class AttributeT {
     private String name;
     private String value;
 
+    /**
+     * Declaration of an empty attribute
+     * @param doc document in which this attribute must be written.
+     * @param element element in which this attribute must be written.
+     * @param name attribute name
+     * @param value attribute value
+     */
     public AttributeT(Document doc, Element element, String name, String value) {
         this.doc = doc;
         this.element = element;
@@ -18,11 +28,20 @@ public class AttributeT {
         this.value = value;
     }
 
+    /**
+     * Declaration of an empty attribute
+     * @param name attribute name
+     * @param value attribute value
+     */
     public AttributeT(String name, String value) {
         this.name = name;
         this.value = value;
     }
 
+    /**
+     * Generating the filled attribute
+     * @return the filled attribute
+     */
     public Attr load() {
         Attr attr = doc.createAttribute(name);
         attr.setValue(value);

@@ -9,6 +9,9 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class TaxScheme
+ */
 public class TaxScheme {
 
     private Document doc;
@@ -19,6 +22,28 @@ public class TaxScheme {
     private String id_AttributeSchemeVersionID;
     private String name;
 
+    /**
+     * <h2>Element "TaxScheme"</h2>
+     * <i>use in TaxCategory <b>[1..1]</b>.</i>
+     * <p>An association to Tax Scheme. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>id</b> <b>[0..1]</b> : Identifies the tax category.</li>
+     *         <li>[String] <b>id_AttributeSchemeAgencyID</b> <b>[0..1]</b> : The identification of the agency that maintains the identification scheme. (Attribute)</li>
+     *         <li>[String] <b>id_AttributeSchemeID</b> <b>[0..1]</b> : The identification of the identification scheme. (Attribute)</li>
+     *         <li>[String] <b>id_AttributeSchemeVersionID</b> <b>[0..1]</b> : The version of the identification scheme. (Attribute)</li>
+     *         <li>[String] <b>name</b> <b>[0..1]</b> : The name of the tax scheme.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private TaxScheme(TaxSchemeBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -29,6 +54,9 @@ public class TaxScheme {
         this.name = builder.name;
     }
 
+    /**
+     * Builder Contact
+     */
     public static class TaxSchemeBuilder {
 
         private Document doc;
@@ -94,6 +122,10 @@ public class TaxScheme {
         return name;
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         Element elementTaxScheme = new ElementT(doc,element, ElementsName.TAX_SCHEME.label).load();
         if(!Tips.stringIsNull(id)){

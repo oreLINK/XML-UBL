@@ -11,7 +11,6 @@ import org.w3c.dom.Element;
 
 /**
  * Class Attachment
- * use in AdditionalDocumentReference.
  */
 public class Attachment {
 
@@ -22,6 +21,27 @@ public class Attachment {
     private String embeddedDocumentBinaryObject_AttributeFilename;
     private String embeddedDocumentBinaryObject_AttributeMimeCode;
 
+    /**
+     * <h2>Element "Attachment"</h2>
+     * <i>use in AdditionalDocumentReference <b>[0..1]</b>.</i>
+     * <p>An attached document, externally referred to, referred to in the MIME location, or embedded. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>embeddedDocumentBinaryObject</b> <b>[0..1]</b> : Contains an embedded document as a BLOB (binary large object).</li>
+     *         <li>[String] <b>embeddedDocumentBinaryObject_AttributeEncodingCode</b> <b>[0..1]</b> : Specifies the decoding algorithm of the binary object. (Attribute)</li>
+     *         <li>[String] <b>embeddedDocumentBinaryObject_AttributeFilename</b> <b>[0..1]</b> : The filename of the binary object. (Attribute)</li>
+     *         <li>[String] <b>embeddedDocumentBinaryObject_AttributeMimeCode</b> <b>[1..1]</b> : The mime type of the binary object. (Attribute)</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private Attachment(AttachmentBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -31,6 +51,9 @@ public class Attachment {
         this.embeddedDocumentBinaryObject_AttributeMimeCode = builder.embeddedDocumentBinaryObject_AttributeMimeCode;
     }
 
+    /**
+     * Builder Attachment
+     */
     public static class AttachmentBuilder {
 
         private Document doc;

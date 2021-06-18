@@ -12,6 +12,9 @@ import org.w3c.dom.Element;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class TaxSubTotal
+ */
 public class TaxSubTotal {
 
     private Document doc;
@@ -23,6 +26,29 @@ public class TaxSubTotal {
     private String calculationSequenceNumeric;
     private List<TaxCategory> taxCategoryList = new ArrayList<>();
 
+    /**
+     * <h2>Element "TaxSubTotal"</h2>
+     * <i>use in TaxTotal <b>[0..*]</b>.</i>
+     * <p>An association to Tax Subtotal. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>taxableAmount</b> <b>[0..1]</b> : The net amount to which the tax percent (rate) is applied to calculate the tax amount.</li>
+     *         <li>[String] <b>taxableAmount_AttributeCurrencyID</b> <b>[1..1]</b> : The currency of the amount. (Attribute)</li>
+     *         <li>[String] <b>taxAmount</b> <b>[1..1]</b> : The amount of tax stated explicitly.</li>
+     *         <li>[String] <b>taxAmount_AttributeCurrencyID</b> <b>[1..1]</b> : The currency of the amount. (Attribute)</li>
+     *         <li>[String] <b>calculationSequenceNumeric</b> <b>[0..1]</b> : Identifies the numerical order sequence in which taxes are applied when multiple taxes are attracted. If all taxes apply to the same taxable amount, CalculationSequenceNumeric will be '1' for all taxes.</li>
+     *         <li>[List] <b>taxCategoryList</b> <b>[1..1]</b> : [TaxCategory] elements list.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private TaxSubTotal(TaxSubTotalBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -34,6 +60,9 @@ public class TaxSubTotal {
         this.taxCategoryList = builder.taxCategoryList;
     }
 
+    /**
+     * Builder TaxSubTotal
+     */
     public static class TaxSubTotalBuilder {
 
         private Document doc;
@@ -110,6 +139,10 @@ public class TaxSubTotal {
         return taxCategoryList;
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         Element elementTaxSubTotal = new ElementT(doc, element, ElementsName.TAX_SUB_TOTAL.label).load();
         if(!Tips.stringIsNull(taxableAmount)){

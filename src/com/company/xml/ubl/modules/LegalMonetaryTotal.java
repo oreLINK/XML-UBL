@@ -9,6 +9,9 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class LegalMonetaryTotal
+ */
 public class LegalMonetaryTotal {
 
     private Document doc;
@@ -22,6 +25,31 @@ public class LegalMonetaryTotal {
     private String payableAmount;
     private String payableAmount_AttributeCurrencyID;
 
+    /**
+     * <h2>Element "LegalMonetaryTotal"</h2>
+     * <i>use in CreditNote <b>[1..1]</b>.</i>
+     * <p>An association to the total amount payable on the Credit Note, including Allowances, Charges, and Taxes. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>lineExtensionAmount</b> <b>[0..1]</b> : The total of Line Extension Amounts net of tax and settlement discounts, but inclusive of any applicable rounding amount.</li>
+     *         <li>[String] <b>lineExtensionAmount_AttributeCurrencyID</b> <b>[1..1]</b> : The currency of the amount. (Attribute)</li>
+     *         <li>[String] <b>taxExclusiveAmount</b> <b>[0..1]</b> : The total amount exclusive of taxes.</li>
+     *         <li>[String] <b>taxExclusiveAmount_AttributeCurrencyID</b> <b>[1..1]</b> : The currency of the amount. (Attribute)</li>
+     *         <li>[String] <b>taxInclusiveAmount</b> <b>[0..1]</b> : The total amount inclusive of taxes.</li>
+     *         <li>[String] <b>taxInclusiveAmount_AttributeCurrencyID</b> <b>[1..1]</b> : The currency of the amount. (Attribute)</li>
+     *         <li>[String] <b>payableAmount</b> <b>[1..1]</b> : The total amount to be paid.</li>
+     *         <li>[String] <b>payableAmount_AttributeCurrencyID</b> <b>[1..1]</b> : The currency of the amount. (Attribute)</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private LegalMonetaryTotal(LegalMonetaryTotalBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -35,6 +63,9 @@ public class LegalMonetaryTotal {
         this.payableAmount_AttributeCurrencyID = builder.payableAmount_AttributeCurrencyID;
     }
 
+    /**
+     * Builder LegalMonetaryTotal
+     */
     public static class LegalMonetaryTotalBuilder {
 
         private Document doc;
@@ -97,6 +128,10 @@ public class LegalMonetaryTotal {
 
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         Element elementLegalMonetaryTotal = new ElementT(doc, element, ElementsName.LEGAL_MONETARY_TOTAL.label).load();
         if (!Tips.stringIsNull(lineExtensionAmount)) {

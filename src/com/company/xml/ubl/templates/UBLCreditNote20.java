@@ -18,7 +18,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.util.List;
 
 /**
- * Lala
+ * Class UBLCreditNote20
  */
 public class UBLCreditNote20 {
 
@@ -38,6 +38,9 @@ public class UBLCreditNote20 {
     private LegalMonetaryTotal legalMonetaryTotal;
     private List<CreditNoteLine> creditNoteLineList;
 
+    /**
+     * Documentation is coming...
+     */
     private UBLCreditNote20(UBLCreditNote20Builder builder) {
         this.doc = builder.doc;
         this.ublVersionID = builder.ublVersionID;
@@ -57,7 +60,7 @@ public class UBLCreditNote20 {
     }
 
     /**
-     * builder
+     * Builder UBLCreditNote20
      */
     public static class UBLCreditNote20Builder {
 
@@ -148,6 +151,13 @@ public class UBLCreditNote20 {
 
     }
 
+    /**
+     * TODO
+     */
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         Element elementCreditNote = new ElementT(doc, ElementsName.CREDIT_CARD.label).loadDoc();
         Attr attrEleCreditCard1 = new AttributeT(doc, elementCreditNote, NamespacesName.XMLNS.label, NamespacesName.XMLNS_IMPORT.label).load();

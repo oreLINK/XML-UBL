@@ -1,5 +1,8 @@
 package com.company.xml.ubl.attributes;
 
+/**
+ * Class Item
+ */
 public class PatternList {
 
     private String listID;
@@ -12,6 +15,9 @@ public class PatternList {
     private String listURI;
     private String listSchemeURI;
 
+    /**
+     * Documentation is coming...
+     */
     private PatternList(PatternListBuilder builder) {
         this.listID = builder.listID;
         this.listAgencyID = builder.listAgencyID;
@@ -24,6 +30,9 @@ public class PatternList {
         this.listSchemeURI = builder.listSchemeURI;
     }
 
+    /**
+     * Builder PatternList
+     */
     public static class PatternListBuilder {
 
         private String listID;

@@ -9,18 +9,42 @@ import org.w3c.dom.Element;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class AccountingSupplierParty
+ */
 public class AccountingSupplierParty {
 
     private Document doc;
     private Element element;
     private List<Party> partyList = new ArrayList<>();
 
+    /**
+     * <h2>Element "AccountingSupplierParty"</h2>
+     * <i>use in CreditNote <b>[1..1]</b>.</i>
+     * <p>An association to the Accounting Supplier Party. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[List] <b>partyList</b> <b>[0..1]</b> : [Party] elements list.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private AccountingSupplierParty(AccountingSupplierPartyBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
         this.partyList = builder.partyList;
     }
 
+    /**
+     * Builder AccountingCustomerParty
+     */
     public static class AccountingSupplierPartyBuilder {
 
         private Document doc;
@@ -52,6 +76,10 @@ public class AccountingSupplierParty {
         return partyList;
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         Element elementAccountingSupplierParty = new ElementT(doc,element, ElementsName.ACCOUNTING_SUPPLIER_PARTY.label).load();
         if(!Tips.listIsNull(partyList)){

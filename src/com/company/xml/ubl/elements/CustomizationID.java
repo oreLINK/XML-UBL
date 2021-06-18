@@ -10,6 +10,9 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class CustomizationID
+ */
 public class CustomizationID {
 
     private Document doc;
@@ -18,6 +21,9 @@ public class CustomizationID {
     private String value;
     private PatternScheme patternScheme;
 
+    /**
+     * Documentation is coming...
+     */
     private CustomizationID(CustomizationIDBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -25,6 +31,9 @@ public class CustomizationID {
         this.patternScheme = builder.patternScheme;
     }
 
+    /**
+     * Builder CustomizationID
+     */
     public static class CustomizationIDBuilder {
 
         private Document doc;
@@ -65,6 +74,10 @@ public class CustomizationID {
         return patternScheme;
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         Element elementRoot = new ElementT(doc, element, name, value).load();
         if(!Tips.stringIsNull(patternScheme.getSchemeID())){

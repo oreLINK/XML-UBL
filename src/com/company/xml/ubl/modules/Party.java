@@ -9,6 +9,9 @@ import org.w3c.dom.Element;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class Party
+ */
 public class Party {
 
     private Document doc;
@@ -21,6 +24,30 @@ public class Party {
     private List<Contact> contactList = new ArrayList<>();
     private List<Person> personList = new ArrayList<>();
 
+    /**
+     * <h2>Element "Party"</h2>
+     * <i>use in AccountingCustomerParty <b>[0..1]</b>, AccountingSupplierParty <b>[0..1]</b>.</i>
+     * <p>An association to Party. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[List] <b>partyIdentificationList</b> <b>[0..*]</b> : [PartyIdentification] elements list.</li>
+     *         <li>[List] <b>partyNameList</b> <b>[0..*]</b> : [PartyName] elements list.</li>
+     *         <li>[List] <b>postalAddressList</b> <b>[0..1]</b> : [PostalAddress] elements list.</li>
+     *         <li>[List] <b>partyTaxSchemeList</b> <b>[0..*]</b> : [PartyTaxScheme] elements list.</li>
+     *         <li>[List] <b>partyLegalEntityList</b> <b>[0..*]</b> : [PartyLegalEntity] elements list.</li>
+     *         <li>[List] <b>contactList</b> <b>[0..1]</b> : [Contact] elements list.</li>
+     *         <li>[List] <b>personList</b> <b>[0..1]</b> : [Person] elements list.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private Party(PartyBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -33,6 +60,9 @@ public class Party {
         this.personList = builder.personList;
     }
 
+    /**
+     * Builder Party
+     */
     public static class PartyBuilder {
 
         private Document doc;
@@ -90,28 +120,6 @@ public class Party {
 
     }
 
-    public Party(Document doc, Element element, List<PartyIdentification> partyIdentificationList, List<PartyName> partyNameList, List<PostalAddress> postalAddressList, List<PartyTaxScheme> partyTaxSchemeList, List<PartyLegalEntity> partyLegalEntityList, List<Contact> contactList, List<Person> personList) {
-        this.doc = doc;
-        this.element = element;
-        this.partyIdentificationList = partyIdentificationList;
-        this.partyNameList = partyNameList;
-        this.postalAddressList = postalAddressList;
-        this.partyTaxSchemeList = partyTaxSchemeList;
-        this.partyLegalEntityList = partyLegalEntityList;
-        this.contactList = contactList;
-        this.personList = personList;
-    }
-
-    public Party(List<PartyIdentification> partyIdentificationList, List<PartyName> partyNameList, List<PostalAddress> postalAddressList, List<PartyTaxScheme> partyTaxSchemeList, List<PartyLegalEntity> partyLegalEntityList, List<Contact> contactList, List<Person> personList) {
-        this.partyIdentificationList = partyIdentificationList;
-        this.partyNameList = partyNameList;
-        this.postalAddressList = postalAddressList;
-        this.partyTaxSchemeList = partyTaxSchemeList;
-        this.partyLegalEntityList = partyLegalEntityList;
-        this.contactList = contactList;
-        this.personList = personList;
-    }
-
     public List<PartyIdentification> getPartyIdentificationList() {
         return partyIdentificationList;
     }
@@ -140,6 +148,10 @@ public class Party {
         return personList;
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         //Party (root)
         Element elementParty = new ElementT(doc,element, ElementsName.PARTY.label).load();
@@ -171,20 +183,20 @@ public class Party {
         //Postal Address
         if(!Tips.listIsNull(postalAddressList)) {
             for (PostalAddress postalAddress : postalAddressList) {
-                Element elementPostalAddress = new PostalAddress(
-                        doc,
-                        elementParty,
-                        postalAddress.getAddressFormatCode(),
-                        postalAddress.getAddressFormatCode_AttrListAgencyID(),
-                        postalAddress.getAddressFormatCode_AttrListID(),
-                        postalAddress.getAddressFormatCode_AttrListVersionID(),
-                        postalAddress.getPostBox(),
-                        postalAddress.getStreetName(),
-                        postalAddress.getBuildingNumber(),
-                        postalAddress.getCityName(),
-                        postalAddress.getPostalZone(),
-                        postalAddress.getCountryList()
-                ).load();
+                Element elementPostalAddress = new PostalAddress.PostalAddressBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementParty)
+                        .addressFormatCode(postalAddress.getAddressFormatCode())
+                        .addressFormatCode_AttributeListAgencyID(postalAddress.getAddressFormatCode_AttrListAgencyID())
+                        .addressFormatCode_AttributeListID(postalAddress.getAddressFormatCode_AttrListID())
+                        .addressFormatCode_AttributeListVersionID(postalAddress.getAddressFormatCode_AttrListVersionID())
+                        .postBox(postalAddress.getPostBox())
+                        .streetName(postalAddress.getStreetName())
+                        .buildingNumber(postalAddress.getBuildingNumber())
+                        .cityName(postalAddress.getCityName())
+                        .postalZone(postalAddress.getPostalZone())
+                        .countryList(postalAddress.getCountryList())
+                        .build().load();
             }
         }
 

@@ -9,8 +9,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 /**
- * Class OrderReference
- * use in CreditNote.
+ * Class Item
  */
 public class OrderReference {
 
@@ -18,12 +17,33 @@ public class OrderReference {
     private Element element;
     private ID id;
 
+    /**
+     * <h2>Element "OrderReference"</h2>
+     * <i>use in CreditNote <b>[0..1]</b>.</i>
+     * <p>An association to Order Reference. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>id</b> <b>[1..1]</b> : Identifies the referenced Order assigned by the buyer.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private OrderReference(OrderReferenceBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
         this.id = builder.id;
     }
 
+    /**
+     * Builder OrderReference
+     */
     public static class OrderReferenceBuilder {
 
         private Document doc;

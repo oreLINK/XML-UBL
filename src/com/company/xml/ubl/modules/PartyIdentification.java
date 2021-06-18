@@ -9,6 +9,9 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class PartyIdentification
+ */
 public class PartyIdentification {
 
     private Document doc;
@@ -17,6 +20,26 @@ public class PartyIdentification {
     private String id_AttributeSchemeID;
     private String id_AttributeSchemeName;
 
+    /**
+     * <h2>Element "PartyIdentification"</h2>
+     * <i>use in Party <b>[0..*]</b>.</i>
+     * <p>An association to Party Identification. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>id</b> <b>[1..1]</b> : Identifies a party.</li>
+     *         <li>[String] <b>id_AttributeSchemeID</b> <b>[0..1]</b> : The identification of the identification scheme. (Attribute)</li>
+     *         <li>[String] <b>id_AttributeSchemeName</b> <b>[0..1]</b> : The name of the identification scheme. (Attribute)</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private PartyIdentification(PartyIdentificationBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -25,6 +48,9 @@ public class PartyIdentification {
         this.id_AttributeSchemeName = builder.id_AttributeSchemeName;
     }
 
+    /**
+     * Builder PartyIdentification
+     */
     public static class PartyIdentificationBuilder {
 
         private Document doc;
@@ -74,6 +100,10 @@ public class PartyIdentification {
         return id;
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         Element elementPartyIdentification = new ElementT(doc, element, ElementsName.PARTY_IDENTIFICATION.label).load();
         if(!Tips.stringIsNull(id)) {

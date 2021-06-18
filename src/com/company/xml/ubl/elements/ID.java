@@ -11,7 +11,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 /**
- * Class Element ID
+ * Class ID
  */
 public class ID {
 
@@ -21,6 +21,9 @@ public class ID {
     private String value;
     private PatternScheme patternScheme;
 
+    /**
+     * Documentation is coming...
+     */
     private ID(IDBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -28,7 +31,9 @@ public class ID {
         this.patternScheme = builder.patternScheme;
     }
 
-
+    /**
+     * Builder ID
+     */
     public static class IDBuilder {
 
         private Document doc;
@@ -69,6 +74,10 @@ public class ID {
         return patternScheme;
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         Element elementRoot = new ElementT(doc, element, name, value).load();
         if(!Tips.stringIsNull(patternScheme.getSchemeID())){

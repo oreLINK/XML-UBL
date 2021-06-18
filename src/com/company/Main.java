@@ -53,7 +53,7 @@ public class Main {
         //... > CUSTOMIZATION ID
         Element eleCustomizationId = new ElementT(doc.getDoc(), elementCreditNote, ElementsName.CUSTOMIZATION_ID.label, "urn:tradeshift.com:ubl-2.0-customizations:2010-06").load();
 
-        //PROFILE ID
+        //> PROFILE ID
         Element eleProfileID = new ElementT(doc.getDoc(), elementCreditNote, ElementsName.PROFILE_ID.label, "urn:www.cenbii.eu:profile:bii04:ver1.0").load();
         Attr attrEleProfileID1 = new AttributeT(doc.getDoc(), eleProfileID, AttributesName.PROFIL_ID_SCHEMA_AGENCY_ID.label, "CEN/ISSS WS/BII").load();
         Attr attrEleProfileID2 = new AttributeT(doc.getDoc(), eleProfileID, AttributesName.PROFIL_ID_SCHEMA_ID.label, "CWA 16073:2010").load();
@@ -261,7 +261,6 @@ public class Main {
                 .elementFather(elementCreditNote)
                 .partyList(partyList)
                 .build().load();
-
 
         //TAX TOTAL
 

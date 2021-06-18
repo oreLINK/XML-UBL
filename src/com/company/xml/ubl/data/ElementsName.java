@@ -1,5 +1,9 @@
 package com.company.xml.ubl.data;
 
+/**
+ * Class enum ElementsName
+ * Here are stored all the names of the different elements to avoid duplication errors
+ */
 public enum ElementsName {
     CREDIT_CARD("CreditCard"),
     UBL_VERSION_ID(NamespacesName.CBC_NAMESPACE.label+"UBLVersionID"),

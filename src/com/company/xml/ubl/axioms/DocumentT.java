@@ -15,6 +15,9 @@ import java.util.List;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class DocumentT
+ */
 public class DocumentT {
 
     private String name;
@@ -22,6 +25,11 @@ public class DocumentT {
     private Document doc;
     private List<ElementT> listElementTS = new ArrayList<>();
 
+    /**
+     * Declaration of an empty document
+     * @param name document name
+     * @param path document path
+     */
     public DocumentT(String name, String path) {
         this.name = name;
         this.path = path;
@@ -43,12 +51,20 @@ public class DocumentT {
         return listElementTS;
     }
 
+    /**
+     * Initializing an empty document
+     * @throws ParserConfigurationException
+     */
     public void initialize() throws ParserConfigurationException {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         doc = dBuilder.newDocument();
     }
 
+    /**
+     * Generation of the completed document
+     * @throws TransformerException
+     */
     public void generate() throws TransformerException {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
@@ -56,15 +72,5 @@ public class DocumentT {
         StreamResult result = new StreamResult(new File(path+name));
         transformer.transform(source, result);
     }
-
-    /*public void addRootElement(ElementT elementT) {
-        Element element = doc.createElement(elementT.getName());
-        doc.appendChild(element);
-    }
-
-    public void joinElements(ElementT elementF, ElementT elementC) {
-        Element elemChild = doc.createElement(elementC.getName());
-        elementF.getElemFather().appendChild(elemChild);
-    }*/
 
 }

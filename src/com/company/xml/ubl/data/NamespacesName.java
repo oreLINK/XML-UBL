@@ -1,5 +1,9 @@
 package com.company.xml.ubl.data;
 
+/**
+ * Class enum NamespacesName
+ * Here are stored all the names of the different namespaces to avoid duplication errors
+ */
 public enum NamespacesName {
     XMLNS("xmlns"),
     CAC("cac"),

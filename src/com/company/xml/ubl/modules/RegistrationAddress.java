@@ -9,6 +9,9 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class RegistrationAddress
+ */
 public class RegistrationAddress {
 
     private Document doc;
@@ -24,6 +27,33 @@ public class RegistrationAddress {
     private String cityName;
     private String postalZone;
 
+    /**
+     * <h2>Element "RegistrationAddress"</h2>
+     * <i>use in PartyLegalEntity <b>[0..1]</b>.</i>
+     * <p>Associates with the registered address of the party within a Corporate Registration Scheme. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>id</b> <b>[0..1]</b> : An identifier for a specific address within a scheme of registered addresses.</li>
+     *         <li>[String] <b>id_AttributeSchemeId</b> <b>[0..1]</b> : The identification of the identification scheme. (Attribute)</li>
+     *         <li>[String] <b>addressFormatCode</b> <b>[0..1]</b> : A code specifying the format of this address.</li>
+     *         <li>[String] <b>addressFormatCode_AttributeListAgencyId</b> <b>[0..1]</b> : An agency that maintains one or more lists of codes. (Attribute)</li>
+     *         <li>[String] <b>addressFormatCode_AttributeListId</b> <b>[0..1]</b> : The identification of a list of codes. (Attribute)</li>
+     *         <li>[String] <b>postBox</b> <b>[0..1]</b> : A post office box number.</li>
+     *         <li>[String] <b>streetName</b> <b>[0..1]</b> : The name of a street.</li>
+     *         <li>[String] <b>buildingNumber</b> <b>[0..1]</b> : The number of a building.</li>
+     *         <li>[String] <b>cityName</b> <b>[0..1]</b> : The name of a city, town, or village.</li>
+     *         <li>[String] <b>postalZone</b> <b>[0..1]</b> : The identifier for an addressable group of properties according to the relevant national postal service, such as a ZIP code or Post Code.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private RegistrationAddress(RegistrationAddressBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -39,6 +69,9 @@ public class RegistrationAddress {
         this.postalZone = builder.postalZone;
     }
 
+    /**
+     * Builder RegistrationAddress
+     */
     public static class RegistrationAddressBuilder {
 
         private Document doc;
@@ -151,6 +184,10 @@ public class RegistrationAddress {
         return postalZone;
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         //Generate root element
         Element elementRegistrationAddress = new ElementT(doc, element, ElementsName.REGISTRATION_ADDRESS.label).load();

@@ -5,63 +5,45 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class ElementT
+ */
 public class ElementT {
 
-    protected Document doc;
-    protected Element elemFather;
-    protected String name;
-    protected String value;
+    private Document doc;
+    private Element elemFather;
+    private String name;
+    private String value;
 
-    protected ElementT(ElementTBuilder builder) {
-        this.doc = builder.doc;
-        this.elemFather = builder.elemFather;
-        this.name = builder.name;
-        this.value = builder.value;
-    }
-
-    public static class ElementTBuilder {
-
-        private Document doc;
-        private Element elemFather;
-        private String name;
-        private String value;
-
-        public ElementTBuilder() {}
-
-        public ElementTBuilder documentLinked(Document doc){
-            this.doc = doc;
-            return this;
-        }
-        public ElementTBuilder elementFather(Element element){
-            this.elemFather = elemFather;
-            return this;
-        }
-        public ElementTBuilder name(String name){
-            this.name = name;
-            return this;
-        }
-        public ElementTBuilder value(String value){
-            this.value = value;
-            return this;
-        }
-        public ElementT build(){
-            ElementT elementT = new ElementT(this);
-            return elementT;
-        }
-
-    }
-
+    /**
+     * Declaration of an empty element
+     * @param doc document in which this element must be written.
+     * @param name element name
+     */
     public ElementT(Document doc, String name) {
         this.doc = doc;
         this.name = name;
     }
 
+    /**
+     * Declaration of an empty element
+     * @param doc document in which this element must be written.
+     * @param elemFather father element in which this element must be written.
+     * @param name element name
+     */
     public ElementT(Document doc, Element elemFather, String name) {
         this.doc = doc;
         this.elemFather = elemFather;
         this.name = name;
     }
 
+    /**
+     * Declaration of an empty element
+     * @param doc document in which this element must be written.
+     * @param elemFather father element in which this element must be written.
+     * @param name element name
+     * @param value element value
+     */
     public ElementT(Document doc, Element elemFather, String name, String value) {
         this.doc = doc;
         this.elemFather = elemFather;
@@ -85,6 +67,10 @@ public class ElementT {
         return value;
     }
 
+    /**
+     * Generation of the first completed element of the document which will contain all the other elements
+     * @return root element
+     */
     public Element loadDoc() {
         Element element = doc.createElement(name);
         doc.appendChild(element);
@@ -94,6 +80,10 @@ public class ElementT {
         return element;
     }
 
+    /**
+     * Generation of an element filled with a parent element
+     * @return child element
+     */
     public Element load() {
         Element element = doc.createElement(name);
         elemFather.appendChild(element);
@@ -101,11 +91,5 @@ public class ElementT {
             element.appendChild(doc.createTextNode(value));
         }
         return element;
-    }
-
-    public void addAttr(AttributeT attributeT) {
-        Attr attr = doc.createAttribute(attributeT.getName());
-        attr.setValue(attributeT.getValue());
-        elemFather.setAttributeNode(attr);
     }
 }

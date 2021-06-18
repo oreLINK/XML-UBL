@@ -9,6 +9,9 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class Contact
+ */
 public class Contact {
 
     private Document doc;
@@ -20,6 +23,29 @@ public class Contact {
     private String electronicMail;
     private String note;
 
+    /**
+     * <h2>Element "Contact"</h2>
+     * <i>use in Party <b>[0..1]</b>.</i>
+     * <p>An association to Contact. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>id</b> <b>[0..1]</b> : An identifier for the Contact.</li>
+     *         <li>[String] <b>id_AttributeSchemeURI</b> <b>[0..1]</b> : The Uniform Resource Identifier that identifies where the identification scheme is located. (Attribute)</li>
+     *         <li>[String] <b>name</b> <b>[0..1]</b> : The name of the Contact.</li>
+     *         <li>[String] <b>telephone</b> <b>[0..1]</b> : The telephone number of the Contact.</li>
+     *         <li>[String] <b>electronicMail</b> <b>[0..1]</b> : The email address of the Contact.</li>
+     *         <li>[String] <b>note</b> <b>[0..1]</b> : A note such as 'Emergency' or 'After Hours' describing the circumstances in which the Contact can be used.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private Contact(ContactBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -31,6 +57,9 @@ public class Contact {
         this.note = builder.note;
     }
 
+    /**
+     * Builder Contact
+     */
     public static class ContactBuilder {
 
         private Document doc;
@@ -107,6 +136,10 @@ public class Contact {
         return note;
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         //Generate root element
         Element elementContact = new ElementT(doc, element, ElementsName.CONTACT.label).load();

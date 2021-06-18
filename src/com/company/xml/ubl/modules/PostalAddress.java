@@ -9,6 +9,9 @@ import org.w3c.dom.Element;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class PostalAddress
+ */
 public class PostalAddress {
 
     private Document doc;
@@ -24,6 +27,33 @@ public class PostalAddress {
     private String postalZone;
     private List<Country> countryList = new ArrayList<>();
 
+    /**
+     * <h2>Element "PostalAddress"</h2>
+     * <i>use in Party <b>[0..1]</b>.</i>
+     * <p>The party's postal address. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>addressFormatCode</b> <b>[0..1]</b> : A code specifying the format of this address.</li>
+     *         <li>[String] <b>addressFormatCode_AttrListAgencyID</b> <b>[0..1]</b> : An agency that maintains one or more lists of codes. (Attribute)</li>
+     *         <li>[String] <b>addressFormatCode_AttrListID</b> <b>[0..1]</b> : The identification of a list of codes. (Attribute)</li>
+     *         <li>[String] <b>addressFormatCode_AttrListVersionID</b> <b>[0..1]</b> :The identification of a list of codes. (Attribute)</li>
+     *         <li>[String] <b>postBox</b> <b>[0..1]</b> : A post office box number.</li>
+     *         <li>[String] <b>streetName</b> <b>[0..1]</b> : The name of a street.</li>
+     *         <li>[String] <b>buildingNumber</b> <b>[0..1]</b> : The number of a building.</li>
+     *         <li>[String] <b>cityName</b> <b>[0..1]</b> : The name of a city, town, or village.</li>
+     *         <li>[String] <b>postalZone</b> <b>[0..1]</b> : The identifier for an addressable group of properties according to the relevant national postal service, such as a ZIP code or Post Code.</li>
+     *         <li>[List] <b>countryList</b> <b>[0..1]</b> : [Country] elements list.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private PostalAddress(PostalAddressBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -40,7 +70,7 @@ public class PostalAddress {
     }
 
     /**
-     * Class Builder
+     * Builder PostalAddress
      */
     public static class PostalAddressBuilder {
 
@@ -113,21 +143,6 @@ public class PostalAddress {
         }
     }
 
-    public PostalAddress(Document doc, Element element, String addressFormatCode, String addressFormatCode_AttrListAgencyID, String addressFormatCode_AttrListID, String addressFormatCode_AttrListVersionID, String postBox, String streetName, String buildingNumber, String cityName, String postalZone, List<Country> countryList) {
-        this.doc = doc;
-        this.element = element;
-        this.addressFormatCode = addressFormatCode;
-        this.addressFormatCode_AttrListAgencyID = addressFormatCode_AttrListAgencyID;
-        this.addressFormatCode_AttrListID = addressFormatCode_AttrListID;
-        this.addressFormatCode_AttrListVersionID = addressFormatCode_AttrListVersionID;
-        this.postBox = postBox;
-        this.streetName = streetName;
-        this.buildingNumber = buildingNumber;
-        this.cityName = cityName;
-        this.postalZone = postalZone;
-        this.countryList = countryList;
-    }
-
     public String getAddressFormatCode() {
         return addressFormatCode;
     }
@@ -168,6 +183,10 @@ public class PostalAddress {
         return countryList;
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         Element elementPostalAddress = new ElementT(doc, element, ElementsName.POSTAL_ADDRESS.label).load();
         if(!Tips.stringIsNull(addressFormatCode)) {
@@ -220,12 +239,11 @@ public class PostalAddress {
         }
         if(!Tips.listIsNull(countryList)){
             for (Country country : countryList) {
-                Element elementCountry = new ElementT(
-                        doc,
-                        elementPostalAddress,
-                        ElementsName.POSTAL_ADDRESS_COUNTRY.label,
-                        country.getIdentificationCode()
-                ).load();
+                Element elementCountry = new Country.CountryBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPostalAddress)
+                        .identificationCode(country.getIdentificationCode())
+                        .build().load();
             }
         }
         return elementPostalAddress;

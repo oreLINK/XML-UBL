@@ -12,6 +12,9 @@ import org.w3c.dom.Element;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class TaxCategory
+ */
 public class TaxCategory {
 
     private Document doc;
@@ -23,6 +26,29 @@ public class TaxCategory {
     private String percent;
     private List<TaxScheme> taxSchemeList = new ArrayList<>();
 
+    /**
+     * <h2>Element "TaxCategory"</h2>
+     * <i>use in TaxSubtotal <b>[1..1]</b>.</i>
+     * <p>An association to Tax Category. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>id</b> <b>[0..1]</b> : Identifies the tax category.</li>
+     *         <li>[String] <b>id_AttributeSchemeAgencyID</b> <b>[0..1]</b> : The identification of the agency that maintains the identification scheme. (Attribute)</li>
+     *         <li>[String] <b>id_AttributeSchemeID</b> <b>[0..1]</b> : The identification of the identification scheme. (Attribute)</li>
+     *         <li>[String] <b>id_AttributeSchemeVersionID</b> <b>[0..1]</b> : The version of the identification scheme. (Attribute)</li>
+     *         <li>[String] <b>percent</b> <b>[0..1]</b> : The tax rate for the category, expressed as a percentage.</li>
+     *         <li>[List] <b>taxSchemeList</b> <b>[1..1]</b> : [TaxScheme] elements list.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private TaxCategory(TaxCategoryBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -34,6 +60,9 @@ public class TaxCategory {
         this.taxSchemeList = builder.taxSchemeList;
     }
 
+    /**
+     * Builder Contact
+     */
     public static class TaxCategoryBuilder {
 
         private Document doc;
@@ -110,6 +139,10 @@ public class TaxCategory {
         return taxSchemeList;
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         Element elementTaxCategory = new ElementT(doc, element, ElementsName.TAX_CATEGORY.label).load();
         if(!Tips.stringIsNull(id)){

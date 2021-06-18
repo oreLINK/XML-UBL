@@ -9,6 +9,9 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class Price
+ */
 public class Price {
 
     private Document doc;
@@ -19,6 +22,28 @@ public class Price {
     private String baseQuantity_AttributeUnitCode;
     private String orderableUnitFactorRate;
 
+    /**
+     * <h2>Element "Price"</h2>
+     * <i>use in CreditNoteLine <b>[0..1]</b>.</i>
+     * <p>An association to Price. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>priceAmount</b> <b>[1..1]</b> : The price amount.</li>
+     *         <li>[String] <b>priceAmount_AttributeCurrencyID</b> <b>[1..1]</b> : The currency of the amount. (Attribute)</li>
+     *         <li>[String] <b>baseQuantity</b> <b>[0..1]</b> : The actual quantity to which the price applies.</li>
+     *         <li>[String] <b>baseQuantity_AttributeUnitCode</b> <b>[0..1]</b> : The unit of the quantity. (Attribute)</li>
+     *         <li>[String] <b>orderableUnitFactorRate</b> <b>[0..1]</b> : The factor by which the base price unit can be converted to the orderable unit.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private Price(PriceBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -29,6 +54,9 @@ public class Price {
         this.orderableUnitFactorRate = builder.orderableUnitFactorRate;
     }
 
+    /**
+     * Builder Contact
+     */
     public static class PriceBuilder {
 
         private Document doc;
@@ -96,6 +124,10 @@ public class Price {
         return orderableUnitFactorRate;
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         Element elementPrice = new ElementT(doc, element, ElementsName.PRICE.label).load();
         if (!Tips.stringIsNull(priceAmount)) {

@@ -12,6 +12,9 @@ import org.w3c.dom.Element;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class PartyTaxScheme
+ */
 public class PartyTaxScheme {
 
     private Document doc;
@@ -20,6 +23,26 @@ public class PartyTaxScheme {
     private String companyId_AttributeSchemeId;
     private List<TaxScheme> taxSchemeList = new ArrayList<>();
 
+    /**
+     * <h2>Element "PartyTaxScheme"</h2>
+     * <i>use in Party <b>[0..*]</b>.</i>
+     * <p>An association to Party Tax Scheme. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>companyId</b> <b>[0..1]</b> : The identifier assigned for tax purposes to a party by the taxation authority.</li>
+     *         <li>[String] <b>companyId_AttributeSchemeId</b> <b>[0..1]</b> : The identification of the identification scheme.</li>
+     *         <li>[List] <b>taxSchemeList</b> <b>[1..1]</b> : [TaxScheme] elements list.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private PartyTaxScheme(PartyTaxSchemeBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -28,6 +51,9 @@ public class PartyTaxScheme {
         this.taxSchemeList = builder.taxSchemeList;
     }
 
+    /**
+     * Builder PartyTaxScheme
+     */
     public static class PartyTaxSchemeBuilder {
 
         private Document doc;
@@ -77,6 +103,10 @@ public class PartyTaxScheme {
         return taxSchemeList;
     }
 
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
     public Element load() {
         Element elementPartyTaxScheme = new ElementT(doc,element, ElementsName.PARTY_TAX_SCHEME.label).load();
         if(!Tips.stringIsNull(companyId)){

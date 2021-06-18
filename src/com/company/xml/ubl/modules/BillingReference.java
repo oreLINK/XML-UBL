@@ -10,7 +10,6 @@ import java.util.List;
 
 /**
  * Class BillingReference
- * use in CreditNote.
  */
 public class BillingReference {
 
@@ -18,12 +17,33 @@ public class BillingReference {
     private Element element;
     private List<InvoiceDocumentReference> invoiceDocumentReferenceList;
 
+    /**
+     * <h2>Element "BillingReference"</h2>
+     * <i>use in CreditNote <b>[0..*]</b>.</i>
+     * <p>An association to Billing Reference. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[List] <b>invoiceDocumentReferenceList</b> <b>[0..1]</b> : [InvoiceDocumentReference] elements list.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private BillingReference(BillingReferenceBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
         this.invoiceDocumentReferenceList = builder.invoiceDocumentReferenceList;
     }
 
+    /**
+     * Builder BillingReference
+     */
     public static class BillingReferenceBuilder {
 
         private Document doc;

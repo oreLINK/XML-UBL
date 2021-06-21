@@ -30,7 +30,7 @@
 
 ### Version 1 (Element creation)
 
-All code has been documented and will be used by you when creating document, element and attributes. The syntax of the code documentation is suitable for IntelliJ. Here is the example of the documentation for the `TaxTotal` element :
+All code has been documented and will be used by you when creating document, element and attributes. The syntax of the code documentation has been optimized for IntelliJ. Here is the example of the documentation for the `TaxTotal` element :
 
 ![image](https://user-images.githubusercontent.com/35436186/122730536-9c984500-d27a-11eb-827c-eb747f2f1290.png)
 

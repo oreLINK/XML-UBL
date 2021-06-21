@@ -14,7 +14,7 @@ import org.w3c.dom.Element;
 public class CreditNote20 {
 
     private Document doc;
-    private String name = ElementsName.CREDIT_CARD.label;
+    private String name = ElementsName.CREDIT_NOTE.label;
 
     /**
      * Documentation is coming...

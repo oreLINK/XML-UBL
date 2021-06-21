@@ -74,6 +74,31 @@ public class ID {
         return patternScheme;
     }
 
+    public boolean isNull() {
+        if(Tips.stringIsNull(value)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static Element allLoad(Document documentLinked, Element elementFather, ID id){
+        Element elementId = new ID.IDBuilder()
+                .documentLinked(documentLinked)
+                .elementFather(elementFather)
+                .attributes(new PatternScheme.PatternSchemeBuilder()
+                        .schemeID(id.getPatternScheme().getSchemeID())
+                        .schemeName(id.getPatternScheme().getSchemeName())
+                        .schemeAgencyID(id.getPatternScheme().getSchemeAgencyID())
+                        .schemeAgencyName(id.getPatternScheme().getSchemeAgencyName())
+                        .schemeVersionID(id.getPatternScheme().getSchemeVersionID())
+                        .schemeDataURI(id.getPatternScheme().getSchemeDataURI())
+                        .schemeURI(id.getPatternScheme().getSchemeURI())
+                        .build())
+                .build().load();
+        return elementId;
+    }
+
     /**
      * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
      * @return the generated element

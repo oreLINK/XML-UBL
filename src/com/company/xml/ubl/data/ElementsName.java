@@ -5,7 +5,7 @@ package com.company.xml.ubl.data;
  * Here are stored all the names of the different elements to avoid duplication errors
  */
 public enum ElementsName {
-    CREDIT_CARD("CreditCard"),
+    CREDIT_NOTE("CreditNote"),
     UBL_VERSION_ID(NamespacesName.CBC_NAMESPACE.label+"UBLVersionID"),
     CUSTOMIZATION_ID(NamespacesName.CBC_NAMESPACE.label+"CustomizationID"),
     PROFILE_ID(NamespacesName.CBC_NAMESPACE.label+"ProfileID"),
@@ -89,7 +89,16 @@ public enum ElementsName {
     PRICE(NamespacesName.CAC_NAMESPACE.label+"Price"),
     PRICE_PRICE_AMOUNT(NamespacesName.CBC_NAMESPACE.label+"PriceAmount"),
     PRICE_BASE_QUANTITY(NamespacesName.CBC_NAMESPACE.label+"BaseQuantity"),
-    PRICE_ORDERABLE_UNIT_FACTOR_RATE(NamespacesName.CBC_NAMESPACE.label+"OrderableUnitFactorRate");
+    PRICE_ORDERABLE_UNIT_FACTOR_RATE(NamespacesName.CBC_NAMESPACE.label+"OrderableUnitFactorRate"),
+    INVOICE("Invoice"),
+    INVOICE_TYPE_CODE(NamespacesName.CBC_NAMESPACE.label+"InvoiceTypeCode"),
+    PAYMENT_MEANS_CODE(NamespacesName.CBC_NAMESPACE.label+"PaymentMeansCode"),
+    PAYMENT_DUE_DATE(NamespacesName.CBC_NAMESPACE.label+"PaymentDueDate"),
+    PAYMENT_CHANNEL_CODE(NamespacesName.CBC_NAMESPACE.label+"PaymentChannelCode"),
+    FINANCIAL_INSTITUTION(NamespacesName.CAC_NAMESPACE.label+"FinancialInstitution"),
+    FINANCIAL_INSTITUTION_BRANCH(NamespacesName.CAC_NAMESPACE.label+"FinancialInstitutionBranch"),
+    PAYEE_FINANCIAL_ACCOUNT(NamespacesName.CAC_NAMESPACE.label+"PayeeFinancialAccount"),
+    PAYMENT_MEANS(NamespacesName.CAC_NAMESPACE.label+"PaymentMeans");
 
     public final String label;
 

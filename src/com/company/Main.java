@@ -11,13 +11,16 @@ import com.company.xml.ubl.elements.*;
 import com.company.xml.ubl.attributes.PatternScheme;
 import com.company.xml.ubl.modules.*;
 import com.company.xml.ubl.templates.UBLCreditNote20;
+import com.company.xml.ubl.templates.UBLInvoice20;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -414,10 +417,12 @@ public class Main {
                 .value("2.0")
                 .attributes(new PatternScheme.PatternSchemeBuilder().build())
                 .build();
+
         CustomizationID ublCustomizationID = new CustomizationID.CustomizationIDBuilder()
                 .value("urn:tradeshift.com:ubl-2.0-customizations:2010-06")
                 .attributes(new PatternScheme.PatternSchemeBuilder().build())
                 .build();
+
         ProfileID ublProfileID = new ProfileID.ProfileIDBuilder()
                 .value("urn:www.cenbii.eu:profile:bii04:ver1.0")
                 .attributes(new PatternScheme.PatternSchemeBuilder()
@@ -426,23 +431,38 @@ public class Main {
                         .schemeVersionID("1")
                         .build())
                 .build();
+
         ID ublID = new ID.IDBuilder()
                 .value("038/0116297")
                 .attributes(new PatternScheme.PatternSchemeBuilder().build())
                 .build();
+
         IssueDate ublIssueDate = new IssueDate.IssueDateBuilder()
                 .value("2020-01-22")
                 .build();
+
         DocumentCurrencyCode ublDocumentCurrencyCode = new DocumentCurrencyCode.DocumentCurrencyCodeBuilder()
                 .value("EUR")
                 .attributes(new PatternList.PatternListBuilder().build())
                 .build();
+
         OrderReference ublOrderReference = new OrderReference.OrderReferenceBuilder()
                 .id(new ID.IDBuilder()
                         .value("C180001053")
                         .attributes(new PatternScheme.PatternSchemeBuilder().build())
                         .build())
                 .build();
+
+        InvoiceDocumentReference ublInvoiceDocumentReference1A = new InvoiceDocumentReference.InvoiceDocumentReferenceBuilder()
+                .id("038/0115616")
+                .build();
+        List<InvoiceDocumentReference> invoiceDocumentReferenceList1 = Arrays.asList(ublInvoiceDocumentReference1A);
+        BillingReference ublBillingReference1 = new BillingReference.BillingReferenceBuilder()
+                .invoiceDocumentReferenceList(invoiceDocumentReferenceList1)
+                .build();
+        List<BillingReference> billingReferenceList = Arrays.asList(ublBillingReference1);
+
+
 
 
         Element elementUBL = new UBLCreditNote20.UBLCreditNote20Builder()
@@ -454,11 +474,304 @@ public class Main {
                 .issueDate(ublIssueDate)
                 .documentCurrencyCode(ublDocumentCurrencyCode)
                 .orderReference(ublOrderReference)
+                .billingReferenceList(billingReferenceList)
                 .build().load();
 
 
         docUBL.generate();
 
+
+        /**
+         * WITH UBL TEMPLATE INVOICE 2.0
+         */
+
+        DocumentT docInvoice = new DocumentT("Invoice.xml", "");
+        docInvoice.initialize();
+
+        UBLVersionID invoiceUBLVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()
+                .value("2.0")
+                .attributes(new PatternScheme.PatternSchemeBuilder().build())
+                .build();
+
+        CustomizationID invoiceCustomizationID = new CustomizationID.CustomizationIDBuilder()
+                .value("urn:tradeshift.com:ubl-2.0-customizations:2010-06")
+                .attributes(new PatternScheme.PatternSchemeBuilder().build())
+                .build();
+
+        ProfileID invoiceProfileID = new ProfileID.ProfileIDBuilder()
+                .value("urn:www.cenbii.eu:profile:bii04:ver1.0")
+                .attributes(new PatternScheme.PatternSchemeBuilder()
+                        .schemeAgencyID("CEN/ISSS WS/BII")
+                        .schemeID("CWA 16073:2010")
+                        .schemeVersionID("1")
+                        .build())
+                .build();
+
+        ID invoiceID = new ID.IDBuilder()
+                .value("038/0116560")
+                .attributes(new PatternScheme.PatternSchemeBuilder().build())
+                .build();
+
+        IssueDate invoiceIssueDate = new IssueDate.IssueDateBuilder()
+                .value("2021-04-30")
+                .build();
+
+        InvoiceTypeCode invoiceInvoiceTypeCode = new InvoiceTypeCode.InvoiceTypeCodeBuilder()
+                .value("380")
+                .attributes(new PatternList.PatternListBuilder()
+                        .listAgencyID("6")
+                        .listID("UN/ECE 1001 Subset")
+                        .listVersionID("D08B")
+                        .build())
+                .build();
+
+        DocumentCurrencyCode invoiceDocumentCurrencyCode = new DocumentCurrencyCode.DocumentCurrencyCodeBuilder()
+                .value("EUR")
+                .attributes(new PatternList.PatternListBuilder().build())
+                .build();
+
+        OrderReference invoiceOrderReference = new OrderReference.OrderReferenceBuilder()
+                .id(new ID.IDBuilder()
+                        .value("C800430638")
+                        .attributes(new PatternScheme.PatternSchemeBuilder().build())
+                        .build())
+                .build();
+
+        List<AdditionalDocumentReference> additionalDocumentReferenceListInvoice = new ArrayList<>();
+        AdditionalDocumentReference additionalDocumentReference1 = new AdditionalDocumentReference.AdditionalDocumentReferenceBuilder()
+                .id("1100000 EUR")
+                .documentTypeCode("SenderShareCapital")
+                .documentTypeCode_AttributeListID("urn:tradeshift.com:api:1.0:documenttypecode")
+                .build();
+        additionalDocumentReferenceListInvoice.add(additionalDocumentReference1);
+        AdditionalDocumentReference additionalDocumentReference2 = new AdditionalDocumentReference.AdditionalDocumentReferenceBuilder()
+                .id("")
+                .documentTypeCode("File ID")
+                .documentTypeCode_AttributeListID("urn:tradeshift.com:api:1.0:documenttypecode")
+                .build();
+        additionalDocumentReferenceListInvoice.add(additionalDocumentReference2);
+        AdditionalDocumentReference additionalDocumentReference3 = new AdditionalDocumentReference.AdditionalDocumentReferenceBuilder()
+                .id("HALF_EVEN")
+                .documentTypeCode("RoundingRule")
+                .documentTypeCode_AttributeListID("urn:tradeshift.com:api:1.0:documenttypecode")
+                .build();
+        additionalDocumentReferenceListInvoice.add(additionalDocumentReference3);
+        List<Attachment> attachmentList1 = new ArrayList<>();
+        Attachment attachment1 = new Attachment.AttachmentBuilder()
+                .embeddedDocumentBinaryObject("JVBERi0xLjQKJeTjz9IKMyAwI...")
+                .embeddedDocumentBinaryObject_AttributeEncodingCode("Base64")
+                .embeddedDocumentBinaryObject_AttributeFilename("facture eiffage 1.pdf")
+                .embeddedDocumentBinaryObject_AttributeMimeCode("application/pdf")
+                .build();
+        attachmentList1.add(attachment1);
+        AdditionalDocumentReference additionalDocumentReference4 = new AdditionalDocumentReference.AdditionalDocumentReferenceBuilder()
+                .id("1100000 EUR")
+                .documentTypeCode("SenderShareCapital")
+                .documentTypeCode_AttributeListID("urn:tradeshift.com:api:1.0:documenttypecode")
+                .attachmentList(attachmentList1)
+                .build();
+        additionalDocumentReferenceListInvoice.add(additionalDocumentReference4);
+
+        //ACCOUNTING SUPPLIER PARTY
+
+        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY IDENTIFICATION
+        List<PartyIdentification> partyIdentificationListInvoice = new ArrayList<>();
+        PartyIdentification partyIdentificationInvoice1 = new PartyIdentification.PartyIdentificationBuilder()
+                .id("FR21314887126")
+                .id_AttributeSchemeID("FR:VAT")
+                .build();
+        PartyIdentification partyIdentificationInvoice2 = new PartyIdentification.PartyIdentificationBuilder()
+                .id("31488712600253")
+                .id_AttributeSchemeID("FR:SIRET")
+                .build();
+        partyIdentificationListInvoice.add(partyIdentificationInvoice1);
+        partyIdentificationListInvoice.add(partyIdentificationInvoice2);
+
+        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY NAME
+        List<PartyName> partyNameListInvoice = new ArrayList<>();
+        PartyName partyNameInvoice1 = new PartyName.PartyNameBuilder()
+                .name("Groupe SOVITRAT")
+                .build();
+        partyNameListInvoice.add(partyNameInvoice1);
+
+        //ACCOUNTING SUPPLIER PARTY > PARTY > POSTAL ADDRESS > COUNTRY
+        List<Country> countryListInvoice = new ArrayList<>();
+        Country countryInvoice1 = new Country.CountryBuilder().identificationCode("FR").build();
+        countryListInvoice.add(countryInvoice1);
+
+        //ACCOUNTING SUPPLIER PARTY > PARTY > POSTAL ADDRESS
+        List<PostalAddress> postalAddressListInvoice = new ArrayList<>();
+        PostalAddress postalAddressInvoice1 = new PostalAddress.PostalAddressBuilder()
+                .addressFormatCode("5")
+                .addressFormatCode_AttributeListAgencyID("6")
+                .addressFormatCode_AttributeListID("UN/ECE 3477")
+                .addressFormatCode_AttributeListVersionID("D08B")
+                .postBox("69006")
+                .streetName("4 RUE DUGUESCLIN")
+                .buildingNumber("")
+                .cityName("LYON")
+                .postalZone("69006")
+                .countryList(countryListInvoice)
+                .build();
+        postalAddressListInvoice.add(postalAddressInvoice1);
+
+        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY TAX SCHEME > TAX SCHEME
+        List<TaxScheme> taxSchemeListInvoice = new ArrayList<>();
+        TaxScheme taxSchemeInvoice1 = new TaxScheme.TaxSchemeBuilder()
+                .name("VAT")
+                .build();
+        taxSchemeListInvoice.add(taxSchemeInvoice1);
+
+        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY TAX SCHEME
+        List<PartyTaxScheme> partyTaxSchemeListInvoice = new ArrayList<>();
+        PartyTaxScheme partyTaxSchemeInvoice1 = new PartyTaxScheme.PartyTaxSchemeBuilder()
+                .companyId("FR21314887126")
+                .companyId_AttributeSchemeId("FR:VAT")
+                .taxSchemeList(taxSchemeListInvoice)
+                .build();
+        partyTaxSchemeListInvoice.add(partyTaxSchemeInvoice1);
+
+        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY LEGAL ENTITY > REGISTRATION ADDRESS
+        List<RegistrationAddress> registrationAddressListInvoice = new ArrayList<>();
+        RegistrationAddress registrationAddressInvoice1 = new RegistrationAddress.RegistrationAddressBuilder()
+                .id("LYON")
+                .id_AttributeSchemeId("FR:RCS")
+                .addressFormatCode("5")
+                .addressFormatCode_AttributeListAgencyId("6")
+                .addressFormatCode_AttributeListId("UN/ECE 3477")
+                .postBox("69006")
+                .streetName("4 RUE DUGUESCLIN")
+                .buildingNumber("NOVALI")
+                .cityName("LYON")
+                .postalZone("69006")
+                .build();
+        registrationAddressListInvoice.add(registrationAddressInvoice1);
+
+        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY LEGAL ENTITY > CORPORATE REGISTRATION SCHEME
+        List<CorporateRegistrationScheme> corporateRegistrationSchemeListInvoice = new ArrayList<>();
+        CorporateRegistrationScheme corporateRegistrationSchemeInvoice1 = new CorporateRegistrationScheme.CorporateRegistrationSchemeBuilder()
+                .id("PUBLIC_LIMITED").build();
+        corporateRegistrationSchemeListInvoice.add(corporateRegistrationSchemeInvoice1);
+
+        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY LEGAL ENTITY
+        List<PartyLegalEntity> partyLegalEntityListInvoice = new ArrayList<>();
+        PartyLegalEntity partyLegalEntityInvoice1 = new PartyLegalEntity.PartyLegalEntityBuilder()
+                .registrationName("Groupe SOVITRAT")
+                .companyId("31488712600253")
+                .companyId_AttributeSchemeId("FR:SIRET")
+                .registrationAddressList(registrationAddressListInvoice)
+                .corporateRegistrationSchemeList(corporateRegistrationSchemeListInvoice)
+                .build();
+        partyLegalEntityListInvoice.add(partyLegalEntityInvoice1);
+
+        //ACCOUNTING SUPPLIER PARTY > PARTY > CONTACT
+        List<Contact> contactListInvoice = new ArrayList<>();
+        Contact contactInvoice1 = new Contact.ContactBuilder()
+                .id("5a59bb3c-adf8-4b72-b45b-f4f2f33676f1")
+                .id_AttributeSchemeURI("http://tradeshift.com/api/1.0/userId")
+                .name("Amor BOUGHZALA")
+                .telephone("0472699760")
+                .electronicMail("master@sovitrat.fr")
+                .note("Groupe SOVITRAT PUBLIC_LIMITED with share capital 1100000...")
+                .build();
+        contactListInvoice.add(contactInvoice1);
+
+        //ACCOUNTING SUPPLIER PARTY > PARTY > PERSON
+        List<Person> personListInvoice = new ArrayList<>();
+        Person personInvoice1 = new Person.PersonBuilder()
+                .firstName("Amor")
+                .familyName("BOUGHZALA")
+                .build();
+        personListInvoice.add(personInvoice1);
+
+        //ACCOUNTING SUPPLIER PARTY > PARTY
+        List<Party> partyListInvoice = new ArrayList<>();
+        Party elementPartyInvoice1 = new Party.PartyBuilder()
+                .documentLinked(doc.getDoc())
+                .elementFather(elementCreditNote)
+                .partyIdentificationList(partyIdentificationListInvoice)
+                .partyNameList(partyNameListInvoice)
+                .postalAddressList(postalAddressListInvoice)
+                .partyTaxSchemeList(partyTaxSchemeListInvoice)
+                .partyLegalEntityList(partyLegalEntityListInvoice)
+                .contactList(contactListInvoice)
+                .personList(personListInvoice)
+                .build();
+        partyListInvoice.add(elementPartyInvoice1);
+
+        //ACCOUNTING SUPPLIER PARTY
+        AccountingSupplierParty elementAccountingSupplierPartyInvoice = new AccountingSupplierParty.AccountingSupplierPartyBuilder()
+                .documentLinked(doc.getDoc())
+                .elementFather(elementCreditNote)
+                .partyList(partyListInvoice)
+                .build();
+
+        //PAYMENT MEANS
+
+        //PAYMENT MEANS > PAYEE FINANCIAL ACCOUNT > FINANCIAL INSTITUTION BRANCH > FINANCIAL INSTITUTION
+        FinancialInstitution financialInstitution1 = new FinancialInstitution.FinancialInstitutionBuilder()
+                .id(new ID.IDBuilder()
+                        .value("CCFRFRPP")
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .build())
+                        .build())
+                .build();
+        //PAYMENT MEANS > PAYEE FINANCIAL ACCOUNT > FINANCIAL INSTITUTION BRANCH
+        FinancialInstitutionBranch financialInstitutionBranch1 = new FinancialInstitutionBranch.FinancialInstitutionBranchBuilder()
+                .financialInstitution(financialInstitution1)
+                .build();
+        //PAYMENT MEANS > PAYEE FINANCIAL ACCOUNT
+        PayeeFinancialAccount payeeFinancialAccount1 = new PayeeFinancialAccount.PayeeFinancialAccountBuilder()
+                .id(new ID.IDBuilder()
+                        .value("FR7630056001710171214299041")
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .build())
+                        .build())
+                .financialInstitutionBranch(financialInstitutionBranch1)
+                .build();
+        //PAYMENT MEANS
+        List<PaymentMeans> paymentMeansListInvoice = new ArrayList<>();
+        PaymentMeans paymentMeans1 = new PaymentMeans.PaymentMeansBuilder()
+                .id(new ID.IDBuilder()
+                        .value("6edad297-67e3-4805-8e6d-691eb12f1138")
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .build())
+                        .build())
+                .paymentMeansCode(new PaymentMeansCode.PaymentMeansCodeBuilder()
+                        .value("31")
+                        .attributes(new PatternList.PatternListBuilder()
+                                .listID("urn:tradeshift.com:api:1.0:paymentmeanscode")
+                                .build())
+                        .build())
+                .paymentDueDate(new PaymentDueDate.PaymentDueDateBuilder()
+                        .value("2021-06-15")
+                        .build())
+                .paymentChannelCode(new PaymentChannelCode.PaymentChannelCodeBuilder()
+                        .value("IBAN")
+                        .attributes(new PatternList.PatternListBuilder()
+                                .listID("urn:tradeshift.com:api:1.0:paymentchannelcode")
+                                .build())
+                        .build())
+                .payeeFinancialAccount(payeeFinancialAccount1)
+                .build();
+        paymentMeansListInvoice.add(paymentMeans1);
+
+        Element elementInvoice = new UBLInvoice20.UBLInvoice20Builder()
+                .documentLinked(docInvoice.getDoc())
+                .ublVersionID(invoiceUBLVersionID)
+                .customizationID(invoiceCustomizationID)
+                .profileID(invoiceProfileID)
+                .id(invoiceID)
+                .issueDate(invoiceIssueDate)
+                .invoiceTypeCode(invoiceInvoiceTypeCode)
+                .documentCurrencyCode(invoiceDocumentCurrencyCode)
+                .orderReference(invoiceOrderReference)
+                .additionalDocumentReferenceList(additionalDocumentReferenceListInvoice)
+                .accountingSupplierParty(elementAccountingSupplierPartyInvoice)
+                .paymentMeansList(paymentMeansListInvoice)
+                .build().load();
+
+        docInvoice.generate();
 
     }
 }

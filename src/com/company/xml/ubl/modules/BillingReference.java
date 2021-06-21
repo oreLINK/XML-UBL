@@ -71,6 +71,10 @@ public class BillingReference {
 
     }
 
+    public List<InvoiceDocumentReference> getInvoiceDocumentReferenceList() {
+        return invoiceDocumentReferenceList;
+    }
+
     /**
      * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
      * @return the generated element

@@ -99,6 +99,22 @@ public class AdditionalDocumentReference {
 
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public String getDocumentTypeCode() {
+        return documentTypeCode;
+    }
+
+    public String getDocumentTypeCode_AttributeListID() {
+        return documentTypeCode_AttributeListID;
+    }
+
+    public List<Attachment> getAttachmentList() {
+        return attachmentList;
+    }
+
     /**
      * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
      * @return the generated element

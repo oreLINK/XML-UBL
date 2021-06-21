@@ -15,10 +15,7 @@ import org.w3c.dom.Element;
 
 import java.util.List;
 
-/**
- * Class UBLCreditNote20
- */
-public class UBLCreditNote20 {
+public class UBLInvoice20 {
 
     private Document doc;
     private UBLVersionID ublVersionID;
@@ -26,125 +23,130 @@ public class UBLCreditNote20 {
     private ProfileID profileID;
     private ID id;
     private IssueDate issueDate;
+    private InvoiceTypeCode invoiceTypeCode;
     private DocumentCurrencyCode documentCurrencyCode;
     private OrderReference orderReference;
-    private List<BillingReference> billingReferenceList;
     private List<AdditionalDocumentReference> additionalDocumentReferenceList;
     private AccountingSupplierParty accountingSupplierParty;
     private AccountingCustomerParty accountingCustomerParty;
+    private List<PaymentMeans> paymentMeansList;
     private List<TaxTotal> taxTotalList;
     private LegalMonetaryTotal legalMonetaryTotal;
-    private List<CreditNoteLine> creditNoteLineList;
+    private List<InvoiceLine> invoiceLineList;
 
     /**
      * Documentation is coming...
      */
-    private UBLCreditNote20(UBLCreditNote20Builder builder) {
+    private UBLInvoice20(UBLInvoice20Builder builder) {
         this.doc = builder.doc;
         this.ublVersionID = builder.ublVersionID;
         this.customizationID = builder.customizationID;
         this.profileID = builder.profileID;
         this.id = builder.id;
         this.issueDate = builder.issueDate;
+        this.invoiceTypeCode = builder.invoiceTypeCode;
         this.documentCurrencyCode = builder.documentCurrencyCode;
         this.orderReference = builder.orderReference;
-        this.billingReferenceList = builder.billingReferenceList;
         this.additionalDocumentReferenceList = builder.additionalDocumentReferenceList;
         this.accountingSupplierParty = builder.accountingSupplierParty;
         this.accountingCustomerParty = builder.accountingCustomerParty;
+        this.paymentMeansList = builder.paymentMeansList;
         this.taxTotalList = builder.taxTotalList;
         this.legalMonetaryTotal = builder.legalMonetaryTotal;
-        this.creditNoteLineList = builder.creditNoteLineList;
+        this.invoiceLineList = builder.invoiceLineList;
     }
 
     /**
-     * Builder UBLCreditNote20
+     * Builder UBLInvoice20
      */
-    public static class UBLCreditNote20Builder {
+    public static class UBLInvoice20Builder {
 
         private Document doc;
         private UBLVersionID ublVersionID;
         private CustomizationID customizationID;
         private ProfileID profileID;
         private ID id;
-
         private IssueDate issueDate;
+        private InvoiceTypeCode invoiceTypeCode;
         private DocumentCurrencyCode documentCurrencyCode;
         private OrderReference orderReference;
-        private List<BillingReference> billingReferenceList;
         private List<AdditionalDocumentReference> additionalDocumentReferenceList;
-
         private AccountingSupplierParty accountingSupplierParty;
         private AccountingCustomerParty accountingCustomerParty;
+        private List<PaymentMeans> paymentMeansList;
         private List<TaxTotal> taxTotalList;
         private LegalMonetaryTotal legalMonetaryTotal;
-        private List<CreditNoteLine> creditNoteLineList;
+        private List<InvoiceLine> invoiceLineList;
 
-        public UBLCreditNote20Builder() {}
+        public UBLInvoice20Builder() {}
 
-        public UBLCreditNote20Builder documentLinked(Document doc){
+        public UBLInvoice20Builder documentLinked(Document doc){
             this.doc = doc;
             return this;
         }
-        public UBLCreditNote20Builder ublVersionID(UBLVersionID ublVersionID){
+        public UBLInvoice20Builder ublVersionID(UBLVersionID ublVersionID){
             this.ublVersionID = ublVersionID;
             return this;
         }
-        public UBLCreditNote20Builder customizationID(CustomizationID customizationID){
+        public UBLInvoice20Builder customizationID(CustomizationID customizationID){
             this.customizationID = customizationID;
             return this;
         }
-        public UBLCreditNote20Builder profileID(ProfileID profileID){
+        public UBLInvoice20Builder profileID(ProfileID profileID){
             this.profileID = profileID;
             return this;
         }
-        public UBLCreditNote20Builder id(ID id){
+        public UBLInvoice20Builder id(ID id){
             this.id = id;
             return this;
         }
-        public UBLCreditNote20Builder issueDate(IssueDate issueDate){
+        public UBLInvoice20Builder issueDate(IssueDate issueDate){
             this.issueDate = issueDate;
             return this;
         }
-        public UBLCreditNote20Builder documentCurrencyCode(DocumentCurrencyCode documentCurrencyCode){
+        public UBLInvoice20Builder invoiceTypeCode(InvoiceTypeCode invoiceTypeCode){
+            this.invoiceTypeCode = invoiceTypeCode;
+            return this;
+        }
+        public UBLInvoice20Builder documentCurrencyCode(DocumentCurrencyCode documentCurrencyCode){
             this.documentCurrencyCode = documentCurrencyCode;
             return this;
         }
-        public UBLCreditNote20Builder orderReference(OrderReference orderReference){
+        public UBLInvoice20Builder orderReference(OrderReference orderReference){
             this.orderReference = orderReference;
             return this;
         }
-        public UBLCreditNote20Builder billingReferenceList(List<BillingReference> billingReferenceList){
-            this.billingReferenceList = billingReferenceList;
-            return this;
-        }
-        public UBLCreditNote20Builder additionalDocumentReferenceList(List<AdditionalDocumentReference> additionalDocumentReferenceList){
+        public UBLInvoice20Builder additionalDocumentReferenceList(List<AdditionalDocumentReference> additionalDocumentReferenceList){
             this.additionalDocumentReferenceList = additionalDocumentReferenceList;
             return this;
         }
-        public UBLCreditNote20Builder accountingSupplierParty(AccountingSupplierParty accountingSupplierParty){
+        public UBLInvoice20Builder accountingSupplierParty(AccountingSupplierParty accountingSupplierParty){
             this.accountingSupplierParty = accountingSupplierParty;
             return this;
         }
-        public UBLCreditNote20Builder accountingCustomerParty(AccountingCustomerParty accountingCustomerParty){
+        public UBLInvoice20Builder accountingCustomerParty(AccountingCustomerParty accountingCustomerParty){
             this.accountingCustomerParty = accountingCustomerParty;
             return this;
         }
-        public UBLCreditNote20Builder taxTotalList(List<TaxTotal> taxTotalList){
+        public UBLInvoice20Builder paymentMeansList(List<PaymentMeans> paymentMeansList){
+            this.paymentMeansList = paymentMeansList;
+            return this;
+        }
+        public UBLInvoice20Builder taxTotalList(List<TaxTotal> taxTotalList){
             this.taxTotalList = taxTotalList;
             return this;
         }
-        public UBLCreditNote20Builder legalMonetaryTotal(LegalMonetaryTotal legalMonetaryTotal){
+        public UBLInvoice20Builder legalMonetaryTotal(LegalMonetaryTotal legalMonetaryTotal){
             this.legalMonetaryTotal = legalMonetaryTotal;
             return this;
         }
-        public UBLCreditNote20Builder creditNoteLineList(List<CreditNoteLine> creditNoteLineList){
-            this.creditNoteLineList = creditNoteLineList;
+        public UBLInvoice20Builder invoiceLineList(List<InvoiceLine> invoiceLineList){
+            this.invoiceLineList = invoiceLineList;
             return this;
         }
-        public UBLCreditNote20 build(){
-            UBLCreditNote20 ublCreditNote20 = new UBLCreditNote20(this);
-            return ublCreditNote20;
+        public UBLInvoice20 build(){
+            UBLInvoice20 ublInvoice20 = new UBLInvoice20(this);
+            return ublInvoice20;
         }
 
     }
@@ -157,20 +159,20 @@ public class UBLCreditNote20 {
      * @return the generated element
      */
     public Element load() {
-        Element elementCreditNote = new ElementT(doc, ElementsName.CREDIT_NOTE.label).loadDoc();
-        Attr attrEleCreditCard1 = new AttributeT(doc, elementCreditNote, NamespacesName.XMLNS.label, NamespacesName.XMLNS_IMPORT.label).load();
-        Attr attrEleCreditCard2 = new AttributeT(doc, elementCreditNote, NamespacesName.XMLNS_CAC_ATTR.label, NamespacesName.XMLNS_CAC_IMPORT.label).load();
-        Attr attrEleCreditCard3 = new AttributeT(doc, elementCreditNote, NamespacesName.XMLNS_CBC_ATTR.label, NamespacesName.XMLNS_CBC_IMPORT.label).load();
-        Attr attrEleCreditCard4 = new AttributeT(doc, elementCreditNote, NamespacesName.XMLNS_CCTS_ATTR.label, NamespacesName.XMLNS_CCTS_IMPORT.label).load();
-        Attr attrEleCreditCard5 = new AttributeT(doc, elementCreditNote, NamespacesName.XMLNS_EXT_ATTR.label, NamespacesName.XMLNS_EXT_IMPORT.label).load();
-        Attr attrEleCreditCard6 = new AttributeT(doc, elementCreditNote, NamespacesName.XMLNS_NS7_ATTR.label, NamespacesName.XMLNS_NS7_IMPORT.label).load();
-        Attr attrEleCreditCard7 = new AttributeT(doc, elementCreditNote, NamespacesName.XMLNS_SDT_ATTR.label, NamespacesName.XMLNS_SDT_IMPORT.label).load();
-        Attr attrEleCreditCard8 = new AttributeT(doc, elementCreditNote, NamespacesName.XMLNS_UDT_ATTR.label, NamespacesName.XMLNS_UDT_IMPORT.label).load();
+        Element elementInvoice = new ElementT(doc, ElementsName.INVOICE.label).loadDoc();
+        Attr elementInvoice_Attr1 = new AttributeT(doc, elementInvoice, NamespacesName.XMLNS.label, NamespacesName.XMLNS_IMPORT.label).load();
+        Attr elementInvoice_Attr2 = new AttributeT(doc, elementInvoice, NamespacesName.XMLNS_CAC_ATTR.label, NamespacesName.XMLNS_CAC_IMPORT.label).load();
+        Attr elementInvoice_Attr3 = new AttributeT(doc, elementInvoice, NamespacesName.XMLNS_CBC_ATTR.label, NamespacesName.XMLNS_CBC_IMPORT.label).load();
+        Attr elementInvoice_Attr4 = new AttributeT(doc, elementInvoice, NamespacesName.XMLNS_CCTS_ATTR.label, NamespacesName.XMLNS_CCTS_IMPORT.label).load();
+        Attr elementInvoice_Attr5 = new AttributeT(doc, elementInvoice, NamespacesName.XMLNS_EXT_ATTR.label, NamespacesName.XMLNS_EXT_IMPORT.label).load();
+        Attr elementInvoice_Attr6 = new AttributeT(doc, elementInvoice, NamespacesName.XMLNS_NS7_ATTR.label, NamespacesName.XMLNS_NS7_IMPORT.label).load();
+        Attr elementInvoice_Attr7 = new AttributeT(doc, elementInvoice, NamespacesName.XMLNS_SDT_ATTR.label, NamespacesName.XMLNS_SDT_IMPORT.label).load();
+        Attr elementInvoice_Attr8 = new AttributeT(doc, elementInvoice, NamespacesName.XMLNS_UDT_ATTR.label, NamespacesName.XMLNS_UDT_IMPORT.label).load();
 
         if(!Tips.stringIsNull(ublVersionID.getValue())){
             Element elementUBLVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()
                     .documentLinked(doc)
-                    .elementFather(elementCreditNote)
+                    .elementFather(elementInvoice)
                     .value(ublVersionID.getValue())
                     .attributes(new PatternScheme.PatternSchemeBuilder()
                             .schemeID(ublVersionID.getPatternScheme().getSchemeID())
@@ -186,7 +188,7 @@ public class UBLCreditNote20 {
         if(!Tips.stringIsNull(customizationID.getValue())){
             Element elementCustomizationID = new CustomizationID.CustomizationIDBuilder()
                     .documentLinked(doc)
-                    .elementFather(elementCreditNote)
+                    .elementFather(elementInvoice)
                     .value(customizationID.getValue())
                     .attributes(new PatternScheme.PatternSchemeBuilder()
                             .schemeID(customizationID.getPatternScheme().getSchemeID())
@@ -202,7 +204,7 @@ public class UBLCreditNote20 {
         if(!Tips.stringIsNull(profileID.getValue())){
             Element elementProfileID = new ProfileID.ProfileIDBuilder()
                     .documentLinked(doc)
-                    .elementFather(elementCreditNote)
+                    .elementFather(elementInvoice)
                     .value(profileID.getValue())
                     .attributes(new PatternScheme.PatternSchemeBuilder()
                             .schemeID(profileID.getPatternScheme().getSchemeID())
@@ -218,7 +220,7 @@ public class UBLCreditNote20 {
         if(!Tips.stringIsNull(id.getValue())){
             Element elementID = new ID.IDBuilder()
                     .documentLinked(doc)
-                    .elementFather(elementCreditNote)
+                    .elementFather(elementInvoice)
                     .value(id.getValue())
                     .attributes(new PatternScheme.PatternSchemeBuilder()
                             .schemeID(id.getPatternScheme().getSchemeID())
@@ -234,14 +236,32 @@ public class UBLCreditNote20 {
         if(!Tips.stringIsNull(issueDate.getValue())){
             Element elementIssueDate = new IssueDate.IssueDateBuilder()
                     .documentLinked(doc)
-                    .elementFather(elementCreditNote)
+                    .elementFather(elementInvoice)
                     .value(issueDate.getValue())
+                    .build().load();
+        }
+        if(!Tips.stringIsNull(invoiceTypeCode.getValue())){
+            Element elementInvoiceTypeCode = new InvoiceTypeCode.InvoiceTypeCodeBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementInvoice)
+                    .value(invoiceTypeCode.getValue())
+                    .attributes(new PatternList.PatternListBuilder()
+                            .listID(invoiceTypeCode.getPatternList().getListID())
+                            .listAgencyID(invoiceTypeCode.getPatternList().getListAgencyID())
+                            .listAgencyName(invoiceTypeCode.getPatternList().getListAgencyName())
+                            .listName(invoiceTypeCode.getPatternList().getListName())
+                            .listVersionID(invoiceTypeCode.getPatternList().getListVersionID())
+                            .name(invoiceTypeCode.getPatternList().getName())
+                            .languageID(invoiceTypeCode.getPatternList().getLanguageID())
+                            .listURI(invoiceTypeCode.getPatternList().getListURI())
+                            .listSchemeURI(invoiceTypeCode.getPatternList().getListSchemeURI())
+                            .build())
                     .build().load();
         }
         if(!Tips.stringIsNull(documentCurrencyCode.getValue())){
             Element elementCurrencyCode = new DocumentCurrencyCode.DocumentCurrencyCodeBuilder()
                     .documentLinked(doc)
-                    .elementFather(elementCreditNote)
+                    .elementFather(elementInvoice)
                     .value(documentCurrencyCode.getValue())
                     .attributes(new PatternList.PatternListBuilder()
                             .listID(documentCurrencyCode.getPatternList().getListID())
@@ -259,21 +279,43 @@ public class UBLCreditNote20 {
         if(!Tips.stringIsNull(orderReference.getId().getValue())){
             Element elementOrderReference = new OrderReference.OrderReferenceBuilder()
                     .documentLinked(doc)
-                    .elementFather(elementCreditNote)
+                    .elementFather(elementInvoice)
                     .id(id)
                     .build().load();
         }
-        if(!Tips.listIsNull(billingReferenceList)){
-            for (BillingReference billingReference : billingReferenceList) {
-                Element elementBillingReference = new BillingReference.BillingReferenceBuilder()
+        if(!Tips.listIsNull(additionalDocumentReferenceList)){
+            for (AdditionalDocumentReference additionalDocumentReference : additionalDocumentReferenceList) {
+                Element elementAdditionalDocumentReference = new AdditionalDocumentReference.AdditionalDocumentReferenceBuilder()
                         .documentLinked(doc)
-                        .elementFather(elementCreditNote)
-                        .invoiceDocumentReferenceList(billingReference.getInvoiceDocumentReferenceList())
+                        .elementFather(elementInvoice)
+                        .id(additionalDocumentReference.getId())
+                        .documentTypeCode(additionalDocumentReference.getDocumentTypeCode())
+                        .documentTypeCode_AttributeListID(additionalDocumentReference.getDocumentTypeCode_AttributeListID())
+                        .attachmentList(additionalDocumentReference.getAttachmentList())
                         .build().load();
             }
         }
-        return elementCreditNote;
+        if(!Tips.listIsNull(accountingSupplierParty.getPartyList())){
+            Element elementAccountingSupplierParty = new AccountingSupplierParty.AccountingSupplierPartyBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementInvoice)
+                    .partyList(accountingSupplierParty.getPartyList())
+                    .build().load();
+        }
+        if(!Tips.listIsNull(paymentMeansList)){
+            for (PaymentMeans paymentMeans : paymentMeansList) {
+                Element paymentMeans1 = new PaymentMeans.PaymentMeansBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementInvoice)
+                        .id(paymentMeans.getId())
+                        .paymentMeansCode(paymentMeans.getPaymentMeansCode())
+                        .paymentDueDate(paymentMeans.getPaymentDueDate())
+                        .paymentChannelCode(paymentMeans.getPaymentChannelCode())
+                        .payeeFinancialAccount(paymentMeans.getPayeeFinancialAccount())
+                        .build().load();
+            }
+        }
+        return elementInvoice;
     }
-
 
 }

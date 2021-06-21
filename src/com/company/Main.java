@@ -32,15 +32,9 @@ public class Main {
         doc.initialize();
 
         //ROOT (CREDIT NOTE)
-        Element elementCreditNote = new ElementT(doc.getDoc(), ElementsName.CREDIT_CARD.label).loadDoc();
-        Attr attrEleCreditCard1 = new AttributeT(doc.getDoc(), elementCreditNote, NamespacesName.XMLNS.label, NamespacesName.XMLNS_IMPORT.label).load();
-        Attr attrEleCreditCard2 = new AttributeT(doc.getDoc(), elementCreditNote, NamespacesName.XMLNS_CAC_ATTR.label, NamespacesName.XMLNS_CAC_IMPORT.label).load();
-        Attr attrEleCreditCard3 = new AttributeT(doc.getDoc(), elementCreditNote, NamespacesName.XMLNS_CBC_ATTR.label, NamespacesName.XMLNS_CBC_IMPORT.label).load();
-        Attr attrEleCreditCard4 = new AttributeT(doc.getDoc(), elementCreditNote, NamespacesName.XMLNS_CCTS_ATTR.label, NamespacesName.XMLNS_CCTS_IMPORT.label).load();
-        Attr attrEleCreditCard5 = new AttributeT(doc.getDoc(), elementCreditNote, NamespacesName.XMLNS_EXT_ATTR.label, NamespacesName.XMLNS_EXT_IMPORT.label).load();
-        Attr attrEleCreditCard6 = new AttributeT(doc.getDoc(), elementCreditNote, NamespacesName.XMLNS_NS7_ATTR.label, NamespacesName.XMLNS_NS7_IMPORT.label).load();
-        Attr attrEleCreditCard7 = new AttributeT(doc.getDoc(), elementCreditNote, NamespacesName.XMLNS_SDT_ATTR.label, NamespacesName.XMLNS_SDT_IMPORT.label).load();
-        Attr attrEleCreditCard8 = new AttributeT(doc.getDoc(), elementCreditNote, NamespacesName.XMLNS_UDT_ATTR.label, NamespacesName.XMLNS_UDT_IMPORT.label).load();
+        Element elementCreditNote = new CreditNote20.CreditNote20Builder()
+                .documentLinked(doc.getDoc())
+                .build().load();
 
         //CREDIT NOTE > UBL VERSION ID
         Element elementUBLVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()

@@ -152,9 +152,6 @@ public class UBLInvoice20 {
     }
 
     /**
-     * TODO
-     */
-    /**
      * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
      * @return the generated element
      */
@@ -290,8 +287,7 @@ public class UBLInvoice20 {
                         .elementFather(elementInvoice)
                         .id(additionalDocumentReference.getId())
                         .documentTypeCode(additionalDocumentReference.getDocumentTypeCode())
-                        .documentTypeCode_AttributeListID(additionalDocumentReference.getDocumentTypeCode_AttributeListID())
-                        .attachmentList(additionalDocumentReference.getAttachmentList())
+                        .attachment(additionalDocumentReference.getAttachment())
                         .build().load();
             }
         }

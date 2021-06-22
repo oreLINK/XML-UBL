@@ -1,10 +1,14 @@
 package com.company.xml.ubl.modules;
 
+import com.company.xml.ubl.attributes.PatternLanguage;
+import com.company.xml.ubl.attributes.PatternScheme;
 import com.company.xml.ubl.axioms.AttributeT;
 import com.company.xml.ubl.axioms.ElementT;
 import com.company.xml.ubl.axioms.Tips;
 import com.company.xml.ubl.data.AttributesName;
 import com.company.xml.ubl.data.ElementsName;
+import com.company.xml.ubl.elements.ID;
+import com.company.xml.ubl.elements.Name;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -14,13 +18,18 @@ import org.w3c.dom.Element;
  */
 public class TaxScheme {
 
-    private Document doc;
+    /*private Document doc;
     private Element element;
     private String id;
     private String id_AttributeSchemeAgencyID;
     private String id_AttributeSchemeID;
     private String id_AttributeSchemeVersionID;
-    private String name;
+    private String name;*/
+    private Document doc;
+    private Element element;
+    private ID id = null;
+    private Name name;
+
 
     /**
      * <h2>Element "TaxScheme"</h2>
@@ -45,12 +54,16 @@ public class TaxScheme {
      * </ul>
      */
     private TaxScheme(TaxSchemeBuilder builder) {
-        this.doc = builder.doc;
+        /*this.doc = builder.doc;
         this.element = builder.element;
         this.id = builder.id;
         this.id_AttributeSchemeAgencyID = builder.id_AttributeSchemeAgencyID;
         this.id_AttributeSchemeID = builder.id_AttributeSchemeID;
         this.id_AttributeSchemeVersionID = builder.id_AttributeSchemeVersionID;
+        this.name = builder.name;*/
+        this.doc = builder.doc;
+        this.element = builder.element;
+        this.id = builder.id;
         this.name = builder.name;
     }
 
@@ -59,15 +72,19 @@ public class TaxScheme {
      */
     public static class TaxSchemeBuilder {
 
-        private Document doc;
+       /* private Document doc;
         private Element element;
         private String id;
         private String id_AttributeSchemeAgencyID;
         private String id_AttributeSchemeID;
         private String id_AttributeSchemeVersionID;
-        private String name;
+        private String name;*/
+        private Document doc;
+        private Element element;
+        private ID id;
+        private Name name;
 
-        public TaxSchemeBuilder documentLinked(Document doc){
+        /*public TaxSchemeBuilder documentLinked(Document doc){
             this.doc = doc;
             return this;
         }
@@ -94,6 +111,22 @@ public class TaxScheme {
         public TaxSchemeBuilder name(String name){
             this.name = name;
             return this;
+        }*/
+        public TaxSchemeBuilder documentLinked(Document doc){
+            this.doc = doc;
+            return this;
+        }
+        public TaxSchemeBuilder elementFather(Element element){
+            this.element = element;
+            return this;
+        }
+        public TaxSchemeBuilder id(ID id){
+            this.id = id;
+            return this;
+        }
+        public TaxSchemeBuilder name(Name name){
+            this.name = name;
+            return this;
         }
         public TaxScheme build(){
             TaxScheme taxScheme = new TaxScheme(this);
@@ -102,7 +135,7 @@ public class TaxScheme {
 
     }
 
-    public String getId() {
+    /*public String getId() {
         return id;
     }
 
@@ -120,13 +153,21 @@ public class TaxScheme {
 
     public String getName() {
         return name;
+    }*/
+
+    public ID getId() {
+        return id;
+    }
+
+    public Name getName() {
+        return name;
     }
 
     /**
      * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
      * @return the generated element
      */
-    public Element load() {
+    /*public Element load() {
         Element elementTaxScheme = new ElementT(doc,element, ElementsName.TAX_SCHEME.label).load();
         if(!Tips.stringIsNull(id)){
             Element elementID = new ElementT(doc, elementTaxScheme, ElementsName.TAX_SCHEME_ID.label, id).load();
@@ -142,6 +183,39 @@ public class TaxScheme {
         }
         if(!Tips.stringIsNull(name)){
             Element elementName = new ElementT(doc, elementTaxScheme, ElementsName.TAX_SCHEME_NAME.label, name).load();
+        }
+        return elementTaxScheme;
+    }*/
+    public Element load() {
+        Element elementTaxScheme = new ElementT(doc,element, ElementsName.TAX_SCHEME.label).load();
+        /**
+         * TODO TECHNIQUE POUR EMPECHER LE NULL !(id ==null)
+         */
+        if(!(id ==null)){
+            Element elementId = new ID.IDBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementTaxScheme)
+                    .value(id.getValue())
+                    .attributes(new PatternScheme.PatternSchemeBuilder()
+                            .schemeID(id.getPatternScheme().getSchemeID())
+                            .schemeName(id.getPatternScheme().getSchemeName())
+                            .schemeAgencyID(id.getPatternScheme().getSchemeAgencyID())
+                            .schemeAgencyName(id.getPatternScheme().getSchemeAgencyName())
+                            .schemeVersionID(id.getPatternScheme().getSchemeVersionID())
+                            .schemeDataURI(id.getPatternScheme().getSchemeDataURI())
+                            .schemeURI(id.getPatternScheme().getSchemeURI())
+                            .build())
+                    .build().load();
+        }
+        if(!(name ==null)){
+            Element elementName = new Name.NameBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementTaxScheme)
+                    .value(name.getValue())
+                    .attributes(new PatternLanguage.PatternLanguageBuilder()
+                            .languageID(name.getPatternLanguage().getLanguageID())
+                            .build())
+                    .build().load();
         }
         return elementTaxScheme;
     }

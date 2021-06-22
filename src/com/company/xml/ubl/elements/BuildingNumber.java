@@ -10,21 +10,18 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-/**
- * Class Name
- */
-public class Name {
+public class BuildingNumber {
 
     private Document doc;
     private Element element;
-    private String name = ElementsName.NAME.label;
+    private String name = ElementsName.BUILDING_NUMBER.label;
     private String value;
     private PatternLanguage patternLanguage;
 
     /**
      * Documentation is coming...
      */
-    private Name(NameBuilder builder) {
+    private BuildingNumber(BuildingNumberBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
         this.value = builder.value;
@@ -32,9 +29,9 @@ public class Name {
     }
 
     /**
-     * Builder Name
+     * Builder BuildingNumber
      */
-    public static class NameBuilder {
+    public static class BuildingNumberBuilder {
 
         private Document doc;
         private Element element;
@@ -42,27 +39,27 @@ public class Name {
         private String value;
         private PatternLanguage patternLanguage;
 
-        public NameBuilder() {}
+        public BuildingNumberBuilder() {}
 
-        public NameBuilder documentLinked(Document doc){
+        public BuildingNumberBuilder documentLinked(Document doc){
             this.doc = doc;
             return this;
         }
-        public NameBuilder elementFather(Element element){
+        public BuildingNumberBuilder elementFather(Element element){
             this.element = element;
             return this;
         }
-        public NameBuilder value(String value){
+        public BuildingNumberBuilder value(String value){
             this.value = value;
             return this;
         }
-        public NameBuilder attributes(PatternLanguage patternLanguage){
+        public BuildingNumberBuilder attributes(PatternLanguage patternLanguage){
             this.patternLanguage = patternLanguage;
             return this;
         }
-        public Name build(){
-            Name name = new Name(this);
-            return name;
+        public BuildingNumber build(){
+            BuildingNumber elementBuild = new BuildingNumber(this);
+            return elementBuild;
         }
 
     }
@@ -88,10 +85,11 @@ public class Name {
      * @return the generated element
      */
     public Element load() {
-        Element elementName = new ElementT(doc, element, name, value).load();
+        Element elementRoot = new ElementT(doc, element, name, value).load();
         if(!Tips.stringIsNull(patternLanguage.getLanguageID())){
-            Attr elementName_Attr1 = new AttributeT(doc, elementName, AttributesName.LANGUAGE_ID.label, patternLanguage.getLanguageID()).load();
+            Attr elementRoot_Attr1 = new AttributeT(doc, elementRoot, AttributesName.LANGUAGE_ID.label, patternLanguage.getLanguageID()).load();
         }
-        return elementName;
+        return elementRoot;
     }
+
 }

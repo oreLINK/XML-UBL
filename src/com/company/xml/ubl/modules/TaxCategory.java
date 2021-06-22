@@ -166,9 +166,7 @@ public class TaxCategory {
                         .documentLinked(doc)
                         .elementFather(elementTaxCategory)
                         .id(taxScheme.getId())
-                        .id_AttributeSchemeAgencyID(taxScheme.getId_AttributeSchemeAgencyID())
-                        .id_AttributeSchemeID(taxScheme.getId_AttributeSchemeID())
-                        .id_AttributeSchemeVersionID(taxScheme.getId_AttributeSchemeVersionID())
+                        .name(taxScheme.getName())
                         .build().load();
             }
         }

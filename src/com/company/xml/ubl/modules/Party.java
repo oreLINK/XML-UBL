@@ -157,7 +157,7 @@ public class Party {
         Element elementParty = new ElementT(doc,element, ElementsName.PARTY.label).load();
 
         //Party Identification
-        if(!Tips.listIsNull(partyIdentificationList)) {
+        /*if(!Tips.listIsNull(partyIdentificationList)) {
             for (PartyIdentification partyIdentification : partyIdentificationList) {
                 Element elementPartyIdentification = new PartyIdentification.PartyIdentificationBuilder()
                         .documentLinked(doc)
@@ -165,6 +165,15 @@ public class Party {
                         .id(partyIdentification.getId())
                         .id_AttributeSchemeID(partyIdentification.getId_AttributeSchemeID())
                         .id_AttributeSchemeName(partyIdentification.getId_AttributeSchemeName())
+                        .build().load();
+            }
+        }*/
+        if(!Tips.listIsNull(partyIdentificationList)) {
+            for (PartyIdentification partyIdentification : partyIdentificationList) {
+                Element elementPartyIdentification = new PartyIdentification.PartyIdentificationBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementParty)
+                        .id(partyIdentification.getId())
                         .build().load();
             }
         }
@@ -187,15 +196,12 @@ public class Party {
                         .documentLinked(doc)
                         .elementFather(elementParty)
                         .addressFormatCode(postalAddress.getAddressFormatCode())
-                        .addressFormatCode_AttributeListAgencyID(postalAddress.getAddressFormatCode_AttrListAgencyID())
-                        .addressFormatCode_AttributeListID(postalAddress.getAddressFormatCode_AttrListID())
-                        .addressFormatCode_AttributeListVersionID(postalAddress.getAddressFormatCode_AttrListVersionID())
-                        .postBox(postalAddress.getPostBox())
+                        .postbox(postalAddress.getPostbox())
                         .streetName(postalAddress.getStreetName())
                         .buildingNumber(postalAddress.getBuildingNumber())
                         .cityName(postalAddress.getCityName())
                         .postalZone(postalAddress.getPostalZone())
-                        .countryList(postalAddress.getCountryList())
+                        .country(postalAddress.getCountry())
                         .build().load();
             }
         }

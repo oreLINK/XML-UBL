@@ -18,7 +18,7 @@ public class ID {
     private Document doc;
     private Element element;
     private String name = ElementsName.ID.label;
-    private String value;
+    private String value = null;
     private PatternScheme patternScheme;
 
     /**
@@ -41,25 +41,30 @@ public class ID {
         private String value;
         private PatternScheme patternScheme;
 
-        public IDBuilder() {}
+        public IDBuilder() {
+        }
 
-        public IDBuilder documentLinked(Document doc){
+        public IDBuilder documentLinked(Document doc) {
             this.doc = doc;
             return this;
         }
-        public IDBuilder elementFather(Element element){
+
+        public IDBuilder elementFather(Element element) {
             this.element = element;
             return this;
         }
-        public IDBuilder value(String value){
+
+        public IDBuilder value(String value) {
             this.value = value;
             return this;
         }
-        public IDBuilder attributes(PatternScheme patternScheme){
+
+        public IDBuilder attributes(PatternScheme patternScheme) {
             this.patternScheme = patternScheme;
             return this;
         }
-        public ID build(){
+
+        public ID build() {
             ID ID = new ID(this);
             return ID;
         }
@@ -75,55 +80,49 @@ public class ID {
     }
 
     public boolean isNull() {
-        if(Tips.stringIsNull(value)){
-            return true;
-        } else {
-            return false;
+        boolean isNull = true;
+        try {
+            /*if (Tips.stringIsNull(value)) {
+                return true;
+            } else {
+                return false;
+            }*/
+            if (!Tips.stringIsNull(value)) {
+                return !isNull;
+            }
+        } catch (NullPointerException e) {
+            System.out.println("ID null");
+            return isNull;
         }
-    }
-
-    public static Element allLoad(Document documentLinked, Element elementFather, ID id){
-        Element elementId = new ID.IDBuilder()
-                .documentLinked(documentLinked)
-                .elementFather(elementFather)
-                .attributes(new PatternScheme.PatternSchemeBuilder()
-                        .schemeID(id.getPatternScheme().getSchemeID())
-                        .schemeName(id.getPatternScheme().getSchemeName())
-                        .schemeAgencyID(id.getPatternScheme().getSchemeAgencyID())
-                        .schemeAgencyName(id.getPatternScheme().getSchemeAgencyName())
-                        .schemeVersionID(id.getPatternScheme().getSchemeVersionID())
-                        .schemeDataURI(id.getPatternScheme().getSchemeDataURI())
-                        .schemeURI(id.getPatternScheme().getSchemeURI())
-                        .build())
-                .build().load();
-        return elementId;
+        return isNull;
     }
 
     /**
      * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     *
      * @return the generated element
      */
     public Element load() {
         Element elementRoot = new ElementT(doc, element, name, value).load();
-        if(!Tips.stringIsNull(patternScheme.getSchemeID())){
+        if (!Tips.stringIsNull(patternScheme.getSchemeID())) {
             Attr elementID_Attr1 = new AttributeT(doc, elementRoot, AttributesName.SCHEME_ID.label, patternScheme.getSchemeID()).load();
         }
-        if(!Tips.stringIsNull(patternScheme.getSchemeName())){
+        if (!Tips.stringIsNull(patternScheme.getSchemeName())) {
             Attr elementID_Attr2 = new AttributeT(doc, elementRoot, AttributesName.SCHEME_NAME.label, patternScheme.getSchemeName()).load();
         }
-        if(!Tips.stringIsNull(patternScheme.getSchemeAgencyID())){
+        if (!Tips.stringIsNull(patternScheme.getSchemeAgencyID())) {
             Attr elementID_Attr3 = new AttributeT(doc, elementRoot, AttributesName.SCHEME_AGENCY_ID.label, patternScheme.getSchemeAgencyID()).load();
         }
-        if(!Tips.stringIsNull(patternScheme.getSchemeAgencyName())){
+        if (!Tips.stringIsNull(patternScheme.getSchemeAgencyName())) {
             Attr elementID_Attr4 = new AttributeT(doc, elementRoot, AttributesName.SCHEME_AGENCY_NAME.label, patternScheme.getSchemeAgencyName()).load();
         }
-        if(!Tips.stringIsNull(patternScheme.getSchemeVersionID())){
+        if (!Tips.stringIsNull(patternScheme.getSchemeVersionID())) {
             Attr elementID_Attr5 = new AttributeT(doc, elementRoot, AttributesName.SCHEME_VERSION_ID.label, patternScheme.getSchemeVersionID()).load();
         }
-        if(!Tips.stringIsNull(patternScheme.getSchemeDataURI())){
+        if (!Tips.stringIsNull(patternScheme.getSchemeDataURI())) {
             Attr elementID_Attr6 = new AttributeT(doc, elementRoot, AttributesName.SCHEME_DATA_URI.label, patternScheme.getSchemeDataURI()).load();
         }
-        if(!Tips.stringIsNull(patternScheme.getSchemeURI())){
+        if (!Tips.stringIsNull(patternScheme.getSchemeURI())) {
             Attr elementID_Attr7 = new AttributeT(doc, elementRoot, AttributesName.SCHEME_URI.label, patternScheme.getSchemeURI()).load();
         }
         return elementRoot;

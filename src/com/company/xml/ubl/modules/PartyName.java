@@ -2,6 +2,7 @@ package com.company.xml.ubl.modules;
 
 import com.company.xml.ubl.axioms.ElementT;
 import com.company.xml.ubl.data.ElementsName;
+import com.company.xml.ubl.elements.Name;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -12,7 +13,7 @@ public class PartyName {
 
     private Document doc;
     private Element element;
-    private String name;
+    private Name name;
 
     /**
      * <h2>Element "PartyName"</h2>
@@ -27,7 +28,7 @@ public class PartyName {
      *     </li>
      *     <li><b>for build()</b>
      *     <ul>
-     *         <li>[String] <b>name</b> <b>[1..1]</b> : The name of the party.</li>
+     *         <li>[Name] <b>name</b> <b>[1..1]</b> : The name of the party.</li>
      *     </ul>
      *     </li>
      * </ul>
@@ -45,7 +46,7 @@ public class PartyName {
 
         private Document doc;
         private Element element;
-        private String name;
+        private Name name;
 
         public PartyNameBuilder documentLinked(Document doc){
             this.doc = doc;
@@ -55,7 +56,7 @@ public class PartyName {
             this.element = element;
             return this;
         }
-        public PartyNameBuilder name(String name){
+        public PartyNameBuilder name(Name name){
             this.name = name;
             return this;
         }
@@ -66,7 +67,7 @@ public class PartyName {
 
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
@@ -76,7 +77,9 @@ public class PartyName {
      */
     public Element load() {
         Element elementPartyName = new ElementT(doc, element, ElementsName.PARTY_NAME.label).load();
-        Element elementPartyNameName = new ElementT(doc, elementPartyName, ElementsName.PARTY_NAME_NAME.label, name).load();
+        if(!name.isNull()){
+            Element elementName = new ElementT(doc, elementPartyName, ElementsName.PARTY_NAME_NAME.label, name.getValue()).load();
+        }
         return elementPartyName;
     }
 }

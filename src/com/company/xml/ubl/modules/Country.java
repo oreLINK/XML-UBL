@@ -1,8 +1,12 @@
 package com.company.xml.ubl.modules;
 
+import com.company.xml.ubl.attributes.PatternLanguage;
+import com.company.xml.ubl.attributes.PatternList;
 import com.company.xml.ubl.axioms.ElementT;
 import com.company.xml.ubl.axioms.Tips;
 import com.company.xml.ubl.data.ElementsName;
+import com.company.xml.ubl.elements.IdentificationCode;
+import com.company.xml.ubl.elements.Name;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -13,7 +17,8 @@ public class Country {
 
     private Document doc;
     private Element element;
-    private String identificationCode;
+    private IdentificationCode identificationCode;
+    private Name name;
 
     /**
      * <h2>Element "Country"</h2>
@@ -28,7 +33,8 @@ public class Country {
      *     </li>
      *     <li><b>for build()</b>
      *     <ul>
-     *         <li>[String] <b>identificationCode</b> <b>[0..1]</b> : An identifier for the Country.</li>
+     *         <li>[IdentificationCode] <b>identificationCode</b> <b>[0..1]</b> : An identifier for the Country.</li>
+     *         <li>[Name] <b>name</b> <b>[0..1]</b> : The name of the Country.</li>
      *     </ul>
      *     </li>
      * </ul>
@@ -37,6 +43,7 @@ public class Country {
         this.doc = builder.doc;
         this.element = builder.element;
         this.identificationCode = builder.identificationCode;
+        this.name = builder.name;
     }
 
     /**
@@ -46,7 +53,8 @@ public class Country {
 
         private Document doc;
         private Element element;
-        private String identificationCode;
+        private IdentificationCode identificationCode;
+        private Name name;
 
         public CountryBuilder(){};
 
@@ -58,8 +66,12 @@ public class Country {
             this.element = element;
             return this;
         }
-        public CountryBuilder identificationCode(String identificationCode){
+        public CountryBuilder identificationCode(IdentificationCode identificationCode){
             this.identificationCode = identificationCode;
+            return this;
+        }
+        public CountryBuilder name(Name name){
+            this.name = name;
             return this;
         }
         public Country build(){
@@ -68,8 +80,20 @@ public class Country {
         }
     }
 
-    public String getIdentificationCode() {
+    public IdentificationCode getIdentificationCode() {
         return identificationCode;
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public boolean isNull() {
+        if(identificationCode.isNull() && name.isNull()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -78,8 +102,33 @@ public class Country {
      */
     public Element load() {
         Element elementCountry = new ElementT(doc,element, ElementsName.POSTAL_ADDRESS_COUNTRY.label).load();
-        if(!Tips.stringIsNull(identificationCode)){
-            Element elementIdentificationCode = new ElementT(doc, elementCountry, ElementsName.POSTAL_ADDRESS_COUNTRY_IDENTIFICATION_CODE.label, identificationCode).load();
+        if(!identificationCode.isNull()) {
+            Element elementIdentificationCode = new IdentificationCode.IdentificationCodeBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementCountry)
+                    .value(identificationCode.getValue())
+                    .attributes(new PatternList.PatternListBuilder()
+                            .listID(identificationCode.getPatternList().getListID())
+                            .listAgencyID(identificationCode.getPatternList().getListAgencyID())
+                            .listAgencyName(identificationCode.getPatternList().getListAgencyName())
+                            .listName(identificationCode.getPatternList().getListName())
+                            .listVersionID(identificationCode.getPatternList().getListVersionID())
+                            .name(identificationCode.getPatternList().getName())
+                            .languageID(identificationCode.getPatternList().getLanguageID())
+                            .listURI(identificationCode.getPatternList().getListURI())
+                            .listSchemeURI(identificationCode.getPatternList().getListSchemeURI())
+                            .build())
+                    .build().load();
+        }
+        if(!name.isNull()){
+            Element elementName = new Name.NameBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementCountry)
+                    .value(name.getValue())
+                    .attributes(new PatternLanguage.PatternLanguageBuilder()
+                            .languageID(name.getPatternLanguage().getLanguageID())
+                            .build())
+                    .build().load();
         }
         return elementCountry;
     }

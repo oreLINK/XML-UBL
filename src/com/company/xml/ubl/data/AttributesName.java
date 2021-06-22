@@ -40,7 +40,10 @@ public enum AttributesName {
     ENCODING_CODE("encodingCode"),
     FILE_NAME("filename"),
     LANGUAGE_ID("languageID"),
-    MIME_CODE("mimeCode");
+    MIME_CODE("mimeCode"),
+    FORMAT("format"),
+    CHARACTER_SET_CODE("characterSetCode"),
+    URI("uri");
 
     public final String label;
 

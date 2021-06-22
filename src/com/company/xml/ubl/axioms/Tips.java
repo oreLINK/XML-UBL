@@ -13,7 +13,7 @@ public class Tips {
      * @return true if this String is null
      */
     public static boolean stringIsNull(String s) {
-        if(s == null || s.isEmpty()){
+        if(s == null || s.isEmpty() || s.equals(null)){
             return true;
         } else {
             return false;

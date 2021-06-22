@@ -10,21 +10,18 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-/**
- * Class Name
- */
-public class Name {
+public class PostalZone {
 
     private Document doc;
     private Element element;
-    private String name = ElementsName.NAME.label;
+    private String name = ElementsName.POSTAL_ZONE.label;
     private String value;
     private PatternLanguage patternLanguage;
 
     /**
      * Documentation is coming...
      */
-    private Name(NameBuilder builder) {
+    private PostalZone(PostalZoneBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
         this.value = builder.value;
@@ -32,9 +29,9 @@ public class Name {
     }
 
     /**
-     * Builder Name
+     * Builder PostalZone
      */
-    public static class NameBuilder {
+    public static class PostalZoneBuilder {
 
         private Document doc;
         private Element element;
@@ -42,27 +39,27 @@ public class Name {
         private String value;
         private PatternLanguage patternLanguage;
 
-        public NameBuilder() {}
+        public PostalZoneBuilder() {}
 
-        public NameBuilder documentLinked(Document doc){
+        public PostalZoneBuilder documentLinked(Document doc){
             this.doc = doc;
             return this;
         }
-        public NameBuilder elementFather(Element element){
+        public PostalZoneBuilder elementFather(Element element){
             this.element = element;
             return this;
         }
-        public NameBuilder value(String value){
+        public PostalZoneBuilder value(String value){
             this.value = value;
             return this;
         }
-        public NameBuilder attributes(PatternLanguage patternLanguage){
+        public PostalZoneBuilder attributes(PatternLanguage patternLanguage){
             this.patternLanguage = patternLanguage;
             return this;
         }
-        public Name build(){
-            Name name = new Name(this);
-            return name;
+        public PostalZone build(){
+            PostalZone elementBuild = new PostalZone(this);
+            return elementBuild;
         }
 
     }
@@ -88,10 +85,11 @@ public class Name {
      * @return the generated element
      */
     public Element load() {
-        Element elementName = new ElementT(doc, element, name, value).load();
+        Element elementRoot = new ElementT(doc, element, name, value).load();
         if(!Tips.stringIsNull(patternLanguage.getLanguageID())){
-            Attr elementName_Attr1 = new AttributeT(doc, elementName, AttributesName.LANGUAGE_ID.label, patternLanguage.getLanguageID()).load();
+            Attr elementRoot_Attr1 = new AttributeT(doc, elementRoot, AttributesName.LANGUAGE_ID.label, patternLanguage.getLanguageID()).load();
         }
-        return elementName;
+        return elementRoot;
     }
+
 }

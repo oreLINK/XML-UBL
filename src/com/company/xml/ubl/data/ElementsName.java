@@ -20,7 +20,7 @@ public enum ElementsName {
     ADDITIONAL_DOCUMENT_REFERENCE(NamespacesName.CAC_NAMESPACE.label+"AdditionalDocumentReference"),
     ADDITIONAL_DOCUMENT_REFERENCE_DOCUMENT_TYPE_CODE(NamespacesName.CBC_NAMESPACE.label+"DocumentTypeCode"),
     ATTACHMENT(NamespacesName.CAC_NAMESPACE.label+"Attachment"),
-    ATTACHMENT_EMBEDDED_DOCUMENT_BINARY_OBJECT(NamespacesName.CBC_NAMESPACE.label+"EmbeddedDocumentBinaryObject"),
+    EMBEDDED_DOCUMENT_BINARY_OBJECT(NamespacesName.CBC_NAMESPACE.label+"EmbeddedDocumentBinaryObject"),
     ACCOUNTING_SUPPLIER_PARTY(NamespacesName.CAC_NAMESPACE.label+"AccountingSupplierParty"),
     PARTY(NamespacesName.CAC_NAMESPACE.label+"Party"),
     PARTY_IDENTIFICATION(NamespacesName.CAC_NAMESPACE.label+"PartyIdentification"),
@@ -28,14 +28,14 @@ public enum ElementsName {
     PARTY_NAME(NamespacesName.CAC_NAMESPACE.label+"PartyName"),
     PARTY_NAME_NAME(NamespacesName.CBC_NAMESPACE.label+"Name"),
     POSTAL_ADDRESS(NamespacesName.CAC_NAMESPACE.label+"PostalAddress"),
-    POSTAL_ADDRESS_ADDRESS_FORMAT_CODE(NamespacesName.CBC_NAMESPACE.label+"AddressFormatCode"),
-    POSTAL_ADDRESS_POSTBOX(NamespacesName.CBC_NAMESPACE.label+"Postbox"),
-    POSTAL_ADDRESS_STREET_NAME(NamespacesName.CBC_NAMESPACE.label+"StreetName"),
-    POSTAL_ADDRESS_BUILDING_NUMBER(NamespacesName.CBC_NAMESPACE.label+"BuildingNumber"),
-    POSTAL_ADDRESS_CITY_NAME(NamespacesName.CBC_NAMESPACE.label+"CityName"),
-    POSTAL_ADDRESS_POSTAL_ZONE(NamespacesName.CBC_NAMESPACE.label+"PostalZone"),
+    ADDRESS_FORMAT_CODE(NamespacesName.CBC_NAMESPACE.label+"AddressFormatCode"),
+    POSTBOX(NamespacesName.CBC_NAMESPACE.label+"Postbox"),
+    STREET_NAME(NamespacesName.CBC_NAMESPACE.label+"StreetName"),
+    BUILDING_NUMBER(NamespacesName.CBC_NAMESPACE.label+"BuildingNumber"),
+    CITY_NAME(NamespacesName.CBC_NAMESPACE.label+"CityName"),
+    POSTAL_ZONE(NamespacesName.CBC_NAMESPACE.label+"PostalZone"),
     POSTAL_ADDRESS_COUNTRY(NamespacesName.CAC_NAMESPACE.label+"Country"),
-    POSTAL_ADDRESS_COUNTRY_IDENTIFICATION_CODE(NamespacesName.CBC_NAMESPACE.label+"IdentificationCode"),
+    IDENTIFICATION_CODE(NamespacesName.CBC_NAMESPACE.label+"IdentificationCode"),
     PARTY_TAX_SCHEME(NamespacesName.CAC_NAMESPACE.label+"PartyTaxScheme"),
     PARTY_TAX_SCHEME_COMPANY_ID(NamespacesName.CBC_NAMESPACE.label+"CompanyID"),
     TAX_SCHEME(NamespacesName.CAC_NAMESPACE.label+"TaxScheme"),
@@ -101,7 +101,8 @@ public enum ElementsName {
     PAYMENT_MEANS(NamespacesName.CAC_NAMESPACE.label+"PaymentMeans"),
     LINE_EXTENSION_AMOUNT(NamespacesName.CBC_NAMESPACE.label+"LineExtensionAmount"),
     INVOICED_QUANTITY(NamespacesName.CBC_NAMESPACE.label+"InvoicedQuantity"),
-    INVOICE_LINE(NamespacesName.CAC_NAMESPACE.label+"InvoiceLine");
+    INVOICE_LINE(NamespacesName.CAC_NAMESPACE.label+"InvoiceLine"),
+    DOCUMENT_TYPE_CODE(NamespacesName.CBC_NAMESPACE.label+"DocumentTypeCode");
 
     public final String label;
 

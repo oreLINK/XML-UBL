@@ -1,7 +1,7 @@
 package com.company.xml.ubl.elements;
 
-import com.company.xml.ubl.attributes.PatternCode;
 import com.company.xml.ubl.attributes.PatternCurrency;
+import com.company.xml.ubl.attributes.PatternScheme;
 import com.company.xml.ubl.axioms.AttributeT;
 import com.company.xml.ubl.axioms.ElementT;
 import com.company.xml.ubl.axioms.Tips;
@@ -11,54 +11,54 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class InvoicedQuantity {
+public class LineExtensionAmount {
 
     private Document doc;
     private Element element;
-    private String name = ElementsName.INVOICED_QUANTITY.label;
+    private String name = ElementsName.LINE_EXTENSION_AMOUNT.label;
     private String value;
-    private PatternCode patternCode;
+    private PatternCurrency patternCurrency;
 
     /**
      * Documentation is coming...
      */
-    private InvoicedQuantity(InvoicedQuantityBuilder builder) {
+    private LineExtensionAmount(LineExtensionAmountBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
         this.value = builder.value;
-        this.patternCode = builder.patternCode;
+        this.patternCurrency = builder.patternCurrency;
     }
 
     /**
-     * Builder InvoicedQuantity
+     * Builder LineExtensionAmount
      */
-    public static class InvoicedQuantityBuilder {
+    public static class LineExtensionAmountBuilder {
 
         private Document doc;
         private Element element;
         private String value;
-        private PatternCode patternCode;
+        private PatternCurrency patternCurrency;
 
-        public InvoicedQuantityBuilder() {}
+        public LineExtensionAmountBuilder() {}
 
-        public InvoicedQuantityBuilder documentLinked(Document doc){
+        public LineExtensionAmountBuilder documentLinked(Document doc){
             this.doc = doc;
             return this;
         }
-        public InvoicedQuantityBuilder elementFather(Element element){
+        public LineExtensionAmountBuilder elementFather(Element element){
             this.element = element;
             return this;
         }
-        public InvoicedQuantityBuilder value(String value){
+        public LineExtensionAmountBuilder value(String value){
             this.value = value;
             return this;
         }
-        public InvoicedQuantityBuilder attributes(PatternCode patternCode){
-            this.patternCode = patternCode;
+        public LineExtensionAmountBuilder attributes(PatternCurrency patternCurrency){
+            this.patternCurrency = patternCurrency;
             return this;
         }
-        public InvoicedQuantity build(){
-            InvoicedQuantity element = new InvoicedQuantity(this);
+        public LineExtensionAmount build(){
+            LineExtensionAmount element = new LineExtensionAmount(this);
             return element;
         }
 
@@ -68,8 +68,8 @@ public class InvoicedQuantity {
         return value;
     }
 
-    public PatternCode getPatternCode() {
-        return patternCode;
+    public PatternCurrency getPatternCurrency() {
+        return patternCurrency;
     }
 
     public boolean isNull() {
@@ -86,8 +86,8 @@ public class InvoicedQuantity {
      */
     public Element load() {
         Element elementRoot = new ElementT(doc, element, name, value).load();
-        if(!Tips.stringIsNull(patternCode.getUnitCode())){
-            Attr elementID_Attr1 = new AttributeT(doc, elementRoot, AttributesName.UNIT_CODE.label, patternCode.getUnitCode()).load();
+        if(!Tips.stringIsNull(patternCurrency.getCurrencyID())){
+            Attr elementID_Attr1 = new AttributeT(doc, elementRoot, AttributesName.CURRENCY_ID.label, patternCurrency.getCurrencyID()).load();
         }
         return elementRoot;
     }

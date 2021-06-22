@@ -315,6 +315,20 @@ public class UBLInvoice20 {
                         .build().load();
             }
         }
+        if(!Tips.listIsNull(invoiceLineList)){
+            for (InvoiceLine invoiceLine : invoiceLineList) {
+                Element invoiceLine1 = new InvoiceLine.InvoiceLineBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementInvoice)
+                        .id(invoiceLine.getId())
+                        .invoicedQuantity(invoiceLine.getInvoicedQuantity())
+                        .lineExtensionAmount(invoiceLine.getLineExtensionAmount())
+                        .taxTotal(invoiceLine.getTaxTotal())
+                        .item(invoiceLine.getItem())
+                        .price(invoiceLine.getPrice())
+                        .build().load();
+            }
+        }
         return elementInvoice;
     }
 

@@ -100,6 +100,14 @@ public class Item {
         return sellersItemIdentificationList;
     }
 
+    public boolean isNull() {
+        if(Tips.stringIsNull(description) && Tips.stringIsNull(name)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
      * @return the generated element

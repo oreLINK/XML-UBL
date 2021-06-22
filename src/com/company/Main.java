@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.xml.ubl.attributes.PatternCode;
+import com.company.xml.ubl.attributes.PatternCurrency;
 import com.company.xml.ubl.attributes.PatternList;
 import com.company.xml.ubl.axioms.AttributeT;
 import com.company.xml.ubl.axioms.DocumentT;
@@ -756,6 +758,76 @@ public class Main {
                 .build();
         paymentMeansListInvoice.add(paymentMeans1);
 
+        //TAX SCHEME
+        List<TaxScheme> taxSchemeList44 = new ArrayList<>();
+        TaxScheme taxSchemeInvoice44 = new TaxScheme.TaxSchemeBuilder()
+                .id("VAT")
+                .id_AttributeSchemeAgencyID("6")
+                .id_AttributeSchemeID("UN/ECE 5153 Subset")
+                .id_AttributeSchemeVersionID("D08B")
+                .name("FR TVA 20")
+                .build();
+        taxSchemeList44.add(taxSchemeInvoice44);
+        //TAX CATEGORY
+        List<TaxCategory> taxCategoryList44 = new ArrayList<>();
+        TaxCategory taxCategoryInvoice44 = new TaxCategory.TaxCategoryBuilder()
+                .id("S")
+                .id_AttributeSchemeAgencyID("6")
+                .id_AttributeSchemeID("UN/ECE 5305")
+                .id_AttributeSchemeVersionID("D08B")
+                .percent("20")
+                .taxSchemeList(taxSchemeList44)
+                .build();
+        taxCategoryList44.add(taxCategoryInvoice44);
+        //TAX SUB TOTAL
+        List<TaxSubTotal> taxSubTotalList44 = new ArrayList<>();
+        TaxSubTotal taxSubTotal44 = new TaxSubTotal.TaxSubTotalBuilder()
+                .taxableAmount("714.61")
+                .taxableAmount_AttributeCurrencyID("EUR")
+                .taxAmount("142.92")
+                .taxAmount_AttributeCurrencyID("EUR")
+                .calculationSequenceNumeric("1")
+                .taxCategoryList(taxCategoryList44)
+                .build();
+        taxSubTotalList44.add(taxSubTotal44);
+        //TAX TOTAL
+        TaxTotal taxTotal44 = new TaxTotal.TaxTotalBuilder()
+                .taxAmount("142.92")
+                .taxAmount_AttributeCurrencyID("EUR")
+                .taxSubTotalList(taxSubTotalList44)
+                .build();
+        //SELLERS ITEM IDENTIFICATION
+        List<SellersItemIdentification> sellersItemIdentificationList44 = new ArrayList<>();
+        SellersItemIdentification sellersItemIdentification44 = new SellersItemIdentification.SellersItemIdentificationBuilder()
+                .id("001")
+                .build();
+        sellersItemIdentificationList44.add(sellersItemIdentification44);
+        //ITEM
+        Item item44 = new Item.ItemBuilder()
+                .description("heures normales")
+                .name("heures normales")
+                .sellersItemIdentificationList(sellersItemIdentificationList44)
+                .build();
+        //PRICE
+        Price price44 = new Price.PriceBuilder()
+                .priceAmount("21.018")
+                .priceAmount_AttributeCurrencyID("EUR")
+                .baseQuantity("1")
+                .baseQuantity_AttributeUnitCode("HUR")
+                .orderableUnitFactorRate("1")
+                .build();
+        //INVOICE LINE
+        List<InvoiceLine> invoiceLineList44 = new ArrayList<>();
+        InvoiceLine invoiceLine44 = new InvoiceLine.InvoiceLineBuilder()
+                .id(new ID.IDBuilder().value("1").attributes(new PatternScheme.PatternSchemeBuilder().build()).build())
+                .invoicedQuantity(new InvoicedQuantity.InvoicedQuantityBuilder().value("34").attributes(new PatternCode.PatternCodeBuilder().unitCode("HUR").build()).build())
+                .lineExtensionAmount(new LineExtensionAmount.LineExtensionAmountBuilder().value("714.61").attributes(new PatternCurrency.PatternCurrencyBuilder().currencyID("EUR").build()).build())
+                .taxTotal(taxTotal44)
+                .item(item44)
+                .price(price44)
+                .build();
+        invoiceLineList44.add(invoiceLine44);
+
         Element elementInvoice = new UBLInvoice20.UBLInvoice20Builder()
                 .documentLinked(docInvoice.getDoc())
                 .ublVersionID(invoiceUBLVersionID)
@@ -769,6 +841,7 @@ public class Main {
                 .additionalDocumentReferenceList(additionalDocumentReferenceListInvoice)
                 .accountingSupplierParty(elementAccountingSupplierPartyInvoice)
                 .paymentMeansList(paymentMeansListInvoice)
+                .invoiceLineList(invoiceLineList44)
                 .build().load();
 
         docInvoice.generate();

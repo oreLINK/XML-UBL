@@ -98,7 +98,10 @@ public enum ElementsName {
     FINANCIAL_INSTITUTION(NamespacesName.CAC_NAMESPACE.label+"FinancialInstitution"),
     FINANCIAL_INSTITUTION_BRANCH(NamespacesName.CAC_NAMESPACE.label+"FinancialInstitutionBranch"),
     PAYEE_FINANCIAL_ACCOUNT(NamespacesName.CAC_NAMESPACE.label+"PayeeFinancialAccount"),
-    PAYMENT_MEANS(NamespacesName.CAC_NAMESPACE.label+"PaymentMeans");
+    PAYMENT_MEANS(NamespacesName.CAC_NAMESPACE.label+"PaymentMeans"),
+    LINE_EXTENSION_AMOUNT(NamespacesName.CBC_NAMESPACE.label+"LineExtensionAmount"),
+    INVOICED_QUANTITY(NamespacesName.CBC_NAMESPACE.label+"InvoicedQuantity"),
+    INVOICE_LINE(NamespacesName.CAC_NAMESPACE.label+"InvoiceLine");
 
     public final String label;
 

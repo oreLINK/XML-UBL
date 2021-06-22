@@ -8,7 +8,7 @@ public class PatternCode {
      * Documentation is coming...
      */
     private PatternCode(PatternCodeBuilder builder) {
-        this.unitCode = builder.unitCode;
+        this.unitCode = builder.currencyID;
     }
 
     /**
@@ -16,12 +16,12 @@ public class PatternCode {
      */
     public static class PatternCodeBuilder {
 
-        private String unitCode;
+        private String currencyID;
 
         public PatternCodeBuilder() {}
 
         public PatternCodeBuilder unitCode(String unitCode){
-            this.unitCode = unitCode;
+            this.currencyID = unitCode;
             return this;
         }
         public PatternCode build(){
@@ -31,4 +31,7 @@ public class PatternCode {
 
     }
 
+    public String getUnitCode() {
+        return unitCode;
+    }
 }

@@ -1,7 +1,13 @@
 package com.company.xml.ubl.modules;
 
+import com.company.xml.ubl.attributes.PatternCode;
+import com.company.xml.ubl.attributes.PatternCurrency;
+import com.company.xml.ubl.attributes.PatternScheme;
+import com.company.xml.ubl.axioms.ElementT;
+import com.company.xml.ubl.data.ElementsName;
 import com.company.xml.ubl.elements.ID;
 import com.company.xml.ubl.elements.InvoicedQuantity;
+import com.company.xml.ubl.elements.LineExtensionAmount;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -72,13 +78,110 @@ public class InvoiceLine {
             this.price = price;
             return this;
         }
+        public InvoiceLine build(){
+            InvoiceLine invoiceLine = new InvoiceLine(this);
+            return invoiceLine;
+        }
 
     }
 
-    /**
-     * TODO
-     */
+    public ID getId() {
+        return id;
+    }
 
+    public InvoicedQuantity getInvoicedQuantity() {
+        return invoicedQuantity;
+    }
+
+    public LineExtensionAmount getLineExtensionAmount() {
+        return lineExtensionAmount;
+    }
+
+    public TaxTotal getTaxTotal() {
+        return taxTotal;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public Price getPrice() {
+        return price;
+    }
+
+    /**
+     * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
+     * @return the generated element
+     */
+    public Element load() {
+        Element elementInvoiceLine = new ElementT(doc, element, ElementsName.INVOICE_LINE.label).load();
+        if(!id.isNull()){
+            Element elementId = new ID.IDBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementInvoiceLine)
+                    .value(id.getValue())
+                    .attributes(new PatternScheme.PatternSchemeBuilder()
+                            .schemeID(id.getPatternScheme().getSchemeID())
+                            .schemeName(id.getPatternScheme().getSchemeName())
+                            .schemeAgencyID(id.getPatternScheme().getSchemeAgencyID())
+                            .schemeAgencyName(id.getPatternScheme().getSchemeAgencyName())
+                            .schemeVersionID(id.getPatternScheme().getSchemeVersionID())
+                            .schemeDataURI(id.getPatternScheme().getSchemeDataURI())
+                            .schemeURI(id.getPatternScheme().getSchemeURI())
+                            .build())
+                    .build().load();
+        }
+        if(!invoicedQuantity.isNull()){
+            Element elementInvoicedQuantity = new InvoicedQuantity.InvoicedQuantityBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementInvoiceLine)
+                    .value(invoicedQuantity.getValue())
+                    .attributes(new PatternCode.PatternCodeBuilder()
+                            .unitCode(invoicedQuantity.getPatternCode().getUnitCode())
+                            .build())
+                    .build().load();
+        }
+        if(!lineExtensionAmount.isNull()){
+            Element elementLineExtensionAmount = new LineExtensionAmount.LineExtensionAmountBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementInvoiceLine)
+                    .value(lineExtensionAmount.getValue())
+                    .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                            .currencyID(lineExtensionAmount.getPatternCurrency().getCurrencyID())
+                            .build())
+                    .build().load();
+        }
+        if(!taxTotal.isNull()){
+            Element elementTaxTotal = new TaxTotal.TaxTotalBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementInvoiceLine)
+                    .taxAmount(taxTotal.getTaxAmount())
+                    .taxAmount_AttributeCurrencyID(taxTotal.getTaxAmount_AttributeCurrencyID())
+                    .taxSubTotalList(taxTotal.getTaxSubTotalList())
+                    .build().load();
+        }
+        if(!item.isNull()){
+            Element elementItem = new Item.ItemBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementInvoiceLine)
+                    .description(item.getDescription())
+                    .name(item.getName())
+                    .sellersItemIdentificationList(item.getSellersItemIdentificationList())
+                    .build().load();
+        }
+        if(!price.isNull()){
+            Element elementPrice = new Price.PriceBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementInvoiceLine)
+                    .priceAmount(price.getPriceAmount())
+                    .priceAmount_AttributeCurrencyID(price.getPriceAmount_AttributeCurrencyID())
+                    .baseQuantity(price.getBaseQuantity())
+                    .baseQuantity_AttributeUnitCode(price.getBaseQuantity_AttributeUnitCode())
+                    .orderableUnitFactorRate(price.getOrderableUnitFactorRate())
+                    .build().load();
+        }
+        return elementInvoiceLine;
+    }
 
 
 }

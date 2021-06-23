@@ -167,52 +167,76 @@ public class UBLInvoice20 {
         Attr elementInvoice_Attr8 = new AttributeT(doc, elementInvoice, NamespacesName.XMLNS_UDT_ATTR.label, NamespacesName.XMLNS_UDT_IMPORT.label).load();
 
         if(!Tips.stringIsNull(ublVersionID.getValue())){
-            Element elementUBLVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementInvoice)
-                    .value(ublVersionID.getValue())
-                    .attributes(new PatternScheme.PatternSchemeBuilder()
-                            .schemeID(ublVersionID.getPatternScheme().getSchemeID())
-                            .schemeName(ublVersionID.getPatternScheme().getSchemeName())
-                            .schemeAgencyID(ublVersionID.getPatternScheme().getSchemeAgencyID())
-                            .schemeAgencyName(ublVersionID.getPatternScheme().getSchemeAgencyName())
-                            .schemeVersionID(ublVersionID.getPatternScheme().getSchemeVersionID())
-                            .schemeDataURI(ublVersionID.getPatternScheme().getSchemeDataURI())
-                            .schemeURI(ublVersionID.getPatternScheme().getSchemeURI())
-                            .build())
-                    .build().load();
+            if(!(ublVersionID.getPatternScheme() == null)){
+                Element elementUBLVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementInvoice)
+                        .value(ublVersionID.getValue())
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID(ublVersionID.getPatternScheme().getSchemeID())
+                                .schemeName(ublVersionID.getPatternScheme().getSchemeName())
+                                .schemeAgencyID(ublVersionID.getPatternScheme().getSchemeAgencyID())
+                                .schemeAgencyName(ublVersionID.getPatternScheme().getSchemeAgencyName())
+                                .schemeVersionID(ublVersionID.getPatternScheme().getSchemeVersionID())
+                                .schemeDataURI(ublVersionID.getPatternScheme().getSchemeDataURI())
+                                .schemeURI(ublVersionID.getPatternScheme().getSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementUBLVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementInvoice)
+                        .value(ublVersionID.getValue())
+                        .build().load();
+            }
         }
         if(!Tips.stringIsNull(customizationID.getValue())){
-            Element elementCustomizationID = new CustomizationID.CustomizationIDBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementInvoice)
-                    .value(customizationID.getValue())
-                    .attributes(new PatternScheme.PatternSchemeBuilder()
-                            .schemeID(customizationID.getPatternScheme().getSchemeID())
-                            .schemeName(customizationID.getPatternScheme().getSchemeName())
-                            .schemeAgencyID(customizationID.getPatternScheme().getSchemeAgencyID())
-                            .schemeAgencyName(customizationID.getPatternScheme().getSchemeAgencyName())
-                            .schemeVersionID(customizationID.getPatternScheme().getSchemeVersionID())
-                            .schemeDataURI(customizationID.getPatternScheme().getSchemeDataURI())
-                            .schemeURI(customizationID.getPatternScheme().getSchemeURI())
-                            .build())
-                    .build().load();
+            if(!(customizationID.getPatternScheme() == null)){
+                Element elementCustomizationID = new CustomizationID.CustomizationIDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementInvoice)
+                        .value(customizationID.getValue())
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID(customizationID.getPatternScheme().getSchemeID())
+                                .schemeName(customizationID.getPatternScheme().getSchemeName())
+                                .schemeAgencyID(customizationID.getPatternScheme().getSchemeAgencyID())
+                                .schemeAgencyName(customizationID.getPatternScheme().getSchemeAgencyName())
+                                .schemeVersionID(customizationID.getPatternScheme().getSchemeVersionID())
+                                .schemeDataURI(customizationID.getPatternScheme().getSchemeDataURI())
+                                .schemeURI(customizationID.getPatternScheme().getSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementCustomizationID = new CustomizationID.CustomizationIDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementInvoice)
+                        .value(customizationID.getValue())
+                        .build().load();
+            }
         }
         if(!Tips.stringIsNull(profileID.getValue())){
-            Element elementProfileID = new ProfileID.ProfileIDBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementInvoice)
-                    .value(profileID.getValue())
-                    .attributes(new PatternScheme.PatternSchemeBuilder()
-                            .schemeID(profileID.getPatternScheme().getSchemeID())
-                            .schemeName(profileID.getPatternScheme().getSchemeName())
-                            .schemeAgencyID(profileID.getPatternScheme().getSchemeAgencyID())
-                            .schemeAgencyName(profileID.getPatternScheme().getSchemeAgencyName())
-                            .schemeVersionID(profileID.getPatternScheme().getSchemeVersionID())
-                            .schemeDataURI(profileID.getPatternScheme().getSchemeDataURI())
-                            .schemeURI(profileID.getPatternScheme().getSchemeURI())
-                            .build())
-                    .build().load();
+            if(!(profileID.getPatternScheme() == null)){
+                Element elementProfileID = new ProfileID.ProfileIDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementInvoice)
+                        .value(profileID.getValue())
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID(profileID.getPatternScheme().getSchemeID())
+                                .schemeName(profileID.getPatternScheme().getSchemeName())
+                                .schemeAgencyID(profileID.getPatternScheme().getSchemeAgencyID())
+                                .schemeAgencyName(profileID.getPatternScheme().getSchemeAgencyName())
+                                .schemeVersionID(profileID.getPatternScheme().getSchemeVersionID())
+                                .schemeDataURI(profileID.getPatternScheme().getSchemeDataURI())
+                                .schemeURI(profileID.getPatternScheme().getSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementProfileID = new ProfileID.ProfileIDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementInvoice)
+                        .value(profileID.getValue())
+                        .build().load();
+            }
         }
         if(!Tips.stringIsNull(id.getValue())){
             Element elementID = new ID.IDBuilder()
@@ -291,11 +315,11 @@ public class UBLInvoice20 {
                         .build().load();
             }
         }
-        if(!Tips.listIsNull(accountingSupplierParty.getPartyList())){
+        if(!(accountingSupplierParty == null)){
             Element elementAccountingSupplierParty = new AccountingSupplierParty.AccountingSupplierPartyBuilder()
                     .documentLinked(doc)
                     .elementFather(elementInvoice)
-                    .partyList(accountingSupplierParty.getPartyList())
+                    .party(accountingSupplierParty.getParty())
                     .build().load();
         }
         if(!Tips.listIsNull(paymentMeansList)){

@@ -1,10 +1,13 @@
 package com.company.xml.ubl.modules;
 
+import com.company.xml.ubl.attributes.PatternLanguage;
+import com.company.xml.ubl.attributes.PatternScheme;
 import com.company.xml.ubl.axioms.AttributeT;
 import com.company.xml.ubl.axioms.ElementT;
 import com.company.xml.ubl.axioms.Tips;
 import com.company.xml.ubl.data.AttributesName;
 import com.company.xml.ubl.data.ElementsName;
+import com.company.xml.ubl.elements.*;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -16,12 +19,11 @@ public class Contact {
 
     private Document doc;
     private Element element;
-    private String id;
-    private String id_AttributeSchemeURI;
-    private String name;
-    private String telephone;
-    private String electronicMail;
-    private String note;
+    private ID id;
+    private Name name;
+    private Telephone telephone;
+    private ElectronicMail electronicMail;
+    private Note note;
 
     /**
      * <h2>Element "Contact"</h2>
@@ -36,12 +38,11 @@ public class Contact {
      *     </li>
      *     <li><b>for build()</b>
      *     <ul>
-     *         <li>[String] <b>id</b> <b>[0..1]</b> : An identifier for the Contact.</li>
-     *         <li>[String] <b>id_AttributeSchemeURI</b> <b>[0..1]</b> : The Uniform Resource Identifier that identifies where the identification scheme is located. (Attribute)</li>
-     *         <li>[String] <b>name</b> <b>[0..1]</b> : The name of the Contact.</li>
-     *         <li>[String] <b>telephone</b> <b>[0..1]</b> : The telephone number of the Contact.</li>
-     *         <li>[String] <b>electronicMail</b> <b>[0..1]</b> : The email address of the Contact.</li>
-     *         <li>[String] <b>note</b> <b>[0..1]</b> : A note such as 'Emergency' or 'After Hours' describing the circumstances in which the Contact can be used.</li>
+     *         <li>[ID] <b>id</b> <b>[0..1]</b> : An identifier for the Contact.</li>
+     *         <li>[Name] <b>name</b> <b>[0..1]</b> : The name of the Contact.</li>
+     *         <li>[Telephone] <b>telephone</b> <b>[0..1]</b> : The telephone number of the Contact.</li>
+     *         <li>[ElectronicMail] <b>electronicMail</b> <b>[0..1]</b> : The email address of the Contact.</li>
+     *         <li>[Note] <b>note</b> <b>[0..1]</b> : A note such as 'Emergency' or 'After Hours' describing the circumstances in which the Contact can be used.</li>
      *     </ul>
      *     </li>
      * </ul>
@@ -50,7 +51,6 @@ public class Contact {
         this.doc = builder.doc;
         this.element = builder.element;
         this.id = builder.id;
-        this.id_AttributeSchemeURI = builder.id_AttributeSchemeURI;
         this.name = builder.name;
         this.telephone = builder.telephone;
         this.electronicMail = builder.electronicMail;
@@ -64,44 +64,39 @@ public class Contact {
 
         private Document doc;
         private Element element;
-        private String id;
-        private String id_AttributeSchemeURI;
-        private String name;
-        private String telephone;
-        private String electronicMail;
-        private String note;
+        private ID id;
+        private Name name;
+        private Telephone telephone;
+        private ElectronicMail electronicMail;
+        private Note note;
 
         public ContactBuilder() {}
 
-        public ContactBuilder documentLinked(Document doc){
-            this.doc = doc;
-            return this;
-        }
+       public ContactBuilder documentLinked(Document doc){
+           this.doc = doc;
+           return this;
+       }
         public ContactBuilder elementFather(Element element){
             this.element = element;
             return this;
         }
-        public ContactBuilder id(String id){
+        public ContactBuilder id(ID id){
             this.id = id;
             return this;
         }
-        public ContactBuilder id_AttributeSchemeURI(String id_AttributeSchemeURI){
-            this.id_AttributeSchemeURI = id_AttributeSchemeURI;
-            return this;
-        }
-        public ContactBuilder name(String name){
+        public ContactBuilder name(Name name){
             this.name = name;
             return this;
         }
-        public ContactBuilder telephone(String telephone){
+        public ContactBuilder telephone(Telephone telephone){
             this.telephone = telephone;
             return this;
         }
-        public ContactBuilder electronicMail(String electronicMail){
+        public ContactBuilder electronicMail(ElectronicMail electronicMail){
             this.electronicMail = electronicMail;
             return this;
         }
-        public ContactBuilder note(String note){
+        public ContactBuilder note(Note note){
             this.note = note;
             return this;
         }
@@ -112,27 +107,23 @@ public class Contact {
 
     }
 
-    public String getId() {
+    public ID getId() {
         return id;
     }
 
-    public String getId_AttributeSchemeURI() {
-        return id_AttributeSchemeURI;
-    }
-
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
-    public String getTelephone() {
+    public Telephone getTelephone() {
         return telephone;
     }
 
-    public String getElectronicMail() {
+    public ElectronicMail getElectronicMail() {
         return electronicMail;
     }
 
-    public String getNote() {
+    public Note getNote() {
         return note;
     }
 
@@ -141,30 +132,102 @@ public class Contact {
      * @return the generated element
      */
     public Element load() {
-        //Generate root element
         Element elementContact = new ElementT(doc, element, ElementsName.CONTACT.label).load();
-        //Generate tag "ID" and attribute "schemeURI"
-        if(!Tips.stringIsNull(id)){
-            Element elementId = new ElementT(doc, elementContact, ElementsName.CONTACT_ID.label, id).load();
-            if(!Tips.stringIsNull(id_AttributeSchemeURI)){
-                Attr elementId_Attr1 = new AttributeT(doc, elementId, AttributesName.CONTACT_ID_SCHEME_URI.label, id_AttributeSchemeURI).load();
+        if(!(id == null)){
+            if(!(id.getPatternScheme() == null)){
+                Element elementId = new ID.IDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementContact)
+                        .value(id.getValue())
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID(id.getPatternScheme().getSchemeID())
+                                .schemeName(id.getPatternScheme().getSchemeName())
+                                .schemeAgencyID(id.getPatternScheme().getSchemeAgencyID())
+                                .schemeAgencyName(id.getPatternScheme().getSchemeAgencyName())
+                                .schemeVersionID(id.getPatternScheme().getSchemeVersionID())
+                                .schemeDataURI(id.getPatternScheme().getSchemeDataURI())
+                                .schemeURI(id.getPatternScheme().getSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementId = new ID.IDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementContact)
+                        .value(id.getValue())
+                        .build().load();
             }
         }
-        //Generate tag "Name"
-        if(!Tips.stringIsNull(name)){
-            Element elementName = new ElementT(doc, elementContact, ElementsName.CONTACT_NAME.label, name).load();
+        if(!(name == null)){
+            if(!(name.getPatternLanguage() == null)){
+                Element elementName = new Name.NameBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementContact)
+                        .value(name.getValue())
+                        .attributes(new PatternLanguage.PatternLanguageBuilder()
+                                .languageID(name.getPatternLanguage().getLanguageID())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementName = new Name.NameBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementContact)
+                        .value(name.getValue())
+                        .build().load();
+            }
         }
-        //Generate tag "Telephone"
-        if(!Tips.stringIsNull(telephone)){
-            Element elementTelephone = new ElementT(doc, elementContact, ElementsName.CONTACT_TELEPHONE.label, telephone).load();
+        if(!(telephone == null)){
+            if(!(telephone.getPatternLanguage() == null)){
+                Element elementTelephone = new Telephone.TelephoneBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementContact)
+                        .value(telephone.getValue())
+                        .attributes(new PatternLanguage.PatternLanguageBuilder()
+                                .languageID(telephone.getPatternLanguage().getLanguageID())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementTelephone = new Telephone.TelephoneBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementContact)
+                        .value(telephone.getValue())
+                        .build().load();
+            }
         }
-        //Generate tag "ElectronicMail"
-        if(!Tips.stringIsNull(electronicMail)){
-            Element elementElectronicMail = new ElementT(doc, elementContact, ElementsName.CONTACT_ELECTRONIC_MAIL.label, electronicMail).load();
+        if(!(electronicMail == null)){
+            if(!(electronicMail.getPatternLanguage() == null)){
+                Element elementElectronicMail = new ElectronicMail.ElectronicMailBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementContact)
+                        .value(electronicMail.getValue())
+                        .attributes(new PatternLanguage.PatternLanguageBuilder()
+                                .languageID(electronicMail.getPatternLanguage().getLanguageID())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementElectronicMail = new ElectronicMail.ElectronicMailBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementContact)
+                        .value(electronicMail.getValue())
+                        .build().load();
+            }
         }
-        //Generate tag "Note"
-        if(!Tips.stringIsNull(note)){
-            Element elementNote = new ElementT(doc, elementContact, ElementsName.CONTACT_NOTE.label, note).load();
+        if(!(note == null)){
+            if(!(note.getPatternLanguage() == null)){
+                Element elementNote = new Note.NoteBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementContact)
+                        .value(note.getValue())
+                        .attributes(new PatternLanguage.PatternLanguageBuilder()
+                                .languageID(note.getPatternLanguage().getLanguageID())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementNote = new Note.NoteBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementContact)
+                        .value(note.getValue())
+                        .build().load();
+            }
         }
         return elementContact;
     }

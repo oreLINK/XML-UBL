@@ -16,7 +16,7 @@ public class AccountingCustomerParty {
 
     private Document doc;
     private Element element;
-    private List<Party> partyList = new ArrayList<>();
+    private Party party;
 
     /**
      * <h2>Element "AccountingCustomerParty"</h2>
@@ -31,7 +31,7 @@ public class AccountingCustomerParty {
      *     </li>
      *     <li><b>for build()</b>
      *     <ul>
-     *         <li>[List] <b>partyList</b> <b>[0..1]</b> : [Party] elements list.</li>
+     *         <li>[Party] <b>party</b> <b>[0..1]</b> : An association to Party.</li>
      *     </ul>
      *     </li>
      * </ul>
@@ -39,7 +39,7 @@ public class AccountingCustomerParty {
     private AccountingCustomerParty(AccountingCustomerPartyBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
-        this.partyList = builder.partyList;
+        this.party = builder.party;
     }
 
     /**
@@ -49,7 +49,7 @@ public class AccountingCustomerParty {
 
         private Document doc;
         private Element element;
-        private List<Party> partyList = new ArrayList<>();
+        private Party party;
 
         public AccountingCustomerPartyBuilder() {}
 
@@ -61,8 +61,8 @@ public class AccountingCustomerParty {
             this.element = element;
             return this;
         }
-        public AccountingCustomerPartyBuilder partyList(List<Party> partyList){
-            this.partyList = partyList;
+        public AccountingCustomerPartyBuilder party(Party party){
+            this.party = party;
             return this;
         }
         public AccountingCustomerParty build(){
@@ -72,8 +72,8 @@ public class AccountingCustomerParty {
 
     }
 
-    public List<Party> getPartyList() {
-        return partyList;
+    public Party getParty() {
+        return party;
     }
 
     /**
@@ -81,21 +81,19 @@ public class AccountingCustomerParty {
      * @return the generated element
      */
     public Element load() {
-        Element elementAccountingCustomerParty = new ElementT(doc,element, ElementsName.ACCOUNTING_SUPPLIER_PARTY.label).load();
-        if(!Tips.listIsNull(partyList)){
-            for (Party party : partyList) {
-                Element elementParty = new Party.PartyBuilder()
-                        .documentLinked(doc)
-                        .elementFather(elementAccountingCustomerParty)
-                        .partyIdentificationList(party.getPartyIdentificationList())
-                        .partyNameList(party.getPartyNameList())
-                        .postalAddressList(party.getPostalAddressList())
-                        .partyTaxSchemeList(party.getPartyTaxSchemeList())
-                        .partyLegalEntityList(party.getPartyLegalEntityList())
-                        .contactList(party.getContactList())
-                        .personList(party.getPersonList())
-                        .build().load();
-            }
+        Element elementAccountingCustomerParty = new ElementT(doc,element, ElementsName.ACCOUNTING_CUSTOMER_PARTY.label).load();
+        if(!(party == null)){
+            Element elementParty = new Party.PartyBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementAccountingCustomerParty)
+                    .partyIdentificationList(party.getPartyIdentificationList())
+                    .partyNameList(party.getPartyNameList())
+                    .postalAddress(party.getPostalAddress())
+                    .partyTaxSchemeList(party.getPartyTaxSchemeList())
+                    .partyLegalEntityList(party.getPartyLegalEntityList())
+                    .contact(party.getContact())
+                    .person(party.getPerson())
+                    .build().load();
         }
         return elementAccountingCustomerParty;
     }

@@ -1,6 +1,6 @@
 package com.company.xml.ubl.elements;
 
-import com.company.xml.ubl.attributes.PatternLanguage;
+import com.company.xml.ubl.attributes.PatternCurrency;
 import com.company.xml.ubl.axioms.AttributeT;
 import com.company.xml.ubl.axioms.ElementT;
 import com.company.xml.ubl.axioms.Tips;
@@ -10,54 +10,54 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class Postbox {
+public class TaxAmount {
 
     private Document doc;
     private Element element;
-    private String name = ElementsName.POSTBOX.label;
+    private String name = ElementsName.TAX_AMOUNT.label;
     private String value;
-    private PatternLanguage patternLanguage;
+    private PatternCurrency patternCurrency;
 
     /**
      * Documentation is coming...
      */
-    private Postbox(PostboxBuilder builder) {
+    private TaxAmount(TaxAmountBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
         this.value = builder.value;
-        this.patternLanguage = builder.patternLanguage;
+        this.patternCurrency = builder.patternCurrency;
     }
 
     /**
-     * Builder Postbox
+     * Builder TaxAmount
      */
-    public static class PostboxBuilder {
+    public static class TaxAmountBuilder {
 
         private Document doc;
         private Element element;
         private String value;
-        private PatternLanguage patternLanguage;
+        private PatternCurrency patternCurrency;
 
-        public PostboxBuilder() {}
+        public TaxAmountBuilder() {}
 
-        public PostboxBuilder documentLinked(Document doc){
+        public TaxAmountBuilder documentLinked(Document doc){
             this.doc = doc;
             return this;
         }
-        public PostboxBuilder elementFather(Element element){
+        public TaxAmountBuilder elementFather(Element element){
             this.element = element;
             return this;
         }
-        public PostboxBuilder value(String value){
+        public TaxAmountBuilder value(String value){
             this.value = value;
             return this;
         }
-        public PostboxBuilder attributes(PatternLanguage patternLanguage){
-            this.patternLanguage = patternLanguage;
+        public TaxAmountBuilder attributes(PatternCurrency patternCurrency){
+            this.patternCurrency = patternCurrency;
             return this;
         }
-        public Postbox build(){
-            Postbox elementBuild = new Postbox(this);
+        public TaxAmount build(){
+            TaxAmount elementBuild = new TaxAmount(this);
             return elementBuild;
         }
 
@@ -67,8 +67,8 @@ public class Postbox {
         return value;
     }
 
-    public PatternLanguage getPatternLanguage() {
-        return patternLanguage;
+    public PatternCurrency getPatternCurrency() {
+        return patternCurrency;
     }
 
     public boolean isNull() {
@@ -85,9 +85,9 @@ public class Postbox {
      */
     public Element load() {
         Element elementRoot = new ElementT(doc, element, name, value).load();
-        if(!(patternLanguage == null)){
-            if(!(patternLanguage.getLanguageID() == null)){
-                Attr elementRoot_Attr1 = new AttributeT(doc, elementRoot, AttributesName.LANGUAGE_ID.label, patternLanguage.getLanguageID()).load();
+        if(!(patternCurrency == null)){
+            if(!(patternCurrency.getCurrencyID() == null)){
+                Attr elementRoot_Attr1 = new AttributeT(doc, elementRoot, AttributesName.CURRENCY_ID.label, patternCurrency.getCurrencyID()).load();
             }
         }
         return elementRoot;

@@ -86,8 +86,10 @@ public class CityName {
      */
     public Element load() {
         Element elementRoot = new ElementT(doc, element, name, value).load();
-        if(!Tips.stringIsNull(patternLanguage.getLanguageID())){
-            Attr elementRoot_Attr1 = new AttributeT(doc, elementRoot, AttributesName.LANGUAGE_ID.label, patternLanguage.getLanguageID()).load();
+        if(!(patternLanguage == null)){
+            if(!(patternLanguage.getLanguageID() == null)){
+                Attr elementRoot_Attr1 = new AttributeT(doc, elementRoot, AttributesName.LANGUAGE_ID.label, patternLanguage.getLanguageID()).load();
+            }
         }
         return elementRoot;
     }

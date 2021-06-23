@@ -89,8 +89,10 @@ public class Name {
      */
     public Element load() {
         Element elementName = new ElementT(doc, element, name, value).load();
-        if(!Tips.stringIsNull(patternLanguage.getLanguageID())){
-            Attr elementName_Attr1 = new AttributeT(doc, elementName, AttributesName.LANGUAGE_ID.label, patternLanguage.getLanguageID()).load();
+        if(!(patternLanguage == null)){
+            if(!(patternLanguage.getLanguageID() == null)){
+                Attr elementName_Attr1 = new AttributeT(doc, elementName, AttributesName.LANGUAGE_ID.label, patternLanguage.getLanguageID()).load();
+            }
         }
         return elementName;
     }

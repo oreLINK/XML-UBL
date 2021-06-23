@@ -18,11 +18,11 @@ public class Party {
     private Element element;
     private List<PartyIdentification> partyIdentificationList = new ArrayList<>();
     private List<PartyName> partyNameList = new ArrayList<>();
-    private List<PostalAddress> postalAddressList = new ArrayList<>();
+    private PostalAddress postalAddress;
     private List<PartyTaxScheme> partyTaxSchemeList = new ArrayList<>();
     private List<PartyLegalEntity> partyLegalEntityList = new ArrayList<>();
-    private List<Contact> contactList = new ArrayList<>();
-    private List<Person> personList = new ArrayList<>();
+    private Contact contact;
+    private Person person;
 
     /**
      * <h2>Element "Party"</h2>
@@ -39,11 +39,11 @@ public class Party {
      *     <ul>
      *         <li>[List] <b>partyIdentificationList</b> <b>[0..*]</b> : [PartyIdentification] elements list.</li>
      *         <li>[List] <b>partyNameList</b> <b>[0..*]</b> : [PartyName] elements list.</li>
-     *         <li>[List] <b>postalAddressList</b> <b>[0..1]</b> : [PostalAddress] elements list.</li>
+     *         <li>[PostalAddress] <b>postalAddress</b> <b>[0..1]</b> : The party's postal address.</li>
      *         <li>[List] <b>partyTaxSchemeList</b> <b>[0..*]</b> : [PartyTaxScheme] elements list.</li>
      *         <li>[List] <b>partyLegalEntityList</b> <b>[0..*]</b> : [PartyLegalEntity] elements list.</li>
-     *         <li>[List] <b>contactList</b> <b>[0..1]</b> : [Contact] elements list.</li>
-     *         <li>[List] <b>personList</b> <b>[0..1]</b> : [Person] elements list.</li>
+     *         <li>[Contact] <b>contact</b> <b>[0..1]</b> : An association to Contact.</li>
+     *         <li>[Person] <b>person</b> <b>[0..1]</b> : An association to a person.</li>
      *     </ul>
      *     </li>
      * </ul>
@@ -53,11 +53,11 @@ public class Party {
         this.element = builder.element;
         this.partyIdentificationList = builder.partyIdentificationList;
         this.partyNameList = builder.partyNameList;
-        this.postalAddressList = builder.postalAddressList;
+        this.postalAddress = builder.postalAddress;
         this.partyTaxSchemeList = builder.partyTaxSchemeList;
         this.partyLegalEntityList = builder.partyLegalEntityList;
-        this.contactList = builder.contactList;
-        this.personList = builder.personList;
+        this.contact = builder.contact;
+        this.person = builder.person;
     }
 
     /**
@@ -69,11 +69,11 @@ public class Party {
         private Element element;
         private List<PartyIdentification> partyIdentificationList = new ArrayList<>();
         private List<PartyName> partyNameList = new ArrayList<>();
-        private List<PostalAddress> postalAddressList = new ArrayList<>();
+        private PostalAddress postalAddress;
         private List<PartyTaxScheme> partyTaxSchemeList = new ArrayList<>();
         private List<PartyLegalEntity> partyLegalEntityList = new ArrayList<>();
-        private List<Contact> contactList = new ArrayList<>();
-        private List<Person> personList = new ArrayList<>();
+        private Contact contact;
+        private Person person;
 
         public PartyBuilder() {}
 
@@ -93,8 +93,8 @@ public class Party {
             this.partyNameList = partyNameList;
             return this;
         }
-        public PartyBuilder postalAddressList(List<PostalAddress> postalAddressList){
-            this.postalAddressList = postalAddressList;
+        public PartyBuilder postalAddress(PostalAddress postalAddress){
+            this.postalAddress = postalAddress;
             return this;
         }
         public PartyBuilder partyTaxSchemeList(List<PartyTaxScheme> partyTaxSchemeList){
@@ -105,12 +105,12 @@ public class Party {
             this.partyLegalEntityList = partyLegalEntityList;
             return this;
         }
-        public PartyBuilder contactList(List<Contact> contactList){
-            this.contactList = contactList;
+        public PartyBuilder contact(Contact contact){
+            this.contact = contact;
             return this;
         }
-        public PartyBuilder personList(List<Person> personList){
-            this.personList = personList;
+        public PartyBuilder person(Person person){
+            this.person = person;
             return this;
         }
         public Party build(){
@@ -128,8 +128,8 @@ public class Party {
         return partyNameList;
     }
 
-    public List<PostalAddress> getPostalAddressList() {
-        return postalAddressList;
+    public PostalAddress getPostalAddress() {
+        return postalAddress;
     }
 
     public List<PartyTaxScheme> getPartyTaxSchemeList() {
@@ -140,12 +140,12 @@ public class Party {
         return partyLegalEntityList;
     }
 
-    public List<Contact> getContactList() {
-        return contactList;
+    public Contact getContact() {
+        return contact;
     }
 
-    public List<Person> getPersonList() {
-        return personList;
+    public Person getPerson() {
+        return person;
     }
 
     /**
@@ -153,21 +153,8 @@ public class Party {
      * @return the generated element
      */
     public Element load() {
-        //Party (root)
         Element elementParty = new ElementT(doc,element, ElementsName.PARTY.label).load();
-
         //Party Identification
-        /*if(!Tips.listIsNull(partyIdentificationList)) {
-            for (PartyIdentification partyIdentification : partyIdentificationList) {
-                Element elementPartyIdentification = new PartyIdentification.PartyIdentificationBuilder()
-                        .documentLinked(doc)
-                        .elementFather(elementParty)
-                        .id(partyIdentification.getId())
-                        .id_AttributeSchemeID(partyIdentification.getId_AttributeSchemeID())
-                        .id_AttributeSchemeName(partyIdentification.getId_AttributeSchemeName())
-                        .build().load();
-            }
-        }*/
         if(!Tips.listIsNull(partyIdentificationList)) {
             for (PartyIdentification partyIdentification : partyIdentificationList) {
                 Element elementPartyIdentification = new PartyIdentification.PartyIdentificationBuilder()
@@ -177,8 +164,6 @@ public class Party {
                         .build().load();
             }
         }
-
-        //Party Name
         if(!Tips.listIsNull(partyNameList)) {
             for (PartyName partyName : partyNameList) {
                 Element elementPartyName = new PartyName.PartyNameBuilder()
@@ -188,80 +173,60 @@ public class Party {
                         .build().load();
             }
         }
-
-        //Postal Address
-        if(!Tips.listIsNull(postalAddressList)) {
-            for (PostalAddress postalAddress : postalAddressList) {
-                Element elementPostalAddress = new PostalAddress.PostalAddressBuilder()
-                        .documentLinked(doc)
-                        .elementFather(elementParty)
-                        .addressFormatCode(postalAddress.getAddressFormatCode())
-                        .postbox(postalAddress.getPostbox())
-                        .streetName(postalAddress.getStreetName())
-                        .buildingNumber(postalAddress.getBuildingNumber())
-                        .cityName(postalAddress.getCityName())
-                        .postalZone(postalAddress.getPostalZone())
-                        .country(postalAddress.getCountry())
-                        .build().load();
-            }
+        if(!(postalAddress == null)){
+            Element elementPostalAddress = new PostalAddress.PostalAddressBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementParty)
+                    .addressFormatCode(postalAddress.getAddressFormatCode())
+                    .postbox(postalAddress.getPostbox())
+                    .streetName(postalAddress.getStreetName())
+                    .buildingNumber(postalAddress.getBuildingNumber())
+                    .cityName(postalAddress.getCityName())
+                    .postalZone(postalAddress.getPostalZone())
+                    .country(postalAddress.getCountry())
+                    .build().load();
         }
-
-        //Party Tax Scheme
-        if(!Tips.listIsNull(partyTaxSchemeList)) {
+        if(!Tips.listIsNull(partyTaxSchemeList)){
             for (PartyTaxScheme partyTaxScheme : partyTaxSchemeList) {
                 Element elementPartyTaxScheme = new PartyTaxScheme.PartyTaxSchemeBuilder()
                         .documentLinked(doc)
                         .elementFather(elementParty)
-                        .companyId(partyTaxScheme.getCompanyId())
-                        .companyId_AttributeSchemeId(partyTaxScheme.getCompanyId_AttributeSchemeId())
-                        .taxSchemeList(partyTaxScheme.getTaxSchemeList())
+                        .companyId(partyTaxScheme.getCompanyID())
+                        .taxScheme(partyTaxScheme.getTaxScheme())
                         .build().load();
             }
         }
-
-        //Party Legal Entity
         if(!Tips.listIsNull(partyLegalEntityList)) {
             for (PartyLegalEntity partyLegalEntity : partyLegalEntityList) {
                 Element elementPartyLegalEntity = new PartyLegalEntity.PartyLegalEntityBuilder()
                         .documentLinked(doc)
                         .elementFather(elementParty)
                         .registrationName(partyLegalEntity.getRegistrationName())
-                        .companyId(partyLegalEntity.getCompanyId())
-                        .companyId_AttributeSchemeId(partyLegalEntity.getCompanyId_AttributeSchemeId())
-                        .registrationAddressList(partyLegalEntity.getRegistrationAddressList())
-                        .corporateRegistrationSchemeList(partyLegalEntity.getCorporateRegistrationSchemeList())
+                        .companyId(partyLegalEntity.getCompanyID())
+                        .registrationAddress(partyLegalEntity.getRegistrationAddress())
+                        .corporateRegistrationScheme(partyLegalEntity.getCorporateRegistrationScheme())
                         .build().load();
             }
         }
-
-        //Contact
-        if(!Tips.listIsNull(contactList)) {
-            for (Contact contact : contactList) {
-                Element elementContact = new Contact.ContactBuilder()
-                        .documentLinked(doc)
-                        .elementFather(elementParty)
-                        .id(contact.getId())
-                        .id_AttributeSchemeURI(contact.getId_AttributeSchemeURI())
-                        .name(contact.getName())
-                        .telephone(contact.getTelephone())
-                        .electronicMail(contact.getElectronicMail())
-                        .note(contact.getNote())
-                        .build().load();
-            }
+        if(!(contact == null)){
+            Element elementContact = new Contact.ContactBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementParty)
+                    .id(contact.getId())
+                    .name(contact.getName())
+                    .telephone(contact.getTelephone())
+                    .electronicMail(contact.getElectronicMail())
+                    .note(contact.getNote())
+                    .build().load();
         }
-
-        //Person
-        if(!Tips.listIsNull(personList)) {
-            for (Person person : personList) {
-                Element elementPerson = new Person.PersonBuilder()
-                        .documentLinked(doc)
-                        .elementFather(elementParty)
-                        .firstName(person.getFirstName())
-                        .familyName(person.getFamilyName())
-                        .build().load();
-            }
+        if(!(person == null)){
+            Element elementPerson = new Person.PersonBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementParty)
+                    .firstName(person.getFirstName())
+                    .familyName(person.getFamilyName())
+                    .build().load();
         }
-
         return elementParty;
     }
 }

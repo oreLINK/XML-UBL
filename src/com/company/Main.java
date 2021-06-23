@@ -176,11 +176,7 @@ public class Main {
                         .build())
                 .build();
 
-        /**
-         * TODO
-         */
         //ACCOUNTING SUPPLIER PARTY > PARTY > POSTAL ADDRESS
-        List<PostalAddress> postalAddressList = new ArrayList<>();
         PostalAddress postalAddress1 = new PostalAddress.PostalAddressBuilder()
                 .addressFormatCode(new AddressFormatCode.AddressFormatCodeBuilder()
                         .value("5_VERSION2")
@@ -217,121 +213,124 @@ public class Main {
                         .build())
                 .country(country1)
                 .build();
-        postalAddressList.add(postalAddress1);
 
         //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY TAX SCHEME > TAX SCHEME
-        /*List<TaxScheme> taxSchemeList = new ArrayList<>();
-        TaxScheme taxScheme1 = new TaxScheme.TaxSchemeBuilder()
-                .name("VAT")
-                .build();
-        taxSchemeList.add(taxScheme1);*/
-        List<TaxScheme> taxSchemeList = new ArrayList<>();
         TaxScheme taxScheme1 = new TaxScheme.TaxSchemeBuilder()
                 .name(new Name.NameBuilder()
                         .value("VATfdgdfgdfgdfgdfg")
-                        .attributes(new PatternLanguage.PatternLanguageBuilder()
-                                .build())
                         .build())
                 .build();
-        taxSchemeList.add(taxScheme1);
 
         //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY TAX SCHEME
         List<PartyTaxScheme> partyTaxSchemeList = new ArrayList<>();
         PartyTaxScheme partyTaxScheme1 = new PartyTaxScheme.PartyTaxSchemeBuilder()
-                .companyId("FR21314887126")
-                .companyId_AttributeSchemeId("FR:VAT")
-                .taxSchemeList(taxSchemeList)
+                .companyId(new CompanyID.CompanyIDBuilder()
+                        .value("FR21314887126_VERSION2")
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID("FR:VAT_VERSION2")
+                                .build())
+                        .build())
+                .taxScheme(taxScheme1)
                 .build();
         partyTaxSchemeList.add(partyTaxScheme1);
 
         //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY LEGAL ENTITY > REGISTRATION ADDRESS
-        List<RegistrationAddress> registrationAddressList = new ArrayList<>();
         RegistrationAddress registrationAddress1 = new RegistrationAddress.RegistrationAddressBuilder()
-                .id("LYON")
-                .id_AttributeSchemeId("FR:RCS")
-                .addressFormatCode("5")
-                .addressFormatCode_AttributeListAgencyId("6")
-                .addressFormatCode_AttributeListId("UN/ECE 3477")
-                .postBox("69006")
-                .streetName("4 RUE DUGUESCLIN")
-                .buildingNumber("NOVALI")
-                .cityName("LYON")
-                .postalZone("69006")
+                .id(new ID.IDBuilder()
+                        .value("LYON_VERSION2")
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID("FR:RCS_VERSION2")
+                                .build())
+                        .build())
+                .addressFormatCode(new AddressFormatCode.AddressFormatCodeBuilder()
+                        .value("5")
+                        .attributes(new PatternList.PatternListBuilder()
+                                .listAgencyID("6_VERSION2")
+                                .listID("UN/ECE 3477_VERSION2")
+                                .build())
+                        .build())
+                .postBox(new Postbox.PostboxBuilder()
+                        .value("69006_VERSION2")
+                        .build())
+                .streetName(new StreetName.StreetNameBuilder()
+                        .value("4 RUE DUGUESCLIN_VERSION2")
+                        .build())
+                .buildingNumber(new BuildingNumber.BuildingNumberBuilder()
+                        .value("NOVALI_VERSION2")
+                        .build())
+                .cityName(new CityName.CityNameBuilder()
+                        .value("LYON_VERSION2")
+                        .build())
+                .postalZone(new PostalZone.PostalZoneBuilder()
+                        .value("69006_VERSION2")
+                        .build())
                 .build();
-        registrationAddressList.add(registrationAddress1);
 
         //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY LEGAL ENTITY > CORPORATE REGISTRATION SCHEME
-        List<CorporateRegistrationScheme> corporateRegistrationSchemeList = new ArrayList<>();
         CorporateRegistrationScheme corporateRegistrationScheme1 = new CorporateRegistrationScheme.CorporateRegistrationSchemeBuilder()
-                .id("PUBLIC_LIMITED").build();
-        corporateRegistrationSchemeList.add(corporateRegistrationScheme1);
+                .id(new ID.IDBuilder().value("PUBLIC_LIMITED_VERSION2").build())
+                .build();
 
         //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY LEGAL ENTITY
         List<PartyLegalEntity> partyLegalEntityList = new ArrayList<>();
         PartyLegalEntity partyLegalEntity1 = new PartyLegalEntity.PartyLegalEntityBuilder()
-                .registrationName("Groupe SOVITRAT")
-                .companyId("31488712600253")
-                .companyId_AttributeSchemeId("FR:SIRET")
-                .registrationAddressList(registrationAddressList)
-                .corporateRegistrationSchemeList(corporateRegistrationSchemeList)
+                .registrationName(new RegistrationName.RegistrationNameBuilder()
+                        .value("Groupe SOVITRAT_VERSION2")
+                        .build())
+                .companyId(new CompanyID.CompanyIDBuilder()
+                        .value("31488712600253_VERSION2")
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID("FR:SIRET_VERSION2")
+                                .build())
+                        .build())
+                .registrationAddress(registrationAddress1)
+                .corporateRegistrationScheme(corporateRegistrationScheme1)
                 .build();
         partyLegalEntityList.add(partyLegalEntity1);
 
         //ACCOUNTING SUPPLIER PARTY > PARTY > CONTACT
-        List<Contact> contactList = new ArrayList<>();
         Contact contact1 = new Contact.ContactBuilder()
-                .id("5a59bb3c-adf8-4b72-b45b-f4f2f33676f1")
-                .id_AttributeSchemeURI("http://tradeshift.com/api/1.0/userId")
-                .name("Amor BOUGHZALA")
-                .telephone("0472699760")
-                .electronicMail("master@sovitrat.fr")
-                .note("Groupe SOVITRAT PUBLIC_LIMITED with share capital 1100000...")
+                .id(new ID.IDBuilder()
+                        .value("5a59bb3c-adf8-4b72-b45b-f4f2f33676f1_VERSION2")
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeURI("http://tradeshift.com/api/1.0/userId_VERSION2")
+                                .build())
+                        .build())
+                .name(new Name.NameBuilder().value("Amor BOUGHZALA_VERSION2").build())
+                .telephone(new Telephone.TelephoneBuilder().value("0472699760_VERSION2").build())
+                .electronicMail(new ElectronicMail.ElectronicMailBuilder().value("master@sovitrat.fr_VERSION2").build())
+                .note(new Note.NoteBuilder().value("Groupe SOVITRAT PUBLIC_LIMITED with share capi_VERSION2").build())
                 .build();
-        contactList.add(contact1);
 
         //ACCOUNTING SUPPLIER PARTY > PARTY > PERSON
-        List<Person> personList = new ArrayList<>();
         Person person1 = new Person.PersonBuilder()
-                .firstName("Amor")
-                .familyName("BOUGHZALA")
+                .firstName(new FirstName.FirstNameBuilder().value("Amor_VERSION2").build())
+                .familyName(new FamilyName.FamilyNameBuilder().value("BOUGHZALA_VERSION2").build())
                 .build();
-        personList.add(person1);
 
         //ACCOUNTING SUPPLIER PARTY > PARTY
-        List<Party> partyList = new ArrayList<>();
         Party elementParty = new Party.PartyBuilder()
                 .documentLinked(doc.getDoc())
                 .elementFather(elementCreditNote)
                 .partyIdentificationList(partyIdentificationList)
                 .partyNameList(partyNameList)
-                .postalAddressList(postalAddressList)
+                .postalAddress(postalAddress1)
                 .partyTaxSchemeList(partyTaxSchemeList)
                 .partyLegalEntityList(partyLegalEntityList)
-                .contactList(contactList)
-                .personList(personList)
+                .contact(contact1)
+                .person(person1)
                 .build();
-        partyList.add(elementParty);
 
         //ACCOUNTING SUPPLIER PARTY
         Element elementAccountingSupplierParty = new AccountingSupplierParty.AccountingSupplierPartyBuilder()
                 .documentLinked(doc.getDoc())
                 .elementFather(elementCreditNote)
-                .partyList(partyList)
+                .party(elementParty)
                 .build().load();
 
         //TAX TOTAL
 
         //TAX TOTAL > TAX SUB TOTAL > TAX CATEGORY > TAX SCHEME
-        /*List<TaxScheme> taxSchemeListFromTaxTotal = new ArrayList<>();
-        TaxScheme taxScheme10 = new TaxScheme.TaxSchemeBuilder()
-                .id("VAT")
-                .id_AttributeSchemeAgencyID("6")
-                .id_AttributeSchemeID("UN/ECE 5153 Subset")
-                .id_AttributeSchemeVersionID("D08B")
-                .name("FR TVA 20%")
-                .build();
-        taxSchemeList.add(taxScheme10);*/
-        List<TaxScheme> taxSchemeListFromTaxTotal = new ArrayList<>();
         TaxScheme taxScheme10 = new TaxScheme.TaxSchemeBuilder()
                 .id(new ID.IDBuilder()
                         .value("VAT_VERSION2")
@@ -343,41 +342,63 @@ public class Main {
                         .build())
                 .name(new Name.NameBuilder()
                         .value("FR TVA 20%_VERSION2")
-                        .attributes(new PatternLanguage.PatternLanguageBuilder()
-                                .build())
                         .build())
                 .build();
-        taxSchemeListFromTaxTotal.add(taxScheme10);
 
         //TAX TOTAL > TAX SUB TOTAL > TAX CATEGORY
-        List<TaxCategory> taxCategoryListFromTaxTotal = new ArrayList<>();
         TaxCategory taxCategory1 = new TaxCategory.TaxCategoryBuilder()
-                .id("S")
-                .id_AttributeSchemeAgencyID("6")
-                .id_AttributeSchemeID("UN/ECE 5305")
-                .id_AttributeSchemeVersionID("D08B")
-                .percent("20")
-                .taxSchemeList(taxSchemeListFromTaxTotal)
+                .id(new ID.IDBuilder()
+                        .value("S_VERSION2")
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeAgencyID("6_VERSION2")
+                                .schemeID("UN/ECE 5305_VERSION2")
+                                .schemeVersionID("D08B_VERSION2")
+                                .build())
+                        .build())
+                .percent(new Percent.PercentBuilder().value("20_VERSION2").build())
+                .taxScheme(taxScheme10)
                 .build();
-        taxCategoryListFromTaxTotal.add(taxCategory1);
 
         //TAX TOTAL > TAX SUB TOTAL
         List<TaxSubTotal> taxSubTotalListFromTaxTotal = new ArrayList<>();
         TaxSubTotal taxSubTotal1 = new TaxSubTotal.TaxSubTotalBuilder()
-                .taxableAmount("245.74")
-                .taxableAmount_AttributeCurrencyID("EUR")
-                .taxAmount("49.15")
-                .taxAmount_AttributeCurrencyID("EUR")
-                .taxCategoryList(taxCategoryListFromTaxTotal)
+                .taxableAmount(new TaxableAmount.TaxableAmountBuilder()
+                        .value("109.24_VERSION2")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR_VERSION2")
+                                .build())
+                        .build())
+                .taxAmount(new TaxAmount.TaxAmountBuilder()
+                        .value("21.85_VERSION2")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR_VERSION2")
+                                .build())
+                        .build())
+                .calculationSequenceNumeric(new CalculationSequenceNumeric.CalculationSequenceNumericBuilder().value("1").build())
+                .taxCategory(taxCategory1)
                 .build();
         taxSubTotalListFromTaxTotal.add(taxSubTotal1);
 
+        /**
+         * TODO
+         */
         //TAX TOTAL
-        Element elementTaxTotal = new TaxTotal.TaxTotalBuilder()
+       /* Element elementTaxTotal = new TaxTotal.TaxTotalBuilder()
                 .documentLinked(doc.getDoc())
                 .elementFather(elementCreditNote)
                 .taxAmount("49.15")
                 .taxAmount_AttributeCurrencyID("EUR")
+                .taxSubTotalList(taxSubTotalListFromTaxTotal)
+                .build().load();*/
+        Element elementTaxTotal = new TaxTotal.TaxTotalBuilder()
+                .documentLinked(doc.getDoc())
+                .elementFather(elementCreditNote)
+                .taxAmount(new TaxAmount.TaxAmountBuilder()
+                        .value("21.85_VERSION2")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR_VERSION2")
+                                .build())
+                        .build())
                 .taxSubTotalList(taxSubTotalListFromTaxTotal)
                 .build().load();
 
@@ -398,15 +419,6 @@ public class Main {
         //CREDIT NOTE LINE
 
         //CREDIT NOTE LINE > TAX TOTAL > TAX SUB TOTAL > TAX CATEGORY > TAX SCHEME
-        /*List<TaxScheme> taxSchemeListCNL = new ArrayList<>();
-        TaxScheme taxSchemeCNL = new TaxScheme.TaxSchemeBuilder()
-                .id("VAT")
-                .id_AttributeSchemeAgencyID("6")
-                .id_AttributeSchemeID("UN/ECE 5153 Subset")
-                .id_AttributeSchemeVersionID("D08B")
-                .build();
-        taxSchemeListCNL.add(taxSchemeCNL);*/
-        List<TaxScheme> taxSchemeListCNL = new ArrayList<>();
         TaxScheme taxSchemeCNL = new TaxScheme.TaxSchemeBuilder()
                 .id(new ID.IDBuilder()
                         .value("VAT_VERSION2")
@@ -416,39 +428,61 @@ public class Main {
                                 .schemeVersionID("D08B_VERSION2")
                                 .build())
                         .build())
-                .name(new Name.NameBuilder().attributes(new PatternLanguage.PatternLanguageBuilder().build()).build())
                 .build();
-        taxSchemeListCNL.add(taxSchemeCNL);
 
         //CREDIT NOTE LINE > TAX TOTAL > TAX SUB TOTAL > TAX CATEGORY
-        List<TaxCategory> taxCategoryListCNL = new ArrayList<>();
         TaxCategory taxCategoryCNL = new TaxCategory.TaxCategoryBuilder()
-                .id("S")
-                .id_AttributeSchemeAgencyID("6")
-                .id_AttributeSchemeID("UN/ECE 5305")
-                .id_AttributeSchemeVersionID("D08B")
-                .percent("20")
-                .taxSchemeList(taxSchemeListCNL)
+                .id(new ID.IDBuilder()
+                        .value("S_VERSION2")
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeAgencyID("6_VERSION2")
+                                .schemeID("UN/ECE 5305_VERSION2")
+                                .schemeVersionID("D08B_VERSION2")
+                                .build())
+                        .build())
+                .percent(new Percent.PercentBuilder().value("20_VERSION2").build())
+                .taxScheme(taxSchemeCNL)
                 .build();
-        taxCategoryListCNL.add(taxCategoryCNL);
 
         //CREDIT NOTE LINE > TAX TOTAL > TAX SUB TOTAL
         List<TaxSubTotal> taxSubTotalListCNL = new ArrayList<>();
         TaxSubTotal taxSubTotalCNL = new TaxSubTotal.TaxSubTotalBuilder()
-                .taxableAmount("109.24")
-                .taxableAmount_AttributeCurrencyID("EUR")
-                .taxAmount("21.85")
-                .taxAmount_AttributeCurrencyID("EUR")
-                .calculationSequenceNumeric("1")
-                .taxCategoryList(taxCategoryListCNL)
+                .taxableAmount(new TaxableAmount.TaxableAmountBuilder()
+                        .value("109.24_VERSION2")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR_VERSION2")
+                                .build())
+                        .build())
+                .taxAmount(new TaxAmount.TaxAmountBuilder()
+                        .value("21.85_VERSION2")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR_VERSION2")
+                                .build())
+                        .build())
+                .calculationSequenceNumeric(new CalculationSequenceNumeric.CalculationSequenceNumericBuilder().value("1").build())
+                .taxCategory(taxCategoryCNL)
                 .build();
         taxSubTotalListCNL.add(taxSubTotalCNL);
 
+        /**
+         * TODO
+         */
         //CREDIT NOTE LINE > TAX TOTAL
-        List<TaxTotal> taxTotalListCNL = new ArrayList<>();
+        /*List<TaxTotal> taxTotalListCNL = new ArrayList<>();
         TaxTotal taxTotalCNL = new TaxTotal.TaxTotalBuilder()
                 .taxAmount("21.85")
                 .taxAmount_AttributeCurrencyID("EUR")
+                .taxSubTotalList(taxSubTotalListCNL)
+                .build();
+        taxTotalListCNL.add(taxTotalCNL);*/
+        List<TaxTotal> taxTotalListCNL = new ArrayList<>();
+        TaxTotal taxTotalCNL = new TaxTotal.TaxTotalBuilder()
+                .taxAmount(new TaxAmount.TaxAmountBuilder()
+                        .value("21.85_VERSION2")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR_VERSION2")
+                                .build())
+                        .build())
                 .taxSubTotalList(taxSubTotalListCNL)
                 .build();
         taxTotalListCNL.add(taxTotalCNL);
@@ -581,16 +615,14 @@ public class Main {
         //UBL VERSION ID (VERSION 2)
         UBLVersionID invoiceUBLVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()
                 .value("2.0")
-                .attributes(new PatternScheme.PatternSchemeBuilder().build())
                 .build();
 
         //CUSTOMIZATION ID (VERSION 2)
         CustomizationID invoiceCustomizationID = new CustomizationID.CustomizationIDBuilder()
                 .value("urn:tradeshift.com:ubl-2.0-customizations:2010-06")
-                .attributes(new PatternScheme.PatternSchemeBuilder().build())
                 .build();
 
-        //PROFILE ID (VERSION 2)
+        //PROFILE ID (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
         ProfileID invoiceProfileID = new ProfileID.ProfileIDBuilder()
                 .value("urn:www.cenbii.eu:profile:bii04:ver1.0")
                 .attributes(new PatternScheme.PatternSchemeBuilder()
@@ -600,18 +632,18 @@ public class Main {
                         .build())
                 .build();
 
-        //INVOICE ID (VERSION 2)
+        //INVOICE ID (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
         ID invoiceID = new ID.IDBuilder()
                 .value("038/0116560")
                 .attributes(new PatternScheme.PatternSchemeBuilder().build())
                 .build();
 
-        //ISSUE DATE (VERSION 2)
+        //ISSUE DATE (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
         IssueDate invoiceIssueDate = new IssueDate.IssueDateBuilder()
                 .value("2021-04-30")
                 .build();
 
-        //INVOICE TYPE CODE (VERSION 2)
+        //INVOICE TYPE CODE (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
         InvoiceTypeCode invoiceInvoiceTypeCode = new InvoiceTypeCode.InvoiceTypeCodeBuilder()
                 .value("380")
                 .attributes(new PatternList.PatternListBuilder()
@@ -621,13 +653,13 @@ public class Main {
                         .build())
                 .build();
 
-        //DOCUMENT CURRENCY CODE (VERSION 2)
+        //DOCUMENT CURRENCY CODE (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
         DocumentCurrencyCode invoiceDocumentCurrencyCode = new DocumentCurrencyCode.DocumentCurrencyCodeBuilder()
                 .value("EUR")
                 .attributes(new PatternList.PatternListBuilder().build())
                 .build();
 
-        //ORDER REFERENCE (VERSION 2)
+        //ORDER REFERENCE (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
         OrderReference invoiceOrderReference = new OrderReference.OrderReferenceBuilder()
                 .id(new ID.IDBuilder()
                         .value("C800430638")
@@ -638,7 +670,7 @@ public class Main {
 
         //ADDITIONAL DOCUMENT REFERENCE (VERSION 2)
 
-        //ADDITIONAL DOCUMENT REFERENCE > ATTACHMENT > EMBEDDED DOCUMENT BINARY OBJECT (VERSION 2)
+        //ADDITIONAL DOCUMENT REFERENCE > ATTACHMENT > EMBEDDED DOCUMENT BINARY OBJECT (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
         EmbeddedDocumentBinaryObject embeddedDocumentBinaryObject44 = new EmbeddedDocumentBinaryObject.EmbeddedDocumentBinaryObjectBuilder()
                 .value("JVBERi0xLjQKJeTjz_TEST")
                 .attributes(new PatternFile.PatternFileBuilder()
@@ -646,11 +678,11 @@ public class Main {
                         .filename("avoir eiffage 1.pdf_TEST")
                         .mimeCode("application/pdf_TEST").build())
                 .build();
-        //ADDITIONAL DOCUMENT REFERENCE > ATTACHMENT (VERSION 2)
+        //ADDITIONAL DOCUMENT REFERENCE > ATTACHMENT (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
         Attachment attachment44 = new Attachment.AttachmentBuilder()
                 .embeddedDocumentBinaryObject(embeddedDocumentBinaryObject44)
                 .build();
-        //ADDITIONAL DOCUMENT REFERENCE (VERSION 2)
+        //ADDITIONAL DOCUMENT REFERENCE (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
         List<AdditionalDocumentReference> additionalDocumentReferenceListInvoice = new ArrayList<>();
         AdditionalDocumentReference additionalDocumentReference44 = new AdditionalDocumentReference.AdditionalDocumentReferenceBuilder()
                 .id(new ID.IDBuilder()
@@ -671,7 +703,7 @@ public class Main {
 
         //ACCOUNTING SUPPLIER PARTY (VERSION 2 IN PROGRESS)
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY IDENTIFICATION (VERSION 2)
+        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY IDENTIFICATION (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
         List<PartyIdentification> partyIdentificationListInvoice = new ArrayList<>();
         PartyIdentification partyIdentification1Invoice = new PartyIdentification.PartyIdentificationBuilder()
                 .id(new ID.IDBuilder()
@@ -692,7 +724,7 @@ public class Main {
         partyIdentificationListInvoice.add(partyIdentification1Invoice);
         partyIdentificationListInvoice.add(partyIdentification2Invoice);
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY NAME (VERSION 2)
+        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY NAME (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
         List<PartyName> partyNameListInvoice = new ArrayList<>();
         PartyName partyNameInvoice1 = new PartyName.PartyNameBuilder()
                 .name(new Name.NameBuilder()
@@ -703,7 +735,7 @@ public class Main {
                 .build();
         partyNameListInvoice.add(partyNameInvoice1);
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY > POSTAL ADDRESS > COUNTRY
+        //ACCOUNTING SUPPLIER PARTY > PARTY > POSTAL ADDRESS > COUNTRY - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
         Country countryInvoice1 = new Country.CountryBuilder()
                 .identificationCode(new IdentificationCode.IdentificationCodeBuilder()
                         .value("FR_VERSION2")
@@ -717,8 +749,7 @@ public class Main {
                         .build())
                 .build();
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY > POSTAL ADDRESS
-        List<PostalAddress> postalAddressListInvoice = new ArrayList<>();
+        //ACCOUNTING SUPPLIER PARTY > PARTY > POSTAL ADDRESS - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
         PostalAddress postalAddressInvoice1 = new PostalAddress.PostalAddressBuilder()
                 .addressFormatCode(new AddressFormatCode.AddressFormatCodeBuilder()
                         .value("5_VERSION2")
@@ -755,14 +786,8 @@ public class Main {
                         .build())
                 .country(countryInvoice1)
                 .build();
-        postalAddressListInvoice.add(postalAddressInvoice1);
 
         //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY TAX SCHEME > TAX SCHEME
-        /*List<TaxScheme> taxSchemeListInvoice = new ArrayList<>();
-        TaxScheme taxSchemeInvoice1 = new TaxScheme.TaxSchemeBuilder()
-                .name("VAT")
-                .build();
-        taxSchemeListInvoice.add(taxSchemeInvoice1);*/
         List<TaxScheme> taxSchemeListInvoice = new ArrayList<>();
         TaxScheme taxSchemeInvoice1 = new TaxScheme.TaxSchemeBuilder()
                 .id(new ID.IDBuilder()
@@ -775,8 +800,6 @@ public class Main {
                         .build())
                 .name(new Name.NameBuilder()
                         .value("FR TVA 20%_VERSION2")
-                        .attributes(new PatternLanguage.PatternLanguageBuilder()
-                                .build())
                         .build())
                 .build();
         taxSchemeListInvoice.add(taxSchemeInvoice1);
@@ -784,85 +807,108 @@ public class Main {
         //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY TAX SCHEME
         List<PartyTaxScheme> partyTaxSchemeListInvoice = new ArrayList<>();
         PartyTaxScheme partyTaxSchemeInvoice1 = new PartyTaxScheme.PartyTaxSchemeBuilder()
-                .companyId("FR21314887126")
-                .companyId_AttributeSchemeId("FR:VAT")
-                .taxSchemeList(taxSchemeListInvoice)
+                .companyId(new CompanyID.CompanyIDBuilder()
+                        .value("FR21314887126_VERSION2")
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID("FR:VAT_VERSION2")
+                                .build())
+                        .build())
+                .taxScheme(taxScheme1)
                 .build();
         partyTaxSchemeListInvoice.add(partyTaxSchemeInvoice1);
 
         //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY LEGAL ENTITY > REGISTRATION ADDRESS
-        List<RegistrationAddress> registrationAddressListInvoice = new ArrayList<>();
         RegistrationAddress registrationAddressInvoice1 = new RegistrationAddress.RegistrationAddressBuilder()
-                .id("LYON")
-                .id_AttributeSchemeId("FR:RCS")
-                .addressFormatCode("5")
-                .addressFormatCode_AttributeListAgencyId("6")
-                .addressFormatCode_AttributeListId("UN/ECE 3477")
-                .postBox("69006")
-                .streetName("4 RUE DUGUESCLIN")
-                .buildingNumber("NOVALI")
-                .cityName("LYON")
-                .postalZone("69006")
+                .id(new ID.IDBuilder()
+                        .value("LYON_VERSION2")
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID("FR:RCS_VERSION2")
+                                .build())
+                        .build())
+                .addressFormatCode(new AddressFormatCode.AddressFormatCodeBuilder()
+                        .value("5")
+                        .attributes(new PatternList.PatternListBuilder()
+                                .listAgencyID("6_VERSION2")
+                                .listID("UN/ECE 3477_VERSION2")
+                                .build())
+                        .build())
+                .postBox(new Postbox.PostboxBuilder()
+                        .value("69006_VERSION2")
+                        .build())
+                .streetName(new StreetName.StreetNameBuilder()
+                        .value("4 RUE DUGUESCLIN_VERSION2")
+                        .build())
+                .buildingNumber(new BuildingNumber.BuildingNumberBuilder()
+                        .value("NOVALI_VERSION2")
+                        .build())
+                .cityName(new CityName.CityNameBuilder()
+                        .value("LYON_VERSION2")
+                        .build())
+                .postalZone(new PostalZone.PostalZoneBuilder()
+                        .value("69006_VERSION2")
+                        .build())
                 .build();
-        registrationAddressListInvoice.add(registrationAddressInvoice1);
 
         //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY LEGAL ENTITY > CORPORATE REGISTRATION SCHEME
-        List<CorporateRegistrationScheme> corporateRegistrationSchemeListInvoice = new ArrayList<>();
         CorporateRegistrationScheme corporateRegistrationSchemeInvoice1 = new CorporateRegistrationScheme.CorporateRegistrationSchemeBuilder()
-                .id("PUBLIC_LIMITED").build();
-        corporateRegistrationSchemeListInvoice.add(corporateRegistrationSchemeInvoice1);
+                .id(new ID.IDBuilder().value("PUBLIC_LIMITED_VERSION2").build())
+                .build();
 
         //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY LEGAL ENTITY
         List<PartyLegalEntity> partyLegalEntityListInvoice = new ArrayList<>();
         PartyLegalEntity partyLegalEntityInvoice1 = new PartyLegalEntity.PartyLegalEntityBuilder()
-                .registrationName("Groupe SOVITRAT")
-                .companyId("31488712600253")
-                .companyId_AttributeSchemeId("FR:SIRET")
-                .registrationAddressList(registrationAddressListInvoice)
-                .corporateRegistrationSchemeList(corporateRegistrationSchemeListInvoice)
+                .registrationName(new RegistrationName.RegistrationNameBuilder()
+                        .value("Groupe SOVITRAT_VERSION2")
+                        .build())
+                .companyId(new CompanyID.CompanyIDBuilder()
+                        .value("31488712600253_VERSION2")
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID("FR:SIRET_VERSION2")
+                                .build())
+                        .build())
+                .registrationAddress(registrationAddressInvoice1)
+                .corporateRegistrationScheme(corporateRegistrationSchemeInvoice1)
                 .build();
         partyLegalEntityListInvoice.add(partyLegalEntityInvoice1);
 
         //ACCOUNTING SUPPLIER PARTY > PARTY > CONTACT
-        List<Contact> contactListInvoice = new ArrayList<>();
         Contact contactInvoice1 = new Contact.ContactBuilder()
-                .id("5a59bb3c-adf8-4b72-b45b-f4f2f33676f1")
-                .id_AttributeSchemeURI("http://tradeshift.com/api/1.0/userId")
-                .name("Amor BOUGHZALA")
-                .telephone("0472699760")
-                .electronicMail("master@sovitrat.fr")
-                .note("Groupe SOVITRAT PUBLIC_LIMITED with share capital 1100000...")
+                .id(new ID.IDBuilder()
+                        .value("5a59bb3c-adf8-4b72-b45b-f4f2f33676f1_VERSION2")
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeURI("http://tradeshift.com/api/1.0/userId_VERSION2")
+                                .build())
+                        .build())
+                .name(new Name.NameBuilder().value("Amor BOUGHZALA_VERSION2").build())
+                .telephone(new Telephone.TelephoneBuilder().value("0472699760_VERSION2").build())
+                .electronicMail(new ElectronicMail.ElectronicMailBuilder().value("master@sovitrat.fr_VERSION2").build())
+                .note(new Note.NoteBuilder().value("Groupe SOVITRAT PUBLIC_LIMITED with share capi_VERSION2").build())
                 .build();
-        contactListInvoice.add(contactInvoice1);
 
         //ACCOUNTING SUPPLIER PARTY > PARTY > PERSON
-        List<Person> personListInvoice = new ArrayList<>();
         Person personInvoice1 = new Person.PersonBuilder()
-                .firstName("Amor")
-                .familyName("BOUGHZALA")
+                .firstName(new FirstName.FirstNameBuilder().value("Amor_VERSION2").build())
+                .familyName(new FamilyName.FamilyNameBuilder().value("BOUGHZALA_VERSION2").build())
                 .build();
-        personListInvoice.add(personInvoice1);
 
         //ACCOUNTING SUPPLIER PARTY > PARTY
-        List<Party> partyListInvoice = new ArrayList<>();
         Party elementPartyInvoice1 = new Party.PartyBuilder()
                 .documentLinked(doc.getDoc())
                 .elementFather(elementCreditNote)
                 .partyIdentificationList(partyIdentificationListInvoice)
                 .partyNameList(partyNameListInvoice)
-                .postalAddressList(postalAddressListInvoice)
+                .postalAddress(postalAddressInvoice1)
                 .partyTaxSchemeList(partyTaxSchemeListInvoice)
                 .partyLegalEntityList(partyLegalEntityListInvoice)
-                .contactList(contactListInvoice)
-                .personList(personListInvoice)
+                .contact(contactInvoice1)
+                .person(personInvoice1)
                 .build();
-        partyListInvoice.add(elementPartyInvoice1);
 
         //ACCOUNTING SUPPLIER PARTY
         AccountingSupplierParty elementAccountingSupplierPartyInvoice = new AccountingSupplierParty.AccountingSupplierPartyBuilder()
                 .documentLinked(doc.getDoc())
                 .elementFather(elementCreditNote)
-                .partyList(partyListInvoice)
+                .party(elementPartyInvoice1)
                 .build();
 
         //PAYMENT MEANS
@@ -916,16 +962,6 @@ public class Main {
         paymentMeansListInvoice.add(paymentMeans1);
 
         //TAX SCHEME
-        /*List<TaxScheme> taxSchemeList44 = new ArrayList<>();
-        TaxScheme taxSchemeInvoice44 = new TaxScheme.TaxSchemeBuilder()
-                .id("VAT")
-                .id_AttributeSchemeAgencyID("6")
-                .id_AttributeSchemeID("UN/ECE 5153 Subset")
-                .id_AttributeSchemeVersionID("D08B")
-                .name("FR TVA 20")
-                .build();
-        taxSchemeList44.add(taxSchemeInvoice44);*/
-        List<TaxScheme> taxSchemeList44 = new ArrayList<>();
         TaxScheme taxSchemeInvoice44 = new TaxScheme.TaxSchemeBuilder()
                 .id(new ID.IDBuilder()
                         .value("VAT_VERSION2")
@@ -937,38 +973,59 @@ public class Main {
                         .build())
                 .name(new Name.NameBuilder()
                         .value("FR TVA 20%_VERSION2")
-                        .attributes(new PatternLanguage.PatternLanguageBuilder()
-                                .build())
                         .build())
                 .build();
-        taxSchemeList44.add(taxSchemeInvoice44);
 
         //TAX CATEGORY
-        List<TaxCategory> taxCategoryList44 = new ArrayList<>();
         TaxCategory taxCategoryInvoice44 = new TaxCategory.TaxCategoryBuilder()
-                .id("S")
-                .id_AttributeSchemeAgencyID("6")
-                .id_AttributeSchemeID("UN/ECE 5305")
-                .id_AttributeSchemeVersionID("D08B")
-                .percent("20")
-                .taxSchemeList(taxSchemeList44)
+                .id(new ID.IDBuilder()
+                        .value("S_VERSION2")
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeAgencyID("6_VERSION2")
+                                .schemeID("UN/ECE 5305_VERSION2")
+                                .schemeVersionID("D08B_VERSION2")
+                                .build())
+                        .build())
+                .percent(new Percent.PercentBuilder().value("20_VERSION2").build())
+                .taxScheme(taxSchemeInvoice44)
                 .build();
-        taxCategoryList44.add(taxCategoryInvoice44);
+
         //TAX SUB TOTAL
         List<TaxSubTotal> taxSubTotalList44 = new ArrayList<>();
         TaxSubTotal taxSubTotal44 = new TaxSubTotal.TaxSubTotalBuilder()
-                .taxableAmount("714.61")
-                .taxableAmount_AttributeCurrencyID("EUR")
-                .taxAmount("142.92")
-                .taxAmount_AttributeCurrencyID("EUR")
-                .calculationSequenceNumeric("1")
-                .taxCategoryList(taxCategoryList44)
+                .taxableAmount(new TaxableAmount.TaxableAmountBuilder()
+                        .value("109.24_VERSION2")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR_VERSION2")
+                                .build())
+                        .build())
+                .taxAmount(new TaxAmount.TaxAmountBuilder()
+                        .value("21.85_VERSION2")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR_VERSION2")
+                                .build())
+                        .build())
+                .calculationSequenceNumeric(new CalculationSequenceNumeric.CalculationSequenceNumericBuilder().value("1").build())
+                .taxCategory(taxCategoryInvoice44)
                 .build();
         taxSubTotalList44.add(taxSubTotal44);
+
+        /**
+         * TODO
+         */
         //TAX TOTAL
-        TaxTotal taxTotal44 = new TaxTotal.TaxTotalBuilder()
+        /*TaxTotal taxTotal44 = new TaxTotal.TaxTotalBuilder()
                 .taxAmount("142.92")
                 .taxAmount_AttributeCurrencyID("EUR")
+                .taxSubTotalList(taxSubTotalList44)
+                .build();*/
+        TaxTotal taxTotal44 = new TaxTotal.TaxTotalBuilder()
+                .taxAmount(new TaxAmount.TaxAmountBuilder()
+                        .value("21.85_VERSION2")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR_VERSION2")
+                                .build())
+                        .build())
                 .taxSubTotalList(taxSubTotalList44)
                 .build();
         //SELLERS ITEM IDENTIFICATION

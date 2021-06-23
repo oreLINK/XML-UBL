@@ -1,16 +1,15 @@
 package com.company.xml.ubl.modules;
 
+import com.company.xml.ubl.attributes.PatternScheme;
 import com.company.xml.ubl.axioms.AttributeT;
 import com.company.xml.ubl.axioms.ElementT;
 import com.company.xml.ubl.axioms.Tips;
 import com.company.xml.ubl.data.AttributesName;
 import com.company.xml.ubl.data.ElementsName;
+import com.company.xml.ubl.elements.CompanyID;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Class PartyTaxScheme
@@ -19,9 +18,8 @@ public class PartyTaxScheme {
 
     private Document doc;
     private Element element;
-    private String companyId;
-    private String companyId_AttributeSchemeId;
-    private List<TaxScheme> taxSchemeList = new ArrayList<>();
+    private CompanyID companyID;
+    private TaxScheme taxScheme;
 
     /**
      * <h2>Element "PartyTaxScheme"</h2>
@@ -36,9 +34,8 @@ public class PartyTaxScheme {
      *     </li>
      *     <li><b>for build()</b>
      *     <ul>
-     *         <li>[String] <b>companyId</b> <b>[0..1]</b> : The identifier assigned for tax purposes to a party by the taxation authority.</li>
-     *         <li>[String] <b>companyId_AttributeSchemeId</b> <b>[0..1]</b> : The identification of the identification scheme.</li>
-     *         <li>[List] <b>taxSchemeList</b> <b>[1..1]</b> : [TaxScheme] elements list.</li>
+     *         <li>[CompanyID] <b>companyId</b> <b>[0..1]</b> : The identifier assigned for tax purposes to a party by the taxation authority.</li>
+     *         <li>[TaxScheme] <b>taxScheme</b> <b>[1..1]</b> : An association to Tax Scheme.</li>
      *     </ul>
      *     </li>
      * </ul>
@@ -46,9 +43,8 @@ public class PartyTaxScheme {
     private PartyTaxScheme(PartyTaxSchemeBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
-        this.companyId = builder.companyId;
-        this.companyId_AttributeSchemeId = builder.companyId_AttributeSchemeId;
-        this.taxSchemeList = builder.taxSchemeList;
+        this.companyID = builder.companyID;
+        this.taxScheme = builder.taxScheme;
     }
 
     /**
@@ -58,30 +54,25 @@ public class PartyTaxScheme {
 
         private Document doc;
         private Element element;
-        private String companyId;
-        private String companyId_AttributeSchemeId;
-        private List<TaxScheme> taxSchemeList = new ArrayList<>();
+        private CompanyID companyID;
+        private TaxScheme taxScheme;
 
         public PartyTaxSchemeBuilder(){}
 
-        public PartyTaxSchemeBuilder documentLinked(Document doc){
-            this.doc = doc;
-            return this;
-        }
+       public PartyTaxSchemeBuilder documentLinked(Document doc){
+           this.doc = doc;
+           return this;
+       }
         public PartyTaxSchemeBuilder elementFather(Element element){
             this.element = element;
             return this;
         }
-        public PartyTaxSchemeBuilder companyId(String companyId){
-            this.companyId = companyId;
+        public PartyTaxSchemeBuilder companyId(CompanyID companyID){
+            this.companyID = companyID;
             return this;
         }
-        public PartyTaxSchemeBuilder companyId_AttributeSchemeId(String companyId_AttributeSchemeId){
-            this.companyId_AttributeSchemeId = companyId_AttributeSchemeId;
-            return this;
-        }
-        public PartyTaxSchemeBuilder taxSchemeList(List<TaxScheme> taxSchemeList){
-            this.taxSchemeList = taxSchemeList;
+        public PartyTaxSchemeBuilder taxScheme(TaxScheme taxScheme){
+            this.taxScheme = taxScheme;
             return this;
         }
         public PartyTaxScheme build(){
@@ -91,16 +82,12 @@ public class PartyTaxScheme {
 
     }
 
-    public String getCompanyId() {
-        return companyId;
+    public CompanyID getCompanyID() {
+        return companyID;
     }
 
-    public String getCompanyId_AttributeSchemeId() {
-        return companyId_AttributeSchemeId;
-    }
-
-    public List<TaxScheme> getTaxSchemeList() {
-        return taxSchemeList;
+    public TaxScheme getTaxScheme() {
+        return taxScheme;
     }
 
     /**
@@ -109,20 +96,37 @@ public class PartyTaxScheme {
      */
     public Element load() {
         Element elementPartyTaxScheme = new ElementT(doc,element, ElementsName.PARTY_TAX_SCHEME.label).load();
-        if(!Tips.stringIsNull(companyId)){
-            Element elementCompanyId = new ElementT(doc, elementPartyTaxScheme, ElementsName.PARTY_TAX_SCHEME_COMPANY_ID.label, companyId).load();
-            if(!Tips.stringIsNull(companyId_AttributeSchemeId)) {
-                Attr elementCompanyId_Attr1 = new AttributeT(doc, elementCompanyId, AttributesName.COMPANY_ID_SCHEME_ID.label, companyId_AttributeSchemeId).load();
-            }
-        }
-        if(!Tips.listIsNull(taxSchemeList)){
-            for (TaxScheme taxScheme : taxSchemeList) {
-                Element elementTaxScheme = new TaxScheme.TaxSchemeBuilder()
+        if(!(companyID == null)){
+            if(!(companyID.getPatternScheme() == null)){
+                Element elementCompanyId = new CompanyID.CompanyIDBuilder()
                         .documentLinked(doc)
                         .elementFather(elementPartyTaxScheme)
-                        .name(taxScheme.getName())
+                        .value(companyID.getValue())
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID(companyID.getPatternScheme().getSchemeID())
+                                .schemeName(companyID.getPatternScheme().getSchemeName())
+                                .schemeAgencyID(companyID.getPatternScheme().getSchemeAgencyID())
+                                .schemeAgencyName(companyID.getPatternScheme().getSchemeAgencyName())
+                                .schemeVersionID(companyID.getPatternScheme().getSchemeVersionID())
+                                .schemeDataURI(companyID.getPatternScheme().getSchemeDataURI())
+                                .schemeURI(companyID.getPatternScheme().getSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementCompanyId = new CompanyID.CompanyIDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPartyTaxScheme)
+                        .value(companyID.getValue())
                         .build().load();
             }
+        }
+        if(!(taxScheme == null)){
+            Element elementTaxScheme = new TaxScheme.TaxSchemeBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementPartyTaxScheme)
+                    .id(taxScheme.getId())
+                    .name(taxScheme.getName())
+                    .build().load();
         }
         return elementPartyTaxScheme;
     }

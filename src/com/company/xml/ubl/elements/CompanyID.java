@@ -3,28 +3,24 @@ package com.company.xml.ubl.elements;
 import com.company.xml.ubl.attributes.PatternScheme;
 import com.company.xml.ubl.axioms.AttributeT;
 import com.company.xml.ubl.axioms.ElementT;
-import com.company.xml.ubl.axioms.Tips;
 import com.company.xml.ubl.data.AttributesName;
 import com.company.xml.ubl.data.ElementsName;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-/**
- * Class ID
- */
-public class ID {
+public class CompanyID {
 
     private Document doc;
     private Element element;
-    private String name = ElementsName.ID.label;
-    private String value = null;
+    private String name = ElementsName.COMPANY_ID.label;
+    private String value;
     private PatternScheme patternScheme;
 
     /**
      * Documentation is coming...
      */
-    private ID(IDBuilder builder) {
+    private CompanyID(CompanyIDBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
         this.value = builder.value;
@@ -32,41 +28,36 @@ public class ID {
     }
 
     /**
-     * Builder ID
+     * Builder CompanyID
      */
-    public static class IDBuilder {
+    public static class CompanyIDBuilder {
 
         private Document doc;
         private Element element;
         private String value;
         private PatternScheme patternScheme;
 
-        public IDBuilder() {
-        }
+        public CompanyIDBuilder() {}
 
-        public IDBuilder documentLinked(Document doc) {
+        public CompanyIDBuilder documentLinked(Document doc){
             this.doc = doc;
             return this;
         }
-
-        public IDBuilder elementFather(Element element) {
+        public CompanyIDBuilder elementFather(Element element){
             this.element = element;
             return this;
         }
-
-        public IDBuilder value(String value) {
+        public CompanyIDBuilder value(String value){
             this.value = value;
             return this;
         }
-
-        public IDBuilder attributes(PatternScheme patternScheme) {
+        public CompanyIDBuilder attributes(PatternScheme patternScheme){
             this.patternScheme = patternScheme;
             return this;
         }
-
-        public ID build() {
-            ID ID = new ID(this);
-            return ID;
+        public CompanyID build(){
+            CompanyID element = new CompanyID(this);
+            return element;
         }
 
     }
@@ -79,27 +70,8 @@ public class ID {
         return patternScheme;
     }
 
-    public boolean isNull() {
-        boolean isNull = true;
-        try {
-            /*if (Tips.stringIsNull(value)) {
-                return true;
-            } else {
-                return false;
-            }*/
-            if (!Tips.stringIsNull(value)) {
-                return !isNull;
-            }
-        } catch (NullPointerException e) {
-            System.out.println("ID null");
-            return isNull;
-        }
-        return isNull;
-    }
-
     /**
      * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
-     *
      * @return the generated element
      */
     public Element load() {

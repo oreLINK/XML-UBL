@@ -1,10 +1,13 @@
 package com.company.xml.ubl.modules;
 
+import com.company.xml.ubl.attributes.PatternScheme;
 import com.company.xml.ubl.axioms.AttributeT;
 import com.company.xml.ubl.axioms.ElementT;
 import com.company.xml.ubl.axioms.Tips;
 import com.company.xml.ubl.data.AttributesName;
 import com.company.xml.ubl.data.ElementsName;
+import com.company.xml.ubl.elements.ID;
+import com.company.xml.ubl.elements.Percent;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -19,12 +22,9 @@ public class TaxCategory {
 
     private Document doc;
     private Element element;
-    private String id;
-    private String id_AttributeSchemeAgencyID;
-    private String id_AttributeSchemeID;
-    private String id_AttributeSchemeVersionID;
-    private String percent;
-    private List<TaxScheme> taxSchemeList = new ArrayList<>();
+    private ID id;
+    private Percent percent;
+    private TaxScheme taxScheme;
 
     /**
      * <h2>Element "TaxCategory"</h2>
@@ -39,12 +39,9 @@ public class TaxCategory {
      *     </li>
      *     <li><b>for build()</b>
      *     <ul>
-     *         <li>[String] <b>id</b> <b>[0..1]</b> : Identifies the tax category.</li>
-     *         <li>[String] <b>id_AttributeSchemeAgencyID</b> <b>[0..1]</b> : The identification of the agency that maintains the identification scheme. (Attribute)</li>
-     *         <li>[String] <b>id_AttributeSchemeID</b> <b>[0..1]</b> : The identification of the identification scheme. (Attribute)</li>
-     *         <li>[String] <b>id_AttributeSchemeVersionID</b> <b>[0..1]</b> : The version of the identification scheme. (Attribute)</li>
-     *         <li>[String] <b>percent</b> <b>[0..1]</b> : The tax rate for the category, expressed as a percentage.</li>
-     *         <li>[List] <b>taxSchemeList</b> <b>[1..1]</b> : [TaxScheme] elements list.</li>
+     *         <li>[ID] <b>id</b> <b>[0..1]</b> : Identifies the tax category.</li>
+     *         <li>[Percent] <b>percent</b> <b>[0..1]</b> : The tax rate for the category, expressed as a percentage.</li>
+     *         <li>[TaxScheme] <b>taxScheme</b> <b>[1..1]</b> :  An association to Tax Scheme.</li>
      *     </ul>
      *     </li>
      * </ul>
@@ -53,11 +50,8 @@ public class TaxCategory {
         this.doc = builder.doc;
         this.element = builder.element;
         this.id = builder.id;
-        this.id_AttributeSchemeAgencyID = builder.id_AttributeSchemeAgencyID;
-        this.id_AttributeSchemeID = builder.id_AttributeSchemeID;
-        this.id_AttributeSchemeVersionID = builder.id_AttributeSchemeVersionID;
         this.percent = builder.percent;
-        this.taxSchemeList = builder.taxSchemeList;
+        this.taxScheme = builder.taxScheme;
     }
 
     /**
@@ -67,12 +61,9 @@ public class TaxCategory {
 
         private Document doc;
         private Element element;
-        private String id;
-        private String id_AttributeSchemeAgencyID;
-        private String id_AttributeSchemeID;
-        private String id_AttributeSchemeVersionID;
-        private String percent;
-        private List<TaxScheme> taxSchemeList = new ArrayList<>();
+        private ID id;
+        private Percent percent;
+        private TaxScheme taxScheme;
 
         public TaxCategoryBuilder() {}
 
@@ -84,28 +75,16 @@ public class TaxCategory {
             this.element = element;
             return this;
         }
-        public TaxCategoryBuilder id(String id){
+        public TaxCategoryBuilder id(ID id){
             this.id = id;
             return this;
         }
-        public TaxCategoryBuilder id_AttributeSchemeAgencyID(String id_AttributeSchemeAgencyID){
-            this.id_AttributeSchemeAgencyID = id_AttributeSchemeAgencyID;
-            return this;
-        }
-        public TaxCategoryBuilder id_AttributeSchemeID(String id_AttributeSchemeID){
-            this.id_AttributeSchemeID = id_AttributeSchemeID;
-            return this;
-        }
-        public TaxCategoryBuilder id_AttributeSchemeVersionID(String id_AttributeSchemeVersionID){
-            this.id_AttributeSchemeVersionID = id_AttributeSchemeVersionID;
-            return this;
-        }
-        public TaxCategoryBuilder percent(String percent){
+        public TaxCategoryBuilder percent(Percent percent){
             this.percent = percent;
             return this;
         }
-        public TaxCategoryBuilder taxSchemeList(List<TaxScheme> taxSchemeList){
-            this.taxSchemeList = taxSchemeList;
+        public TaxCategoryBuilder taxScheme(TaxScheme taxScheme){
+            this.taxScheme = taxScheme;
             return this;
         }
         public TaxCategory build(){
@@ -115,28 +94,16 @@ public class TaxCategory {
 
     }
 
-    public String getId() {
+    public ID getId() {
         return id;
     }
 
-    public String getId_AttributeSchemeAgencyID() {
-        return id_AttributeSchemeAgencyID;
-    }
-
-    public String getId_AttributeSchemeID() {
-        return id_AttributeSchemeID;
-    }
-
-    public String getId_AttributeSchemeVersionID() {
-        return id_AttributeSchemeVersionID;
-    }
-
-    public String getPercent() {
+    public Percent getPercent() {
         return percent;
     }
 
-    public List<TaxScheme> getTaxSchemeList() {
-        return taxSchemeList;
+    public TaxScheme getTaxScheme() {
+        return taxScheme;
     }
 
     /**
@@ -145,30 +112,44 @@ public class TaxCategory {
      */
     public Element load() {
         Element elementTaxCategory = new ElementT(doc, element, ElementsName.TAX_CATEGORY.label).load();
-        if(!Tips.stringIsNull(id)){
-            Element elementID = new ElementT(doc, elementTaxCategory, ElementsName.TAX_CATEGORY_ID.label, id).load();
-            if(!Tips.stringIsNull(id_AttributeSchemeAgencyID)){
-                Attr elementID_Attr1 = new AttributeT(doc, elementID, AttributesName.SCHEME_AGENCY_ID.label, id_AttributeSchemeAgencyID).load();
-            }
-            if(!Tips.stringIsNull(id_AttributeSchemeID)){
-                Attr elementID_Attr2 = new AttributeT(doc, elementID, AttributesName.SCHEME_ID.label, id_AttributeSchemeID).load();
-            }
-            if(!Tips.stringIsNull(id_AttributeSchemeVersionID)){
-                Attr elementID_Attr3 = new AttributeT(doc, elementID, AttributesName.SCHEME_VERSION_ID.label, id_AttributeSchemeVersionID).load();
-            }
-        }
-        if(!Tips.stringIsNull(percent)){
-            Element elementPercent = new ElementT(doc, elementTaxCategory, ElementsName.TAX_CATEGORY_PERCENT.label, percent).load();
-        }
-        if(!Tips.listIsNull(taxSchemeList)){
-            for (TaxScheme taxScheme : taxSchemeList) {
-                Element elementTaxScheme = new TaxScheme.TaxSchemeBuilder()
+        if(!(id == null)){
+            if(!(id.getPatternScheme() == null)){
+                Element elementId = new ID.IDBuilder()
                         .documentLinked(doc)
                         .elementFather(elementTaxCategory)
-                        .id(taxScheme.getId())
-                        .name(taxScheme.getName())
+                        .value(id.getValue())
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID(id.getPatternScheme().getSchemeID())
+                                .schemeName(id.getPatternScheme().getSchemeName())
+                                .schemeAgencyID(id.getPatternScheme().getSchemeAgencyID())
+                                .schemeAgencyName(id.getPatternScheme().getSchemeAgencyName())
+                                .schemeVersionID(id.getPatternScheme().getSchemeVersionID())
+                                .schemeDataURI(id.getPatternScheme().getSchemeDataURI())
+                                .schemeURI(id.getPatternScheme().getSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementId = new ID.IDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementTaxCategory)
+                        .value(id.getValue())
                         .build().load();
             }
+        }
+        if(!(percent == null)){
+            Element elementPercent = new Percent.PercentBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementTaxCategory)
+                    .value(percent.getValue())
+                    .build().load();
+        }
+        if(!(taxScheme == null)){
+            Element elementTaxScheme = new TaxScheme.TaxSchemeBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementTaxCategory)
+                    .id(taxScheme.getId())
+                    .name(taxScheme.getName())
+                    .build().load();
         }
         return elementTaxCategory;
     }

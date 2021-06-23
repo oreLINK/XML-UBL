@@ -1,8 +1,10 @@
 package com.company.xml.ubl.modules;
 
+import com.company.xml.ubl.attributes.PatternScheme;
 import com.company.xml.ubl.axioms.ElementT;
 import com.company.xml.ubl.axioms.Tips;
 import com.company.xml.ubl.data.ElementsName;
+import com.company.xml.ubl.elements.ID;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -13,7 +15,7 @@ public class CorporateRegistrationScheme {
 
     private Document doc;
     private Element element;
-    private String id;
+    private ID id;
 
     /**
      * <h2>Element "CorporateRegistrationScheme"</h2>
@@ -28,7 +30,7 @@ public class CorporateRegistrationScheme {
      *     </li>
      *     <li><b>for build()</b>
      *     <ul>
-     *         <li>[String] <b>id</b> <b>[0..1]</b> : Identifies the scheme.</li>
+     *         <li>[ID] <b>id</b> <b>[0..1]</b> : Identifies the scheme.</li>
      *     </ul>
      *     </li>
      * </ul>
@@ -46,7 +48,7 @@ public class CorporateRegistrationScheme {
 
         private Document doc;
         private Element element;
-        private String id;
+        private ID id;
 
         public CorporateRegistrationSchemeBuilder(){}
 
@@ -58,7 +60,7 @@ public class CorporateRegistrationScheme {
             this.element = element;
             return this;
         }
-        public CorporateRegistrationSchemeBuilder id(String id){
+        public CorporateRegistrationSchemeBuilder id(ID id){
             this.id = id;
             return this;
         }
@@ -69,7 +71,7 @@ public class CorporateRegistrationScheme {
 
     }
 
-    public String getId() {
+    public ID getId() {
         return id;
     }
 
@@ -78,12 +80,31 @@ public class CorporateRegistrationScheme {
      * @return the generated element
      */
     public Element load() {
-        //Generate root element
         Element elementCorporateRegistrationScheme = new ElementT(doc, element, ElementsName.CORPORATE_REGISTRATION_SCHEME.label).load();
 
-        //Generate tag "ID"
-        if (!Tips.stringIsNull(id)) {
-            Element elementId = new ElementT(doc, elementCorporateRegistrationScheme, ElementsName.CORPORATE_REGISTRATION_SCHEME_ID.label, id).load();
+        if (!(id == null)) {
+            if(!(id.getPatternScheme() == null)){
+                Element elementId = new ID.IDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementCorporateRegistrationScheme)
+                        .value(id.getValue())
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID(id.getPatternScheme().getSchemeID())
+                                .schemeName(id.getPatternScheme().getSchemeName())
+                                .schemeAgencyID(id.getPatternScheme().getSchemeAgencyID())
+                                .schemeAgencyName(id.getPatternScheme().getSchemeAgencyName())
+                                .schemeVersionID(id.getPatternScheme().getSchemeVersionID())
+                                .schemeDataURI(id.getPatternScheme().getSchemeDataURI())
+                                .schemeURI(id.getPatternScheme().getSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementId = new ID.IDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementCorporateRegistrationScheme)
+                        .value(id.getValue())
+                        .build().load();
+            }
         }
         return elementCorporateRegistrationScheme;
     }

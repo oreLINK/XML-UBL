@@ -1,9 +1,11 @@
 package com.company.xml.ubl.modules;
 
+import com.company.xml.ubl.attributes.PatternLanguage;
 import com.company.xml.ubl.axioms.ElementT;
 import com.company.xml.ubl.axioms.Tips;
-import com.company.xml.ubl.data.AttributesName;
 import com.company.xml.ubl.data.ElementsName;
+import com.company.xml.ubl.elements.FamilyName;
+import com.company.xml.ubl.elements.FirstName;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -14,8 +16,8 @@ public class Person {
 
     private Document doc;
     private Element element;
-    private String firstName;
-    private String familyName;
+    private FirstName firstName;
+    private FamilyName familyName;
 
     /**
      * <h2>Element "Person"</h2>
@@ -30,8 +32,8 @@ public class Person {
      *     </li>
      *     <li><b>for build()</b>
      *     <ul>
-     *         <li>[String] <b>firstName</b> <b>[0..1]</b> : A person's forename or first name.</li>
-     *         <li>[String] <b>familyName</b> <b>[0..1]</b> : A person's surname or family name.</li>
+     *         <li>[FirstName] <b>firstName</b> <b>[0..1]</b> : A person's forename or first name.</li>
+     *         <li>[FamilyName] <b>familyName</b> <b>[0..1]</b> : A person's surname or family name.</li>
      *     </ul>
      *     </li>
      * </ul>
@@ -50,8 +52,8 @@ public class Person {
 
         private Document doc;
         private Element element;
-        private String firstName;
-        private String familyName;
+        private FirstName firstName;
+        private FamilyName familyName;
 
         public PersonBuilder() {}
 
@@ -63,11 +65,11 @@ public class Person {
             this.element = element;
             return this;
         }
-        public PersonBuilder firstName(String firstName){
+        public PersonBuilder firstName(FirstName firstName){
             this.firstName = firstName;
             return this;
         }
-        public PersonBuilder familyName(String familyName){
+        public PersonBuilder familyName(FamilyName familyName){
             this.familyName = familyName;
             return this;
         }
@@ -78,11 +80,11 @@ public class Person {
 
     }
 
-    public String getFirstName() {
+    public FirstName getFirstName() {
         return firstName;
     }
 
-    public String getFamilyName() {
+    public FamilyName getFamilyName() {
         return familyName;
     }
 
@@ -91,15 +93,42 @@ public class Person {
      * @return the generated element
      */
     public Element load() {
-        //Generate root element
         Element elementPerson = new ElementT(doc, element, ElementsName.PERSON.label).load();
-        //Generate tag "FirstName"
-        if(!Tips.stringIsNull(firstName)){
-            Element elementFirstName = new ElementT(doc, elementPerson, ElementsName.PERSON_FIRST_NAME.label, firstName).load();
+        if(!(firstName == null)){
+            if(!(firstName.getPatternLanguage() == null)){
+                Element elementFirstName = new FirstName.FirstNameBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPerson)
+                        .value(firstName.getValue())
+                        .attributes(new PatternLanguage.PatternLanguageBuilder()
+                                .languageID(firstName.getPatternLanguage().getLanguageID())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementFirstName = new FirstName.FirstNameBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPerson)
+                        .value(firstName.getValue())
+                        .build().load();
+            }
         }
-        //Generate tag "FamilyName"
-        if(!Tips.stringIsNull(familyName)){
-            Element elementFamilyName = new ElementT(doc, elementPerson, ElementsName.PERSON_FAMILY_NAME.label, familyName).load();
+        if(!(familyName == null)){
+            if(!(familyName.getPatternLanguage() == null)){
+                Element elementFamilyName = new FamilyName.FamilyNameBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPerson)
+                        .value(familyName.getValue())
+                        .attributes(new PatternLanguage.PatternLanguageBuilder()
+                                .languageID(familyName.getPatternLanguage().getLanguageID())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementFamilyName = new FamilyName.FamilyNameBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPerson)
+                        .value(familyName.getValue())
+                        .build().load();
+            }
         }
         return elementPerson;
     }

@@ -158,7 +158,6 @@ public class CreditNoteLine {
                         .documentLinked(doc)
                         .elementFather(elementCreditNoteLine)
                         .taxAmount(taxTotal.getTaxAmount())
-                        .taxAmount_AttributeCurrencyID(taxTotal.getTaxAmount_AttributeCurrencyID())
                         .taxSubTotalList(taxTotal.getTaxSubTotalList())
                         .build().load();
             }

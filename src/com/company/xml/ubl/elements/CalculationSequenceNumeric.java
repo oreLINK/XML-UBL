@@ -1,63 +1,52 @@
 package com.company.xml.ubl.elements;
 
-import com.company.xml.ubl.attributes.PatternLanguage;
-import com.company.xml.ubl.axioms.AttributeT;
 import com.company.xml.ubl.axioms.ElementT;
 import com.company.xml.ubl.axioms.Tips;
-import com.company.xml.ubl.data.AttributesName;
 import com.company.xml.ubl.data.ElementsName;
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class Postbox {
+public class CalculationSequenceNumeric {
 
     private Document doc;
     private Element element;
-    private String name = ElementsName.POSTBOX.label;
+    private String name = ElementsName.CALCULATION_SEQUENCE_NUMERIC.label;
     private String value;
-    private PatternLanguage patternLanguage;
 
     /**
      * Documentation is coming...
      */
-    private Postbox(PostboxBuilder builder) {
+    private CalculationSequenceNumeric(CalculationSequenceNumericBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
         this.value = builder.value;
-        this.patternLanguage = builder.patternLanguage;
     }
 
     /**
-     * Builder Postbox
+     * Builder CalculationSequenceNumeric
      */
-    public static class PostboxBuilder {
+    public static class CalculationSequenceNumericBuilder {
 
         private Document doc;
         private Element element;
         private String value;
-        private PatternLanguage patternLanguage;
 
-        public PostboxBuilder() {}
+        public CalculationSequenceNumericBuilder() {}
 
-        public PostboxBuilder documentLinked(Document doc){
+        public CalculationSequenceNumericBuilder documentLinked(Document doc){
             this.doc = doc;
             return this;
         }
-        public PostboxBuilder elementFather(Element element){
+        public CalculationSequenceNumericBuilder elementFather(Element element){
             this.element = element;
             return this;
         }
-        public PostboxBuilder value(String value){
+        public CalculationSequenceNumericBuilder value(String value){
             this.value = value;
             return this;
         }
-        public PostboxBuilder attributes(PatternLanguage patternLanguage){
-            this.patternLanguage = patternLanguage;
-            return this;
-        }
-        public Postbox build(){
-            Postbox elementBuild = new Postbox(this);
+        public CalculationSequenceNumeric build(){
+            CalculationSequenceNumeric elementBuild = new CalculationSequenceNumeric(this);
             return elementBuild;
         }
 
@@ -67,9 +56,6 @@ public class Postbox {
         return value;
     }
 
-    public PatternLanguage getPatternLanguage() {
-        return patternLanguage;
-    }
 
     public boolean isNull() {
         if(Tips.stringIsNull(value)){
@@ -85,11 +71,6 @@ public class Postbox {
      */
     public Element load() {
         Element elementRoot = new ElementT(doc, element, name, value).load();
-        if(!(patternLanguage == null)){
-            if(!(patternLanguage.getLanguageID() == null)){
-                Attr elementRoot_Attr1 = new AttributeT(doc, elementRoot, AttributesName.LANGUAGE_ID.label, patternLanguage.getLanguageID()).load();
-            }
-        }
         return elementRoot;
     }
 

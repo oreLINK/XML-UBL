@@ -1,10 +1,12 @@
 package com.company.xml.ubl.modules;
 
+import com.company.xml.ubl.attributes.PatternCurrency;
 import com.company.xml.ubl.axioms.AttributeT;
 import com.company.xml.ubl.axioms.ElementT;
 import com.company.xml.ubl.axioms.Tips;
 import com.company.xml.ubl.data.AttributesName;
 import com.company.xml.ubl.data.ElementsName;
+import com.company.xml.ubl.elements.TaxAmount;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -19,8 +21,7 @@ public class TaxTotal {
 
     private Document doc;
     private Element element;
-    private String taxAmount;
-    private String taxAmount_AttributeCurrencyID;
+    private TaxAmount taxAmount;
     private List<TaxSubTotal> taxSubTotalList = new ArrayList<>();
 
     /**
@@ -36,8 +37,7 @@ public class TaxTotal {
      *     </li>
      *     <li><b>for build()</b>
      *     <ul>
-     *         <li>[String] <b>taxAmount</b> <b>[1..1]</b> : The total tax amount for particular tax scheme e.g. VAT; the sum of each of the tax subtotals for each tax category within the tax scheme.</li>
-     *         <li>[String] <b>taxAmount_AttributeCurrencyID</b> <b>[1..1]</b> : The currency of the amount. (Attribute)</li>
+     *         <li>[TaxAmount] <b>taxAmount</b> <b>[1..1]</b> : The total tax amount for particular tax scheme e.g. VAT; the sum of each of the tax subtotals for each tax category within the tax scheme.</li>
      *         <li>[List] <b>taxSubTotalList</b> <b>[0..*]</b> : [TaxSubTotal] elements list.</li>
      *     </ul>
      *     </li>
@@ -47,7 +47,6 @@ public class TaxTotal {
         this.doc = builder.doc;
         this.element = builder.element;
         this.taxAmount = builder.taxAmount;
-        this.taxAmount_AttributeCurrencyID = builder.taxAmount_AttributeCurrencyID;
         this.taxSubTotalList = builder.taxSubTotalList;
     }
 
@@ -58,8 +57,7 @@ public class TaxTotal {
 
         private Document doc;
         private Element element;
-        private String taxAmount;
-        private String taxAmount_AttributeCurrencyID;
+        private TaxAmount taxAmount;
         private List<TaxSubTotal> taxSubTotalList = new ArrayList<>();
 
         public TaxTotalBuilder() {}
@@ -72,12 +70,8 @@ public class TaxTotal {
             this.element = element;
             return this;
         }
-        public TaxTotalBuilder taxAmount(String taxAmount){
+        public TaxTotalBuilder taxAmount(TaxAmount taxAmount){
             this.taxAmount = taxAmount;
-            return this;
-        }
-        public TaxTotalBuilder taxAmount_AttributeCurrencyID(String taxAmount_AttributeCurrencyID){
-            this.taxAmount_AttributeCurrencyID = taxAmount_AttributeCurrencyID;
             return this;
         }
         public TaxTotalBuilder taxSubTotalList(List<TaxSubTotal> taxSubTotalList){
@@ -91,24 +85,12 @@ public class TaxTotal {
 
     }
 
-    public String getTaxAmount() {
+    public TaxAmount getTaxAmount() {
         return taxAmount;
-    }
-
-    public String getTaxAmount_AttributeCurrencyID() {
-        return taxAmount_AttributeCurrencyID;
     }
 
     public List<TaxSubTotal> getTaxSubTotalList() {
         return taxSubTotalList;
-    }
-
-    public boolean isNull() {
-        if(Tips.stringIsNull(taxAmount)){
-            return true;
-        } else {
-            return false;
-        }
     }
 
     /**
@@ -117,10 +99,22 @@ public class TaxTotal {
      */
     public Element load() {
         Element elementTaxTotal = new ElementT(doc, element, ElementsName.TAX_TOTAL.label).load();
-        if (!Tips.stringIsNull(taxAmount)) {
-            Element elementTaxAmount = new ElementT(doc, elementTaxTotal, ElementsName.TAX_TOTAL_TAX_AMOUNT.label, taxAmount).load();
-            if (!Tips.stringIsNull(taxAmount_AttributeCurrencyID)) {
-                Attr elementTaxAmount_Attr1 = new AttributeT(doc, elementTaxAmount, AttributesName.CURRENCY_ID.label, taxAmount_AttributeCurrencyID).load();
+        if(!(taxAmount == null)){
+            if(!(taxAmount.getPatternCurrency() == null)){
+                Element elementTaxAmount = new TaxAmount.TaxAmountBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementTaxTotal)
+                        .value(taxAmount.getValue())
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID(taxAmount.getPatternCurrency().getCurrencyID())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementTaxAmount = new TaxAmount.TaxAmountBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementTaxTotal)
+                        .value(taxAmount.getValue())
+                        .build().load();
             }
         }
         if (!Tips.listIsNull(taxSubTotalList)) {
@@ -129,11 +123,9 @@ public class TaxTotal {
                         .documentLinked(doc)
                         .elementFather(elementTaxTotal)
                         .taxableAmount(taxSubTotal.getTaxableAmount())
-                        .taxableAmount_AttributeCurrencyID(taxSubTotal.getTaxableAmount_AttributeCurrencyID())
                         .taxAmount(taxSubTotal.getTaxAmount())
-                        .taxAmount_AttributeCurrencyID(taxSubTotal.getTaxAmount_AttributeCurrencyID())
                         .calculationSequenceNumeric(taxSubTotal.getCalculationSequenceNumeric())
-                        .taxCategoryList(taxSubTotal.getTaxCategoryList())
+                        .taxCategory(taxSubTotal.getTaxCategory())
                         .build().load();
             }
         }

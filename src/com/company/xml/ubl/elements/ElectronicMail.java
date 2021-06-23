@@ -10,18 +10,18 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class Postbox {
+public class ElectronicMail {
 
     private Document doc;
     private Element element;
-    private String name = ElementsName.POSTBOX.label;
+    private String name = ElementsName.ELECTRONIC_MAIL.label;
     private String value;
     private PatternLanguage patternLanguage;
 
     /**
      * Documentation is coming...
      */
-    private Postbox(PostboxBuilder builder) {
+    private ElectronicMail(ElectronicMailBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
         this.value = builder.value;
@@ -29,35 +29,35 @@ public class Postbox {
     }
 
     /**
-     * Builder Postbox
+     * Builder ElectronicMail
      */
-    public static class PostboxBuilder {
+    public static class ElectronicMailBuilder {
 
         private Document doc;
         private Element element;
         private String value;
         private PatternLanguage patternLanguage;
 
-        public PostboxBuilder() {}
+        public ElectronicMailBuilder() {}
 
-        public PostboxBuilder documentLinked(Document doc){
+        public ElectronicMailBuilder documentLinked(Document doc){
             this.doc = doc;
             return this;
         }
-        public PostboxBuilder elementFather(Element element){
+        public ElectronicMailBuilder elementFather(Element element){
             this.element = element;
             return this;
         }
-        public PostboxBuilder value(String value){
+        public ElectronicMailBuilder value(String value){
             this.value = value;
             return this;
         }
-        public PostboxBuilder attributes(PatternLanguage patternLanguage){
+        public ElectronicMailBuilder attributes(PatternLanguage patternLanguage){
             this.patternLanguage = patternLanguage;
             return this;
         }
-        public Postbox build(){
-            Postbox elementBuild = new Postbox(this);
+        public ElectronicMail build(){
+            ElectronicMail elementBuild = new ElectronicMail(this);
             return elementBuild;
         }
 

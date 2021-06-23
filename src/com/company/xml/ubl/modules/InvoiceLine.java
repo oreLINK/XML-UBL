@@ -151,12 +151,11 @@ public class InvoiceLine {
                             .build())
                     .build().load();
         }
-        if(!taxTotal.isNull()){
+        if(!(taxTotal == null)){
             Element elementTaxTotal = new TaxTotal.TaxTotalBuilder()
                     .documentLinked(doc)
                     .elementFather(elementInvoiceLine)
                     .taxAmount(taxTotal.getTaxAmount())
-                    .taxAmount_AttributeCurrencyID(taxTotal.getTaxAmount_AttributeCurrencyID())
                     .taxSubTotalList(taxTotal.getTaxSubTotalList())
                     .build().load();
         }

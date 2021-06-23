@@ -1,16 +1,17 @@
 package com.company.xml.ubl.modules;
 
+import com.company.xml.ubl.attributes.PatternCurrency;
 import com.company.xml.ubl.axioms.AttributeT;
 import com.company.xml.ubl.axioms.ElementT;
 import com.company.xml.ubl.axioms.Tips;
 import com.company.xml.ubl.data.AttributesName;
 import com.company.xml.ubl.data.ElementsName;
+import com.company.xml.ubl.elements.CalculationSequenceNumeric;
+import com.company.xml.ubl.elements.TaxAmount;
+import com.company.xml.ubl.elements.TaxableAmount;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Class TaxSubTotal
@@ -19,12 +20,10 @@ public class TaxSubTotal {
 
     private Document doc;
     private Element element;
-    private String taxableAmount;
-    private String taxableAmount_AttributeCurrencyID;
-    private String taxAmount;
-    private String taxAmount_AttributeCurrencyID;
-    private String calculationSequenceNumeric;
-    private List<TaxCategory> taxCategoryList = new ArrayList<>();
+    private TaxableAmount taxableAmount;
+    private TaxAmount taxAmount;
+    private CalculationSequenceNumeric calculationSequenceNumeric;
+    private TaxCategory taxCategory;
 
     /**
      * <h2>Element "TaxSubTotal"</h2>
@@ -53,11 +52,9 @@ public class TaxSubTotal {
         this.doc = builder.doc;
         this.element = builder.element;
         this.taxableAmount = builder.taxableAmount;
-        this.taxableAmount_AttributeCurrencyID = builder.taxableAmount_AttributeCurrencyID;
         this.taxAmount = builder.taxAmount;
-        this.taxAmount_AttributeCurrencyID = builder.taxAmount_AttributeCurrencyID;
         this.calculationSequenceNumeric = builder.calculationSequenceNumeric;
-        this.taxCategoryList = builder.taxCategoryList;
+        this.taxCategory = builder.taxCategory;
     }
 
     /**
@@ -67,12 +64,10 @@ public class TaxSubTotal {
 
         private Document doc;
         private Element element;
-        private String taxableAmount;
-        private String taxableAmount_AttributeCurrencyID;
-        private String taxAmount;
-        private String taxAmount_AttributeCurrencyID;
-        private String calculationSequenceNumeric;
-        private List<TaxCategory> taxCategoryList = new ArrayList<>();
+        private TaxableAmount taxableAmount;
+        private TaxAmount taxAmount;
+        private CalculationSequenceNumeric calculationSequenceNumeric;
+        private TaxCategory taxCategory;
 
         public TaxSubTotalBuilder() {}
 
@@ -84,28 +79,20 @@ public class TaxSubTotal {
             this.element = element;
             return this;
         }
-        public TaxSubTotalBuilder taxableAmount(String taxableAmount){
+        public TaxSubTotalBuilder taxableAmount(TaxableAmount taxableAmount){
             this.taxableAmount = taxableAmount;
             return this;
         }
-        public TaxSubTotalBuilder taxableAmount_AttributeCurrencyID(String taxableAmount_AttributeCurrencyID){
-            this.taxableAmount_AttributeCurrencyID = taxableAmount_AttributeCurrencyID;
-            return this;
-        }
-        public TaxSubTotalBuilder taxAmount(String taxAmount){
+        public TaxSubTotalBuilder taxAmount(TaxAmount taxAmount){
             this.taxAmount = taxAmount;
             return this;
         }
-        public TaxSubTotalBuilder taxAmount_AttributeCurrencyID(String taxAmount_AttributeCurrencyID){
-            this.taxAmount_AttributeCurrencyID = taxAmount_AttributeCurrencyID;
-            return this;
-        }
-        public TaxSubTotalBuilder calculationSequenceNumeric(String calculationSequenceNumeric){
+        public TaxSubTotalBuilder calculationSequenceNumeric(CalculationSequenceNumeric calculationSequenceNumeric){
             this.calculationSequenceNumeric = calculationSequenceNumeric;
             return this;
         }
-        public TaxSubTotalBuilder taxCategoryList(List<TaxCategory> taxCategoryList){
-            this.taxCategoryList = taxCategoryList;
+        public TaxSubTotalBuilder taxCategory(TaxCategory taxCategory){
+            this.taxCategory = taxCategory;
             return this;
         }
         public TaxSubTotal build(){
@@ -115,28 +102,20 @@ public class TaxSubTotal {
 
     }
 
-    public String getTaxableAmount() {
+    public TaxableAmount getTaxableAmount() {
         return taxableAmount;
     }
 
-    public String getTaxableAmount_AttributeCurrencyID() {
-        return taxableAmount_AttributeCurrencyID;
-    }
-
-    public String getTaxAmount() {
+    public TaxAmount getTaxAmount() {
         return taxAmount;
     }
 
-    public String getTaxAmount_AttributeCurrencyID() {
-        return taxAmount_AttributeCurrencyID;
-    }
-
-    public String getCalculationSequenceNumeric() {
+    public CalculationSequenceNumeric getCalculationSequenceNumeric() {
         return calculationSequenceNumeric;
     }
 
-    public List<TaxCategory> getTaxCategoryList() {
-        return taxCategoryList;
+    public TaxCategory getTaxCategory() {
+        return taxCategory;
     }
 
     /**
@@ -145,36 +124,58 @@ public class TaxSubTotal {
      */
     public Element load() {
         Element elementTaxSubTotal = new ElementT(doc, element, ElementsName.TAX_SUB_TOTAL.label).load();
-        if(!Tips.stringIsNull(taxableAmount)){
-            Element elementTaxableAmount = new ElementT(doc, elementTaxSubTotal, ElementsName.TAX_SUB_TOTAL_TAXABLE_AMOUNT.label, taxableAmount).load();
-            if(!Tips.stringIsNull(taxableAmount_AttributeCurrencyID)){
-                Attr elementTaxableAmount_Attr1 = new AttributeT(doc, elementTaxableAmount, AttributesName.CURRENCY_ID.label, taxableAmount_AttributeCurrencyID).load();
-            }
-        }
-        if(!Tips.stringIsNull(taxAmount)){
-            Element elementTaxAmount = new ElementT(doc, elementTaxSubTotal, ElementsName.TAX_SUB_TOTAL_TAX_AMOUNT.label, taxAmount).load();
-            if(!Tips.stringIsNull(taxAmount_AttributeCurrencyID)){
-                Attr elementTaxAmount_Attr1 = new AttributeT(doc, elementTaxAmount, AttributesName.CURRENCY_ID.label, taxAmount_AttributeCurrencyID).load();
-            }
-        }
-        if(!Tips.stringIsNull(calculationSequenceNumeric)){
-            Element elementCalculationSequenceNumeric = new ElementT(doc, elementTaxSubTotal, ElementsName.TAX_SUB_TOTAL_CALCULATION_SEQUENCE_NUMERIC.label, calculationSequenceNumeric).load();
-        }
-        if(!Tips.listIsNull(taxCategoryList)){
-            for (TaxCategory taxCategory : taxCategoryList) {
-                Element elementTaxCategory = new TaxCategory.TaxCategoryBuilder()
+        if(!(taxableAmount == null)){
+            if(!(taxableAmount.getPatternCurrency() == null)){
+                Element elementTaxableAmount = new TaxableAmount.TaxableAmountBuilder()
                         .documentLinked(doc)
                         .elementFather(elementTaxSubTotal)
-                        .id(taxCategory.getId())
-                        .id_AttributeSchemeAgencyID(taxCategory.getId_AttributeSchemeAgencyID())
-                        .id_AttributeSchemeID(taxCategory.getId_AttributeSchemeID())
-                        .id_AttributeSchemeVersionID(taxCategory.getId_AttributeSchemeVersionID())
-                        .percent(taxCategory.getPercent())
-                        .taxSchemeList(taxCategory.getTaxSchemeList())
+                        .value(taxableAmount.getValue())
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID(taxableAmount.getPatternCurrency().getCurrencyID())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementTaxableAmount = new TaxableAmount.TaxableAmountBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementTaxSubTotal)
+                        .value(taxableAmount.getValue())
                         .build().load();
             }
         }
-
+        if(!(taxAmount == null)){
+            if(!(taxAmount.getPatternCurrency() == null)){
+                Element elementTaxAmount = new TaxAmount.TaxAmountBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementTaxSubTotal)
+                        .value(taxAmount.getValue())
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID(taxAmount.getPatternCurrency().getCurrencyID())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementTaxAmount = new TaxAmount.TaxAmountBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementTaxSubTotal)
+                        .value(taxAmount.getValue())
+                        .build().load();
+            }
+        }
+        if(!(calculationSequenceNumeric == null)){
+            Element elementCalculationSequenceNumeric = new CalculationSequenceNumeric.CalculationSequenceNumericBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementTaxSubTotal)
+                    .value(calculationSequenceNumeric.getValue())
+                    .build().load();
+        }
+        if(!(taxCategory == null)){
+            Element elementTaxCategory = new TaxCategory.TaxCategoryBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementTaxSubTotal)
+                    .id(taxCategory.getId())
+                    .percent(taxCategory.getPercent())
+                    .taxScheme(taxCategory.getTaxScheme())
+                    .build().load();
+        }
         return elementTaxSubTotal;
     }
 

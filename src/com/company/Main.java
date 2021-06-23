@@ -379,17 +379,7 @@ public class Main {
                 .build();
         taxSubTotalListFromTaxTotal.add(taxSubTotal1);
 
-        /**
-         * TODO
-         */
         //TAX TOTAL
-       /* Element elementTaxTotal = new TaxTotal.TaxTotalBuilder()
-                .documentLinked(doc.getDoc())
-                .elementFather(elementCreditNote)
-                .taxAmount("49.15")
-                .taxAmount_AttributeCurrencyID("EUR")
-                .taxSubTotalList(taxSubTotalListFromTaxTotal)
-                .build().load();*/
         Element elementTaxTotal = new TaxTotal.TaxTotalBuilder()
                 .documentLinked(doc.getDoc())
                 .elementFather(elementCreditNote)
@@ -402,6 +392,9 @@ public class Main {
                 .taxSubTotalList(taxSubTotalListFromTaxTotal)
                 .build().load();
 
+        /**
+         * TODO LATER
+         */
         //LEGAL MONETARY TOTAL
         Element elementLegalMonetaryTotal = new LegalMonetaryTotal.LegalMonetaryTotalBuilder()
                 .documentLinked(doc.getDoc())
@@ -464,17 +457,7 @@ public class Main {
                 .build();
         taxSubTotalListCNL.add(taxSubTotalCNL);
 
-        /**
-         * TODO
-         */
         //CREDIT NOTE LINE > TAX TOTAL
-        /*List<TaxTotal> taxTotalListCNL = new ArrayList<>();
-        TaxTotal taxTotalCNL = new TaxTotal.TaxTotalBuilder()
-                .taxAmount("21.85")
-                .taxAmount_AttributeCurrencyID("EUR")
-                .taxSubTotalList(taxSubTotalListCNL)
-                .build();
-        taxTotalListCNL.add(taxTotalCNL);*/
         List<TaxTotal> taxTotalListCNL = new ArrayList<>();
         TaxTotal taxTotalCNL = new TaxTotal.TaxTotalBuilder()
                 .taxAmount(new TaxAmount.TaxAmountBuilder()
@@ -488,29 +471,56 @@ public class Main {
         taxTotalListCNL.add(taxTotalCNL);
 
         //CREDIT NOTE LINE > ITEM > SELLERS ITEM IDENTIFICATION
-        List<SellersItemIdentification> sellersItemIdentificationListCNL = new ArrayList<>();
         SellersItemIdentification sellersItemIdentificationCNL = new SellersItemIdentification.SellersItemIdentificationBuilder()
-                .id("129")
+                .id("129_VERSION2")
                 .build();
-        sellersItemIdentificationListCNL.add(sellersItemIdentificationCNL);
+
+        /**
+         * TODO
+         */
+        //CREDIT NOTE LINE > ITEM > DESCRIPTION
+        List<Description> descriptionListCNL = new ArrayList<>();
+        Description descriptionCNL = new Description.DescriptionBuilder()
+                .value("heures normales_VERSION2")
+                .build();
+        descriptionListCNL.add(descriptionCNL);
 
         //CREDIT NOTE LINE > ITEM
-        List<Item> itemListCNL = new ArrayList<>();
+        /*List<Item> itemListCNL = new ArrayList<>();
         Item itemCNL = new Item.ItemBuilder()
                 .description("PRIME")
                 .name("PRIME")
                 .sellersItemIdentificationList(sellersItemIdentificationListCNL)
+                .build();
+        itemListCNL.add(itemCNL);*/
+        List<Item> itemListCNL = new ArrayList<>();
+        Item itemCNL = new Item.ItemBuilder()
+                .descriptionList(descriptionListCNL)
+                .name(new Name.NameBuilder()
+                        .value("heures normales_VERSION2")
+                        .build())
+                .sellersItemIdentification(sellersItemIdentificationCNL)
                 .build();
         itemListCNL.add(itemCNL);
 
         //CREDIT NOTE LINE > PRICE
         List<Price> priceListCNL = new ArrayList<>();
         Price priceCNL = new Price.PriceBuilder()
-                .priceAmount("109.24")
-                .priceAmount_AttributeCurrencyID("EUR")
-                .baseQuantity("1")
-                .baseQuantity_AttributeUnitCode("EA")
-                .orderableUnitFactorRate("1")
+                .priceAmount(new PriceAmount.PriceAmountBuilder()
+                        .value("21.018_VERSION2")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR_VERSION2")
+                                .build())
+                        .build())
+                .baseQuantity(new BaseQuantity.BaseQuantityBuilder()
+                        .value("1_VERSION2")
+                        .attributes(new PatternCode.PatternCodeBuilder()
+                                .unitCode("HUR_VERSION2")
+                                .build())
+                        .build())
+                .orderableUnitFactorRate(new OrderableUnitFactorRate.OrderableUnitFactorRateBuilder()
+                        .value("1_VERSION2")
+                        .build())
                 .build();
         priceListCNL.add(priceCNL);
 
@@ -1010,15 +1020,8 @@ public class Main {
                 .build();
         taxSubTotalList44.add(taxSubTotal44);
 
-        /**
-         * TODO
-         */
+
         //TAX TOTAL
-        /*TaxTotal taxTotal44 = new TaxTotal.TaxTotalBuilder()
-                .taxAmount("142.92")
-                .taxAmount_AttributeCurrencyID("EUR")
-                .taxSubTotalList(taxSubTotalList44)
-                .build();*/
         TaxTotal taxTotal44 = new TaxTotal.TaxTotalBuilder()
                 .taxAmount(new TaxAmount.TaxAmountBuilder()
                         .value("21.85_VERSION2")
@@ -1028,32 +1031,74 @@ public class Main {
                         .build())
                 .taxSubTotalList(taxSubTotalList44)
                 .build();
+
         //SELLERS ITEM IDENTIFICATION
-        List<SellersItemIdentification> sellersItemIdentificationList44 = new ArrayList<>();
         SellersItemIdentification sellersItemIdentification44 = new SellersItemIdentification.SellersItemIdentificationBuilder()
-                .id("001")
+                .id("001_VERSION2")
                 .build();
-        sellersItemIdentificationList44.add(sellersItemIdentification44);
+
+        /**
+         * TODO
+         */
+        //CREDIT NOTE LINE > ITEM > DESCRIPTION
+        List<Description> descriptionList44 = new ArrayList<>();
+        Description description44 = new Description.DescriptionBuilder()
+                .value("heures normales_VERSION2")
+                .build();
+        descriptionList44.add(description44);
+
         //ITEM
-        Item item44 = new Item.ItemBuilder()
+        /*Item item44 = new Item.ItemBuilder()
                 .description("heures normales")
                 .name("heures normales")
                 .sellersItemIdentificationList(sellersItemIdentificationList44)
+                .build();*/
+        Item item44 = new Item.ItemBuilder()
+                .descriptionList(descriptionList44)
+                .name(new Name.NameBuilder()
+                        .value("heures normales_VERSION2")
+                        .build())
+                .sellersItemIdentification(sellersItemIdentification44)
                 .build();
+
         //PRICE
         Price price44 = new Price.PriceBuilder()
-                .priceAmount("21.018")
-                .priceAmount_AttributeCurrencyID("EUR")
-                .baseQuantity("1")
-                .baseQuantity_AttributeUnitCode("HUR")
-                .orderableUnitFactorRate("1")
+                .priceAmount(new PriceAmount.PriceAmountBuilder()
+                        .value("21.018_VERSION2")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR_VERSION2")
+                                .build())
+                        .build())
+                .baseQuantity(new BaseQuantity.BaseQuantityBuilder()
+                        .value("1_VERSION2")
+                        .attributes(new PatternCode.PatternCodeBuilder()
+                                .unitCode("HUR_VERSION2")
+                                .build())
+                        .build())
+                .orderableUnitFactorRate(new OrderableUnitFactorRate.OrderableUnitFactorRateBuilder()
+                        .value("1_VERSION2")
+                        .build())
                 .build();
+
         //INVOICE LINE
         List<InvoiceLine> invoiceLineList44 = new ArrayList<>();
         InvoiceLine invoiceLine44 = new InvoiceLine.InvoiceLineBuilder()
-                .id(new ID.IDBuilder().value("1").attributes(new PatternScheme.PatternSchemeBuilder().build()).build())
-                .invoicedQuantity(new InvoicedQuantity.InvoicedQuantityBuilder().value("34").attributes(new PatternCode.PatternCodeBuilder().unitCode("HUR").build()).build())
-                .lineExtensionAmount(new LineExtensionAmount.LineExtensionAmountBuilder().value("714.61").attributes(new PatternCurrency.PatternCurrencyBuilder().currencyID("EUR").build()).build())
+                .id(new ID.IDBuilder()
+                        .value("1")
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .build())
+                        .build())
+                .invoicedQuantity(new InvoicedQuantity.InvoicedQuantityBuilder()
+                        .value("34")
+                        .attributes(new PatternCode.PatternCodeBuilder()
+                                .unitCode("HUR")
+                                .build()).build())
+                .lineExtensionAmount(new LineExtensionAmount.LineExtensionAmountBuilder()
+                        .value("714.61")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR")
+                                .build())
+                        .build())
                 .taxTotal(taxTotal44)
                 .item(item44)
                 .price(price44)

@@ -167,9 +167,9 @@ public class CreditNoteLine {
                 Element elementItem = new Item.ItemBuilder()
                         .documentLinked(doc)
                         .elementFather(elementCreditNoteLine)
-                        .description(item.getDescription())
+                        .descriptionList(item.getDescriptionList())
                         .name(item.getName())
-                        .sellersItemIdentificationList(item.getSellersItemIdentificationList())
+                        .sellersItemIdentification(item.getSellersItemIdentification())
                         .build().load();
             }
         }
@@ -179,9 +179,7 @@ public class CreditNoteLine {
                         .documentLinked(doc)
                         .elementFather(elementCreditNoteLine)
                         .priceAmount(price.getPriceAmount())
-                        .priceAmount_AttributeCurrencyID(price.getPriceAmount_AttributeCurrencyID())
                         .baseQuantity(price.getBaseQuantity())
-                        .baseQuantity_AttributeUnitCode(price.getBaseQuantity_AttributeUnitCode())
                         .orderableUnitFactorRate(price.getOrderableUnitFactorRate())
                         .build().load();
             }

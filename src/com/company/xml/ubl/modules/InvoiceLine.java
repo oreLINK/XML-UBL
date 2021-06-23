@@ -159,23 +159,21 @@ public class InvoiceLine {
                     .taxSubTotalList(taxTotal.getTaxSubTotalList())
                     .build().load();
         }
-        if(!item.isNull()){
+        if(!(item == null)){
             Element elementItem = new Item.ItemBuilder()
                     .documentLinked(doc)
                     .elementFather(elementInvoiceLine)
-                    .description(item.getDescription())
+                    .descriptionList(item.getDescriptionList())
                     .name(item.getName())
-                    .sellersItemIdentificationList(item.getSellersItemIdentificationList())
+                    .sellersItemIdentification(item.getSellersItemIdentification())
                     .build().load();
         }
-        if(!price.isNull()){
+        if(!(price == null)){
             Element elementPrice = new Price.PriceBuilder()
                     .documentLinked(doc)
                     .elementFather(elementInvoiceLine)
                     .priceAmount(price.getPriceAmount())
-                    .priceAmount_AttributeCurrencyID(price.getPriceAmount_AttributeCurrencyID())
                     .baseQuantity(price.getBaseQuantity())
-                    .baseQuantity_AttributeUnitCode(price.getBaseQuantity_AttributeUnitCode())
                     .orderableUnitFactorRate(price.getOrderableUnitFactorRate())
                     .build().load();
         }

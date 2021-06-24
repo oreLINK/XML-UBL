@@ -18,7 +18,7 @@ public class OrderReference {
     private ID id;
 
     /**
-     * <h2>Element "OrderReference"</h2>
+     * <h2>Module "OrderReference"</h2>
      * <i>use in CreditNote <b>[0..1]</b>.</i>
      * <p>An association to Order Reference. Contains :</p>
      * <ul>
@@ -30,7 +30,7 @@ public class OrderReference {
      *     </li>
      *     <li><b>for build()</b>
      *     <ul>
-     *         <li>[String] <b>id</b> <b>[1..1]</b> : Identifies the referenced Order assigned by the buyer.</li>
+     *         <li>[ID] <b>id</b> <b>[1..1]</b> : Identifies the referenced Order assigned by the buyer.</li>
      *     </ul>
      *     </li>
      * </ul>

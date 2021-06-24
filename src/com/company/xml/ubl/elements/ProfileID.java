@@ -22,7 +22,23 @@ public class ProfileID {
     private PatternScheme patternScheme;
 
     /**
-     * Documentation is coming...
+     * <h2>Element "ProfileID"</h2>
+     * <i>use in CreditNote <b>[0..1]</b>.</i>
+     * <p>Identifies a user-defined profile of the customization of UBL being used. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>value</b> <b>[1..1]</b> : Value for this element.</li>
+     *         <li>[PatternScheme] <b>patternScheme</b> <b>[0..1]</b> : Attributes available for this element.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private ProfileID(ProfileIDBuilder builder) {
         this.doc = builder.doc;

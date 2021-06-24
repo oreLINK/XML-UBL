@@ -124,7 +124,7 @@ UBLVersionID ublVersionID = new UBLVersionID.UBLVersionIDBuilder()
 #### Module as parent     
         
 This declaration corresponds to <Element creation> `1.1`, `2.1`, `2.2`, `3.1.1.`, `3.1.2` and `3.1` of the Overall structure section.<br>
-*Example : The `Country` element can be called in the XML document with the module "Postal Address" as parent.*
+*Example : The `Country` module contains the elements `identificationCode` [0..1] and `name` [0..1]. These elements therefore have the `Country` module as parent.*
 
 > with attributes
         

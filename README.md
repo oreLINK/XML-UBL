@@ -160,17 +160,24 @@ Be sure to look at the cardinality of all the parameters of the elements. They a
         
 
 
-## Array of elements
+## List of elements
 
 This is the list of possible elements in a UBL template, as well as some information about them in this project :
 * **Name** : element name.
-* **Version 2** : if this element can be implemented in version 2 of element creation (🟢yes, 🔴no).
-* **Credit Note 2.0 [Cardinality]** : if this element can be implemented in the UBL CreditNote 2.0 template of the project (🟢yes, 🔴no). As well as its cardinality in this template.
+* **Credit Note 2.0** : if this element can be implemented in the UBL CreditNote 2.0 template of the project. As well as its cardinality in this template.
+* **Invoice 2.0** : if this element can be implemented in the UBL Invoice 2.0 template of the project. As well as its cardinality in this template.<br>
 
-| Name | Version 2 | Credit Note 2.0 [Cardinality] |
+Legend for columns `Credit Note 2.0` and `Credit Note 2.0` :<br>
+* ❌ This element is not compatible with this template<br>
+* 🔴 This element is not yet implemented in this template.<br>
+* 🟠 This element is currently being implemented and will be available in a future release.<br>
+* 🟢 This element is implemented and can be used in this template.<br>
+
+| Name | Credit Note 2.0 | Invoice 2.0 |
 | ------- | ----------- | ------------ |
-| UBLExtensions | 🔴 | 🔴 [0..1] |
-| UBLVersionID | 🟢 | 🟢 [0..1] |
+| UBLVersionID | 🟢 [0..1] | 🟠 |
+| CustomizationID | 🟢 [0..1] | 🟠 |
+| ProfileID | 🟢 [0..1] | 🟠 |
 | ... | ... | ... |
 
 ## Release history

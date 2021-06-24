@@ -48,57 +48,68 @@ Since this is version 1 of element creation, the attributes are present in build
 
 ## Utilisation
 
+### Overall structure
+
+Here is how your Java code will be structured to create an XML file with a UBL template :
+
+```
+<Document creation>
+        <Element 1 creation>
+        <Element 2 creation>    
+                <Element 1.1 (from Module 1) creation>
+        <Module 1 creation>   
+                <Element 2.1 (from Module 2) creation>
+                <Element 2.2 (from Module 2) creation>
+        <Module 2 creation>
+                        <Element 3.1.1 (from Module 3.1) creation>
+                        <Element 3.1.2 (from Module 3.1) creation>
+                <Module 3.1 (from Module 3) creation>
+                <Element 3.1 (from Module 3) creation>
+        <Module 3 creation>     
+<Template creation>
+<Document generation>           
+```
+
+
 ### Document creation
 
 This is the first level, the document, which contains all the other tools to generate a UBL template.<br>
-You must first declare and initialize the desired document by entering its name (in .xml) and the path in which it must be saved.
+You must first declare and initialize the desired document by entering its name (with .xml) and the path in which it must be saved.
 ```java
 DocumentT doc = new DocumentT("<name>.xml", "<path>");
 doc.initialize();
 ```
 
+### Template creation
+
+
+
+### Module creation
+
+
+
 ### Element creation
 
-This is the second level, the elements are contained in a document and possibly have a parent element.<br>
-To create an element, there are two versions, version 1, the oldest and the more generic version 2 which will eventually replace version 1. Only a few elements are compatible with version 2. To find them out, refer to array of elements.
+The elements are the basis for creating an xml document with UBL template. These are the <cbc> tags. They contain these parameters :
+        
+| Name | Type | Obligatory ? | Description
+| ------- | ----------- | ------------ | ------- |
+| value | String | 🟢 | Value for this element. |
+| attributes | PatternAttribute | 🔴 | Attributes available for this element. |
+        
+An element can be created in only two places, either with the template itself as parent, or with a module as parent :
+        
+#### Template as parent
+        
+        
+        
+        
+#### Module as parent     
+      
+        
+### Attribute creation
+        
 
-> During creation, since this is a nesting of child elements within parent elements, we always start by declaring the child elements before the parent element, and this recursively until it is not 'there is more than the value of the element, and (optionally) its attributes.
-
-#### Version 1
-
-This version 1 implements a few attributes of each element by hand. It is not very generic and is set to disappear. Here is how to generate the `TaxTotal` element which also contains another optional element, `TaxSubTotal`.
-
-1. First, because the cardinality of `TaxSubTotal` in `TaxTotal` is [0..*], it is a list. We must therefore initialize the list (for cardinality type [0/1..1] it will only be String).
-
-```java
-List<TaxSubTotal> taxSubTotalListCNL = new ArrayList<>();
-```
-
-2. Second, you have to create the `TaxSubTotal` object only via `build()`, because you don't want a generated element but an object that can be manipulated by its parent elements. Only parent elements N-1 (direct children of the root element) can generate the elements and therefore use the `load()` function.<br>
-In this example, we assume that a list of `TaxCategory` objects has already been created with the name `taxCategoryList`, and so on...
-
-```java
-TaxSubTotal taxSubTotalCNL = new TaxSubTotal.TaxSubTotalBuilder()
-        .taxableAmount("109.24")
-        .taxableAmount_AttributeCurrencyID("EUR")
-        .taxAmount("21.85")
-        .taxAmount_AttributeCurrencyID("EUR")
-        .calculationSequenceNumeric("1")
-        .taxCategoryList(taxCategoryListCNL)
-        .build();
-```
-
-3. Third, we add the `TaxSubTotal` object to the previously created list.
-
-```java
-taxSubTotalListCNL.add(taxSubTotalCNL);
-```
-
-`Documentation coming soon...`
-
-#### Version 2
-
-`Documentation coming soon...`
 
 ## Array of elements
 

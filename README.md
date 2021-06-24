@@ -88,11 +88,11 @@ doc.initialize();
 
 
 
-### Element creation
+### Element creation (version 2)
 
-The elements are the basis for creating an xml document with UBL template. These are the <cbc> tags. They contain these parameters :
+The elements are the basis for creating an xml document with UBL template. These are the `<cbc>` tags. They contain these parameters :
         
-| Name | Type | Obligatory ? | Description
+| Name | Type | Obligatory ? | Description |
 | ------- | ----------- | ------------ | ------- |
 | value | String | 🟢 | Value for this element. |
 | attributes | PatternAttribute | 🔴 | Attributes available for this element. |
@@ -101,11 +101,60 @@ An element can be created in only two places, either with the template itself as
         
 #### Template as parent
         
+This declaration corresponds to <Element creation> `1` and `2` of the Overall structure section.<br>
+*Example : The `UBLVersionID` element can be called in the XML document with the template itself as parent.*
         
+> with attributes
         
+```java
+UBLVersionID ublVersionID = new UBLVersionID.UBLVersionIDBuilder()
+                .value(<String>)
+                .attributes(new <PatternAttribute>)
+                .build();
+```  
+        
+> without attributes
+    
+```java
+UBLVersionID ublVersionID = new UBLVersionID.UBLVersionIDBuilder()
+                .value(<String>)
+                .build();
+```  
         
 #### Module as parent     
-      
+        
+This declaration corresponds to <Element creation> `1.1`, `2.1`, `2.2`, `3.1.1.`, `3.1.2` and `3.1` of the Overall structure section.<br>
+*Example : The `Country` element can be called in the XML document with the module "Postal Address" as parent.*
+
+> with attributes
+        
+```java
+Country country = new Country.CountryBuilder()
+                .identificationCode(new IdentificationCode.IdentificationCodeBuilder()
+                        .value(<String>)
+                        .attributes(new <PatternAttribute>)
+                        .build())
+                .name(new Name.NameBuilder()
+                        .value(<String>)
+                        .attributes(new <PatternAttribute>)
+                        .build())
+                .build();
+```  
+        
+> without attributes
+    
+```java
+Country country = new Country.CountryBuilder()
+                .identificationCode(new IdentificationCode.IdentificationCodeBuilder()
+                        .value(<String>)
+                        .build())
+                .name(new Name.NameBuilder()
+                        .value(<String>)
+                        .build())
+                .build();
+```
+
+Be sure to look at the cardinality of all the parameters of the elements. They are displayed in the code itself.
         
 ### Attribute creation
         

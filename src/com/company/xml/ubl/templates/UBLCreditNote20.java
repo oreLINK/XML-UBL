@@ -165,95 +165,135 @@ public class UBLCreditNote20 {
         Attr attrEleCreditCard8 = new AttributeT(doc, elementCreditNote, NamespacesName.XMLNS_UDT_ATTR.label, NamespacesName.XMLNS_UDT_IMPORT.label).load();
 
         if(!Tips.stringIsNull(ublVersionID.getValue())){
-            Element elementUBLVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementCreditNote)
-                    .value(ublVersionID.getValue())
-                    .attributes(new PatternScheme.PatternSchemeBuilder()
-                            .schemeID(ublVersionID.getPatternScheme().getSchemeID())
-                            .schemeName(ublVersionID.getPatternScheme().getSchemeName())
-                            .schemeAgencyID(ublVersionID.getPatternScheme().getSchemeAgencyID())
-                            .schemeAgencyName(ublVersionID.getPatternScheme().getSchemeAgencyName())
-                            .schemeVersionID(ublVersionID.getPatternScheme().getSchemeVersionID())
-                            .schemeDataURI(ublVersionID.getPatternScheme().getSchemeDataURI())
-                            .schemeURI(ublVersionID.getPatternScheme().getSchemeURI())
-                            .build())
-                    .build().load();
+            if(!(ublVersionID.getPatternScheme() == null)){
+                Element elementUBLVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementCreditNote)
+                        .value(ublVersionID.getValue())
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID(ublVersionID.getPatternScheme().getSchemeID())
+                                .schemeName(ublVersionID.getPatternScheme().getSchemeName())
+                                .schemeAgencyID(ublVersionID.getPatternScheme().getSchemeAgencyID())
+                                .schemeAgencyName(ublVersionID.getPatternScheme().getSchemeAgencyName())
+                                .schemeVersionID(ublVersionID.getPatternScheme().getSchemeVersionID())
+                                .schemeDataURI(ublVersionID.getPatternScheme().getSchemeDataURI())
+                                .schemeURI(ublVersionID.getPatternScheme().getSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementUBLVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementCreditNote)
+                        .value(ublVersionID.getValue())
+                        .build().load();
+            }
         }
         if(!Tips.stringIsNull(customizationID.getValue())){
-            Element elementCustomizationID = new CustomizationID.CustomizationIDBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementCreditNote)
-                    .value(customizationID.getValue())
-                    .attributes(new PatternScheme.PatternSchemeBuilder()
-                            .schemeID(customizationID.getPatternScheme().getSchemeID())
-                            .schemeName(customizationID.getPatternScheme().getSchemeName())
-                            .schemeAgencyID(customizationID.getPatternScheme().getSchemeAgencyID())
-                            .schemeAgencyName(customizationID.getPatternScheme().getSchemeAgencyName())
-                            .schemeVersionID(customizationID.getPatternScheme().getSchemeVersionID())
-                            .schemeDataURI(customizationID.getPatternScheme().getSchemeDataURI())
-                            .schemeURI(customizationID.getPatternScheme().getSchemeURI())
-                            .build())
-                    .build().load();
+            if(!(customizationID.getPatternScheme() == null)){
+                Element elementCustomizationID = new CustomizationID.CustomizationIDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementCreditNote)
+                        .value(customizationID.getValue())
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID(customizationID.getPatternScheme().getSchemeID())
+                                .schemeName(customizationID.getPatternScheme().getSchemeName())
+                                .schemeAgencyID(customizationID.getPatternScheme().getSchemeAgencyID())
+                                .schemeAgencyName(customizationID.getPatternScheme().getSchemeAgencyName())
+                                .schemeVersionID(customizationID.getPatternScheme().getSchemeVersionID())
+                                .schemeDataURI(customizationID.getPatternScheme().getSchemeDataURI())
+                                .schemeURI(customizationID.getPatternScheme().getSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementCustomizationID = new CustomizationID.CustomizationIDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementCreditNote)
+                        .value(customizationID.getValue())
+                        .build().load();
+            }
         }
         if(!Tips.stringIsNull(profileID.getValue())){
-            Element elementProfileID = new ProfileID.ProfileIDBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementCreditNote)
-                    .value(profileID.getValue())
-                    .attributes(new PatternScheme.PatternSchemeBuilder()
-                            .schemeID(profileID.getPatternScheme().getSchemeID())
-                            .schemeName(profileID.getPatternScheme().getSchemeName())
-                            .schemeAgencyID(profileID.getPatternScheme().getSchemeAgencyID())
-                            .schemeAgencyName(profileID.getPatternScheme().getSchemeAgencyName())
-                            .schemeVersionID(profileID.getPatternScheme().getSchemeVersionID())
-                            .schemeDataURI(profileID.getPatternScheme().getSchemeDataURI())
-                            .schemeURI(profileID.getPatternScheme().getSchemeURI())
-                            .build())
-                    .build().load();
+            if(!(profileID.getPatternScheme() == null)){
+                Element elementProfileID = new ProfileID.ProfileIDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementCreditNote)
+                        .value(profileID.getValue())
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID(profileID.getPatternScheme().getSchemeID())
+                                .schemeName(profileID.getPatternScheme().getSchemeName())
+                                .schemeAgencyID(profileID.getPatternScheme().getSchemeAgencyID())
+                                .schemeAgencyName(profileID.getPatternScheme().getSchemeAgencyName())
+                                .schemeVersionID(profileID.getPatternScheme().getSchemeVersionID())
+                                .schemeDataURI(profileID.getPatternScheme().getSchemeDataURI())
+                                .schemeURI(profileID.getPatternScheme().getSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementProfileID = new ProfileID.ProfileIDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementCreditNote)
+                        .value(profileID.getValue())
+                        .build().load();
+            }
         }
-        if(!Tips.stringIsNull(id.getValue())){
-            Element elementID = new ID.IDBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementCreditNote)
-                    .value(id.getValue())
-                    .attributes(new PatternScheme.PatternSchemeBuilder()
-                            .schemeID(id.getPatternScheme().getSchemeID())
-                            .schemeName(id.getPatternScheme().getSchemeName())
-                            .schemeAgencyID(id.getPatternScheme().getSchemeAgencyID())
-                            .schemeAgencyName(id.getPatternScheme().getSchemeAgencyName())
-                            .schemeVersionID(id.getPatternScheme().getSchemeVersionID())
-                            .schemeDataURI(id.getPatternScheme().getSchemeDataURI())
-                            .schemeURI(id.getPatternScheme().getSchemeURI())
-                            .build())
-                    .build().load();
+        if(!(id == null)){
+            if(!(id.getPatternScheme() == null)){
+                Element elementID = new ID.IDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementCreditNote)
+                        .value(id.getValue())
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID(id.getPatternScheme().getSchemeID())
+                                .schemeName(id.getPatternScheme().getSchemeName())
+                                .schemeAgencyID(id.getPatternScheme().getSchemeAgencyID())
+                                .schemeAgencyName(id.getPatternScheme().getSchemeAgencyName())
+                                .schemeVersionID(id.getPatternScheme().getSchemeVersionID())
+                                .schemeDataURI(id.getPatternScheme().getSchemeDataURI())
+                                .schemeURI(id.getPatternScheme().getSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementID = new ID.IDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementCreditNote)
+                        .value(id.getValue())
+                        .build().load();
+            }
         }
-        if(!Tips.stringIsNull(issueDate.getValue())){
+        if(!(issueDate == null)){
             Element elementIssueDate = new IssueDate.IssueDateBuilder()
                     .documentLinked(doc)
                     .elementFather(elementCreditNote)
                     .value(issueDate.getValue())
                     .build().load();
         }
-        if(!Tips.stringIsNull(documentCurrencyCode.getValue())){
-            Element elementCurrencyCode = new DocumentCurrencyCode.DocumentCurrencyCodeBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementCreditNote)
-                    .value(documentCurrencyCode.getValue())
-                    .attributes(new PatternList.PatternListBuilder()
-                            .listID(documentCurrencyCode.getPatternList().getListID())
-                            .listAgencyID(documentCurrencyCode.getPatternList().getListAgencyID())
-                            .listAgencyName(documentCurrencyCode.getPatternList().getListAgencyName())
-                            .listName(documentCurrencyCode.getPatternList().getListName())
-                            .listVersionID(documentCurrencyCode.getPatternList().getListVersionID())
-                            .name(documentCurrencyCode.getPatternList().getName())
-                            .languageID(documentCurrencyCode.getPatternList().getLanguageID())
-                            .listURI(documentCurrencyCode.getPatternList().getListURI())
-                            .listSchemeURI(documentCurrencyCode.getPatternList().getListSchemeURI())
-                            .build())
-                    .build().load();
+        if(!(documentCurrencyCode == null)){
+            if(!(documentCurrencyCode.getPatternList() == null)){
+                Element elementCurrencyCode = new DocumentCurrencyCode.DocumentCurrencyCodeBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementCreditNote)
+                        .value(documentCurrencyCode.getValue())
+                        .attributes(new PatternList.PatternListBuilder()
+                                .listID(documentCurrencyCode.getPatternList().getListID())
+                                .listAgencyID(documentCurrencyCode.getPatternList().getListAgencyID())
+                                .listAgencyName(documentCurrencyCode.getPatternList().getListAgencyName())
+                                .listName(documentCurrencyCode.getPatternList().getListName())
+                                .listVersionID(documentCurrencyCode.getPatternList().getListVersionID())
+                                .name(documentCurrencyCode.getPatternList().getName())
+                                .languageID(documentCurrencyCode.getPatternList().getLanguageID())
+                                .listURI(documentCurrencyCode.getPatternList().getListURI())
+                                .listSchemeURI(documentCurrencyCode.getPatternList().getListSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementCurrencyCode = new DocumentCurrencyCode.DocumentCurrencyCodeBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementCreditNote)
+                        .value(documentCurrencyCode.getValue())
+                        .build().load();
+            }
         }
-        if(!Tips.stringIsNull(orderReference.getId().getValue())){
+        if(!(orderReference == null)){
             Element elementOrderReference = new OrderReference.OrderReferenceBuilder()
                     .documentLinked(doc)
                     .elementFather(elementCreditNote)
@@ -265,7 +305,66 @@ public class UBLCreditNote20 {
                 Element elementBillingReference = new BillingReference.BillingReferenceBuilder()
                         .documentLinked(doc)
                         .elementFather(elementCreditNote)
-                        .invoiceDocumentReferenceList(billingReference.getInvoiceDocumentReferenceList())
+                        .invoiceDocumentReference(billingReference.getInvoiceDocumentReference())
+                        .build().load();
+            }
+        }
+        if(!Tips.listIsNull(additionalDocumentReferenceList)){
+            for (AdditionalDocumentReference additionalDocumentReference : additionalDocumentReferenceList) {
+                Element elementAdditionalDocumentReference = new AdditionalDocumentReference.AdditionalDocumentReferenceBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementCreditNote)
+                        .id(additionalDocumentReference.getId())
+                        .documentTypeCode(additionalDocumentReference.getDocumentTypeCode())
+                        .attachment(additionalDocumentReference.getAttachment())
+                        .build().load();
+            }
+        }
+        if(!(accountingSupplierParty == null)){
+            Element elementAccountingSupplierParty = new AccountingSupplierParty.AccountingSupplierPartyBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementCreditNote)
+                    .party(accountingSupplierParty.getParty())
+                    .build().load();
+        }
+        if(!(accountingCustomerParty == null)){
+            Element elementAccountingCustomerParty = new AccountingCustomerParty.AccountingCustomerPartyBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementCreditNote)
+                    .party(accountingCustomerParty.getParty())
+                    .build().load();
+        }
+        if(!Tips.listIsNull(taxTotalList)){
+            for (TaxTotal taxTotal : taxTotalList) {
+                Element elementTaxTotal = new TaxTotal.TaxTotalBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementCreditNote)
+                        .taxAmount(taxTotal.getTaxAmount())
+                        .taxSubTotalList(taxTotal.getTaxSubTotalList())
+                        .build().load();
+            }
+        }
+        if(!(legalMonetaryTotal == null)){
+            Element elementLegalMonetaryTotal = new LegalMonetaryTotal.LegalMonetaryTotalBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementCreditNote)
+                    .lineExtensionAmount(legalMonetaryTotal.getLineExtensionAmount())
+                    .taxExclusiveAmount(legalMonetaryTotal.getTaxExclusiveAmount())
+                    .taxInclusiveAmount(legalMonetaryTotal.getTaxInclusiveAmount())
+                    .payableAmount(legalMonetaryTotal.getPayableAmount())
+                    .build().load();
+        }
+        if(!Tips.listIsNull(creditNoteLineList)){
+            for (CreditNoteLine creditNoteLine : creditNoteLineList) {
+                Element elementCreditNoteLine = new CreditNoteLine.CreditNoteLineBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementCreditNote)
+                        .id(creditNoteLine.getId())
+                        .creditedQuantity(creditNoteLine.getCreditedQuantity())
+                        .lineExtensionAmount(creditNoteLine.getLineExtensionAmount())
+                        .taxTotalList(creditNoteLine.getTaxTotalList())
+                        .item(creditNoteLine.getItem())
+                        .price(creditNoteLine.getPrice())
                         .build().load();
             }
         }

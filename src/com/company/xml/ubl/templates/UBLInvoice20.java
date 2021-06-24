@@ -238,66 +238,90 @@ public class UBLInvoice20 {
                         .build().load();
             }
         }
-        if(!Tips.stringIsNull(id.getValue())){
-            Element elementID = new ID.IDBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementInvoice)
-                    .value(id.getValue())
-                    .attributes(new PatternScheme.PatternSchemeBuilder()
-                            .schemeID(id.getPatternScheme().getSchemeID())
-                            .schemeName(id.getPatternScheme().getSchemeName())
-                            .schemeAgencyID(id.getPatternScheme().getSchemeAgencyID())
-                            .schemeAgencyName(id.getPatternScheme().getSchemeAgencyName())
-                            .schemeVersionID(id.getPatternScheme().getSchemeVersionID())
-                            .schemeDataURI(id.getPatternScheme().getSchemeDataURI())
-                            .schemeURI(id.getPatternScheme().getSchemeURI())
-                            .build())
-                    .build().load();
+        if(!(id == null)){
+            if(!(id.getPatternScheme() == null)){
+                Element elementID = new ID.IDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementInvoice)
+                        .value(id.getValue())
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID(id.getPatternScheme().getSchemeID())
+                                .schemeName(id.getPatternScheme().getSchemeName())
+                                .schemeAgencyID(id.getPatternScheme().getSchemeAgencyID())
+                                .schemeAgencyName(id.getPatternScheme().getSchemeAgencyName())
+                                .schemeVersionID(id.getPatternScheme().getSchemeVersionID())
+                                .schemeDataURI(id.getPatternScheme().getSchemeDataURI())
+                                .schemeURI(id.getPatternScheme().getSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementID = new ID.IDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementInvoice)
+                        .value(id.getValue())
+                        .build().load();
+            }
         }
-        if(!Tips.stringIsNull(issueDate.getValue())){
+        if(!(issueDate == null)){
             Element elementIssueDate = new IssueDate.IssueDateBuilder()
                     .documentLinked(doc)
                     .elementFather(elementInvoice)
                     .value(issueDate.getValue())
                     .build().load();
         }
-        if(!Tips.stringIsNull(invoiceTypeCode.getValue())){
-            Element elementInvoiceTypeCode = new InvoiceTypeCode.InvoiceTypeCodeBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementInvoice)
-                    .value(invoiceTypeCode.getValue())
-                    .attributes(new PatternList.PatternListBuilder()
-                            .listID(invoiceTypeCode.getPatternList().getListID())
-                            .listAgencyID(invoiceTypeCode.getPatternList().getListAgencyID())
-                            .listAgencyName(invoiceTypeCode.getPatternList().getListAgencyName())
-                            .listName(invoiceTypeCode.getPatternList().getListName())
-                            .listVersionID(invoiceTypeCode.getPatternList().getListVersionID())
-                            .name(invoiceTypeCode.getPatternList().getName())
-                            .languageID(invoiceTypeCode.getPatternList().getLanguageID())
-                            .listURI(invoiceTypeCode.getPatternList().getListURI())
-                            .listSchemeURI(invoiceTypeCode.getPatternList().getListSchemeURI())
-                            .build())
-                    .build().load();
+        if(!(invoiceTypeCode == null)){
+            if(!(invoiceTypeCode.getPatternList() == null)){
+                Element elementInvoiceTypeCode = new InvoiceTypeCode.InvoiceTypeCodeBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementInvoice)
+                        .value(invoiceTypeCode.getValue())
+                        .attributes(new PatternList.PatternListBuilder()
+                                .listID(invoiceTypeCode.getPatternList().getListID())
+                                .listAgencyID(invoiceTypeCode.getPatternList().getListAgencyID())
+                                .listAgencyName(invoiceTypeCode.getPatternList().getListAgencyName())
+                                .listName(invoiceTypeCode.getPatternList().getListName())
+                                .listVersionID(invoiceTypeCode.getPatternList().getListVersionID())
+                                .name(invoiceTypeCode.getPatternList().getName())
+                                .languageID(invoiceTypeCode.getPatternList().getLanguageID())
+                                .listURI(invoiceTypeCode.getPatternList().getListURI())
+                                .listSchemeURI(invoiceTypeCode.getPatternList().getListSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementInvoiceTypeCode = new InvoiceTypeCode.InvoiceTypeCodeBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementInvoice)
+                        .value(invoiceTypeCode.getValue())
+                        .build().load();
+            }
         }
-        if(!Tips.stringIsNull(documentCurrencyCode.getValue())){
-            Element elementCurrencyCode = new DocumentCurrencyCode.DocumentCurrencyCodeBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementInvoice)
-                    .value(documentCurrencyCode.getValue())
-                    .attributes(new PatternList.PatternListBuilder()
-                            .listID(documentCurrencyCode.getPatternList().getListID())
-                            .listAgencyID(documentCurrencyCode.getPatternList().getListAgencyID())
-                            .listAgencyName(documentCurrencyCode.getPatternList().getListAgencyName())
-                            .listName(documentCurrencyCode.getPatternList().getListName())
-                            .listVersionID(documentCurrencyCode.getPatternList().getListVersionID())
-                            .name(documentCurrencyCode.getPatternList().getName())
-                            .languageID(documentCurrencyCode.getPatternList().getLanguageID())
-                            .listURI(documentCurrencyCode.getPatternList().getListURI())
-                            .listSchemeURI(documentCurrencyCode.getPatternList().getListSchemeURI())
-                            .build())
-                    .build().load();
+        if(!(documentCurrencyCode == null)){
+            if(!(documentCurrencyCode.getPatternList() == null)){
+                Element elementCurrencyCode = new DocumentCurrencyCode.DocumentCurrencyCodeBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementInvoice)
+                        .value(documentCurrencyCode.getValue())
+                        .attributes(new PatternList.PatternListBuilder()
+                                .listID(documentCurrencyCode.getPatternList().getListID())
+                                .listAgencyID(documentCurrencyCode.getPatternList().getListAgencyID())
+                                .listAgencyName(documentCurrencyCode.getPatternList().getListAgencyName())
+                                .listName(documentCurrencyCode.getPatternList().getListName())
+                                .listVersionID(documentCurrencyCode.getPatternList().getListVersionID())
+                                .name(documentCurrencyCode.getPatternList().getName())
+                                .languageID(documentCurrencyCode.getPatternList().getLanguageID())
+                                .listURI(documentCurrencyCode.getPatternList().getListURI())
+                                .listSchemeURI(documentCurrencyCode.getPatternList().getListSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementCurrencyCode = new DocumentCurrencyCode.DocumentCurrencyCodeBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementInvoice)
+                        .value(documentCurrencyCode.getValue())
+                        .build().load();
+            }
         }
-        if(!Tips.stringIsNull(orderReference.getId().getValue())){
+        if(!(orderReference == null)){
             Element elementOrderReference = new OrderReference.OrderReferenceBuilder()
                     .documentLinked(doc)
                     .elementFather(elementInvoice)

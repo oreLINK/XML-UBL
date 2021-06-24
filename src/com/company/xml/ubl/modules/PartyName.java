@@ -1,5 +1,6 @@
 package com.company.xml.ubl.modules;
 
+import com.company.xml.ubl.attributes.PatternLanguage;
 import com.company.xml.ubl.axioms.ElementT;
 import com.company.xml.ubl.data.ElementsName;
 import com.company.xml.ubl.elements.Name;
@@ -77,8 +78,23 @@ public class PartyName {
      */
     public Element load() {
         Element elementPartyName = new ElementT(doc, element, ElementsName.PARTY_NAME.label).load();
-        if(!name.isNull()){
-            Element elementName = new ElementT(doc, elementPartyName, ElementsName.PARTY_NAME_NAME.label, name.getValue()).load();
+        if(!(name == null)){
+            if(!(name.getPatternLanguage() == null)){
+                Element elementName = new Name.NameBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPartyName)
+                        .value(name.getValue())
+                        .attributes(new PatternLanguage.PatternLanguageBuilder()
+                                .languageID(name.getPatternLanguage().getLanguageID())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementName = new Name.NameBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPartyName)
+                        .value(name.getValue())
+                        .build().load();
+            }
         }
         return elementPartyName;
     }

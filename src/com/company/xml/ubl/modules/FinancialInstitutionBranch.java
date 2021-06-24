@@ -68,7 +68,7 @@ public class FinancialInstitutionBranch {
      */
     public Element load() {
         Element elementRoot = new ElementT(doc, element, ElementsName.FINANCIAL_INSTITUTION_BRANCH.label).load();
-        if(!financialInstitution.isNull()){
+        if(!(financialInstitution == null)){
             Element elementFinancialInstitution = new FinancialInstitution.FinancialInstitutionBuilder()
                     .documentLinked(doc)
                     .elementFather(elementRoot)

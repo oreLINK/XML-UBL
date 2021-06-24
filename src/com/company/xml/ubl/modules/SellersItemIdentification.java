@@ -1,8 +1,10 @@
 package com.company.xml.ubl.modules;
 
+import com.company.xml.ubl.attributes.PatternScheme;
 import com.company.xml.ubl.axioms.ElementT;
 import com.company.xml.ubl.axioms.Tips;
 import com.company.xml.ubl.data.ElementsName;
+import com.company.xml.ubl.elements.ID;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -13,7 +15,7 @@ public class SellersItemIdentification {
 
     private Document doc;
     private Element element;
-    private String id;
+    private ID id;
 
     /**
      * <h2>Element "SellersItemIdentification"</h2>
@@ -46,7 +48,7 @@ public class SellersItemIdentification {
 
         private Document doc;
         private Element element;
-        private String id;
+        private ID id;
 
         public SellersItemIdentificationBuilder() {}
 
@@ -58,7 +60,7 @@ public class SellersItemIdentification {
             this.element = element;
             return this;
         }
-        public SellersItemIdentificationBuilder id(String id){
+        public SellersItemIdentificationBuilder id(ID id){
             this.id = id;
             return this;
         }
@@ -69,7 +71,7 @@ public class SellersItemIdentification {
 
     }
 
-    public String getId() {
+    public ID getId() {
         return id;
     }
 
@@ -79,8 +81,29 @@ public class SellersItemIdentification {
      */
     public Element load() {
         Element elementSellersItemIdentification = new ElementT(doc, element, ElementsName.SELLERS_ITEM_IDENTIFICATION.label).load();
-        if(!Tips.stringIsNull(id)){
-            Element elementId = new ElementT(doc, elementSellersItemIdentification, ElementsName.SELLERS_ITEM_IDENTIFICATION_ID.label, id).load();
+        if(!(id == null)) {
+            if(!(id.getPatternScheme() == null)){
+                Element elementId = new ID.IDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementSellersItemIdentification)
+                        .value(id.getValue())
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID(id.getPatternScheme().getSchemeID())
+                                .schemeName(id.getPatternScheme().getSchemeName())
+                                .schemeAgencyID(id.getPatternScheme().getSchemeAgencyID())
+                                .schemeAgencyName(id.getPatternScheme().getSchemeAgencyName())
+                                .schemeVersionID(id.getPatternScheme().getSchemeVersionID())
+                                .schemeDataURI(id.getPatternScheme().getSchemeDataURI())
+                                .schemeURI(id.getPatternScheme().getSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementId = new ID.IDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementSellersItemIdentification)
+                        .value(id.getValue())
+                        .build().load();
+            }
         }
         return elementSellersItemIdentification;
     }

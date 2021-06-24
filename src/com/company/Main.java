@@ -24,79 +24,92 @@ public class Main {
     public static void main(String[] args) throws ParserConfigurationException, TransformerException {
 
         /**
-         * SANS TEMPLATE UBL CREDIT NOTE 2.0
+         * ---
+         * UBL TEMPLATE CREDIT NOTE 2.0
+         * v1.1.0
+         * ---
          */
 
-        DocumentT doc = new DocumentT("cars3.xml", "");
-        doc.initialize();
+        DocumentT docCreditNote = new DocumentT("CreditNoteExample.xml", "");
+        docCreditNote.initialize();
 
-        //ROOT (CREDIT NOTE)
-        Element elementCreditNote = new CreditNote20.CreditNote20Builder()
-                .documentLinked(doc.getDoc())
-                .build().load();
-
-        //CREDIT NOTE > UBL VERSION ID
-        Element elementUBLVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()
-                .documentLinked(doc.getDoc())
-                .elementFather(elementCreditNote)
+        /**
+         * Element UBLVersionID
+         */
+        UBLVersionID ublVersionIDCreditNote = new UBLVersionID.ElementUBLVersionIDBuilder()
                 .value("2.0")
-                .attributes(new PatternScheme.PatternSchemeBuilder().build())
-                .build().load();
-
-        //... > CUSTOMIZATION ID
-        Element eleCustomizationId = new ElementT(doc.getDoc(), elementCreditNote, ElementsName.CUSTOMIZATION_ID.label, "urn:tradeshift.com:ubl-2.0-customizations:2010-06").load();
-
-        //> PROFILE ID
-        Element eleProfileID = new ElementT(doc.getDoc(), elementCreditNote, ElementsName.PROFILE_ID.label, "urn:www.cenbii.eu:profile:bii04:ver1.0").load();
-        Attr attrEleProfileID1 = new AttributeT(doc.getDoc(), eleProfileID, AttributesName.PROFIL_ID_SCHEMA_AGENCY_ID.label, "CEN/ISSS WS/BII").load();
-        Attr attrEleProfileID2 = new AttributeT(doc.getDoc(), eleProfileID, AttributesName.PROFIL_ID_SCHEMA_ID.label, "CWA 16073:2010").load();
-        Attr attrEleProfileID3 = new AttributeT(doc.getDoc(), eleProfileID, AttributesName.PROFIL_ID_SCHEMA_VERSION_ID.label, "urn:www.cenbii.eu:profile:bii04:ver1.0").load();
-
-        //ID
-        Element elementID = new ID.IDBuilder()
-                .documentLinked(doc.getDoc())
-                .elementFather(elementCreditNote)
-                .value("038/01162972222222")
-                .attributes(new PatternScheme.PatternSchemeBuilder()
-                        .schemeAgencyID("lala")
-                        .build())
-                .build().load();
-
-        //ISSUE DATE
-        Element eleIssueDate = new ElementT(doc.getDoc(), elementCreditNote, ElementsName.ISSUE_DATE.label, "2020-01-22").load();
-
-        //DOCUMENT CURRENCY CODE
-        Element eleDocCurrencyCode = new ElementT(doc.getDoc(), elementCreditNote, ElementsName.DOC_CURRENCY_CODE.label, "EUR").load();
-
-        //ORDER REFERENCE
-        Element elementOrderReference = new OrderReference.OrderReferenceBuilder()
-                .documentLinked(doc.getDoc())
-                .elementFather(elementCreditNote)
-                .id(new ID.IDBuilder()
-                        .value("C180001053_888")
-                        .attributes(new PatternScheme.PatternSchemeBuilder().build())
-                        .build())
-                .build().load();
-
-        //BILLING REFERENCE > INVOICE DOCUMENT REFERENCE
-        List<InvoiceDocumentReference> invoiceDocumentReferenceListBR = new ArrayList<>();
-        InvoiceDocumentReference invoiceDocumentReferenceBR = new InvoiceDocumentReference.InvoiceDocumentReferenceBuilder()
-                .id("038/0115616")
                 .build();
-        invoiceDocumentReferenceListBR.add(invoiceDocumentReferenceBR);
 
-        //BILLING REFERENCE
-        Element elementBillingReference = new BillingReference.BillingReferenceBuilder()
-                .documentLinked(doc.getDoc())
-                .elementFather(elementCreditNote)
-                .invoiceDocumentReferenceList(invoiceDocumentReferenceListBR)
-                .build().load();
+        /**
+         * Element CustomizationID
+         */
+        CustomizationID customizationIDCreditNote = new CustomizationID.CustomizationIDBuilder()
+                .value("urn:tradeshift.com:ubl-2.0-customizations:2010-06")
+                .build();
 
+        /**
+         * Element ProfileID
+         */
+        ProfileID profileIDCreditNote = new ProfileID.ProfileIDBuilder()
+                .value("urn:www.cenbii.eu:profile:bii04:ver1.0")
+                .attributes(new PatternScheme.PatternSchemeBuilder()
+                        .schemeAgencyID("CEN/ISSS WS/BII")
+                        .schemeID("CWA 16073:2010")
+                        .schemeVersionID("1")
+                        .build())
+                .build();
 
-        //ADDITIONAL DOCUMENT REFERENCE
+        /**
+         * Element ID
+         */
+        ID iDCreditNote = new ID.IDBuilder()
+                .value("038/0116297")
+                .build();
+
+        /**
+         * Element IssueDate
+         */
+        IssueDate issueDateCreditNote = new IssueDate.IssueDateBuilder()
+                .value("2020-01-22")
+                .build();
+
+        /**
+         * Element DocumentCurrencyCode
+         */
+        DocumentCurrencyCode documentCurrencyCodeCreditNote = new DocumentCurrencyCode.DocumentCurrencyCodeBuilder()
+                .value("EUR")
+                .build();
+
+        /**
+         * Element OrderReference
+         */
+        OrderReference ublOrderReference = new OrderReference.OrderReferenceBuilder()
+                .id(new ID.IDBuilder()
+                        .value("C180001053")
+                        .build())
+                .build();
+
+        /**
+         * Element BillingReference [List]
+         */
+        InvoiceDocumentReference invoiceDocumentReferenceCreditNote = new InvoiceDocumentReference.InvoiceDocumentReferenceBuilder()
+                .id(new ID.IDBuilder()
+                        .value("038/0115616")
+                        .build())
+                .build();
+
+        List<BillingReference> billingReferenceListCreditNote = new ArrayList<>();
+        BillingReference billingReferenceCreditNote1 = new BillingReference.BillingReferenceBuilder()
+                .invoiceDocumentReference(invoiceDocumentReferenceCreditNote)
+                .build();
+        billingReferenceListCreditNote.add(billingReferenceCreditNote1);
+
+        /**
+         * Element AdditionalDocumentReference [List]
+         */
 
         //ADDITIONAL DOCUMENT REFERENCE > ATTACHMENT > EMBEDDED DOCUMENT BINARY OBJECT
-        EmbeddedDocumentBinaryObject embeddedDocumentBinaryObject22 = new EmbeddedDocumentBinaryObject.EmbeddedDocumentBinaryObjectBuilder()
+        EmbeddedDocumentBinaryObject embeddedDocumentBinaryObjectCreditNote1 = new EmbeddedDocumentBinaryObject.EmbeddedDocumentBinaryObjectBuilder()
                 .value("JVBERi0xLjQKJeTjz_TEST")
                 .attributes(new PatternFile.PatternFileBuilder()
                         .encodingCode("Base64_TEST")
@@ -105,14 +118,13 @@ public class Main {
                 .build();
 
         //ADDITIONAL DOCUMENT REFERENCE > ATTACHMENT
-        Attachment attachment22 = new Attachment.AttachmentBuilder()
-                .embeddedDocumentBinaryObject(embeddedDocumentBinaryObject22)
+        Attachment attachmentCreditNote1 = new Attachment.AttachmentBuilder()
+                .embeddedDocumentBinaryObject(embeddedDocumentBinaryObjectCreditNote1)
                 .build();
 
         //ADDITIONAL DOCUMENT REFERENCE
-        Element additionalDocumentReference22 = new AdditionalDocumentReference.AdditionalDocumentReferenceBuilder()
-                .documentLinked(doc.getDoc())
-                .elementFather(elementCreditNote)
+        List<AdditionalDocumentReference> additionalDocumentReferenceListCreditNote = new ArrayList<>();
+        AdditionalDocumentReference additionalDocumentReferenceCreditNote1 = new AdditionalDocumentReference.AdditionalDocumentReferenceBuilder()
                 .id(new ID.IDBuilder()
                         .value("attachment_TEST")
                         .attributes(new PatternScheme.PatternSchemeBuilder()
@@ -124,15 +136,23 @@ public class Main {
                                 .listID("urn:tradeshift.com:api:1.0:documenttypecode_TEST")
                                 .build())
                         .build())
-                .attachment(attachment22)
-                .build().load();
+                .attachment(attachmentCreditNote1)
+                .build();
+        additionalDocumentReferenceListCreditNote.add(additionalDocumentReferenceCreditNote1);
 
+        /**
+         * Element AccountingSupplierParty
+         */
 
-        //ACCOUNTING SUPPLIER PARTY
+        //TODO
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY IDENTIFICATION
-        List<PartyIdentification> partyIdentificationList = new ArrayList<>();
-        PartyIdentification partyIdentification1 = new PartyIdentification.PartyIdentificationBuilder()
+        /**
+         * Element AccountingCustomerParty
+         */
+
+        //ACCOUNTING CUSTOMER PARTY > PARTY > PARTY IDENTIFICATION
+        List<PartyIdentification> partyIdentificationListCreditNote = new ArrayList<>();
+        PartyIdentification partyIdentificationCreditNote1 = new PartyIdentification.PartyIdentificationBuilder()
                 .id(new ID.IDBuilder()
                         .value("FR21314887126_VERSION2")
                         .attributes(new PatternScheme.PatternSchemeBuilder()
@@ -140,7 +160,7 @@ public class Main {
                                 .build())
                         .build())
                 .build();
-        PartyIdentification partyIdentification2 = new PartyIdentification.PartyIdentificationBuilder()
+        PartyIdentification partyIdentificationCreditNote2 = new PartyIdentification.PartyIdentificationBuilder()
                 .id(new ID.IDBuilder()
                         .value("31488712600253_VERSION2")
                         .attributes(new PatternScheme.PatternSchemeBuilder()
@@ -148,36 +168,30 @@ public class Main {
                                 .build())
                         .build())
                 .build();
-        partyIdentificationList.add(partyIdentification1);
-        partyIdentificationList.add(partyIdentification2);
+        partyIdentificationListCreditNote.add(partyIdentificationCreditNote1);
+        partyIdentificationListCreditNote.add(partyIdentificationCreditNote2);
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY NAME
-        List<PartyName> partyNameList = new ArrayList<>();
-        PartyName partyName1 = new PartyName.PartyNameBuilder()
+        //ACCOUNTING CUSTOMER PARTY > PARTY > PARTY NAME
+        List<PartyName> partyNameListCreditNote = new ArrayList<>();
+        PartyName partyNameCreditNote1 = new PartyName.PartyNameBuilder()
                 .name(new Name.NameBuilder()
                         .value("Groupe SOVITRAT_VERSION2")
-                        .attributes(new PatternLanguage.PatternLanguageBuilder()
-                                .build())
                         .build())
                 .build();
-        partyNameList.add(partyName1);
+        partyNameListCreditNote.add(partyNameCreditNote1);
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY > POSTAL ADDRESS > COUNTRY
-        Country country1 = new Country.CountryBuilder()
+        //ACCOUNTING CUSTOMER PARTY > PARTY > POSTAL ADDRESS > COUNTRY
+        Country countryCreditNote1 = new Country.CountryBuilder()
                 .identificationCode(new IdentificationCode.IdentificationCodeBuilder()
                         .value("FR_VERSION2")
-                        .attributes(new PatternList.PatternListBuilder()
-                                .build())
                         .build())
                 .name(new Name.NameBuilder()
                         .value("LALA_VERSION2")
-                        .attributes(new PatternLanguage.PatternLanguageBuilder()
-                                .build())
                         .build())
                 .build();
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY > POSTAL ADDRESS
-        PostalAddress postalAddress1 = new PostalAddress.PostalAddressBuilder()
+        //ACCOUNTING CUSTOMER PARTY > PARTY > POSTAL ADDRESS
+        PostalAddress postalAddressCreditNote1 = new PostalAddress.PostalAddressBuilder()
                 .addressFormatCode(new AddressFormatCode.AddressFormatCodeBuilder()
                         .value("5_VERSION2")
                         .attributes(new PatternList.PatternListBuilder()
@@ -188,54 +202,44 @@ public class Main {
                         .build())
                 .postbox(new Postbox.PostboxBuilder()
                         .value("69006_VERSION2")
-                        .attributes(new PatternLanguage.PatternLanguageBuilder()
-                                .build())
                         .build())
                 .streetName(new StreetName.StreetNameBuilder()
                         .value("4 RUE DUGUESCLIN_VERSION2")
-                        .attributes(new PatternLanguage.PatternLanguageBuilder()
-                                .build())
                         .build())
                 .buildingNumber(new BuildingNumber.BuildingNumberBuilder()
                         .value("_VERSION2")
-                        .attributes(new PatternLanguage.PatternLanguageBuilder()
-                                .build())
                         .build())
                 .cityName(new CityName.CityNameBuilder()
                         .value("LYON_VERSION2")
-                        .attributes(new PatternLanguage.PatternLanguageBuilder()
-                                .build())
                         .build())
                 .postalZone(new PostalZone.PostalZoneBuilder()
                         .value("69006_VERSION2")
-                        .attributes(new PatternLanguage.PatternLanguageBuilder()
-                                .build())
                         .build())
-                .country(country1)
+                .country(countryCreditNote1)
                 .build();
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY TAX SCHEME > TAX SCHEME
-        TaxScheme taxScheme1 = new TaxScheme.TaxSchemeBuilder()
+        //ACCOUNTING CUSTOMER PARTY > PARTY > PARTY TAX SCHEME > TAX SCHEME
+        TaxScheme taxSchemeCreditNote1 = new TaxScheme.TaxSchemeBuilder()
                 .name(new Name.NameBuilder()
                         .value("VATfdgdfgdfgdfgdfg")
                         .build())
                 .build();
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY TAX SCHEME
-        List<PartyTaxScheme> partyTaxSchemeList = new ArrayList<>();
-        PartyTaxScheme partyTaxScheme1 = new PartyTaxScheme.PartyTaxSchemeBuilder()
+        //ACCOUNTING CUSTOMER PARTY > PARTY > PARTY TAX SCHEME
+        List<PartyTaxScheme> partyTaxSchemeListCreditNote = new ArrayList<>();
+        PartyTaxScheme partyTaxSchemeCreditNote1 = new PartyTaxScheme.PartyTaxSchemeBuilder()
                 .companyId(new CompanyID.CompanyIDBuilder()
                         .value("FR21314887126_VERSION2")
                         .attributes(new PatternScheme.PatternSchemeBuilder()
                                 .schemeID("FR:VAT_VERSION2")
                                 .build())
                         .build())
-                .taxScheme(taxScheme1)
+                .taxScheme(taxSchemeCreditNote1)
                 .build();
-        partyTaxSchemeList.add(partyTaxScheme1);
+        partyTaxSchemeListCreditNote.add(partyTaxSchemeCreditNote1);
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY LEGAL ENTITY > REGISTRATION ADDRESS
-        RegistrationAddress registrationAddress1 = new RegistrationAddress.RegistrationAddressBuilder()
+        //ACCOUNTING CUSTOMER PARTY > PARTY > PARTY LEGAL ENTITY > REGISTRATION ADDRESS
+        RegistrationAddress registrationAddressCreditNote1 = new RegistrationAddress.RegistrationAddressBuilder()
                 .id(new ID.IDBuilder()
                         .value("LYON_VERSION2")
                         .attributes(new PatternScheme.PatternSchemeBuilder()
@@ -266,14 +270,16 @@ public class Main {
                         .build())
                 .build();
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY LEGAL ENTITY > CORPORATE REGISTRATION SCHEME
-        CorporateRegistrationScheme corporateRegistrationScheme1 = new CorporateRegistrationScheme.CorporateRegistrationSchemeBuilder()
-                .id(new ID.IDBuilder().value("PUBLIC_LIMITED_VERSION2").build())
+        //ACCOUNTING CUSTOMER PARTY > PARTY > PARTY LEGAL ENTITY > CORPORATE REGISTRATION SCHEME
+        CorporateRegistrationScheme corporateRegistrationSchemeCreditNote1 = new CorporateRegistrationScheme.CorporateRegistrationSchemeBuilder()
+                .id(new ID.IDBuilder()
+                        .value("PUBLIC_LIMITED_VERSION2")
+                        .build())
                 .build();
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY LEGAL ENTITY
-        List<PartyLegalEntity> partyLegalEntityList = new ArrayList<>();
-        PartyLegalEntity partyLegalEntity1 = new PartyLegalEntity.PartyLegalEntityBuilder()
+        //ACCOUNTING CUSTOMER PARTY > PARTY > PARTY LEGAL ENTITY
+        List<PartyLegalEntity> partyLegalEntityListCreditNote = new ArrayList<>();
+        PartyLegalEntity partyLegalEntityCreditNote1 = new PartyLegalEntity.PartyLegalEntityBuilder()
                 .registrationName(new RegistrationName.RegistrationNameBuilder()
                         .value("Groupe SOVITRAT_VERSION2")
                         .build())
@@ -283,55 +289,65 @@ public class Main {
                                 .schemeID("FR:SIRET_VERSION2")
                                 .build())
                         .build())
-                .registrationAddress(registrationAddress1)
-                .corporateRegistrationScheme(corporateRegistrationScheme1)
+                .registrationAddress(registrationAddressCreditNote1)
+                .corporateRegistrationScheme(corporateRegistrationSchemeCreditNote1)
                 .build();
-        partyLegalEntityList.add(partyLegalEntity1);
+        partyLegalEntityListCreditNote.add(partyLegalEntityCreditNote1);
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY > CONTACT
-        Contact contact1 = new Contact.ContactBuilder()
+        //ACCOUNTING CUSTOMER PARTY > PARTY > CONTACT
+        Contact contactCreditNote1 = new Contact.ContactBuilder()
                 .id(new ID.IDBuilder()
                         .value("5a59bb3c-adf8-4b72-b45b-f4f2f33676f1_VERSION2")
                         .attributes(new PatternScheme.PatternSchemeBuilder()
                                 .schemeURI("http://tradeshift.com/api/1.0/userId_VERSION2")
                                 .build())
                         .build())
-                .name(new Name.NameBuilder().value("Amor BOUGHZALA_VERSION2").build())
-                .telephone(new Telephone.TelephoneBuilder().value("0472699760_VERSION2").build())
-                .electronicMail(new ElectronicMail.ElectronicMailBuilder().value("master@sovitrat.fr_VERSION2").build())
-                .note(new Note.NoteBuilder().value("Groupe SOVITRAT PUBLIC_LIMITED with share capi_VERSION2").build())
+                .name(new Name.NameBuilder()
+                        .value("Amor BOUGHZALA_VERSION2")
+                        .build())
+                .telephone(new Telephone.TelephoneBuilder()
+                        .value("0472699760_VERSION2")
+                        .build())
+                .electronicMail(new ElectronicMail.ElectronicMailBuilder()
+                        .value("master@sovitrat.fr_VERSION2")
+                        .build())
+                .note(new Note.NoteBuilder()
+                        .value("Groupe SOVITRAT PUBLIC_LIMITED with share capi_VERSION2")
+                        .build())
                 .build();
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY > PERSON
-        Person person1 = new Person.PersonBuilder()
-                .firstName(new FirstName.FirstNameBuilder().value("Amor_VERSION2").build())
-                .familyName(new FamilyName.FamilyNameBuilder().value("BOUGHZALA_VERSION2").build())
+        //ACCOUNTING CUSTOMER PARTY > PARTY > PERSON
+        Person personCreditNote1 = new Person.PersonBuilder()
+                .firstName(new FirstName.FirstNameBuilder()
+                        .value("Amor_VERSION2")
+                        .build())
+                .familyName(new FamilyName.FamilyNameBuilder()
+                        .value("BOUGHZALA_VERSION2")
+                        .build())
                 .build();
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY
-        Party elementParty = new Party.PartyBuilder()
-                .documentLinked(doc.getDoc())
-                .elementFather(elementCreditNote)
-                .partyIdentificationList(partyIdentificationList)
-                .partyNameList(partyNameList)
-                .postalAddress(postalAddress1)
-                .partyTaxSchemeList(partyTaxSchemeList)
-                .partyLegalEntityList(partyLegalEntityList)
-                .contact(contact1)
-                .person(person1)
+        //ACCOUNTING CUSTOMER PARTY > PARTY
+        Party elementPartyCreditNote = new Party.PartyBuilder()
+                .partyIdentificationList(partyIdentificationListCreditNote)
+                .partyNameList(partyNameListCreditNote)
+                .postalAddress(postalAddressCreditNote1)
+                .partyTaxSchemeList(partyTaxSchemeListCreditNote)
+                .partyLegalEntityList(partyLegalEntityListCreditNote)
+                .contact(contactCreditNote1)
+                .person(personCreditNote1)
                 .build();
 
-        //ACCOUNTING SUPPLIER PARTY
-        Element elementAccountingSupplierParty = new AccountingSupplierParty.AccountingSupplierPartyBuilder()
-                .documentLinked(doc.getDoc())
-                .elementFather(elementCreditNote)
-                .party(elementParty)
-                .build().load();
+        //ACCOUNTING CUSTOMER PARTY
+        AccountingCustomerParty elementAccountingCustomerPartyCreditNote = new AccountingCustomerParty.AccountingCustomerPartyBuilder()
+                .party(elementPartyCreditNote)
+                .build();
 
-        //TAX TOTAL
+        /**
+         * Element TaxTotal [List]
+         */
 
         //TAX TOTAL > TAX SUB TOTAL > TAX CATEGORY > TAX SCHEME
-        TaxScheme taxScheme10 = new TaxScheme.TaxSchemeBuilder()
+        TaxScheme taxSchemeCreditNote2 = new TaxScheme.TaxSchemeBuilder()
                 .id(new ID.IDBuilder()
                         .value("VAT_VERSION2")
                         .attributes(new PatternScheme.PatternSchemeBuilder()
@@ -346,7 +362,7 @@ public class Main {
                 .build();
 
         //TAX TOTAL > TAX SUB TOTAL > TAX CATEGORY
-        TaxCategory taxCategory1 = new TaxCategory.TaxCategoryBuilder()
+        TaxCategory taxCategoryCreditNote1 = new TaxCategory.TaxCategoryBuilder()
                 .id(new ID.IDBuilder()
                         .value("S_VERSION2")
                         .attributes(new PatternScheme.PatternSchemeBuilder()
@@ -355,13 +371,15 @@ public class Main {
                                 .schemeVersionID("D08B_VERSION2")
                                 .build())
                         .build())
-                .percent(new Percent.PercentBuilder().value("20_VERSION2").build())
-                .taxScheme(taxScheme10)
+                .percent(new Percent.PercentBuilder()
+                        .value("20_VERSION2")
+                        .build())
+                .taxScheme(taxSchemeCreditNote2)
                 .build();
 
         //TAX TOTAL > TAX SUB TOTAL
-        List<TaxSubTotal> taxSubTotalListFromTaxTotal = new ArrayList<>();
-        TaxSubTotal taxSubTotal1 = new TaxSubTotal.TaxSubTotalBuilder()
+        List<TaxSubTotal> taxSubTotalListCreditNote1 = new ArrayList<>();
+        TaxSubTotal taxSubTotalCreditNote1 = new TaxSubTotal.TaxSubTotalBuilder()
                 .taxableAmount(new TaxableAmount.TaxableAmountBuilder()
                         .value("109.24_VERSION2")
                         .attributes(new PatternCurrency.PatternCurrencyBuilder()
@@ -375,264 +393,232 @@ public class Main {
                                 .build())
                         .build())
                 .calculationSequenceNumeric(new CalculationSequenceNumeric.CalculationSequenceNumericBuilder().value("1").build())
-                .taxCategory(taxCategory1)
+                .taxCategory(taxCategoryCreditNote1)
                 .build();
-        taxSubTotalListFromTaxTotal.add(taxSubTotal1);
+        taxSubTotalListCreditNote1.add(taxSubTotalCreditNote1);
 
         //TAX TOTAL
-        Element elementTaxTotal = new TaxTotal.TaxTotalBuilder()
-                .documentLinked(doc.getDoc())
-                .elementFather(elementCreditNote)
+        List<TaxTotal> taxTotalListCreditNote = new ArrayList<>();
+        TaxTotal taxTotalCreditNote1 = new TaxTotal.TaxTotalBuilder()
                 .taxAmount(new TaxAmount.TaxAmountBuilder()
                         .value("21.85_VERSION2")
                         .attributes(new PatternCurrency.PatternCurrencyBuilder()
                                 .currencyID("EUR_VERSION2")
                                 .build())
                         .build())
-                .taxSubTotalList(taxSubTotalListFromTaxTotal)
-                .build().load();
+                .taxSubTotalList(taxSubTotalListCreditNote1)
+                .build();
+        taxTotalListCreditNote.add(taxTotalCreditNote1);
 
         /**
-         * TODO LATER
+         * Element LegalMonetaryTotal
          */
-        //LEGAL MONETARY TOTAL
-        Element elementLegalMonetaryTotal = new LegalMonetaryTotal.LegalMonetaryTotalBuilder()
-                .documentLinked(doc.getDoc())
-                .elementFather(elementCreditNote)
-                .lineExtensionAmount("245.74")
-                .lineExtensionAmount_AttributeCurrencyID("EUR")
-                .taxExclusiveAmount("49.15")
-                .taxExclusiveAmount_AttributeCurrencyID("EUR")
-                .taxInclusiveAmount("294.89")
-                .taxInclusiveAmount_AttributeCurrencyID("EUR")
-                .payableAmount("294.89")
-                .payableAmount_AttributeCurrencyID("EUR")
-                .build().load();
 
-        //CREDIT NOTE LINE
-
-        //CREDIT NOTE LINE > TAX TOTAL > TAX SUB TOTAL > TAX CATEGORY > TAX SCHEME
-        TaxScheme taxSchemeCNL = new TaxScheme.TaxSchemeBuilder()
-                .id(new ID.IDBuilder()
-                        .value("VAT_VERSION2")
-                        .attributes(new PatternScheme.PatternSchemeBuilder()
-                                .schemeAgencyID("6_VERSION2")
-                                .schemeID("UN/ECE 5153 Subset_VERSION2")
-                                .schemeVersionID("D08B_VERSION2")
-                                .build())
-                        .build())
-                .build();
-
-        //CREDIT NOTE LINE > TAX TOTAL > TAX SUB TOTAL > TAX CATEGORY
-        TaxCategory taxCategoryCNL = new TaxCategory.TaxCategoryBuilder()
-                .id(new ID.IDBuilder()
-                        .value("S_VERSION2")
-                        .attributes(new PatternScheme.PatternSchemeBuilder()
-                                .schemeAgencyID("6_VERSION2")
-                                .schemeID("UN/ECE 5305_VERSION2")
-                                .schemeVersionID("D08B_VERSION2")
-                                .build())
-                        .build())
-                .percent(new Percent.PercentBuilder().value("20_VERSION2").build())
-                .taxScheme(taxSchemeCNL)
-                .build();
-
-        //CREDIT NOTE LINE > TAX TOTAL > TAX SUB TOTAL
-        List<TaxSubTotal> taxSubTotalListCNL = new ArrayList<>();
-        TaxSubTotal taxSubTotalCNL = new TaxSubTotal.TaxSubTotalBuilder()
-                .taxableAmount(new TaxableAmount.TaxableAmountBuilder()
-                        .value("109.24_VERSION2")
+        LegalMonetaryTotal legalMonetaryTotalCreditNote = new LegalMonetaryTotal.LegalMonetaryTotalBuilder()
+                .lineExtensionAmount(new LineExtensionAmount.LineExtensionAmountBuilder()
+                        .value("774.15")
                         .attributes(new PatternCurrency.PatternCurrencyBuilder()
-                                .currencyID("EUR_VERSION2")
+                                .currencyID("EUR")
                                 .build())
                         .build())
-                .taxAmount(new TaxAmount.TaxAmountBuilder()
-                        .value("21.85_VERSION2")
+                .taxExclusiveAmount(new TaxExclusiveAmount.TaxExclusiveAmountBuilder()
+                        .value("154.83")
                         .attributes(new PatternCurrency.PatternCurrencyBuilder()
-                                .currencyID("EUR_VERSION2")
+                                .currencyID("EUR")
                                 .build())
                         .build())
-                .calculationSequenceNumeric(new CalculationSequenceNumeric.CalculationSequenceNumericBuilder().value("1").build())
-                .taxCategory(taxCategoryCNL)
-                .build();
-        taxSubTotalListCNL.add(taxSubTotalCNL);
-
-        //CREDIT NOTE LINE > TAX TOTAL
-        List<TaxTotal> taxTotalListCNL = new ArrayList<>();
-        TaxTotal taxTotalCNL = new TaxTotal.TaxTotalBuilder()
-                .taxAmount(new TaxAmount.TaxAmountBuilder()
-                        .value("21.85_VERSION2")
+                .taxInclusiveAmount(new TaxInclusiveAmount.TaxInclusiveAmountBuilder()
+                        .value("928.98")
                         .attributes(new PatternCurrency.PatternCurrencyBuilder()
-                                .currencyID("EUR_VERSION2")
+                                .currencyID("EUR")
                                 .build())
                         .build())
-                .taxSubTotalList(taxSubTotalListCNL)
-                .build();
-        taxTotalListCNL.add(taxTotalCNL);
-
-        //CREDIT NOTE LINE > ITEM > SELLERS ITEM IDENTIFICATION
-        SellersItemIdentification sellersItemIdentificationCNL = new SellersItemIdentification.SellersItemIdentificationBuilder()
-                .id("129_VERSION2")
+                .payableAmount(new PayableAmount.PayableAmountBuilder()
+                        .value("928.98")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR")
+                                .build())
+                        .build())
                 .build();
 
         /**
-         * TODO
+         * Element CreditNoteLine [List]
          */
-        //CREDIT NOTE LINE > ITEM > DESCRIPTION
-        List<Description> descriptionListCNL = new ArrayList<>();
-        Description descriptionCNL = new Description.DescriptionBuilder()
-                .value("heures normales_VERSION2")
-                .build();
-        descriptionListCNL.add(descriptionCNL);
 
-        //CREDIT NOTE LINE > ITEM
-        /*List<Item> itemListCNL = new ArrayList<>();
-        Item itemCNL = new Item.ItemBuilder()
-                .description("PRIME")
-                .name("PRIME")
-                .sellersItemIdentificationList(sellersItemIdentificationListCNL)
-                .build();
-        itemListCNL.add(itemCNL);*/
-        List<Item> itemListCNL = new ArrayList<>();
-        Item itemCNL = new Item.ItemBuilder()
-                .descriptionList(descriptionListCNL)
+        TaxScheme taxSchemeCreditNoteLine1 = new TaxScheme.TaxSchemeBuilder()
+                .id(new ID.IDBuilder()
+                        .value("VAT")
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeAgencyID("6")
+                                .schemeID("UN/ECE 5153 Subset")
+                                .schemeVersionID("D08B")
+                                .build())
+                        .build())
                 .name(new Name.NameBuilder()
-                        .value("heures normales_VERSION2")
+                        .value("FR TVA 20%")
                         .build())
-                .sellersItemIdentification(sellersItemIdentificationCNL)
                 .build();
-        itemListCNL.add(itemCNL);
 
-        //CREDIT NOTE LINE > PRICE
-        List<Price> priceListCNL = new ArrayList<>();
-        Price priceCNL = new Price.PriceBuilder()
-                .priceAmount(new PriceAmount.PriceAmountBuilder()
-                        .value("21.018_VERSION2")
+        TaxCategory taxCategoryCreditNoteLine1 = new TaxCategory.TaxCategoryBuilder()
+                .id(new ID.IDBuilder()
+                        .value("S")
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeAgencyID("6")
+                                .schemeID("UN/ECE 5305")
+                                .schemeVersionID("D08B")
+                                .build())
+                        .build())
+                .percent(new Percent.PercentBuilder()
+                        .value("20")
+                        .build())
+                .taxScheme(taxSchemeCreditNoteLine1)
+                .build();
+
+        List<TaxSubTotal> taxSubTotalListCreditNoteLine = new ArrayList<>();
+        TaxSubTotal taxSubTotalCreditNoteLine1 = new TaxSubTotal.TaxSubTotalBuilder()
+                .taxableAmount(new TaxableAmount.TaxableAmountBuilder()
+                        .value("109.24")
                         .attributes(new PatternCurrency.PatternCurrencyBuilder()
-                                .currencyID("EUR_VERSION2")
+                                .currencyID("EUR")
+                                .build())
+                        .build())
+                .taxAmount(new TaxAmount.TaxAmountBuilder()
+                        .value("21.85")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR")
+                                .build())
+                        .build())
+                .calculationSequenceNumeric(new CalculationSequenceNumeric.CalculationSequenceNumericBuilder()
+                        .value("1")
+                        .build())
+                .taxCategory(taxCategoryCreditNoteLine1)
+                .build();
+        taxSubTotalListCreditNoteLine.add(taxSubTotalCreditNoteLine1);
+
+        List<TaxTotal> taxTotalListCreditNoteLine = new ArrayList<>();
+        TaxTotal taxTotalCreditNoteLine1 = new TaxTotal.TaxTotalBuilder()
+                .taxAmount(new TaxAmount.TaxAmountBuilder()
+                        .value("21.85")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR")
+                                .build())
+                        .build())
+                .taxSubTotalList(taxSubTotalListCreditNoteLine)
+                .build();
+        taxTotalListCreditNoteLine.add(taxTotalCreditNoteLine1);
+
+        List<Description> descriptionListCreditNoteLine = new ArrayList<>();
+        Description descriptionCreditNoteLine1 = new Description.DescriptionBuilder()
+                .value("PRIME")
+                .build();
+        descriptionListCreditNoteLine.add(descriptionCreditNoteLine1);
+
+        SellersItemIdentification sellersItemIdentificationCreditNoteLine = new SellersItemIdentification.SellersItemIdentificationBuilder()
+                .id(new ID.IDBuilder()
+                        .value("129")
+                        .build())
+                .build();
+
+        Item itemCreditNoteLine = new Item.ItemBuilder()
+                .descriptionList(descriptionListCreditNoteLine)
+                .name(new Name.NameBuilder()
+                        .value("PRIME")
+                        .build())
+                .sellersItemIdentification(sellersItemIdentificationCreditNoteLine)
+                .build();
+
+        Price priceCreditNoteLine = new Price.PriceBuilder()
+                .priceAmount(new PriceAmount.PriceAmountBuilder()
+                        .value("109.24")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR")
                                 .build())
                         .build())
                 .baseQuantity(new BaseQuantity.BaseQuantityBuilder()
-                        .value("1_VERSION2")
+                        .value("1")
                         .attributes(new PatternCode.PatternCodeBuilder()
-                                .unitCode("HUR_VERSION2")
+                                .unitCode("EA")
                                 .build())
                         .build())
                 .orderableUnitFactorRate(new OrderableUnitFactorRate.OrderableUnitFactorRateBuilder()
-                        .value("1_VERSION2")
-                        .build())
-                .build();
-        priceListCNL.add(priceCNL);
-
-        //CREDIT NOTE LINE
-        Element elementCreditNoteLine = new CreditNoteLine.CreditNoteLineBuilder()
-                .documentLinked(doc.getDoc())
-                .elementFather(elementCreditNote)
-                .id("1")
-                .creditedQuantity("1")
-                .creditedQuantity_AttributeUnitCode("EA")
-                .lineExtensionAmount("109.24")
-                .lineExtensionAmount_AttributeCurrencyId("EUR")
-                .taxTotalList(taxTotalListCNL)
-                .itemList(itemListCNL)
-                .priceList(priceListCNL)
-                .build().load();
-
-        doc.generate();
-
-        /**
-         * AVEC TEMPLATE UBL CREDIT NOTE 2.0
-         */
-
-        DocumentT docUBL = new DocumentT("cars4.xml", "");
-        docUBL.initialize();
-
-        UBLVersionID ublVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()
-                .value("2.0")
-                .attributes(new PatternScheme.PatternSchemeBuilder().build())
-                .build();
-
-        CustomizationID ublCustomizationID = new CustomizationID.CustomizationIDBuilder()
-                .value("urn:tradeshift.com:ubl-2.0-customizations:2010-06")
-                .attributes(new PatternScheme.PatternSchemeBuilder().build())
-                .build();
-
-        ProfileID ublProfileID = new ProfileID.ProfileIDBuilder()
-                .value("urn:www.cenbii.eu:profile:bii04:ver1.0")
-                .attributes(new PatternScheme.PatternSchemeBuilder()
-                        .schemeAgencyID("CEN/ISSS WS/BII")
-                        .schemeID("CWA 16073:2010")
-                        .schemeVersionID("1")
+                        .value("1")
                         .build())
                 .build();
 
-        ID ublID = new ID.IDBuilder()
-                .value("038/0116297")
-                .attributes(new PatternScheme.PatternSchemeBuilder().build())
-                .build();
-
-        IssueDate ublIssueDate = new IssueDate.IssueDateBuilder()
-                .value("2020-01-22")
-                .build();
-
-        DocumentCurrencyCode ublDocumentCurrencyCode = new DocumentCurrencyCode.DocumentCurrencyCodeBuilder()
-                .value("EUR")
-                .attributes(new PatternList.PatternListBuilder().build())
-                .build();
-
-        OrderReference ublOrderReference = new OrderReference.OrderReferenceBuilder()
+        List<CreditNoteLine> creditNoteLineListCreditNote = new ArrayList<>();
+        CreditNoteLine creditNoteLineCreditNote = new CreditNoteLine.CreditNoteLineBuilder()
                 .id(new ID.IDBuilder()
-                        .value("C180001053")
-                        .attributes(new PatternScheme.PatternSchemeBuilder().build())
+                        .value("1")
                         .build())
+                .creditedQuantity(new CreditedQuantity.CreditedQuantityBuilder()
+                        .value("109.24")
+                        .attributes(new PatternCode.PatternCodeBuilder()
+                                .unitCode("EA")
+                                .build())
+                        .build())
+                .lineExtensionAmount(new LineExtensionAmount.LineExtensionAmountBuilder()
+                        .value("109.24")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR")
+                                .build())
+                        .build())
+                .taxTotalList(taxTotalListCreditNoteLine)
+                .item(itemCreditNoteLine)
+                .price(priceCreditNoteLine)
                 .build();
+        creditNoteLineListCreditNote.add(creditNoteLineCreditNote);
 
-        InvoiceDocumentReference ublInvoiceDocumentReference1A = new InvoiceDocumentReference.InvoiceDocumentReferenceBuilder()
-                .id("038/0115616")
-                .build();
-        List<InvoiceDocumentReference> invoiceDocumentReferenceList1 = Arrays.asList(ublInvoiceDocumentReference1A);
-        BillingReference ublBillingReference1 = new BillingReference.BillingReferenceBuilder()
-                .invoiceDocumentReferenceList(invoiceDocumentReferenceList1)
-                .build();
-        List<BillingReference> billingReferenceList = Arrays.asList(ublBillingReference1);
+        /**
+         * Element ROOT
+         */
 
-
-
-
-        Element elementUBL = new UBLCreditNote20.UBLCreditNote20Builder()
-                .documentLinked(docUBL.getDoc())
-                .ublVersionID(ublVersionID)
-                .customizationID(ublCustomizationID)
-                .profileID(ublProfileID)
-                .id(ublID)
-                .issueDate(ublIssueDate)
-                .documentCurrencyCode(ublDocumentCurrencyCode)
+        Element elementUBLCreditNote = new UBLCreditNote20.UBLCreditNote20Builder()
+                .documentLinked(docCreditNote.getDoc())
+                .ublVersionID(ublVersionIDCreditNote)
+                .customizationID(customizationIDCreditNote)
+                .profileID(profileIDCreditNote)
+                .id(iDCreditNote)
+                .issueDate(issueDateCreditNote)
+                .documentCurrencyCode(documentCurrencyCodeCreditNote)
                 .orderReference(ublOrderReference)
-                .billingReferenceList(billingReferenceList)
+                .billingReferenceList(billingReferenceListCreditNote)
+                .additionalDocumentReferenceList(additionalDocumentReferenceListCreditNote)
+                .accountingCustomerParty(elementAccountingCustomerPartyCreditNote)
+                .taxTotalList(taxTotalListCreditNote)
+                .legalMonetaryTotal(legalMonetaryTotalCreditNote)
+                .creditNoteLineList(creditNoteLineListCreditNote)
                 .build().load();
 
-
-        docUBL.generate();
+        docCreditNote.generate();
 
 
         /**
-         * WITH UBL TEMPLATE INVOICE 2.0 (VERSION 2 IN PROGRESS)
+         * ---
+         * UBL TEMPLATE INVOICE 2.0
+         * v1.1.0
+         * ---
          */
 
-        DocumentT docInvoice = new DocumentT("Invoice.xml", "");
+        DocumentT docInvoice = new DocumentT("InvoiceExample.xml", "");
         docInvoice.initialize();
 
-        //UBL VERSION ID (VERSION 2)
+        /**
+         * Element UBLVersionID
+         */
         UBLVersionID invoiceUBLVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()
                 .value("2.0")
                 .build();
 
-        //CUSTOMIZATION ID (VERSION 2)
+        /**
+         * Element CustomizationID
+         */
         CustomizationID invoiceCustomizationID = new CustomizationID.CustomizationIDBuilder()
                 .value("urn:tradeshift.com:ubl-2.0-customizations:2010-06")
                 .build();
 
-        //PROFILE ID (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
+        /**
+         * Element ProfileID
+         */
         ProfileID invoiceProfileID = new ProfileID.ProfileIDBuilder()
                 .value("urn:www.cenbii.eu:profile:bii04:ver1.0")
                 .attributes(new PatternScheme.PatternSchemeBuilder()
@@ -642,18 +628,23 @@ public class Main {
                         .build())
                 .build();
 
-        //INVOICE ID (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
+        /**
+         * Element ID
+         */
         ID invoiceID = new ID.IDBuilder()
                 .value("038/0116560")
-                .attributes(new PatternScheme.PatternSchemeBuilder().build())
                 .build();
 
-        //ISSUE DATE (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
+        /**
+         * Element IssueDate
+         */
         IssueDate invoiceIssueDate = new IssueDate.IssueDateBuilder()
                 .value("2021-04-30")
                 .build();
 
-        //INVOICE TYPE CODE (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
+        /**
+         * Element InvoiceTypeCode
+         */
         InvoiceTypeCode invoiceInvoiceTypeCode = new InvoiceTypeCode.InvoiceTypeCodeBuilder()
                 .value("380")
                 .attributes(new PatternList.PatternListBuilder()
@@ -663,24 +654,28 @@ public class Main {
                         .build())
                 .build();
 
-        //DOCUMENT CURRENCY CODE (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
+        /**
+         * Element DocumentCurrencyCode
+         */
         DocumentCurrencyCode invoiceDocumentCurrencyCode = new DocumentCurrencyCode.DocumentCurrencyCodeBuilder()
                 .value("EUR")
-                .attributes(new PatternList.PatternListBuilder().build())
                 .build();
 
-        //ORDER REFERENCE (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
+        /**
+         * Element OrderReference
+         */
         OrderReference invoiceOrderReference = new OrderReference.OrderReferenceBuilder()
                 .id(new ID.IDBuilder()
                         .value("C800430638")
-                        .attributes(new PatternScheme.PatternSchemeBuilder().build())
                         .build())
                 .build();
 
 
-        //ADDITIONAL DOCUMENT REFERENCE (VERSION 2)
+        /**
+         * Element AdditionalDocumentReference [List]
+         */
 
-        //ADDITIONAL DOCUMENT REFERENCE > ATTACHMENT > EMBEDDED DOCUMENT BINARY OBJECT (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
+        //ADDITIONAL DOCUMENT REFERENCE > ATTACHMENT > EMBEDDED DOCUMENT BINARY OBJECT
         EmbeddedDocumentBinaryObject embeddedDocumentBinaryObject44 = new EmbeddedDocumentBinaryObject.EmbeddedDocumentBinaryObjectBuilder()
                 .value("JVBERi0xLjQKJeTjz_TEST")
                 .attributes(new PatternFile.PatternFileBuilder()
@@ -688,17 +683,15 @@ public class Main {
                         .filename("avoir eiffage 1.pdf_TEST")
                         .mimeCode("application/pdf_TEST").build())
                 .build();
-        //ADDITIONAL DOCUMENT REFERENCE > ATTACHMENT (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
+        //ADDITIONAL DOCUMENT REFERENCE > ATTACHMENT
         Attachment attachment44 = new Attachment.AttachmentBuilder()
                 .embeddedDocumentBinaryObject(embeddedDocumentBinaryObject44)
                 .build();
-        //ADDITIONAL DOCUMENT REFERENCE (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
+        //ADDITIONAL DOCUMENT REFERENCE
         List<AdditionalDocumentReference> additionalDocumentReferenceListInvoice = new ArrayList<>();
         AdditionalDocumentReference additionalDocumentReference44 = new AdditionalDocumentReference.AdditionalDocumentReferenceBuilder()
                 .id(new ID.IDBuilder()
                         .value("attachment_TEST")
-                        .attributes(new PatternScheme.PatternSchemeBuilder()
-                                .build())
                         .build())
                 .documentTypeCode(new DocumentTypeCode.DocumentTypeCodeBuilder()
                         .value("attachment_TEST")
@@ -711,9 +704,11 @@ public class Main {
         additionalDocumentReferenceListInvoice.add(additionalDocumentReference44);
 
 
-        //ACCOUNTING SUPPLIER PARTY (VERSION 2 IN PROGRESS)
+        /**
+         * Element AccountingSupplierParty
+         */
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY IDENTIFICATION (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
+        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY IDENTIFICATION
         List<PartyIdentification> partyIdentificationListInvoice = new ArrayList<>();
         PartyIdentification partyIdentification1Invoice = new PartyIdentification.PartyIdentificationBuilder()
                 .id(new ID.IDBuilder()
@@ -734,32 +729,26 @@ public class Main {
         partyIdentificationListInvoice.add(partyIdentification1Invoice);
         partyIdentificationListInvoice.add(partyIdentification2Invoice);
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY NAME (VERSION 2) - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
+        //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY NAME
         List<PartyName> partyNameListInvoice = new ArrayList<>();
         PartyName partyNameInvoice1 = new PartyName.PartyNameBuilder()
                 .name(new Name.NameBuilder()
                         .value("Groupe SOVITRAT_VERSION2")
-                        .attributes(new PatternLanguage.PatternLanguageBuilder()
-                                .build())
                         .build())
                 .build();
         partyNameListInvoice.add(partyNameInvoice1);
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY > POSTAL ADDRESS > COUNTRY - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
+        //ACCOUNTING SUPPLIER PARTY > PARTY > POSTAL ADDRESS > COUNTRY
         Country countryInvoice1 = new Country.CountryBuilder()
                 .identificationCode(new IdentificationCode.IdentificationCodeBuilder()
                         .value("FR_VERSION2")
-                        .attributes(new PatternList.PatternListBuilder()
-                                .build())
                         .build())
                 .name(new Name.NameBuilder()
                         .value("LALA_VERSION2")
-                        .attributes(new PatternLanguage.PatternLanguageBuilder()
-                                .build())
                         .build())
                 .build();
 
-        //ACCOUNTING SUPPLIER PARTY > PARTY > POSTAL ADDRESS - A FAIRE LE CHANGEMENT COMME CUSTOMIZATION ID
+        //ACCOUNTING SUPPLIER PARTY > PARTY > POSTAL ADDRESS
         PostalAddress postalAddressInvoice1 = new PostalAddress.PostalAddressBuilder()
                 .addressFormatCode(new AddressFormatCode.AddressFormatCodeBuilder()
                         .value("5_VERSION2")
@@ -798,7 +787,6 @@ public class Main {
                 .build();
 
         //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY TAX SCHEME > TAX SCHEME
-        List<TaxScheme> taxSchemeListInvoice = new ArrayList<>();
         TaxScheme taxSchemeInvoice1 = new TaxScheme.TaxSchemeBuilder()
                 .id(new ID.IDBuilder()
                         .value("S_VERSION2")
@@ -812,7 +800,6 @@ public class Main {
                         .value("FR TVA 20%_VERSION2")
                         .build())
                 .build();
-        taxSchemeListInvoice.add(taxSchemeInvoice1);
 
         //ACCOUNTING SUPPLIER PARTY > PARTY > PARTY TAX SCHEME
         List<PartyTaxScheme> partyTaxSchemeListInvoice = new ArrayList<>();
@@ -823,7 +810,7 @@ public class Main {
                                 .schemeID("FR:VAT_VERSION2")
                                 .build())
                         .build())
-                .taxScheme(taxScheme1)
+                .taxScheme(taxSchemeInvoice1)
                 .build();
         partyTaxSchemeListInvoice.add(partyTaxSchemeInvoice1);
 
@@ -903,8 +890,6 @@ public class Main {
 
         //ACCOUNTING SUPPLIER PARTY > PARTY
         Party elementPartyInvoice1 = new Party.PartyBuilder()
-                .documentLinked(doc.getDoc())
-                .elementFather(elementCreditNote)
                 .partyIdentificationList(partyIdentificationListInvoice)
                 .partyNameList(partyNameListInvoice)
                 .postalAddress(postalAddressInvoice1)
@@ -916,19 +901,23 @@ public class Main {
 
         //ACCOUNTING SUPPLIER PARTY
         AccountingSupplierParty elementAccountingSupplierPartyInvoice = new AccountingSupplierParty.AccountingSupplierPartyBuilder()
-                .documentLinked(doc.getDoc())
-                .elementFather(elementCreditNote)
                 .party(elementPartyInvoice1)
                 .build();
 
-        //PAYMENT MEANS
+        /**
+         * Element AccountingCustomerParty
+         */
+
+        //TODO
+
+        /**
+         * Element PaymentMeans [List]
+         */
 
         //PAYMENT MEANS > PAYEE FINANCIAL ACCOUNT > FINANCIAL INSTITUTION BRANCH > FINANCIAL INSTITUTION
         FinancialInstitution financialInstitution1 = new FinancialInstitution.FinancialInstitutionBuilder()
                 .id(new ID.IDBuilder()
                         .value("CCFRFRPP")
-                        .attributes(new PatternScheme.PatternSchemeBuilder()
-                                .build())
                         .build())
                 .build();
         //PAYMENT MEANS > PAYEE FINANCIAL ACCOUNT > FINANCIAL INSTITUTION BRANCH
@@ -939,8 +928,6 @@ public class Main {
         PayeeFinancialAccount payeeFinancialAccount1 = new PayeeFinancialAccount.PayeeFinancialAccountBuilder()
                 .id(new ID.IDBuilder()
                         .value("FR7630056001710171214299041")
-                        .attributes(new PatternScheme.PatternSchemeBuilder()
-                                .build())
                         .build())
                 .financialInstitutionBranch(financialInstitutionBranch1)
                 .build();
@@ -949,8 +936,6 @@ public class Main {
         PaymentMeans paymentMeans1 = new PaymentMeans.PaymentMeansBuilder()
                 .id(new ID.IDBuilder()
                         .value("6edad297-67e3-4805-8e6d-691eb12f1138")
-                        .attributes(new PatternScheme.PatternSchemeBuilder()
-                                .build())
                         .build())
                 .paymentMeansCode(new PaymentMeansCode.PaymentMeansCodeBuilder()
                         .value("31")
@@ -971,7 +956,11 @@ public class Main {
                 .build();
         paymentMeansListInvoice.add(paymentMeans1);
 
-        //TAX SCHEME
+        /**
+         * Element TaxTotal [List]
+         */
+
+        //TAX TOTAL > TAX SUB TOTAL > TAX CATEGORY > TAX SCHEME
         TaxScheme taxSchemeInvoice44 = new TaxScheme.TaxSchemeBuilder()
                 .id(new ID.IDBuilder()
                         .value("VAT_VERSION2")
@@ -986,7 +975,7 @@ public class Main {
                         .build())
                 .build();
 
-        //TAX CATEGORY
+        //TAX TOTAL > TAX SUB TOTAL > TAX CATEGORY
         TaxCategory taxCategoryInvoice44 = new TaxCategory.TaxCategoryBuilder()
                 .id(new ID.IDBuilder()
                         .value("S_VERSION2")
@@ -1000,7 +989,7 @@ public class Main {
                 .taxScheme(taxSchemeInvoice44)
                 .build();
 
-        //TAX SUB TOTAL
+        //TAX TOTAL > TAX SUB TOTAL
         List<TaxSubTotal> taxSubTotalList44 = new ArrayList<>();
         TaxSubTotal taxSubTotal44 = new TaxSubTotal.TaxSubTotalBuilder()
                 .taxableAmount(new TaxableAmount.TaxableAmountBuilder()
@@ -1020,7 +1009,6 @@ public class Main {
                 .build();
         taxSubTotalList44.add(taxSubTotal44);
 
-
         //TAX TOTAL
         TaxTotal taxTotal44 = new TaxTotal.TaxTotalBuilder()
                 .taxAmount(new TaxAmount.TaxAmountBuilder()
@@ -1032,27 +1020,56 @@ public class Main {
                 .taxSubTotalList(taxSubTotalList44)
                 .build();
 
-        //SELLERS ITEM IDENTIFICATION
-        SellersItemIdentification sellersItemIdentification44 = new SellersItemIdentification.SellersItemIdentificationBuilder()
-                .id("001_VERSION2")
+        /**
+         * Element LegalMonetaryTotal
+         */
+
+        LegalMonetaryTotal legalMonetaryTotalInvoice1 = new LegalMonetaryTotal.LegalMonetaryTotalBuilder()
+                .lineExtensionAmount(new LineExtensionAmount.LineExtensionAmountBuilder()
+                        .value("774.15")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR")
+                                .build())
+                        .build())
+                .taxExclusiveAmount(new TaxExclusiveAmount.TaxExclusiveAmountBuilder()
+                        .value("154.83")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR")
+                                .build())
+                        .build())
+                .taxInclusiveAmount(new TaxInclusiveAmount.TaxInclusiveAmountBuilder()
+                        .value("928.98")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR")
+                                .build())
+                        .build())
+                .payableAmount(new PayableAmount.PayableAmountBuilder()
+                        .value("928.98")
+                        .attributes(new PatternCurrency.PatternCurrencyBuilder()
+                                .currencyID("EUR")
+                                .build())
+                        .build())
                 .build();
 
         /**
-         * TODO
+         * Element InvoiceLine [List]
          */
-        //CREDIT NOTE LINE > ITEM > DESCRIPTION
+
+        //INVOICE LINE > ITEM > SELLERS ITEM IDENTIFICATION
+        SellersItemIdentification sellersItemIdentification44 = new SellersItemIdentification.SellersItemIdentificationBuilder()
+                .id(new ID.IDBuilder()
+                        .value("129_VERSION2")
+                        .build())
+                .build();
+
+        //INVOICE LINE > ITEM > DESCRIPTION
         List<Description> descriptionList44 = new ArrayList<>();
         Description description44 = new Description.DescriptionBuilder()
                 .value("heures normales_VERSION2")
                 .build();
         descriptionList44.add(description44);
 
-        //ITEM
-        /*Item item44 = new Item.ItemBuilder()
-                .description("heures normales")
-                .name("heures normales")
-                .sellersItemIdentificationList(sellersItemIdentificationList44)
-                .build();*/
+        //INVOICE LINE > ITEM
         Item item44 = new Item.ItemBuilder()
                 .descriptionList(descriptionList44)
                 .name(new Name.NameBuilder()
@@ -1061,7 +1078,7 @@ public class Main {
                 .sellersItemIdentification(sellersItemIdentification44)
                 .build();
 
-        //PRICE
+        //INVOICE LINE > PRICE
         Price price44 = new Price.PriceBuilder()
                 .priceAmount(new PriceAmount.PriceAmountBuilder()
                         .value("21.018_VERSION2")
@@ -1105,6 +1122,10 @@ public class Main {
                 .build();
         invoiceLineList44.add(invoiceLine44);
 
+        /**
+         * Element ROOT
+         */
+
         Element elementInvoice = new UBLInvoice20.UBLInvoice20Builder()
                 .documentLinked(docInvoice.getDoc())
                 .ublVersionID(invoiceUBLVersionID)
@@ -1118,6 +1139,7 @@ public class Main {
                 .additionalDocumentReferenceList(additionalDocumentReferenceListInvoice)
                 .accountingSupplierParty(elementAccountingSupplierPartyInvoice)
                 .paymentMeansList(paymentMeansListInvoice)
+                .legalMonetaryTotal(legalMonetaryTotalInvoice1)
                 .invoiceLineList(invoiceLineList44)
                 .build().load();
 

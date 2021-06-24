@@ -155,75 +155,123 @@ public class PostalAddress {
      */
     public Element load() {
         Element elementPostalAddress = new ElementT(doc, element, ElementsName.POSTAL_ADDRESS.label).load();
-        if(!addressFormatCode.isNull()) {
-            Element elementAddressFormatCode = new AddressFormatCode.AddressFormatCodeBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementPostalAddress)
-                    .value(addressFormatCode.getValue())
-                    .attributes(new PatternList.PatternListBuilder()
-                            .listID(addressFormatCode.getPatternList().getListID())
-                            .listAgencyID(addressFormatCode.getPatternList().getListAgencyID())
-                            .listAgencyName(addressFormatCode.getPatternList().getListAgencyName())
-                            .listName(addressFormatCode.getPatternList().getListName())
-                            .listVersionID(addressFormatCode.getPatternList().getListVersionID())
-                            .name(addressFormatCode.getPatternList().getName())
-                            .languageID(addressFormatCode.getPatternList().getLanguageID())
-                            .listURI(addressFormatCode.getPatternList().getListURI())
-                            .listSchemeURI(addressFormatCode.getPatternList().getListSchemeURI())
-                            .build())
-                    .build().load();
+        if(!(addressFormatCode == null)) {
+            if(!(addressFormatCode.getPatternList() == null)){
+                Element elementAddressFormatCode = new AddressFormatCode.AddressFormatCodeBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPostalAddress)
+                        .value(addressFormatCode.getValue())
+                        .attributes(new PatternList.PatternListBuilder()
+                                .listID(addressFormatCode.getPatternList().getListID())
+                                .listAgencyID(addressFormatCode.getPatternList().getListAgencyID())
+                                .listAgencyName(addressFormatCode.getPatternList().getListAgencyName())
+                                .listName(addressFormatCode.getPatternList().getListName())
+                                .listVersionID(addressFormatCode.getPatternList().getListVersionID())
+                                .name(addressFormatCode.getPatternList().getName())
+                                .languageID(addressFormatCode.getPatternList().getLanguageID())
+                                .listURI(addressFormatCode.getPatternList().getListURI())
+                                .listSchemeURI(addressFormatCode.getPatternList().getListSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementAddressFormatCode = new AddressFormatCode.AddressFormatCodeBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPostalAddress)
+                        .value(addressFormatCode.getValue())
+                        .build().load();
+            }
         }
-        if(!postbox.isNull()) {
-            Element elementPostBox = new Postbox.PostboxBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementPostalAddress)
-                    .value(postbox.getValue())
-                    .attributes(new PatternLanguage.PatternLanguageBuilder()
-                            .languageID(postbox.getPatternLanguage().getLanguageID())
-                            .build())
-                    .build().load();
+        if(!(postbox == null)) {
+            if(!(postbox.getPatternLanguage() == null)){
+                Element elementPostBox = new Postbox.PostboxBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPostalAddress)
+                        .value(postbox.getValue())
+                        .attributes(new PatternLanguage.PatternLanguageBuilder()
+                                .languageID(postbox.getPatternLanguage().getLanguageID())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementPostBox = new Postbox.PostboxBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPostalAddress)
+                        .value(postbox.getValue())
+                        .build().load();
+            }
         }
-        if(!streetName.isNull()) {
-            Element elementStreetName = new StreetName.StreetNameBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementPostalAddress)
-                    .value(streetName.getValue())
-                    .attributes(new PatternLanguage.PatternLanguageBuilder()
-                            .languageID(streetName.getPatternLanguage().getLanguageID())
-                            .build())
-                    .build().load();
+        if(!(streetName == null)) {
+            if(!(streetName.getPatternLanguage() == null)){
+                Element elementStreetName = new StreetName.StreetNameBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPostalAddress)
+                        .value(streetName.getValue())
+                        .attributes(new PatternLanguage.PatternLanguageBuilder()
+                                .languageID(streetName.getPatternLanguage().getLanguageID())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementStreetName = new StreetName.StreetNameBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPostalAddress)
+                        .value(streetName.getValue())
+                        .build().load();
+            }
         }
-        if(buildingNumber.isNull()) {
-            Element elementBuildingNumber = new BuildingNumber.BuildingNumberBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementPostalAddress)
-                    .value(buildingNumber.getValue())
-                    .attributes(new PatternLanguage.PatternLanguageBuilder()
-                            .languageID(buildingNumber.getPatternLanguage().getLanguageID())
-                            .build())
-                    .build().load();
+        if(!(buildingNumber == null)) {
+            if(!(buildingNumber.getPatternLanguage() == null)){
+                Element elementBuildingNumber = new BuildingNumber.BuildingNumberBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPostalAddress)
+                        .value(buildingNumber.getValue())
+                        .attributes(new PatternLanguage.PatternLanguageBuilder()
+                                .languageID(buildingNumber.getPatternLanguage().getLanguageID())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementBuildingNumber = new BuildingNumber.BuildingNumberBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPostalAddress)
+                        .value(buildingNumber.getValue())
+                        .build().load();
+            }
         }
-        if(!cityName.isNull()) {
-            Element elementCityName = new CityName.CityNameBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementPostalAddress)
-                    .value(cityName.getValue())
-                    .attributes(new PatternLanguage.PatternLanguageBuilder()
-                            .languageID(cityName.getPatternLanguage().getLanguageID())
-                            .build())
-                    .build().load();
+        if(!(cityName == null)) {
+            if(!(cityName.getPatternLanguage() == null)){
+                Element elementCityName = new CityName.CityNameBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPostalAddress)
+                        .value(cityName.getValue())
+                        .attributes(new PatternLanguage.PatternLanguageBuilder()
+                                .languageID(cityName.getPatternLanguage().getLanguageID())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementCityName = new CityName.CityNameBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPostalAddress)
+                        .value(cityName.getValue())
+                        .build().load();
+            }
         }
-        if(!postalZone.isNull()) {
-            Element elementPostalZone = new PostalZone.PostalZoneBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementPostalAddress)
-                    .value(postalZone.getValue())
-                    .attributes(new PatternLanguage.PatternLanguageBuilder()
-                            .languageID(postalZone.getPatternLanguage().getLanguageID())
-                            .build())
-                    .build().load();
+        if(!(postalZone == null)) {
+            if(!(postalZone.getPatternLanguage() == null)){
+                Element elementPostalZone = new PostalZone.PostalZoneBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPostalAddress)
+                        .value(postalZone.getValue())
+                        .attributes(new PatternLanguage.PatternLanguageBuilder()
+                                .languageID(postalZone.getPatternLanguage().getLanguageID())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementPostalZone = new PostalZone.PostalZoneBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPostalAddress)
+                        .value(postalZone.getValue())
+                        .build().load();
+            }
         }
-        if(!country.isNull()){
+        if(!(country == null)){
             Element elementCountry = new Country.CountryBuilder()
                     .documentLinked(doc)
                     .elementFather(elementPostalAddress)

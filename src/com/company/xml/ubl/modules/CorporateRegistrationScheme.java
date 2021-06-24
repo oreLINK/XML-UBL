@@ -81,7 +81,6 @@ public class CorporateRegistrationScheme {
      */
     public Element load() {
         Element elementCorporateRegistrationScheme = new ElementT(doc, element, ElementsName.CORPORATE_REGISTRATION_SCHEME.label).load();
-
         if (!(id == null)) {
             if(!(id.getPatternScheme() == null)){
                 Element elementId = new ID.IDBuilder()

@@ -85,32 +85,34 @@ public class PaymentChannelCode {
      */
     public Element load() {
         Element elementRoot = new ElementT(doc, element, name, value).load();
-        if(!Tips.stringIsNull(patternList.getListID())){
-            Attr elementID_Attr1 = new AttributeT(doc, elementRoot, AttributesName.LIST_ID.label, patternList.getListID()).load();
-        }
-        if(!Tips.stringIsNull(patternList.getListAgencyID())){
-            Attr elementID_Attr2 = new AttributeT(doc, elementRoot, AttributesName.LIST_AGENCY_ID.label, patternList.getListAgencyID()).load();
-        }
-        if(!Tips.stringIsNull(patternList.getListAgencyName())){
-            Attr elementID_Attr3 = new AttributeT(doc, elementRoot, AttributesName.LIST_AGENCY_NAME.label, patternList.getListAgencyName()).load();
-        }
-        if(!Tips.stringIsNull(patternList.getListName())){
-            Attr elementID_Attr4 = new AttributeT(doc, elementRoot, AttributesName.LIST_NAME.label, patternList.getListName()).load();
-        }
-        if(!Tips.stringIsNull(patternList.getListVersionID())){
-            Attr elementID_Attr5 = new AttributeT(doc, elementRoot, AttributesName.LIST_VERSION_ID.label, patternList.getListVersionID()).load();
-        }
-        if(!Tips.stringIsNull(patternList.getName())){
-            Attr elementID_Attr6 = new AttributeT(doc, elementRoot, AttributesName.NAME.label, patternList.getName()).load();
-        }
-        if(!Tips.stringIsNull(patternList.getLanguageID())){
-            Attr elementID_Attr7 = new AttributeT(doc, elementRoot, AttributesName.LANGUAGE_ID.label, patternList.getLanguageID()).load();
-        }
-        if(!Tips.stringIsNull(patternList.getListURI())){
-            Attr elementID_Attr6 = new AttributeT(doc, elementRoot, AttributesName.LIST_URI.label, patternList.getListURI()).load();
-        }
-        if(!Tips.stringIsNull(patternList.getListSchemeURI())){
-            Attr elementID_Attr7 = new AttributeT(doc, elementRoot, AttributesName.LIST_SCHEME_URI.label, patternList.getListSchemeURI()).load();
+        if(!(patternList == null)){
+            if(!(patternList.getListID() == null)){
+                Attr elementID_Attr1 = new AttributeT(doc, elementRoot, AttributesName.LIST_ID.label, patternList.getListID()).load();
+            }
+            if(!(patternList.getListAgencyID() == null)){
+                Attr elementID_Attr2 = new AttributeT(doc, elementRoot, AttributesName.LIST_AGENCY_ID.label, patternList.getListAgencyID()).load();
+            }
+            if(!(patternList.getListAgencyName() == null)){
+                Attr elementID_Attr3 = new AttributeT(doc, elementRoot, AttributesName.LIST_AGENCY_NAME.label, patternList.getListAgencyName()).load();
+            }
+            if(!(patternList.getListName() == null)){
+                Attr elementID_Attr4 = new AttributeT(doc, elementRoot, AttributesName.LIST_NAME.label, patternList.getListName()).load();
+            }
+            if(!(patternList.getListVersionID() == null)){
+                Attr elementID_Attr5 = new AttributeT(doc, elementRoot, AttributesName.LIST_VERSION_ID.label, patternList.getListVersionID()).load();
+            }
+            if(!(patternList.getName() == null)){
+                Attr elementID_Attr6 = new AttributeT(doc, elementRoot, AttributesName.NAME.label, patternList.getName()).load();
+            }
+            if(!(patternList.getLanguageID() == null)){
+                Attr elementID_Attr7 = new AttributeT(doc, elementRoot, AttributesName.LANGUAGE_ID.label, patternList.getLanguageID()).load();
+            }
+            if(!(patternList.getListURI() == null)){
+                Attr elementID_Attr6 = new AttributeT(doc, elementRoot, AttributesName.LIST_URI.label, patternList.getListURI()).load();
+            }
+            if(!(patternList.getListSchemeURI() == null)){
+                Attr elementID_Attr7 = new AttributeT(doc, elementRoot, AttributesName.LIST_SCHEME_URI.label, patternList.getListSchemeURI()).load();
+            }
         }
         return elementRoot;
     }

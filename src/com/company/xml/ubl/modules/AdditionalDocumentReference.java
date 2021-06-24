@@ -114,41 +114,57 @@ public class AdditionalDocumentReference {
      */
     public Element load() {
         Element elementAdditionalDocumentReference = new ElementT(doc, element, ElementsName.ADDITIONAL_DOCUMENT_REFERENCE.label).load();
-        if(!id.isNull()){
-            Element elementId = new ID.IDBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementAdditionalDocumentReference)
-                    .value(id.getValue())
-                    .attributes(new PatternScheme.PatternSchemeBuilder()
-                            .schemeID(id.getPatternScheme().getSchemeID())
-                            .schemeName(id.getPatternScheme().getSchemeName())
-                            .schemeAgencyID(id.getPatternScheme().getSchemeAgencyID())
-                            .schemeAgencyName(id.getPatternScheme().getSchemeAgencyName())
-                            .schemeVersionID(id.getPatternScheme().getSchemeVersionID())
-                            .schemeDataURI(id.getPatternScheme().getSchemeDataURI())
-                            .schemeURI(id.getPatternScheme().getSchemeURI())
-                            .build())
-                    .build().load();
+        if(!(id == null)){
+            if(!(id.getPatternScheme() == null)){
+                Element elementId = new ID.IDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementAdditionalDocumentReference)
+                        .value(id.getValue())
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID(id.getPatternScheme().getSchemeID())
+                                .schemeName(id.getPatternScheme().getSchemeName())
+                                .schemeAgencyID(id.getPatternScheme().getSchemeAgencyID())
+                                .schemeAgencyName(id.getPatternScheme().getSchemeAgencyName())
+                                .schemeVersionID(id.getPatternScheme().getSchemeVersionID())
+                                .schemeDataURI(id.getPatternScheme().getSchemeDataURI())
+                                .schemeURI(id.getPatternScheme().getSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementId = new ID.IDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementAdditionalDocumentReference)
+                        .value(id.getValue())
+                        .build().load();
+            }
         }
-        if(!documentTypeCode.isNull()){
-            Element element = new DocumentTypeCode.DocumentTypeCodeBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementAdditionalDocumentReference)
-                    .value(documentTypeCode.getValue())
-                    .attributes(new PatternList.PatternListBuilder()
-                            .listID(documentTypeCode.getPatternList().getListID())
-                            .listAgencyID(documentTypeCode.getPatternList().getListAgencyID())
-                            .listAgencyName(documentTypeCode.getPatternList().getListAgencyName())
-                            .listName(documentTypeCode.getPatternList().getListName())
-                            .listVersionID(documentTypeCode.getPatternList().getListVersionID())
-                            .name(documentTypeCode.getPatternList().getName())
-                            .languageID(documentTypeCode.getPatternList().getLanguageID())
-                            .listURI(documentTypeCode.getPatternList().getListURI())
-                            .listSchemeURI(documentTypeCode.getPatternList().getListSchemeURI())
-                            .build())
-                    .build().load();
+        if(!(documentTypeCode == null)){
+            if(!(documentTypeCode.getPatternList() == null)){
+                Element element = new DocumentTypeCode.DocumentTypeCodeBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementAdditionalDocumentReference)
+                        .value(documentTypeCode.getValue())
+                        .attributes(new PatternList.PatternListBuilder()
+                                .listID(documentTypeCode.getPatternList().getListID())
+                                .listAgencyID(documentTypeCode.getPatternList().getListAgencyID())
+                                .listAgencyName(documentTypeCode.getPatternList().getListAgencyName())
+                                .listName(documentTypeCode.getPatternList().getListName())
+                                .listVersionID(documentTypeCode.getPatternList().getListVersionID())
+                                .name(documentTypeCode.getPatternList().getName())
+                                .languageID(documentTypeCode.getPatternList().getLanguageID())
+                                .listURI(documentTypeCode.getPatternList().getListURI())
+                                .listSchemeURI(documentTypeCode.getPatternList().getListSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element element = new DocumentTypeCode.DocumentTypeCodeBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementAdditionalDocumentReference)
+                        .value(documentTypeCode.getValue())
+                        .build().load();
+            }
         }
-        if(!attachment.isNull()){
+        if(!(attachment == null)){
             Element elementAttachment = new Attachment.AttachmentBuilder()
                     .documentLinked(doc)
                     .elementFather(elementAdditionalDocumentReference)

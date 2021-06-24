@@ -92,20 +92,28 @@ public class Attachment {
      */
     public Element load() {
         Element elementAttachment = new ElementT(doc, element, ElementsName.ATTACHMENT.label).load();
-        if(!embeddedDocumentBinaryObject.isNull()){
-            Element elementEmbeddedDocumentBinaryObject = new EmbeddedDocumentBinaryObject.EmbeddedDocumentBinaryObjectBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementAttachment)
-                    .value(embeddedDocumentBinaryObject.getValue())
-                    .attributes(new PatternFile.PatternFileBuilder()
-                            .format(embeddedDocumentBinaryObject.getPatternFile().getFormat())
-                            .mimeCode(embeddedDocumentBinaryObject.getPatternFile().getMimeCode())
-                            .encodingCode(embeddedDocumentBinaryObject.getPatternFile().getEncodingCode())
-                            .characterSetCode(embeddedDocumentBinaryObject.getPatternFile().getCharacterSetCode())
-                            .uri(embeddedDocumentBinaryObject.getPatternFile().getUri())
-                            .filename(embeddedDocumentBinaryObject.getPatternFile().getFilename())
-                            .build())
-                    .build().load();
+        if(!(embeddedDocumentBinaryObject == null)){
+            if(!(embeddedDocumentBinaryObject.getPatternFile() == null)){
+                Element elementEmbeddedDocumentBinaryObject = new EmbeddedDocumentBinaryObject.EmbeddedDocumentBinaryObjectBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementAttachment)
+                        .value(embeddedDocumentBinaryObject.getValue())
+                        .attributes(new PatternFile.PatternFileBuilder()
+                                .format(embeddedDocumentBinaryObject.getPatternFile().getFormat())
+                                .mimeCode(embeddedDocumentBinaryObject.getPatternFile().getMimeCode())
+                                .encodingCode(embeddedDocumentBinaryObject.getPatternFile().getEncodingCode())
+                                .characterSetCode(embeddedDocumentBinaryObject.getPatternFile().getCharacterSetCode())
+                                .uri(embeddedDocumentBinaryObject.getPatternFile().getUri())
+                                .filename(embeddedDocumentBinaryObject.getPatternFile().getFilename())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementEmbeddedDocumentBinaryObject = new EmbeddedDocumentBinaryObject.EmbeddedDocumentBinaryObjectBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementAttachment)
+                        .value(embeddedDocumentBinaryObject.getValue())
+                        .build().load();
+            }
         }
         return elementAttachment;
     }

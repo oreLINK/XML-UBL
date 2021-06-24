@@ -81,23 +81,31 @@ public class PayeeFinancialAccount {
      */
     public Element load() {
         Element elementRoot = new ElementT(doc, element, ElementsName.PAYEE_FINANCIAL_ACCOUNT.label).load();
-        if(!Tips.stringIsNull(id.getValue())){
-            Element elementId = new ID.IDBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementRoot)
-                    .value(id.getValue())
-                    .attributes(new PatternScheme.PatternSchemeBuilder()
-                            .schemeID(id.getPatternScheme().getSchemeID())
-                            .schemeName(id.getPatternScheme().getSchemeName())
-                            .schemeAgencyID(id.getPatternScheme().getSchemeAgencyID())
-                            .schemeAgencyName(id.getPatternScheme().getSchemeAgencyName())
-                            .schemeVersionID(id.getPatternScheme().getSchemeVersionID())
-                            .schemeDataURI(id.getPatternScheme().getSchemeDataURI())
-                            .schemeURI(id.getPatternScheme().getSchemeURI())
-                            .build())
-                    .build().load();
+        if(!(id == null)){
+            if(!(id.getPatternScheme() == null)){
+                Element elementId = new ID.IDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementRoot)
+                        .value(id.getValue())
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID(id.getPatternScheme().getSchemeID())
+                                .schemeName(id.getPatternScheme().getSchemeName())
+                                .schemeAgencyID(id.getPatternScheme().getSchemeAgencyID())
+                                .schemeAgencyName(id.getPatternScheme().getSchemeAgencyName())
+                                .schemeVersionID(id.getPatternScheme().getSchemeVersionID())
+                                .schemeDataURI(id.getPatternScheme().getSchemeDataURI())
+                                .schemeURI(id.getPatternScheme().getSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementId = new ID.IDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementRoot)
+                        .value(id.getValue())
+                        .build().load();
+            }
         }
-        if(!financialInstitutionBranch.isNull()){
+        if(!(financialInstitutionBranch == null)){
             Element elementFinancialInstitutionBranch = new FinancialInstitutionBranch.FinancialInstitutionBranchBuilder()
                     .documentLinked(doc)
                     .elementFather(elementRoot)

@@ -15,7 +15,7 @@ public class BillingReference {
 
     private Document doc;
     private Element element;
-    private List<InvoiceDocumentReference> invoiceDocumentReferenceList;
+    private InvoiceDocumentReference invoiceDocumentReference;
 
     /**
      * <h2>Element "BillingReference"</h2>
@@ -30,7 +30,7 @@ public class BillingReference {
      *     </li>
      *     <li><b>for build()</b>
      *     <ul>
-     *         <li>[List] <b>invoiceDocumentReferenceList</b> <b>[0..1]</b> : [InvoiceDocumentReference] elements list.</li>
+     *         <li>[InvoiceDocumentReference] <b>invoiceDocumentReference</b> <b>[0..1]</b> : An associative reference to Invoice.</li>
      *     </ul>
      *     </li>
      * </ul>
@@ -38,7 +38,7 @@ public class BillingReference {
     private BillingReference(BillingReferenceBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
-        this.invoiceDocumentReferenceList = builder.invoiceDocumentReferenceList;
+        this.invoiceDocumentReference = builder.invoiceDocumentReference;
     }
 
     /**
@@ -48,7 +48,7 @@ public class BillingReference {
 
         private Document doc;
         private Element element;
-        private List<InvoiceDocumentReference> invoiceDocumentReferenceList;
+        private InvoiceDocumentReference invoiceDocumentReference;
 
         public BillingReferenceBuilder() {}
 
@@ -60,8 +60,8 @@ public class BillingReference {
             this.element = element;
             return this;
         }
-        public BillingReferenceBuilder invoiceDocumentReferenceList(List<InvoiceDocumentReference> invoiceDocumentReferenceList){
-            this.invoiceDocumentReferenceList = invoiceDocumentReferenceList;
+        public BillingReferenceBuilder invoiceDocumentReference(InvoiceDocumentReference invoiceDocumentReference){
+            this.invoiceDocumentReference = invoiceDocumentReference;
             return this;
         }
         public BillingReference build(){
@@ -71,8 +71,8 @@ public class BillingReference {
 
     }
 
-    public List<InvoiceDocumentReference> getInvoiceDocumentReferenceList() {
-        return invoiceDocumentReferenceList;
+    public InvoiceDocumentReference getInvoiceDocumentReference() {
+        return invoiceDocumentReference;
     }
 
     /**
@@ -81,14 +81,12 @@ public class BillingReference {
      */
     public Element load() {
         Element elementBillingReference = new ElementT(doc, element, ElementsName.BILLING_REFERENCE.label).load();
-        if(!Tips.listIsNull(invoiceDocumentReferenceList)) {
-            for (InvoiceDocumentReference invoiceDocumentReference : invoiceDocumentReferenceList) {
-                Element elementInvoiceDocumentReference = new InvoiceDocumentReference.InvoiceDocumentReferenceBuilder()
-                        .documentLinked(doc)
-                        .elementFather(elementBillingReference)
-                        .id(invoiceDocumentReference.getId())
-                        .build().load();
-            }
+        if(!(invoiceDocumentReference == null)){
+            Element elementInvoiceDocumentReference = new InvoiceDocumentReference.InvoiceDocumentReferenceBuilder()
+                    .documentLinked(doc)
+                    .elementFather(elementBillingReference)
+                    .id(invoiceDocumentReference.getId())
+                    .build().load();
         }
         return elementBillingReference;
     }

@@ -102,33 +102,49 @@ public class Country {
      */
     public Element load() {
         Element elementCountry = new ElementT(doc,element, ElementsName.POSTAL_ADDRESS_COUNTRY.label).load();
-        if(!identificationCode.isNull()) {
-            Element elementIdentificationCode = new IdentificationCode.IdentificationCodeBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementCountry)
-                    .value(identificationCode.getValue())
-                    .attributes(new PatternList.PatternListBuilder()
-                            .listID(identificationCode.getPatternList().getListID())
-                            .listAgencyID(identificationCode.getPatternList().getListAgencyID())
-                            .listAgencyName(identificationCode.getPatternList().getListAgencyName())
-                            .listName(identificationCode.getPatternList().getListName())
-                            .listVersionID(identificationCode.getPatternList().getListVersionID())
-                            .name(identificationCode.getPatternList().getName())
-                            .languageID(identificationCode.getPatternList().getLanguageID())
-                            .listURI(identificationCode.getPatternList().getListURI())
-                            .listSchemeURI(identificationCode.getPatternList().getListSchemeURI())
-                            .build())
-                    .build().load();
+        if(!(identificationCode == null)) {
+            if(!(identificationCode.getPatternList() == null)){
+                Element elementIdentificationCode = new IdentificationCode.IdentificationCodeBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementCountry)
+                        .value(identificationCode.getValue())
+                        .attributes(new PatternList.PatternListBuilder()
+                                .listID(identificationCode.getPatternList().getListID())
+                                .listAgencyID(identificationCode.getPatternList().getListAgencyID())
+                                .listAgencyName(identificationCode.getPatternList().getListAgencyName())
+                                .listName(identificationCode.getPatternList().getListName())
+                                .listVersionID(identificationCode.getPatternList().getListVersionID())
+                                .name(identificationCode.getPatternList().getName())
+                                .languageID(identificationCode.getPatternList().getLanguageID())
+                                .listURI(identificationCode.getPatternList().getListURI())
+                                .listSchemeURI(identificationCode.getPatternList().getListSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementIdentificationCode = new IdentificationCode.IdentificationCodeBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementCountry)
+                        .value(identificationCode.getValue())
+                        .build().load();
+            }
         }
-        if(!name.isNull()){
-            Element elementName = new Name.NameBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementCountry)
-                    .value(name.getValue())
-                    .attributes(new PatternLanguage.PatternLanguageBuilder()
-                            .languageID(name.getPatternLanguage().getLanguageID())
-                            .build())
-                    .build().load();
+        if(!(name == null)){
+            if(!(name.getPatternLanguage() == null)){
+                Element elementName = new Name.NameBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementCountry)
+                        .value(name.getValue())
+                        .attributes(new PatternLanguage.PatternLanguageBuilder()
+                                .languageID(name.getPatternLanguage().getLanguageID())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementName = new Name.NameBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementCountry)
+                        .value(name.getValue())
+                        .build().load();
+            }
         }
         return elementCountry;
     }

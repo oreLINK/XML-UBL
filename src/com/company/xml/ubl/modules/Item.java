@@ -17,11 +17,6 @@ import java.util.List;
  */
 public class Item {
 
-    /*private Document doc;
-    private Element element;
-    private String description;
-    private String name;
-    private List<SellersItemIdentification> sellersItemIdentificationList = new ArrayList<>();*/
     private Document doc;
     private Element element;
     private List<Description> descriptionList = new ArrayList<>();
@@ -49,11 +44,6 @@ public class Item {
      * </ul>
      */
     private Item(ItemBuilder builder) {
-        /*this.doc = builder.doc;
-        this.element = builder.element;
-        this.description = builder.description;
-        this.name = builder.name;
-        this.sellersItemIdentificationList = builder.sellersItemIdentificationList;*/
         this.doc = builder.doc;
         this.element = builder.element;
         this.descriptionList = builder.descriptionList;
@@ -66,11 +56,6 @@ public class Item {
      */
     public static class ItemBuilder {
 
-        /*private Document doc;
-        private Element element;
-        private String description;
-        private String name;
-        private List<SellersItemIdentification> sellersItemIdentificationList = new ArrayList<>();*/
         private Document doc;
         private Element element;
         private List<Description> descriptionList = new ArrayList<>();
@@ -79,26 +64,6 @@ public class Item {
 
         public ItemBuilder() {}
 
-        /*public ItemBuilder documentLinked(Document doc){
-            this.doc = doc;
-            return this;
-        }
-        public ItemBuilder elementFather(Element element){
-            this.element = element;
-            return this;
-        }
-        public ItemBuilder description(String description){
-            this.description = description;
-            return this;
-        }
-        public ItemBuilder name(String name){
-            this.name = name;
-            return this;
-        }
-        public ItemBuilder sellersItemIdentificationList(List<SellersItemIdentification> sellersItemIdentificationList){
-            this.sellersItemIdentificationList = sellersItemIdentificationList;
-            return this;
-        }*/
         public ItemBuilder documentLinked(Document doc){
             this.doc = doc;
             return this;
@@ -126,26 +91,6 @@ public class Item {
 
     }
 
-    /*public String getDescription() {
-        return description;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<SellersItemIdentification> getSellersItemIdentificationList() {
-        return sellersItemIdentificationList;
-    }*/
-
-    /*public boolean isNull() {
-        if(Tips.stringIsNull(description) && Tips.stringIsNull(name)){
-            return true;
-        } else {
-            return false;
-        }
-    }*/
-
     public List<Description> getDescriptionList() {
         return descriptionList;
     }
@@ -162,25 +107,6 @@ public class Item {
      * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
      * @return the generated element
      */
-    /*public Element load() {
-        Element elementItem = new ElementT(doc, element, ElementsName.ITEM.label).load();
-        if(!Tips.stringIsNull(description)){
-            Element elementDescription = new ElementT(doc, elementItem, ElementsName.ITEM_DESCRIPTION.label, description).load();
-        }
-        if(!Tips.stringIsNull(name)){
-            Element elementName = new ElementT(doc, elementItem, ElementsName.ITEM_NAME.label, name).load();
-        }
-        if(!Tips.listIsNull(sellersItemIdentificationList)){
-            for (SellersItemIdentification sellersItemIdentification : sellersItemIdentificationList) {
-                Element elementSellersItemIdentificationList = new SellersItemIdentification.SellersItemIdentificationBuilder()
-                        .documentLinked(doc)
-                        .elementFather(elementItem)
-                        .id(sellersItemIdentification.getId())
-                        .build().load();
-            }
-        }
-        return elementItem;
-    }*/
     public Element load() {
         Element elementItem = new ElementT(doc, element, ElementsName.ITEM.label).load();
         if(!Tips.listIsNull(descriptionList)){

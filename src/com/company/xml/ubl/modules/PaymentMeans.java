@@ -114,66 +114,90 @@ public class PaymentMeans {
      */
     public Element load() {
         Element elementPaymentMeans1 = new ElementT(doc, element, ElementsName.PAYMENT_MEANS.label).load();
-        if(!id.isNull()){
-            Element elementId = new ID.IDBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementPaymentMeans1)
-                    .value(id.getValue())
-                    .attributes(new PatternScheme.PatternSchemeBuilder()
-                            .schemeID(id.getPatternScheme().getSchemeID())
-                            .schemeName(id.getPatternScheme().getSchemeName())
-                            .schemeAgencyID(id.getPatternScheme().getSchemeAgencyID())
-                            .schemeAgencyName(id.getPatternScheme().getSchemeAgencyName())
-                            .schemeVersionID(id.getPatternScheme().getSchemeVersionID())
-                            .schemeDataURI(id.getPatternScheme().getSchemeDataURI())
-                            .schemeURI(id.getPatternScheme().getSchemeURI())
-                            .build())
-                    .build().load();
+        if(!(id == null)){
+            if(!(id.getPatternScheme() == null)){
+                Element elementId = new ID.IDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPaymentMeans1)
+                        .value(id.getValue())
+                        .attributes(new PatternScheme.PatternSchemeBuilder()
+                                .schemeID(id.getPatternScheme().getSchemeID())
+                                .schemeName(id.getPatternScheme().getSchemeName())
+                                .schemeAgencyID(id.getPatternScheme().getSchemeAgencyID())
+                                .schemeAgencyName(id.getPatternScheme().getSchemeAgencyName())
+                                .schemeVersionID(id.getPatternScheme().getSchemeVersionID())
+                                .schemeDataURI(id.getPatternScheme().getSchemeDataURI())
+                                .schemeURI(id.getPatternScheme().getSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementId = new ID.IDBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPaymentMeans1)
+                        .value(id.getValue())
+                        .build().load();
+            }
         }
-        if(!paymentMeansCode.isNull()){
-            Element paymentMeansCode1 = new PaymentMeansCode.PaymentMeansCodeBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementPaymentMeans1)
-                    .value(paymentMeansCode.getValue())
-                    .attributes(new PatternList.PatternListBuilder()
-                            .listID(paymentMeansCode.getPatternList().getListID())
-                            .listAgencyID(paymentMeansCode.getPatternList().getListAgencyID())
-                            .listAgencyName(paymentMeansCode.getPatternList().getListAgencyName())
-                            .listName(paymentMeansCode.getPatternList().getListName())
-                            .listVersionID(paymentMeansCode.getPatternList().getListVersionID())
-                            .name(paymentMeansCode.getPatternList().getName())
-                            .languageID(paymentMeansCode.getPatternList().getLanguageID())
-                            .listURI(paymentMeansCode.getPatternList().getListURI())
-                            .listSchemeURI(paymentMeansCode.getPatternList().getListSchemeURI())
-                            .build())
-                    .build().load();
+        if(!(paymentMeansCode == null)){
+            if(!(paymentMeansCode.getPatternList() == null)){
+                Element paymentMeansCode1 = new PaymentMeansCode.PaymentMeansCodeBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPaymentMeans1)
+                        .value(paymentMeansCode.getValue())
+                        .attributes(new PatternList.PatternListBuilder()
+                                .listID(paymentMeansCode.getPatternList().getListID())
+                                .listAgencyID(paymentMeansCode.getPatternList().getListAgencyID())
+                                .listAgencyName(paymentMeansCode.getPatternList().getListAgencyName())
+                                .listName(paymentMeansCode.getPatternList().getListName())
+                                .listVersionID(paymentMeansCode.getPatternList().getListVersionID())
+                                .name(paymentMeansCode.getPatternList().getName())
+                                .languageID(paymentMeansCode.getPatternList().getLanguageID())
+                                .listURI(paymentMeansCode.getPatternList().getListURI())
+                                .listSchemeURI(paymentMeansCode.getPatternList().getListSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element paymentMeansCode1 = new PaymentMeansCode.PaymentMeansCodeBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPaymentMeans1)
+                        .value(paymentMeansCode.getValue())
+                        .build().load();
+            }
         }
-        if(!paymentDueDate.isNull()){
+        if(!(paymentDueDate == null)){
             Element elementPaymentDueDate = new PaymentDueDate.PaymentDueDateBuilder()
                     .documentLinked(doc)
                     .elementFather(elementPaymentMeans1)
                     .value(paymentDueDate.getValue())
                     .build().load();
         }
-        if(!paymentChannelCode.isNull()){
-            Element elementPaymentChannelCode = new PaymentChannelCode.PaymentChannelCodeBuilder()
-                    .documentLinked(doc)
-                    .elementFather(elementPaymentMeans1)
-                    .value(paymentChannelCode.getValue())
-                    .attributes(new PatternList.PatternListBuilder()
-                            .listID(paymentChannelCode.getPatternList().getListID())
-                            .listAgencyID(paymentChannelCode.getPatternList().getListAgencyID())
-                            .listAgencyName(paymentChannelCode.getPatternList().getListAgencyName())
-                            .listName(paymentChannelCode.getPatternList().getListName())
-                            .listVersionID(paymentChannelCode.getPatternList().getListVersionID())
-                            .name(paymentChannelCode.getPatternList().getName())
-                            .languageID(paymentChannelCode.getPatternList().getLanguageID())
-                            .listURI(paymentChannelCode.getPatternList().getListURI())
-                            .listSchemeURI(paymentChannelCode.getPatternList().getListSchemeURI())
-                            .build())
-                    .build().load();
+        if(!(paymentChannelCode == null)){
+            if(!(paymentChannelCode.getPatternList() == null)){
+                Element elementPaymentChannelCode = new PaymentChannelCode.PaymentChannelCodeBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPaymentMeans1)
+                        .value(paymentChannelCode.getValue())
+                        .attributes(new PatternList.PatternListBuilder()
+                                .listID(paymentChannelCode.getPatternList().getListID())
+                                .listAgencyID(paymentChannelCode.getPatternList().getListAgencyID())
+                                .listAgencyName(paymentChannelCode.getPatternList().getListAgencyName())
+                                .listName(paymentChannelCode.getPatternList().getListName())
+                                .listVersionID(paymentChannelCode.getPatternList().getListVersionID())
+                                .name(paymentChannelCode.getPatternList().getName())
+                                .languageID(paymentChannelCode.getPatternList().getLanguageID())
+                                .listURI(paymentChannelCode.getPatternList().getListURI())
+                                .listSchemeURI(paymentChannelCode.getPatternList().getListSchemeURI())
+                                .build())
+                        .build().load();
+            } else {
+                Element elementPaymentChannelCode = new PaymentChannelCode.PaymentChannelCodeBuilder()
+                        .documentLinked(doc)
+                        .elementFather(elementPaymentMeans1)
+                        .value(paymentChannelCode.getValue())
+                        .build().load();
+            }
         }
-        if(!payeeFinancialAccount.isNull()){
+        if(!(payeeFinancialAccount == null)){
             Element elementPayeeFinancialAccount = new PayeeFinancialAccount.PayeeFinancialAccountBuilder()
                     .documentLinked(doc)
                     .elementFather(elementPaymentMeans1)

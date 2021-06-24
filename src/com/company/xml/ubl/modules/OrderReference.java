@@ -81,7 +81,7 @@ public class OrderReference {
      */
     public Element load() {
         Element elementOrderReference = new ElementT(doc, element, ElementsName.ORDER_REFERENCE.label).load();
-        if(!Tips.stringIsNull(id.getValue())){
+        if(!(id == null)){
             Element elementId = new ID.IDBuilder()
                     .documentLinked(doc)
                     .elementFather(elementOrderReference)

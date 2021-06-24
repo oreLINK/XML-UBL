@@ -85,23 +85,25 @@ public class EmbeddedDocumentBinaryObject {
      */
     public Element load() {
         Element elementRoot = new ElementT(doc, element, name, value).load();
-        if(!Tips.stringIsNull(patternFile.getFormat())){
-            Attr elementID_Attr1 = new AttributeT(doc, elementRoot, AttributesName.FORMAT.label, patternFile.getFormat()).load();
-        }
-        if(!Tips.stringIsNull(patternFile.getMimeCode())){
-            Attr elementID_Attr2 = new AttributeT(doc, elementRoot, AttributesName.MIME_CODE.label, patternFile.getMimeCode()).load();
-        }
-        if(!Tips.stringIsNull(patternFile.getEncodingCode())){
-            Attr elementID_Attr3 = new AttributeT(doc, elementRoot, AttributesName.ENCODING_CODE.label, patternFile.getEncodingCode()).load();
-        }
-        if(!Tips.stringIsNull(patternFile.getCharacterSetCode())){
-            Attr elementID_Attr4 = new AttributeT(doc, elementRoot, AttributesName.CHARACTER_SET_CODE.label, patternFile.getCharacterSetCode()).load();
-        }
-        if(!Tips.stringIsNull(patternFile.getUri())){
-            Attr elementID_Attr5 = new AttributeT(doc, elementRoot, AttributesName.URI.label, patternFile.getUri()).load();
-        }
-        if(!Tips.stringIsNull(patternFile.getFilename())){
-            Attr elementID_Attr6 = new AttributeT(doc, elementRoot, AttributesName.FILE_NAME.label, patternFile.getFilename()).load();
+        if(!(patternFile == null)){
+            if(!(patternFile.getFormat() == null)){
+                Attr elementID_Attr1 = new AttributeT(doc, elementRoot, AttributesName.FORMAT.label, patternFile.getFormat()).load();
+            }
+            if(!(patternFile.getMimeCode() == null)){
+                Attr elementID_Attr2 = new AttributeT(doc, elementRoot, AttributesName.MIME_CODE.label, patternFile.getMimeCode()).load();
+            }
+            if(!(patternFile.getEncodingCode() == null)){
+                Attr elementID_Attr3 = new AttributeT(doc, elementRoot, AttributesName.ENCODING_CODE.label, patternFile.getEncodingCode()).load();
+            }
+            if(!(patternFile.getCharacterSetCode() == null)){
+                Attr elementID_Attr4 = new AttributeT(doc, elementRoot, AttributesName.CHARACTER_SET_CODE.label, patternFile.getCharacterSetCode()).load();
+            }
+            if(!(patternFile.getUri() == null)){
+                Attr elementID_Attr5 = new AttributeT(doc, elementRoot, AttributesName.URI.label, patternFile.getUri()).load();
+            }
+            if(!(patternFile.getFilename() == null)){
+                Attr elementID_Attr6 = new AttributeT(doc, elementRoot, AttributesName.FILE_NAME.label, patternFile.getFilename()).load();
+            }
         }
         return elementRoot;
     }

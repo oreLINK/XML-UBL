@@ -159,6 +159,9 @@ Caption :
 ### Credit Note 2.0
 
 This section groups together all the modules and elements present in the Credit Note 2.0 template. [See more.](http://www.datypic.com/sc/ubl20/e-ns14_CreditNote.html)
+        
+<details>
+        <summary>Click to see the table.</summary>
    
 | Name | Condition | Cardinality | Type |
 | ------- | ----------- | ------------ | ------------ |
@@ -177,9 +180,14 @@ This section groups together all the modules and elements present in the Credit 
 | LegalMonetaryTotal | 🟢 | **[1..1]** | Module | 
 | CreditNoteLine | 🟢 | **[1..*]** | Module |
         
+</details>
+        
 ### Invoice 2.0
 
 This section groups together all the modules and elements present in the Invoice 2.0 template. [See more.](http://www.datypic.com/sc/ubl20/e-ns19_Invoice.html)
+        
+<details>
+        <summary>Click to see the table.</summary>
    
 | Name | Condition | Cardinality | Type |
 | ------- | ----------- | ------------ | ------------ |
@@ -198,13 +206,18 @@ This section groups together all the modules and elements present in the Invoice
 | TaxTotal | 🟢 | **[0..*]** | Module |
 | LegalMonetaryTotal | 🟢 | **[1..1]** | Module | 
 | InvoiceLine | 🟢 | **[1..*]** | Module |
+        
+</details>
 
 ## Example
         
 In this example the cardinalities of the different elements and modules are respected. This is not the case with the cardinalities of the `CreditNote 2.0` template. Otherwise we would have had to add all the modules / elements to the cardinalities **[1..1/*]**, which would have been long and unreadable. This example repeats all of the creation sections seen previously.
         
 ### Java code
-        
+
+<details>
+        <summary>Click to see the code.</summary>
+
 ```java
 //TEMPLATE DECLARATION
 DocumentT docCreditNote20 = new DocumentT("CreditNote-2-0.xml", "");
@@ -267,9 +280,14 @@ Element elementUBLCreditNote20 = new UBLCreditNote20.UBLCreditNote20Builder()
 
 docCreditNote20.generate();
 ```
-
+        
+</details> 
+        
 ### XML File
-     
+
+<details>
+        <summary>Click to see the code.</summary>
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <CreditNote xmlns="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2"
@@ -290,6 +308,8 @@ docCreditNote20.generate();
     </cac:AdditionalDocumentReference>
 </CreditNote>
 ```
+        
+</details>
 
 ## Release history
 

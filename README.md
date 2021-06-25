@@ -154,13 +154,15 @@ Be sure to look at the cardinality of all the parameters of the elements. They a
         
 ## List of templates
         
-### Credit Note 2.0
-
-This section groups together all the modules and elements present in the Credit Note 2.0 template.
+Caption :
 * ❌ This module/element is not compatible with this template
 * 🔴 This module/element is not yet implemented in this template.
 * 🟠 This module/element is currently being implemented and will be available in a future release.
 * 🟢 This module/element is implemented and can be used in this template.
+        
+### Credit Note 2.0
+
+This section groups together all the modules and elements present in the Credit Note 2.0 template.
    
 | Name | Condition | Cardinality | Type |
 | ------- | ----------- | ------------ | ------------ |
@@ -182,10 +184,6 @@ This section groups together all the modules and elements present in the Credit 
 ### Invoice 2.0
 
 This section groups together all the modules and elements present in the Invoice 2.0 template.<br>
-* ❌ This module/element is not compatible with this template<br>
-* 🔴 This module/element is not yet implemented in this template.<br>
-* 🟠 This module/element is currently being implemented and will be available in a future release.<br>
-* 🟢 This module/element is implemented and can be used in this template.<br>
    
 | Name | Condition | Cardinality | Type |
 | ------- | ----------- | ------------ | ------------ |
@@ -212,62 +210,66 @@ In this example the cardinalities of the different elements and modules are resp
 ### Java code
         
 ```java
+//TEMPLATE DECLARATION
 DocumentT docCreditNote20 = new DocumentT("CreditNote-2-0.xml", "");
         docCreditNote20.initialize();
 
-        //UBL VERSION ID
-        UBLVersionID ublVersionIDCreditNote20 = new UBLVersionID.UBLVersionIDBuilder()
-                .value("2.0")
-                .build();
+//UBL VERSION ID
+UBLVersionID ublVersionIDCreditNote20 = new UBLVersionID.UBLVersionIDBuilder()
+        .value("2.0")
+        .build();
 
-        //PROFILE ID
-        ProfileID profileIDCreditNote20 = new ProfileID.ProfileIDBuilder()
-                .value("tan:www.bizbil.fr:profile:zbb09:bou1.0")
-                .attributes(new PatternScheme.PatternSchemeBuilder()
-                        .schemeAgencyID("FRA/NASA RT/EDF")
-                        .schemeID("WAL 18052:2021")
-                        .schemeVersionID("1")
+//PROFILE ID
+ProfileID profileIDCreditNote20 = new ProfileID.ProfileIDBuilder()
+        .value("tan:www.bizbil.fr:profile:zbb09:bou1.0")
+        .attributes(new PatternScheme.PatternSchemeBuilder()
+                .schemeAgencyID("FRA/NASA RT/EDF")
+                .schemeID("WAL 18052:2021")
+                .schemeVersionID("1")
+                .build())
+        .build();
+
+//ADDITIONAL DOCUMENT REFERENCE > ATTACHMENT > EMBEDDED DOCUMENT BINARY OBJECT
+EmbeddedDocumentBinaryObject embeddedDocumentBinaryObjectCreditNote20 = new EmbeddedDocumentBinaryObject.EmbeddedDocumentBinaryObjectBuilder()
+        .value("dsfdsfkjslkjsd...")
+        .attributes(new PatternFile.PatternFileBuilder()
+                .encodingCode("Base64")
+                .filename("facture_avril.pdf")
+                .mimeCode("application/pdf")
+                .build())
+        .build();
+
+//ADDITIONAL DOCUMENT REFERENCE > ATTACHMENT
+Attachment attachmentCreditNote20 = new Attachment.AttachmentBuilder()
+        .embeddedDocumentBinaryObject(embeddedDocumentBinaryObjectCreditNote20)
+        .build();
+
+//ADDITIONAL DOCUMENT REFERENCE
+List<AdditionalDocumentReference> additionalDocumentReferenceCreditNote20 = new ArrayList<>();
+AdditionalDocumentReference additionalDocumentReferenceCreditNote201 = new AdditionalDocumentReference.AdditionalDocumentReferenceBuilder()
+        .id(new ID.IDBuilder()
+                .value("attachment-2")
+                .build())
+        .documentTypeCode(new DocumentTypeCode.DocumentTypeCodeBuilder()
+                .value("attachment")
+                .attributes(new PatternList.PatternListBuilder()
+                        .listID("urn:tradeshift.com:api:1.0:documenttypecode")
                         .build())
-                .build();
+                .build())
+        .attachment(attachmentCreditNote20)
+        .build();
+additionalDocumentReferenceCreditNote20.add(additionalDocumentReferenceCreditNote201);
 
-        //ADDITIONAL DOCUMENT REFERENCE > ATTACHMENT > EMBEDDED DOCUMENT BINARY OBJECT
-        EmbeddedDocumentBinaryObject embeddedDocumentBinaryObjectCreditNote20 = new EmbeddedDocumentBinaryObject.EmbeddedDocumentBinaryObjectBuilder()
-                .value("dsfdsfkjslkjsd...")
-                .attributes(new PatternFile.PatternFileBuilder()
-                        .encodingCode("Base64")
-                        .filename("facture_avril.pdf")
-                        .mimeCode("application/pdf").build())
-                .build();
+//TEMPLATE CREDIT NOTE 2.0
+Element elementUBLCreditNote20 = new UBLCreditNote20.UBLCreditNote20Builder()
+        .documentLinked(docCreditNote20.getDoc())
+        .ublVersionID(ublVersionIDCreditNote20)
+        .profileID(profileIDCreditNote20)
+        .additionalDocumentReferenceList(additionalDocumentReferenceCreditNote20)
+        .build()
+        .load();
 
-        //ADDITIONAL DOCUMENT REFERENCE > ATTACHMENT
-        Attachment attachmentCreditNote20 = new Attachment.AttachmentBuilder()
-                .embeddedDocumentBinaryObject(embeddedDocumentBinaryObjectCreditNote20)
-                .build();
-
-        //ADDITIONAL DOCUMENT REFERENCE
-        List<AdditionalDocumentReference> additionalDocumentReferenceCreditNote20 = new ArrayList<>();
-        AdditionalDocumentReference additionalDocumentReferenceCreditNote201 = new AdditionalDocumentReference.AdditionalDocumentReferenceBuilder()
-                .id(new ID.IDBuilder()
-                        .value("attachment-2")
-                        .build())
-                .documentTypeCode(new DocumentTypeCode.DocumentTypeCodeBuilder()
-                        .value("attachment")
-                        .attributes(new PatternList.PatternListBuilder()
-                                .listID("urn:tradeshift.com:api:1.0:documenttypecode")
-                                .build())
-                        .build())
-                .attachment(attachmentCreditNote20)
-                .build();
-        additionalDocumentReferenceCreditNote20.add(additionalDocumentReferenceCreditNote201);
-
-        Element elementUBLCreditNote20 = new UBLCreditNote20.UBLCreditNote20Builder()
-                .documentLinked(docCreditNote20.getDoc())
-                .ublVersionID(ublVersionIDCreditNote20)
-                .profileID(profileIDCreditNote20)
-                .additionalDocumentReferenceList(additionalDocumentReferenceCreditNote20)
-                .build().load();
-
-        docCreditNote20.generate();
+docCreditNote20.generate();
 ```
 
 ### XML File

@@ -155,6 +155,7 @@ Caption :
 * 🔴 This module/element is not yet implemented in this template.
 * 🟠 This module/element is currently being implemented and will be available in a future release.
 * 🟢 This module/element is implemented and can be used in this template.
+* 🔵 This module/element is mandatory in this template.
 
 ### Credit Note 2.0
 
@@ -169,10 +170,10 @@ This section groups together all the modules and elements present in the Credit 
 | UBLVersionID | 🟢 | **[0..1]** | Element | 
 | CustomizationID | 🟢 | **[0..1]** | Element |
 | ProfileID | 🟢 | **[0..1]** | Element |
-| ID | 🟢 | **[1..1]** | Element |
+| ID 🔵 | 🟢 | **[1..1]** | Element |
 | CopyIndicator | 🔴 | **[0..1]** | Element | 
 | UUID | 🔴 | **[0..1]** | Element |
-| IssueDate | 🟢 | **[1..1]** | Element |
+| IssueDate 🔵 | 🟢 | **[1..1]** | Element |
 | IssueTime | 🔴 | **[0..1]** | Element | 
 | TaxPointDate | 🔴 | **[0..1]** | Element |
 | Note | 🔴 | **[0..1]** | Element | 
@@ -193,8 +194,8 @@ This section groups together all the modules and elements present in the Credit 
 | ContractDocumentReference | 🔴 | **[0..*]** | Module |        
 | AdditionalDocumentReference | 🟢 | **[0..*]** | Module |
 | Signature  | 🔴 | **[0..*]** | Module |
-| AccountingSupplierParty | 🟢 | **[1..1]** | Module | 
-| AccountingCustomerParty | 🟢 | **[1..1]** | Module |    
+| AccountingSupplierParty 🔵 | 🟢 | **[1..1]** | Module | 
+| AccountingCustomerParty 🔵 | 🟢 | **[1..1]** | Module |    
 | PayeeParty | 🔴 | **[0..1]** | Module |
 | TaxRepresentativeParty | 🔴 | **[0..1]** | Module | 
 | TaxExchangeRate | 🔴 | **[0..1]** | Module |  
@@ -203,8 +204,8 @@ This section groups together all the modules and elements present in the Credit 
 | PaymentAlternativeExchangeRate | 🔴 | **[0..1]** | Module |  
 | AllowanceCharge | 🔴 | **[0..*]** | Module |       
 | TaxTotal | 🟢 | **[0..*]** | Module |
-| LegalMonetaryTotal | 🟢 | **[1..1]** | Module | 
-| CreditNoteLine | 🟢 | **[1..*]** | Module |
+| LegalMonetaryTotal 🔵 | 🟢 | **[1..1]** | Module | 
+| CreditNoteLine 🔵 | 🟢 | **[1..*]** | Module |
         
 </details>
         

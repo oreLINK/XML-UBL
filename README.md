@@ -1,6 +1,6 @@
 # XML-UBL
 
-![version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![version](https://img.shields.io/badge/version-1.1.0-blue.svg)
 [![CodeFactor](https://www.codefactor.io/repository/github/orelink/xml-ubl/badge?s=03295c42823b0c8be2bb295524bc2791b93da76d)](https://www.codefactor.io/repository/github/orelink/xml-ubl)
 ![contribution](https://img.shields.io/badge/contribution-yes-green.svg)
 
@@ -158,33 +158,72 @@ Be sure to look at the cardinality of all the parameters of the elements. They a
         
 ### Attribute creation
         
+        
+        
+## List of templates
+        
+### Credit Note 2.0
 
+This section groups together all the modules and elements present in the Credit Note 2.0 template.<br>
+Caption :<br>
+* ❌ This module/element is not compatible with this template<br>
+* 🔴 This module/element is not yet implemented in this template.<br>
+* 🟠 This module/element is currently being implemented and will be available in a future release.<br>
+* 🟢 This module/element is implemented and can be used in this template.<br>
+   
+| Name | Condition | Cardinality | Type |
+| ------- | ----------- | ------------ | ------------ |
+| UBLVersionID | 🟢 | **[0..1]** | Element | 
+| CustomizationID | 🟢 | **[0..1]** | Element |
+| ProfileID | 🟢 | **[0..1]** | Element |
+| ID | 🟢 | **[1..1]** | Element | 
+| IssueDate | 🟢 | **[1..1]** | Element |
+| DocumentCurrencyCode | 🟢 | **[0..1]** | Element |
+| OrderReference | 🟢 | **[0..1]** | Module | 
+| BillingReference | 🟢 | **[0..*]** | Module |
+| AdditionalDocumentReference | 🟢 | **[0..*]** | Module |
+| AccountingSupplierParty | 🟢 | **[1..1]** | Module | 
+| AccountingCustomerParty | 🟢 | **[1..1]** | Module |
+| TaxTotal | 🟢 | **[0..*]** | Module |
+| LegalMonetaryTotal | 🟢 | **[1..1]** | Module | 
+| CreditNoteLine | 🟢 | **[1..*]** | Module |
+        
+### Invoice 2.0
 
-## List of elements
+This section groups together all the modules and elements present in the Invoice 2.0 template.<br>
+Caption :<br>
+* ❌ This module/element is not compatible with this template<br>
+* 🔴 This module/element is not yet implemented in this template.<br>
+* 🟠 This module/element is currently being implemented and will be available in a future release.<br>
+* 🟢 This module/element is implemented and can be used in this template.<br>
+   
+| Name | Condition | Cardinality | Type |
+| ------- | ----------- | ------------ | ------------ |
+| UBLVersionID | 🟢 | **[0..1]** | Element | 
+| CustomizationID | 🟢 | **[0..1]** | Element |
+| ProfileID | 🟢 | **[0..1]** | Element |
+| ID | 🟢 | **[1..1]** | Element | 
+| IssueDate | 🟢 | **[1..1]** | Element |
+| InvoiceTypeCode | 🟢 | **[0..1]** | Element |
+| DocumentCurrencyCode | 🟢 | **[0..1]** | Element |
+| OrderReference | 🟢 | **[0..1]** | Module | 
+| AdditionalDocumentReference | 🟢 | **[0..*]** | Module |
+| AccountingSupplierParty | 🟢 | **[1..1]** | Module | 
+| AccountingCustomerParty | 🟢 | **[1..1]** | Module |
+| PaymentMeans | 🟢 | **[0..*]** | Module |
+| TaxTotal | 🟢 | **[0..*]** | Module |
+| LegalMonetaryTotal | 🟢 | **[1..1]** | Module | 
+| InvoiceLine | 🟢 | **[1..*]** | Module |
 
-This is the list of possible elements in a UBL template, as well as some information about them in this project :
-* **Name** : element name.
-* **Credit Note 2.0** : if this element can be implemented in the UBL CreditNote 2.0 template of the project. As well as its cardinality in this template.
-* **Invoice 2.0** : if this element can be implemented in the UBL Invoice 2.0 template of the project. As well as its cardinality in this template.<br>
+## Example
+        
 
-Legend for columns `Credit Note 2.0` and `Credit Note 2.0` :<br>
-* ❌ This element is not compatible with this template<br>
-* 🔴 This element is not yet implemented in this template.<br>
-* 🟠 This element is currently being implemented and will be available in a future release.<br>
-* 🟢 This element is implemented and can be used in this template.<br>
-
-| Name | Credit Note 2.0 | Invoice 2.0 |
-| ------- | ----------- | ------------ |
-| UBLVersionID | 🟢 [0..1] | 🟠 |
-| CustomizationID | 🟢 [0..1] | 🟠 |
-| ProfileID | 🟢 [0..1] | 🟠 |
-| ... | ... | ... |
 
 ## Release history
 
 | Release | Description | Release date |
 | ------- | ----------- | ------------ |
-|  *to come up*  | **This same tool with additional features** : *Generation of a complete UBL CreditNote 2.0 template, generation of a complete Invoice 2.0 template, creation of the user manual, improvement of README...etc* | *to come up* |
+|  1.1.0  | **This same tool with additional features** : *Generation of a complete UBL CreditNote 2.0 template, generation of a complete Invoice 2.0 template, creation of the user manual, improvement of README...etc* | *to come up* |
 |  1.0.0  | **Launch of the tool with basic functionalities** : *Generation of a partially supported UBL CreditNote version 2.0 template (the most common modules, elements and attributes are available), complete code documentation* | Jun. 18 2021 |
     
 ## License

@@ -168,7 +168,7 @@ public class UBLInvoice20 {
 
         if(!Tips.stringIsNull(ublVersionID.getValue())){
             if(!(ublVersionID.getPatternScheme() == null)){
-                Element elementUBLVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()
+                Element elementUBLVersionID = new UBLVersionID.UBLVersionIDBuilder()
                         .documentLinked(doc)
                         .elementFather(elementInvoice)
                         .value(ublVersionID.getValue())
@@ -183,7 +183,7 @@ public class UBLInvoice20 {
                                 .build())
                         .build().load();
             } else {
-                Element elementUBLVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()
+                Element elementUBLVersionID = new UBLVersionID.UBLVersionIDBuilder()
                         .documentLinked(doc)
                         .elementFather(elementInvoice)
                         .value(ublVersionID.getValue())

@@ -166,7 +166,7 @@ public class UBLCreditNote20 {
 
         if(!Tips.stringIsNull(ublVersionID.getValue())){
             if(!(ublVersionID.getPatternScheme() == null)){
-                Element elementUBLVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()
+                Element elementUBLVersionID = new UBLVersionID.UBLVersionIDBuilder()
                         .documentLinked(doc)
                         .elementFather(elementCreditNote)
                         .value(ublVersionID.getValue())
@@ -181,14 +181,14 @@ public class UBLCreditNote20 {
                                 .build())
                         .build().load();
             } else {
-                Element elementUBLVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()
+                Element elementUBLVersionID = new UBLVersionID.UBLVersionIDBuilder()
                         .documentLinked(doc)
                         .elementFather(elementCreditNote)
                         .value(ublVersionID.getValue())
                         .build().load();
             }
         }
-        if(!Tips.stringIsNull(customizationID.getValue())){
+        if(!(customizationID == null)){
             if(!(customizationID.getPatternScheme() == null)){
                 Element elementCustomizationID = new CustomizationID.CustomizationIDBuilder()
                         .documentLinked(doc)
@@ -259,6 +259,8 @@ public class UBLCreditNote20 {
                         .value(id.getValue())
                         .build().load();
             }
+        } else {
+            System.out.println("[CreditNote 2.0] : Attention ! The element ID is mandatory in this template.");
         }
         if(!(issueDate == null)){
             Element elementIssueDate = new IssueDate.IssueDateBuilder()
@@ -300,7 +302,7 @@ public class UBLCreditNote20 {
                     .id(id)
                     .build().load();
         }
-        if(!Tips.listIsNull(billingReferenceList)){
+        if(!(billingReferenceList == null)){
             for (BillingReference billingReference : billingReferenceList) {
                 Element elementBillingReference = new BillingReference.BillingReferenceBuilder()
                         .documentLinked(doc)
@@ -334,7 +336,7 @@ public class UBLCreditNote20 {
                     .party(accountingCustomerParty.getParty())
                     .build().load();
         }
-        if(!Tips.listIsNull(taxTotalList)){
+        if(!(taxTotalList == null)){
             for (TaxTotal taxTotal : taxTotalList) {
                 Element elementTaxTotal = new TaxTotal.TaxTotalBuilder()
                         .documentLinked(doc)
@@ -354,7 +356,7 @@ public class UBLCreditNote20 {
                     .payableAmount(legalMonetaryTotal.getPayableAmount())
                     .build().load();
         }
-        if(!Tips.listIsNull(creditNoteLineList)){
+        if(!(creditNoteLineList == null)){
             for (CreditNoteLine creditNoteLine : creditNoteLineList) {
                 Element elementCreditNoteLine = new CreditNoteLine.CreditNoteLineBuilder()
                         .documentLinked(doc)

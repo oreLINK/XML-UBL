@@ -1,27 +1,82 @@
 package com.company;
 
 import com.company.xml.ubl.attributes.*;
-import com.company.xml.ubl.axioms.AttributeT;
 import com.company.xml.ubl.axioms.DocumentT;
-import com.company.xml.ubl.axioms.ElementT;
-import com.company.xml.ubl.data.AttributesName;
-import com.company.xml.ubl.data.ElementsName;
 import com.company.xml.ubl.elements.*;
 import com.company.xml.ubl.modules.*;
 import com.company.xml.ubl.templates.UBLCreditNote20;
 import com.company.xml.ubl.templates.UBLInvoice20;
-import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) throws ParserConfigurationException, TransformerException {
+
+        //TEMPLATE DECLARATION
+        DocumentT docCreditNote20 = new DocumentT("CreditNote-2-0.xml", "");
+        docCreditNote20.initialize();
+
+//UBL VERSION ID
+        UBLVersionID ublVersionIDCreditNote20 = new UBLVersionID.UBLVersionIDBuilder()
+                .value("2.0")
+                .build();
+
+//PROFILE ID
+        ProfileID profileIDCreditNote20 = new ProfileID.ProfileIDBuilder()
+                .value("tan:www.bizbil.fr:profile:zbb09:bou1.0")
+                .attributes(new PatternScheme.PatternSchemeBuilder()
+                        .schemeAgencyID("FRA/NASA RT/EDF")
+                        .schemeID("WAL 18052:2021")
+                        .schemeVersionID("1")
+                        .build())
+                .build();
+
+//ADDITIONAL DOCUMENT REFERENCE > ATTACHMENT > EMBEDDED DOCUMENT BINARY OBJECT
+        EmbeddedDocumentBinaryObject embeddedDocumentBinaryObjectCreditNote20 = new EmbeddedDocumentBinaryObject.EmbeddedDocumentBinaryObjectBuilder()
+                .value("dsfdsfkjslkjsd...")
+                .attributes(new PatternFile.PatternFileBuilder()
+                        .encodingCode("Base64")
+                        .filename("facture_avril.pdf")
+                        .mimeCode("application/pdf")
+                        .build())
+                .build();
+
+//ADDITIONAL DOCUMENT REFERENCE > ATTACHMENT
+        Attachment attachmentCreditNote20 = new Attachment.AttachmentBuilder()
+                .embeddedDocumentBinaryObject(embeddedDocumentBinaryObjectCreditNote20)
+                .build();
+
+//ADDITIONAL DOCUMENT REFERENCE
+        List<AdditionalDocumentReference> additionalDocumentReferenceCreditNote20 = new ArrayList<>();
+        AdditionalDocumentReference additionalDocumentReferenceCreditNote201 = new AdditionalDocumentReference.AdditionalDocumentReferenceBuilder()
+                .id(new ID.IDBuilder()
+                        .value("attachment-2")
+                        .build())
+                .documentTypeCode(new DocumentTypeCode.DocumentTypeCodeBuilder()
+                        .value("attachment")
+                        .attributes(new PatternList.PatternListBuilder()
+                                .listID("urn:tradeshift.com:api:1.0:documenttypecode")
+                                .build())
+                        .build())
+                .attachment(attachmentCreditNote20)
+                .build();
+        additionalDocumentReferenceCreditNote20.add(additionalDocumentReferenceCreditNote201);
+
+//TEMPLATE CREDIT NOTE 2.0
+        Element elementUBLCreditNote20 = new UBLCreditNote20.UBLCreditNote20Builder()
+                .documentLinked(docCreditNote20.getDoc())
+                .ublVersionID(ublVersionIDCreditNote20)
+                .profileID(profileIDCreditNote20)
+                .additionalDocumentReferenceList(additionalDocumentReferenceCreditNote20)
+                .build()
+                .load();
+
+        docCreditNote20.generate();
 
         /**
          * ---
@@ -36,7 +91,7 @@ public class Main {
         /**
          * Element UBLVersionID
          */
-        UBLVersionID ublVersionIDCreditNote = new UBLVersionID.ElementUBLVersionIDBuilder()
+        UBLVersionID ublVersionIDCreditNote = new UBLVersionID.UBLVersionIDBuilder()
                 .value("2.0")
                 .build();
 
@@ -605,7 +660,7 @@ public class Main {
         /**
          * Element UBLVersionID
          */
-        UBLVersionID invoiceUBLVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()
+        UBLVersionID invoiceUBLVersionID = new UBLVersionID.UBLVersionIDBuilder()
                 .value("2.0")
                 .build();
 

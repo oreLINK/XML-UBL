@@ -315,7 +315,7 @@ docCreditNote20.generate();
 
 | Release | Description | Release date |
 | ------- | ----------- | ------------ |
-|  1.1.0  | <ul><li>**[New feature]** Generation of part of the UBL CreditNote 2.0 template.</li><li>**[New feature]** Generation of part of the Invoice 2.0 template.</li><li>**[New feature]** Creation of the user manual.</li><li>**[New feature]** Improvement of README.</li><li>**[Bug fixed]** Implementation of optional attributes and elements is no longer necessary.</li></ul> | *to come up* |
+|  1.1.0  | <ul><li>**[New feature]** Generation of part of the Invoice 2.0 template.</li><li>**[Improvement]** Generation of part of the UBL CreditNote 2.0 template.</li><li>**[Improvement]** A more complete and easy-to-use README.</li><li>**[Improvement]** Complete code documentation.</li><li>**[Bug fixed]** Implementation of optional attributes and elements is no longer necessary.</li></ul> | *to come up* |
 |  1.0.0  | <ul><li>**[New feature]** Generation of a partially supported UBL CreditNote version 2.0 template (the most common modules, elements and attributes are available.</li><li>**[New feature]** Complete code documentation.</li></ul> | Jun. 18 2021 |
     
 ## License

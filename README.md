@@ -159,10 +159,10 @@ Caption :
 * 🔴 This module/element is not yet implemented in this template.
 * 🟠 This module/element is currently being implemented and will be available in a future release.
 * 🟢 This module/element is implemented and can be used in this template.
-        
+
 ### Credit Note 2.0
 
-This section groups together all the modules and elements present in the Credit Note 2.0 template.
+This section groups together all the modules and elements present in the Credit Note 2.0 template. [See more.](http://www.datypic.com/sc/ubl20/e-ns14_CreditNote.html)
    
 | Name | Condition | Cardinality | Type |
 | ------- | ----------- | ------------ | ------------ |
@@ -183,7 +183,7 @@ This section groups together all the modules and elements present in the Credit 
         
 ### Invoice 2.0
 
-This section groups together all the modules and elements present in the Invoice 2.0 template.<br>
+This section groups together all the modules and elements present in the Invoice 2.0 template. [See more.](http://www.datypic.com/sc/ubl20/e-ns19_Invoice.html)
    
 | Name | Condition | Cardinality | Type |
 | ------- | ----------- | ------------ | ------------ |

@@ -4,7 +4,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/orelink/xml-ubl/badge?s=03295c42823b0c8be2bb295524bc2791b93da76d)](https://www.codefactor.io/repository/github/orelink/xml-ubl)
 ![contribution](https://img.shields.io/badge/contribution-yes-green.svg)
 
-`Description coming soon...` 
+Java library for generating and downloading XML files in UBL format. The [Universal Business Language](https://en.wikipedia.org/wiki/Universal_Business_Language) (UBL) is an open library of standard electronic XML business documents for procurement and transport such as purchase orders, invoices, transport logistics and waybills. This library has been optimized to facilitate the generation of such documents and to automate the insertion of data into them.
 
 ## Prerequisites
 
@@ -28,23 +28,15 @@
 
 ## Code documentation
 
-### Version 1 (Element creation)
-
 All code has been documented and will be used by you when creating document, element and attributes. The syntax of the code documentation has been optimized for IntelliJ. Here is the example of the documentation for the `TaxTotal` element :
-
-![image](https://user-images.githubusercontent.com/35436186/122730536-9c984500-d27a-11eb-827c-eb747f2f1290.png)
 
 * **Element "TaxTotal"** : *Element name.*
 * **use in CreditNoteLine [0..*]** : *List of parent elements in which this child element is used, as well as the cardinality of the child element in each parent element.*
 * **An association to TaxTotal** : *Element description.*
 * **for build() + load()** : *List of parameters required to generate this element, not to generate an object of this element. This is traditionally `documentLinked`, the document into which this element should be inserted, and `elementFather`, the element that will become the parent of this newly generated element.*
-* **for build()** : *List of parameters included in the generation of an object of this element. We indicate the expected type in square brackets (String for parameters with cardinality [0/1..1] and List for [0/1..*]), the name of the parameter, its cardinality, as well as a brief description of its usefulness.*
+* **for build()** : *List of parameters included in the generation of an object of this element. We indicate the expected type in square brackets, the name of the parameter, its cardinality, as well as a brief description of its usefulness.*
 
-Since this is version 1 of element creation, the attributes are present in build () as <element_name>_Attribute<attribute_name>.
-
-### Version 2 (Element creation)
-
-`Documentation coming soon...`
+![image](https://user-images.githubusercontent.com/35436186/123387437-10e32900-d598-11eb-8301-b13cb71f4e58.png)
 
 ## Utilisation
 

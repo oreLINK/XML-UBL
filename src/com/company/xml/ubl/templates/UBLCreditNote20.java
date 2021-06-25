@@ -154,6 +154,11 @@ public class UBLCreditNote20 {
      * @return the generated element
      */
     public Element load() {
+        System.out.println("/**");
+        System.out.println("* TEMPLATE CREDIT NOTE 2.0 (from XML-UBL)");
+        System.out.println("* Your version (1.1.0) is up to date.");
+        //System.out.println("* Your version is not the most recent, download the new .jar or else make a git clone from the XML-UBL repo.");
+        System.out.println("*/");
         Element elementCreditNote = new ElementT(doc, ElementsName.CREDIT_NOTE.label).loadDoc();
         Attr attrEleCreditCard1 = new AttributeT(doc, elementCreditNote, NamespacesName.XMLNS.label, NamespacesName.XMLNS_IMPORT.label).load();
         Attr attrEleCreditCard2 = new AttributeT(doc, elementCreditNote, NamespacesName.XMLNS_CAC_ATTR.label, NamespacesName.XMLNS_CAC_IMPORT.label).load();

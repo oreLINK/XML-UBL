@@ -209,7 +209,7 @@ This section groups together all the modules and elements present in the Credit 
         
 </details>
         
-### Invoice 2.0
+### Invoice 2.0 🆕
 
 This section groups together all the modules and elements present in the Invoice 2.0 template. [See more.](http://www.datypic.com/sc/ubl20/e-ns19_Invoice.html)
         

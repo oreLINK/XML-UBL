@@ -6,7 +6,6 @@ import com.company.xml.ubl.axioms.ElementT;
 import com.company.xml.ubl.axioms.Tips;
 import com.company.xml.ubl.data.ElementsName;
 import com.company.xml.ubl.elements.*;
-import oasis.names.specification.ubl.schema.xsd.qualifieddatatypes_2.PaymentMeansCodeType;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 

@@ -154,7 +154,8 @@ Caption :
 * ❌ This module/element is not compatible with this template
 * 🔴 This module/element is not yet implemented in this template.
 * 🟠 This module/element is currently being implemented and will be available in a future release.
-* 🟢 This module/element is implemented and can be used in this template.
+* 🟡 This module/element is available in the template but not all of its functionalities have been initialized.
+* 🟢 This module/element is available in the template with all its features.
 * 🔵 This module/element is mandatory in this template.
 
 ### Credit Note 2.0
@@ -218,21 +219,54 @@ This section groups together all the modules and elements present in the Invoice
    
 | Name | Condition | Cardinality | Type |
 | ------- | ----------- | ------------ | ------------ |
+| UBLExtensions | 🔴 | **[0..1]** | Module | 
 | UBLVersionID | 🟢 | **[0..1]** | Element | 
 | CustomizationID | 🟢 | **[0..1]** | Element |
 | ProfileID | 🟢 | **[0..1]** | Element |
-| ID | 🟢 | **[1..1]** | Element | 
-| IssueDate | 🟢 | **[1..1]** | Element |
+| ID 🔵 | 🟢 | **[1..1]** | Element |
+| CopyIndicator | 🔴 | **[0..1]** | Element | 
+| UUID | 🔴 | **[0..1]** | Element |
+| IssueDate 🔵 | 🟢 | **[1..1]** | Element |
+| IssueTime | 🔴 | **[0..1]** | Element |
 | InvoiceTypeCode | 🟢 | **[0..1]** | Element |
+| Note | 🔴 | **[0..*]** | Element | 
+| TaxPointDate | 🔴 | **[0..1]** | Element | 
 | DocumentCurrencyCode | 🟢 | **[0..1]** | Element |
-| OrderReference | 🟢 | **[0..1]** | Module | 
+| TaxCurrencyCode | 🔴 | **[0..1]** | Element |
+| PricingCurrencyCode | 🔴 | **[0..1]** | Element |
+| PaymentCurrencyCode | 🔴 | **[0..1]** | Element |
+| PaymentAlternativeCurrencyCode | 🔴 | **[0..1]** | Element |
+| AccountingCostCode | 🔴 | **[0..1]** | Element |
+| AccountingCost | 🔴 | **[0..1]** | Element |
+| LineCountNumeric | 🔴 | **[0..1]** | Element |
+| InvoicePeriod | 🔴 | **[0..*]** | Module |
+| OrderReference | 🟢 | **[0..1]** | Module |
+| BillingReference | 🔴 | **[0..*]** | Module |        
+| DespatchDocumentReference | 🔴 | **[0..*]** | Module |
+| ReceiptDocumentReference | 🔴 | **[0..*]** | Module |
+| OriginatorDocumentReference | 🔴 | **[0..*]** | Module |
+| ContractDocumentReference | 🔴 | **[0..*]** | Module |
 | AdditionalDocumentReference | 🟢 | **[0..*]** | Module |
-| AccountingSupplierParty | 🟢 | **[1..1]** | Module | 
-| AccountingCustomerParty | 🟢 | **[1..1]** | Module |
+| Signature | 🔴| **[0..*]** | Module |
+| AccountingSupplierParty 🔵 | 🟢 | **[1..1]** | Module | 
+| AccountingCustomerParty 🔵 | 🟢 | **[1..1]** | Module |
+| PayeeParty | 🔴 | **[0..1]** | Module |
+| BuyerCustomerParty | 🔴 | **[0..1]** | Module |
+| SellerSupplierParty | 🔴 | **[0..1]** | Module |
+| TaxRepresentativeParty | 🔴 | **[0..1]** | Module |
+| Delivery | 🔴 | **[0..*]** | Module |
+| DeliveryTerms | 🔴 | **[0..1]** | Module |
 | PaymentMeans | 🟢 | **[0..*]** | Module |
+| PaymentTerms | 🔴 | **[0..*]** | Module |
+| PrepaidPayment | 🔴 | **[0..*]** | Module |
+| AllowanceCharge | 🔴 | **[0..*]** | Module |
+| TaxExchangeRate | 🔴 | **[0..1]** | Module |
+| PricingExchangeRate | 🔴 | **[0..1]** | Module |
+| PaymentExchangeRate | 🔴 | **[0..1]** | Module |
+| PaymentAlternativeExchangeRate | 🔴 | **[0..1]** | Module |
 | TaxTotal | 🟢 | **[0..*]** | Module |
-| LegalMonetaryTotal | 🟢 | **[1..1]** | Module | 
-| InvoiceLine | 🟢 | **[1..*]** | Module |
+| LegalMonetaryTotal 🔵 | 🟢 | **[1..1]** | Module | 
+| InvoiceLine 🔵 | 🟢 | **[1..*]** | Module |
         
 </details>
 

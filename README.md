@@ -188,15 +188,15 @@ This section groups together all the modules and elements present in the Credit 
 | LineCountNumeric | 🔴 | **[0..1]** | Element | 
 | InvoicePeriod | 🔴 | **[0..*]** | Module |
 | DiscrepancyResponse | 🔴 | **[0..*]** | Module |         
-| OrderReference | 🟢 | **[0..1]** | Module | 
-| BillingReference | 🟢 | **[0..*]** | Module |        
+| OrderReference | 🟡 | **[0..1]** | Module | 
+| BillingReference | 🟡 | **[0..*]** | Module |        
 | DespatchDocumentReference | 🔴 | **[0..*]** | Module |
 | ReceiptDocumentReference | 🔴 | **[0..*]** | Module | 
 | ContractDocumentReference | 🔴 | **[0..*]** | Module |        
-| AdditionalDocumentReference | 🟢 | **[0..*]** | Module |
+| AdditionalDocumentReference | 🟡 | **[0..*]** | Module |
 | Signature  | 🔴 | **[0..*]** | Module |
-| AccountingSupplierParty 🔵 | 🟢 | **[1..1]** | Module | 
-| AccountingCustomerParty 🔵 | 🟢 | **[1..1]** | Module |    
+| AccountingSupplierParty 🔵 | 🟡 | **[1..1]** | Module | 
+| AccountingCustomerParty 🔵 | 🟡 | **[1..1]** | Module |    
 | PayeeParty | 🔴 | **[0..1]** | Module |
 | TaxRepresentativeParty | 🔴 | **[0..1]** | Module | 
 | TaxExchangeRate | 🔴 | **[0..1]** | Module |  
@@ -204,9 +204,9 @@ This section groups together all the modules and elements present in the Credit 
 | PaymentExchangeRate | 🔴 | **[0..1]** | Module | 
 | PaymentAlternativeExchangeRate | 🔴 | **[0..1]** | Module |  
 | AllowanceCharge | 🔴 | **[0..*]** | Module |       
-| TaxTotal | 🟢 | **[0..*]** | Module |
-| LegalMonetaryTotal 🔵 | 🟢 | **[1..1]** | Module | 
-| CreditNoteLine 🔵 | 🟢 | **[1..*]** | Module |
+| TaxTotal | 🟡 | **[0..*]** | Module |
+| LegalMonetaryTotal 🔵 | 🟡 | **[1..1]** | Module | 
+| CreditNoteLine 🔵 | 🟡 | **[1..*]** | Module |
         
 </details>
         
@@ -240,23 +240,23 @@ This section groups together all the modules and elements present in the Invoice
 | AccountingCost | 🔴 | **[0..1]** | Element |
 | LineCountNumeric | 🔴 | **[0..1]** | Element |
 | InvoicePeriod | 🔴 | **[0..*]** | Module |
-| OrderReference | 🟢 | **[0..1]** | Module |
+| OrderReference | 🟡 | **[0..1]** | Module |
 | BillingReference | 🔴 | **[0..*]** | Module |        
 | DespatchDocumentReference | 🔴 | **[0..*]** | Module |
 | ReceiptDocumentReference | 🔴 | **[0..*]** | Module |
 | OriginatorDocumentReference | 🔴 | **[0..*]** | Module |
 | ContractDocumentReference | 🔴 | **[0..*]** | Module |
-| AdditionalDocumentReference | 🟢 | **[0..*]** | Module |
+| AdditionalDocumentReference | 🟡 | **[0..*]** | Module |
 | Signature | 🔴| **[0..*]** | Module |
-| AccountingSupplierParty 🔵 | 🟢 | **[1..1]** | Module | 
-| AccountingCustomerParty 🔵 | 🟢 | **[1..1]** | Module |
+| AccountingSupplierParty 🔵 | 🟡 | **[1..1]** | Module | 
+| AccountingCustomerParty 🔵 | 🟡 | **[1..1]** | Module |
 | PayeeParty | 🔴 | **[0..1]** | Module |
 | BuyerCustomerParty | 🔴 | **[0..1]** | Module |
 | SellerSupplierParty | 🔴 | **[0..1]** | Module |
 | TaxRepresentativeParty | 🔴 | **[0..1]** | Module |
 | Delivery | 🔴 | **[0..*]** | Module |
 | DeliveryTerms | 🔴 | **[0..1]** | Module |
-| PaymentMeans | 🟢 | **[0..*]** | Module |
+| PaymentMeans | 🟡 | **[0..*]** | Module |
 | PaymentTerms | 🔴 | **[0..*]** | Module |
 | PrepaidPayment | 🔴 | **[0..*]** | Module |
 | AllowanceCharge | 🔴 | **[0..*]** | Module |
@@ -264,9 +264,9 @@ This section groups together all the modules and elements present in the Invoice
 | PricingExchangeRate | 🔴 | **[0..1]** | Module |
 | PaymentExchangeRate | 🔴 | **[0..1]** | Module |
 | PaymentAlternativeExchangeRate | 🔴 | **[0..1]** | Module |
-| TaxTotal | 🟢 | **[0..*]** | Module |
-| LegalMonetaryTotal 🔵 | 🟢 | **[1..1]** | Module | 
-| InvoiceLine 🔵 | 🟢 | **[1..*]** | Module |
+| TaxTotal | 🟡 | **[0..*]** | Module |
+| LegalMonetaryTotal 🔵 | 🟡 | **[1..1]** | Module | 
+| InvoiceLine 🔵 | 🟡 | **[1..*]** | Module |
         
 </details>
 

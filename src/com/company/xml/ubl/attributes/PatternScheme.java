@@ -14,7 +14,21 @@ public class PatternScheme {
     private String schemeURI;
 
     /**
-     * Documentation is coming...
+     * <h2>Attributes "PatternScheme"</h2>
+     * <p>Contains :</p>
+     * <ul>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>schemeID</b> <b>[0..1]</b> : The identification of the identification scheme.</li>
+     *         <li>[String] <b>schemeName</b> <b>[0..1]</b> : The name of the identification scheme.</li>
+     *         <li>[String] <b>schemeAgencyID</b> <b>[0..1]</b> : The identification of the agency that maintains the identification scheme.</li>
+     *         <li>[String] <b>schemeAgencyName</b> <b>[0..1]</b> : The name of the agency that maintains the identification scheme.</li>
+     *         <li>[String] <b>schemeVersionID</b> <b>[0..1]</b> : The version of the identification scheme.</li>
+     *         <li>[String] <b>schemeDataURI</b> <b>[0..1]</b> : The Uniform Resource Identifier that identifies where the identification scheme data is located.</li>
+     *         <li>[String] <b>schemeURI</b> <b>[0..1]</b> : The Uniform Resource Identifier that identifies where the identification scheme is located.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private PatternScheme(PatternSchemeBuilder builder) {
         this.schemeID = builder.schemeID;

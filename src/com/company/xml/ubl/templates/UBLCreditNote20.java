@@ -37,7 +37,33 @@ public class UBLCreditNote20 {
     private List<CreditNoteLine> creditNoteLineList;
 
     /**
-     * Documentation is coming...
+     * <h2>Template "UBLCreditNote20"</h2>
+     * <p>A document used to specify credits due to the Debtor from the Creditor. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[UBLVersionID] <b>ublVersionID</b> <b>[0..1]</b> : The earliest version of the UBL 2 schema for this document type that defines all of the elements that might be encountered in the current instance.</li>
+     *         <li>[CustomizationID] <b>customizationID</b> <b>[0..1]</b> : Identifies a user-defined customization of UBL for a specific use.</li>
+     *         <li>[ProfileID] <b>profileID</b> <b>[0..1]</b> : Identifies a user-defined profile of the customization of UBL being used.</li>
+     *         <li>[ID] <b>id</b> <b>[1..1]</b> : An identifier for the Credit Note assigned by the Creditor.</li>
+     *         <li>[IssueDate] <b>issueDate</b> <b>[1..1]</b> : The date assigned by the Creditor on which the Credit Note was issued.</li>
+     *         <li>[DocumentCurrencyCode] <b>documentCurrencyCode</b> <b>[0..1]</b> : The default currency for the Credit Note.</li>
+     *         <li>[OrderReference] <b>orderReference</b> <b>[0..1]</b> : An association to Order Reference.</li>
+     *         <li>[List] <b>billingReferenceList</b> <b>[0..*]</b> : [BillingReference] elements list.</li>
+     *         <li>[List] <b>additionalDocumentReferenceList</b> <b>[0..*]</b> : [AdditionalDocumentReference] elements list.</li>
+     *         <li>[AccountingSupplierParty] <b>accountingSupplierParty</b> <b>[1..1]</b> : An association to the Accounting Supplier Party.</li>
+     *         <li>[AccountingCustomerParty] <b>accountingCustomerParty</b> <b>[1..1]</b> : An association to the Accounting Customer Party.</li>
+     *         <li>[List] <b>taxTotalList</b> <b>[0..*]</b> : [TaxTotal] elements list.</li>
+     *         <li>[LegalMonetaryTotal] <b>legalMonetaryTotal</b> <b>[1..1]</b> : An association to the total amount payable on the Credit Note, including Allowances, Charges, and Taxes.</li>
+     *         <li>[List] <b>creditNoteLineList</b> <b>[1..*]</b> : [CreditNoteLine] elements list.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private UBLCreditNote20(UBLCreditNote20Builder builder) {
         this.doc = builder.doc;
@@ -154,11 +180,10 @@ public class UBLCreditNote20 {
      * @return the generated element
      */
     public Element load() {
-        System.out.println("/**");
-        System.out.println("* TEMPLATE CREDIT NOTE 2.0 (from XML-UBL)");
-        System.out.println("* Your version (1.1.0) is up to date.");
-        //System.out.println("* Your version is not the most recent, download the new .jar or else make a git clone from the XML-UBL repo.");
-        System.out.println("*/");
+        //System.out.println("/**");
+        //System.out.println("* TEMPLATE CREDIT NOTE 2.0 (from XML-UBL in Github)");
+        //System.out.println("* version 1.1.0");
+        //System.out.println("*/");
         Element elementCreditNote = new ElementT(doc, ElementsName.CREDIT_NOTE.label).loadDoc();
         Attr attrEleCreditCard1 = new AttributeT(doc, elementCreditNote, NamespacesName.XMLNS.label, NamespacesName.XMLNS_IMPORT.label).load();
         Attr attrEleCreditCard2 = new AttributeT(doc, elementCreditNote, NamespacesName.XMLNS_CAC_ATTR.label, NamespacesName.XMLNS_CAC_IMPORT.label).load();
@@ -169,7 +194,7 @@ public class UBLCreditNote20 {
         Attr attrEleCreditCard7 = new AttributeT(doc, elementCreditNote, NamespacesName.XMLNS_SDT_ATTR.label, NamespacesName.XMLNS_SDT_IMPORT.label).load();
         Attr attrEleCreditCard8 = new AttributeT(doc, elementCreditNote, NamespacesName.XMLNS_UDT_ATTR.label, NamespacesName.XMLNS_UDT_IMPORT.label).load();
 
-        if(!Tips.stringIsNull(ublVersionID.getValue())){
+        if(!(ublVersionID == null)){
             if(!(ublVersionID.getPatternScheme() == null)){
                 Element elementUBLVersionID = new UBLVersionID.UBLVersionIDBuilder()
                         .documentLinked(doc)
@@ -217,7 +242,7 @@ public class UBLCreditNote20 {
                         .build().load();
             }
         }
-        if(!Tips.stringIsNull(profileID.getValue())){
+        if(!(profileID == null)){
             if(!(profileID.getPatternScheme() == null)){
                 Element elementProfileID = new ProfileID.ProfileIDBuilder()
                         .documentLinked(doc)
@@ -265,7 +290,7 @@ public class UBLCreditNote20 {
                         .build().load();
             }
         } else {
-            System.out.println("[CreditNote 2.0] : Attention ! The element ID is mandatory in this template.");
+            //System.out.println("[CreditNote 2.0] : Attention ! The element ID is mandatory in this template.");
         }
         if(!(issueDate == null)){
             Element elementIssueDate = new IssueDate.IssueDateBuilder()
@@ -316,7 +341,7 @@ public class UBLCreditNote20 {
                         .build().load();
             }
         }
-        if(!Tips.listIsNull(additionalDocumentReferenceList)){
+        if(!(additionalDocumentReferenceList == null)){
             for (AdditionalDocumentReference additionalDocumentReference : additionalDocumentReferenceList) {
                 Element elementAdditionalDocumentReference = new AdditionalDocumentReference.AdditionalDocumentReferenceBuilder()
                         .documentLinked(doc)

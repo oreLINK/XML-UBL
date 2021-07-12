@@ -26,6 +26,9 @@ For the moment, the .jar library is not available. To add XML-UBL to your projec
 
 All code has been documented and will be used by you when creating document, element and attributes. The syntax of the code documentation has been optimized for IntelliJ. Here is the example of the documentation for the `TaxTotal` element :
 
+<details>
+        <summary>Click to see the documentation.</summary>
+
 | Name | Description |
 | ------- | ----------- |
 | **Element "TaxTotal"** | Element name. |
@@ -34,6 +37,8 @@ All code has been documented and will be used by you when creating document, ele
 | **for build()** | List of parameters included in the generation of an object of this element. We indicate the expected type in square brackets, the name of the parameter, its cardinality, as well as a brief description of its usefulness. |
 
 ![image](https://user-images.githubusercontent.com/35436186/125311726-e9c87d80-e333-11eb-8077-4040f2215520.png)
+        
+</details>
 
 ## Utilisation
 
@@ -93,6 +98,9 @@ An element can be created in only two places, either with the template itself as
 This declaration corresponds to <Element creation> `1` and `2` of the Overall structure section.<br>
 *Example : The `UBLVersionID` element can be called in the XML document with the template itself as parent.*
         
+<details>
+        <summary>Click to see the code.</summary>
+        
 > with attributes
         
 ```java
@@ -108,12 +116,17 @@ UBLVersionID ublVersionID = new UBLVersionID.UBLVersionIDBuilder()
 UBLVersionID ublVersionID = new UBLVersionID.UBLVersionIDBuilder()
                 .value(<String>)
                 .build();
-```  
+```
+        
+</details>
         
 #### Module as parent     
         
 This declaration corresponds to <Element creation> `1.1`, `2.1`, `2.2`, `3.1.1.`, `3.1.2` and `3.1` of the Overall structure section.<br>
 *Example : The `Country` module contains the elements `identificationCode` [0..1] and `name` [0..1]. These elements therefore have the `Country` module as parent.*
+        
+<details>
+        <summary>Click to see the code.</summary>
 
 > with attributes
         
@@ -142,6 +155,8 @@ Country country = new Country.CountryBuilder()
                         .build())
                 .build();
 ```
+        
+</details>
 
 Be sure to look at the cardinality of all the parameters of the elements. They are displayed in the code itself.
         

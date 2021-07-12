@@ -26,7 +26,6 @@ public class TaxTotal {
 
     /**
      * <h2>Element "TaxTotal"</h2>
-     * <i>use in CreditNoteLine <b>[0..*]</b>.</i>
      * <p>An association to Tax Total. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

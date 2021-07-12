@@ -23,7 +23,6 @@ public class ProfileID {
 
     /**
      * <h2>Element "ProfileID"</h2>
-     * <i>use in CreditNote <b>[0..1]</b>.</i>
      * <p>Identifies a user-defined profile of the customization of UBL being used. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

@@ -1,15 +1,19 @@
 package com.company.xml.ubl.attributes;
 
+/**
+ * Class PatternFile
+ */
 public class PatternCode {
 
     private String unitCode;
 
     /**
-     * <h2>Attributes Family "Code"</h2>
+     * <h2>Attributes "PatternCode"</h2>
+     * <p>Contains :</p>
      * <ul>
      *     <li><b>for build()</b>
      *     <ul>
-     *         <li>[String] <b>unitCode</b> <b>[0..1]</b> : The net amount to which the tax percent (rate) is applied to calculate the tax amount.</li>
+     *         <li>[String] <b>unitCode</b> <b>[0..1]</b> : The unit of the quantity.</li>
      *     </ul>
      *     </li>
      * </ul>

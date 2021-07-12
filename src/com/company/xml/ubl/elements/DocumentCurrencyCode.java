@@ -24,7 +24,6 @@ public class DocumentCurrencyCode {
 
     /**
      * <h2>Element "DocumentCurrencyCode"</h2>
-     * <i>use in CreditNote <b>[0..1]</b>.</i>
      * <p>The default currency for the Credit Note. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

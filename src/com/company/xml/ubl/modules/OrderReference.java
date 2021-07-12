@@ -19,7 +19,6 @@ public class OrderReference {
 
     /**
      * <h2>Module "OrderReference"</h2>
-     * <i>use in CreditNote <b>[0..1]</b>.</i>
      * <p>An association to Order Reference. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

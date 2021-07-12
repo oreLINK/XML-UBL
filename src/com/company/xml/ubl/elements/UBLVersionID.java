@@ -22,7 +22,6 @@ public class UBLVersionID {
 
     /**
      * <h2>Element "UBLVersionID"</h2>
-     * <i>use in CreditNote <b>[0..1]</b>.</i>
      * <p>The earliest version of the UBL 2 schema for this document type that defines all of the elements that might be encountered in the current instance. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>
@@ -47,7 +46,7 @@ public class UBLVersionID {
     }
 
     /**
-     * Builder ElementUBLVersionID
+     * Builder UBLVersionID
      */
     public static class UBLVersionIDBuilder {
 

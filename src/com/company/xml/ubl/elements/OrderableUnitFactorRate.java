@@ -6,6 +6,9 @@ import com.company.xml.ubl.data.ElementsName;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class OrderableUnitFactorRate
+ */
 public class OrderableUnitFactorRate {
 
     private Document doc;
@@ -14,7 +17,21 @@ public class OrderableUnitFactorRate {
     private String value;
 
     /**
-     * Documentation is coming...
+     * <h2>Element "OrderableUnitFactorRate"</h2>
+     * <p>The factor by which the base price unit can be converted to the orderable unit. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>value</b> <b>[1..1]</b> : Value for this element.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private OrderableUnitFactorRate(OrderableUnitFactorRateBuilder builder) {
         this.doc = builder.doc;
@@ -23,7 +40,7 @@ public class OrderableUnitFactorRate {
     }
 
     /**
-     * Builder BaseQuantity
+     * Builder OrderableUnitFactorRate
      */
     public static class OrderableUnitFactorRateBuilder {
 

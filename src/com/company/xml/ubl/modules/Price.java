@@ -27,7 +27,6 @@ public class Price {
 
     /**
      * <h2>Element "Price"</h2>
-     * <i>use in CreditNoteLine <b>[0..1]</b>.</i>
      * <p>An association to Price. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

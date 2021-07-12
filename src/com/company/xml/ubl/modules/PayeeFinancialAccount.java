@@ -10,6 +10,9 @@ import com.company.xml.ubl.elements.PaymentMeansCode;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class PayeeFinancialAccount
+ */
 public class PayeeFinancialAccount {
 
     private Document doc;
@@ -18,7 +21,22 @@ public class PayeeFinancialAccount {
     private FinancialInstitutionBranch financialInstitutionBranch;
 
     /**
-     * Documentation is coming...
+     * <h2>Element "PayeeFinancialAccount"</h2>
+     * <p>An association to the payee's Financial Account. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[ID] <b>id</b> <b>[0..1]</b> : The identifier for the Financial Account; the Bank Account Number.</li>
+     *         <li>[FinancialInstitutionBranch] <b>financialInstitutionBranch</b> <b>[0..1]</b> : An association to Financial Institution Branch.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private PayeeFinancialAccount(PayeeFinancialAccountBuilder builder) {
         this.doc = builder.doc;
@@ -27,6 +45,9 @@ public class PayeeFinancialAccount {
         this.financialInstitutionBranch = builder.financialInstitutionBranch;
     }
 
+    /**
+     * Builder PayeeFinancialAccount
+     */
     public static class PayeeFinancialAccountBuilder {
 
         private Document doc;

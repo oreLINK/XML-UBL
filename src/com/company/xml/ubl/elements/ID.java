@@ -23,7 +23,6 @@ public class ID {
 
     /**
      * <h2>Element "ID"</h2>
-     * <i>use in CreditNote <b>[1..1]</b>.</i>
      * <p>An identifier for the Credit Note assigned by the Creditor. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>
@@ -115,7 +114,6 @@ public class ID {
 
     /**
      * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
-     *
      * @return the generated element
      */
     public Element load() {

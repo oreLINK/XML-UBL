@@ -10,6 +10,9 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class PaymentDueDate
+ */
 public class PaymentDueDate {
 
     private Document doc;
@@ -18,7 +21,21 @@ public class PaymentDueDate {
     private String value;
 
     /**
-     * Documentation is coming...
+     * <h2>Element "PaymentDueDate"</h2>
+     * <p>The date on which payment is due for the Payment Means. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>value</b> <b>[1..1]</b> : Value for this element.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private PaymentDueDate(PaymentDueDateBuilder builder) {
         this.doc = builder.doc;

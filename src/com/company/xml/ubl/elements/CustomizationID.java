@@ -23,7 +23,6 @@ public class CustomizationID {
 
     /**
      * <h2>Element "CustomizationID"</h2>
-     * <i>use in CreditNote <b>[0..1]</b>.</i>
      * <p>Identifies a user-defined customization of UBL for a specific use. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

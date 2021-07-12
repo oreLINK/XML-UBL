@@ -18,7 +18,6 @@ public class PartyName {
 
     /**
      * <h2>Element "PartyName"</h2>
-     * <i>use in Party <b>[0..*]</b>.</i>
      * <p>An association to Party Name. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

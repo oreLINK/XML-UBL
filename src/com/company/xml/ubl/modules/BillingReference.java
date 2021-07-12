@@ -19,7 +19,6 @@ public class BillingReference {
 
     /**
      * <h2>Module "BillingReference"</h2>
-     * <i>use in CreditNote <b>[0..*]</b>.</i>
      * <p>An association to Billing Reference. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

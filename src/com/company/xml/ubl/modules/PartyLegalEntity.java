@@ -14,7 +14,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 /**
- * Class Item
+ * Class PartyLegalEntity
  */
 public class PartyLegalEntity {
 
@@ -27,7 +27,6 @@ public class PartyLegalEntity {
 
     /**
      * <h2>Element "PartyLegalEntity"</h2>
-     * <i>use in Party <b>[0..*]</b>.</i>
      * <p>An association to Party Legal Entity. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

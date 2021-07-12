@@ -11,6 +11,9 @@ import com.company.xml.ubl.elements.LineExtensionAmount;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class InvoiceLine
+ */
 public class InvoiceLine {
 
     private Document doc;
@@ -22,6 +25,28 @@ public class InvoiceLine {
     private Item item;
     private Price price;
 
+    /**
+     * <h2>Element "InvoiceLine"</h2>
+     * <p>The earliest version of the UBL 2 schema for this document type that defines all of the elements that might be encountered in the current instance. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[ID] <b>id</b> <b>[1..1]</b> : Identifies the Invoice Line.</li>
+     *         <li>[InvoicedQuantity] <b>invoicedQuantity</b> <b>[0..1]</b> : The quantity (of Items) on the Invoice Line.</li>
+     *         <li>[LineExtensionAmount] <b>lineExtensionAmount</b> <b>[1..1]</b> : The total amount for the Invoice Line, including Allowance Charges but net of taxes.</li>
+     *         <li>[TaxTotal] <b>taxTotal</b> <b>[0..*]</b> : An association to Tax Total.</li>
+     *         <li>[Item] <b>item</b> <b>[1..1]</b> : An association to Item.</li>
+     *         <li>[Price] <b>price</b> <b>[0..1]</b> : An association to Price.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
+     */
     private InvoiceLine(InvoiceLineBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
@@ -33,6 +58,9 @@ public class InvoiceLine {
         this.price = builder.price;
     }
 
+    /**
+     * Builder InvoiceLine
+     */
     public static class InvoiceLineBuilder {
 
         private Document doc;

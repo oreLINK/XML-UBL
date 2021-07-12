@@ -8,6 +8,9 @@ import com.company.xml.ubl.elements.ID;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class FinancialInstitutionBranch
+ */
 public class FinancialInstitutionBranch {
 
     private Document doc;
@@ -15,7 +18,21 @@ public class FinancialInstitutionBranch {
     private FinancialInstitution financialInstitution;
 
     /**
-     * Documentation is coming...
+     * <h2>Element "FinancialInstitutionBranch"</h2>
+     * <p>TAn association to Financial Institution Branch. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[FinancialInstitution] <b>financialInstitution</b> <b>[0..1]</b> : An association to Financial Institution.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private FinancialInstitutionBranch(FinancialInstitutionBranchBuilder builder) {
         this.doc = builder.doc;
@@ -23,6 +40,9 @@ public class FinancialInstitutionBranch {
         this.financialInstitution = builder.financialInstitution;
     }
 
+    /**
+     * Builder FinancialInstitutionBranch
+     */
     public static class FinancialInstitutionBranchBuilder {
 
         private Document doc;

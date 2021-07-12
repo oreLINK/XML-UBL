@@ -19,7 +19,6 @@ public class InvoiceDocumentReference {
 
     /**
      * <h2>Module "InvoiceDocumentReference"</h2>
-     * <i>use in BillingReference <b>[0..1]</b>.</i>
      * <p>An associative reference to Invoice. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>
@@ -30,7 +29,7 @@ public class InvoiceDocumentReference {
      *     </li>
      *     <li><b>for build()</b>
      *     <ul>
-     *         <li>[String] <b>id</b> <b>[1..1]</b> : Identifies the document being referred to.</li>
+     *         <li>[ID] <b>id</b> <b>[1..1]</b> : Identifies the document being referred to.</li>
      *     </ul>
      *     </li>
      * </ul>

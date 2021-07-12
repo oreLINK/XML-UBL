@@ -20,7 +20,6 @@ public class AccountingSupplierParty {
 
     /**
      * <h2>Element "AccountingSupplierParty"</h2>
-     * <i>use in CreditNote <b>[1..1]</b>.</i>
      * <p>An association to the Accounting Supplier Party. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

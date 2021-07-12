@@ -12,6 +12,9 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class FinancialInstitution
+ */
 public class FinancialInstitution {
 
     private Document doc;
@@ -19,7 +22,21 @@ public class FinancialInstitution {
     private ID id;
 
     /**
-     * Documentation is coming...
+     * <h2>Element "FinancialInstitution"</h2>
+     * <p>An association to Financial Institution. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[ID] <b>id</b> <b>[0..1]</b> : The identifier for the Financial Institution expressed as a code; ISO 9362 BIC (Bank Identification Code) is recommended.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private FinancialInstitution(FinancialInstitutionBuilder builder) {
         this.doc = builder.doc;
@@ -27,6 +44,9 @@ public class FinancialInstitution {
         this.id = builder.id;
     }
 
+    /**
+     * Builder FinancialInstitution
+     */
     public static class FinancialInstitutionBuilder {
 
         private Document doc;

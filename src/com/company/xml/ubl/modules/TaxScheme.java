@@ -23,10 +23,8 @@ public class TaxScheme {
     private ID id = null;
     private Name name;
 
-
     /**
      * <h2>Element "TaxScheme"</h2>
-     * <i>use in TaxCategory <b>[1..1]</b>.</i>
      * <p>An association to Tax Scheme. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

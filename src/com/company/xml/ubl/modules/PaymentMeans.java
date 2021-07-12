@@ -9,6 +9,9 @@ import com.company.xml.ubl.elements.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class PaymentMeans
+ */
 public class PaymentMeans {
 
     private Document doc;
@@ -20,7 +23,25 @@ public class PaymentMeans {
     private PayeeFinancialAccount payeeFinancialAccount;
 
     /**
-     * Documentation is coming...
+     * <h2>Element "UBLVersionID"</h2>
+     * <p>The earliest version of the UBL 2 schema for this document type that defines all of the elements that might be encountered in the current instance. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[ID] <b>id</b> <b>[0..1]</b> : Identifies the Payment Means.</li>
+     *         <li>[PaymentMeansCode] <b>paymentMeansCode</b> <b>[1..1]</b> : The Payment Means expressed as a code</li>
+     *         <li>[PaymentDueDate] <b>paymentDueDate</b> <b>[0..1]</b> : The date on which payment is due for the Payment Means.</li>
+     *         <li>[PaymentChannelCode] <b>paymentChannelCode</b> <b>[0..1]</b> : The Payment Channel, expressed as a code.</li>
+     *         <li>[PayeeFinancialAccount] <b>payeeFinancialAccount</b> <b>[0..1]</b> : An association to the payee's Financial Account.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private PaymentMeans(PaymentMeansBuilder builder) {
         this.doc = builder.doc;
@@ -32,6 +53,9 @@ public class PaymentMeans {
         this.payeeFinancialAccount = builder.payeeFinancialAccount;
     }
 
+    /**
+     * Builder PaymentMeans
+     */
     public static class PaymentMeansBuilder {
 
         private Document doc;

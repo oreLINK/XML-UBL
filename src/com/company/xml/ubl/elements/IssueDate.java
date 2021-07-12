@@ -22,7 +22,6 @@ public class IssueDate {
 
     /**
      * <h2>Element "IssueDate"</h2>
-     * <i>use in CreditNote <b>[1..1]</b>.</i>
      * <p>The date assigned by the Creditor on which the Credit Note was issued. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

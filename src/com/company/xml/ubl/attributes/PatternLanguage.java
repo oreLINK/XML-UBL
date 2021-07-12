@@ -5,7 +5,15 @@ public class PatternLanguage {
     private String languageID;
 
     /**
-     * Documentation is coming...
+     * <h2>Attributes "PatternLanguage"</h2>
+     * <p>Contains :</p>
+     * <ul>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>languageID</b> <b>[0..1]</b> : The identifier of the language used in the content component.	</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private PatternLanguage(PatternLanguageBuilder builder) {
         this.languageID = builder.languageID;

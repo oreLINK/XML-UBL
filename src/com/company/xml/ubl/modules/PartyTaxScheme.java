@@ -23,7 +23,6 @@ public class PartyTaxScheme {
 
     /**
      * <h2>Element "PartyTaxScheme"</h2>
-     * <i>use in Party <b>[0..*]</b>.</i>
      * <p>An association to Party Tax Scheme. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

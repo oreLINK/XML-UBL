@@ -10,6 +10,9 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class AddressFormatCode
+ */
 public class AddressFormatCode {
 
     private Document doc;
@@ -20,8 +23,7 @@ public class AddressFormatCode {
 
     /**
      * <h2>Element "AddressFormatCode"</h2>
-     * <i>use ??? <b>[0..1]</b>.</i>
-     * <p>The earliest version of the UBL 2 schema for this document type that defines all of the elements that might be encountered in the current instance. Contains :</p>
+     * <p>A code specifying the format of this address. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>
      *     <ul>
@@ -32,7 +34,7 @@ public class AddressFormatCode {
      *     <li><b>for build()</b>
      *     <ul>
      *         <li>[String] <b>value</b> <b>[1..1]</b> : Value for this element.</li>
-     *         <li>[PatternScheme] <b>patternScheme</b> <b>[0..1]</b> : Attributes available for this element.</li>
+     *         <li>[PatternList] <b>patternList</b> <b>[0..1]</b> : Attributes available for this element.</li>
      *     </ul>
      *     </li>
      * </ul>

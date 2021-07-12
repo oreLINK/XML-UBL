@@ -30,7 +30,6 @@ public class AdditionalDocumentReference {
 
     /**
      * <h2>Module "AdditionalDocumentReference"</h2>
-     * <i>use in CreditNote <b>[0..*]</b>.</i>
      * <p>An associative reference to Additional Document. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

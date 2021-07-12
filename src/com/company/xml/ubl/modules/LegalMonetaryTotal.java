@@ -28,7 +28,6 @@ public class LegalMonetaryTotal {
 
     /**
      * <h2>Element "LegalMonetaryTotal"</h2>
-     * <i>use in CreditNote <b>[1..1]</b>.</i>
      * <p>An association to the total amount payable on the Credit Note, including Allowances, Charges, and Taxes. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

@@ -22,7 +22,6 @@ public class Country {
 
     /**
      * <h2>Element "Country"</h2>
-     * <i>use in PostalAddress <b>[0..1]</b>.</i>
      * <p>An association to Country. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

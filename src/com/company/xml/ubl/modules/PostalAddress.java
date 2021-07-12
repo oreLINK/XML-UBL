@@ -28,7 +28,6 @@ public class PostalAddress {
 
     /**
      * <h2>Element "PostalAddress"</h2>
-     * <i>use in Party <b>[0..1]</b>.</i>
      * <p>The party's postal address. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

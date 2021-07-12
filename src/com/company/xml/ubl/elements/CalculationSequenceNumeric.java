@@ -6,6 +6,9 @@ import com.company.xml.ubl.data.ElementsName;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class CalculationSequenceNumeric
+ */
 public class CalculationSequenceNumeric {
 
     private Document doc;
@@ -14,7 +17,21 @@ public class CalculationSequenceNumeric {
     private String value;
 
     /**
-     * Documentation is coming...
+     * <h2>Element "CalculationSequenceNumeric"</h2>
+     * <p>Identifies the numerical order sequence in which taxes are applied when multiple taxes are attracted. If all taxes apply to the same taxable amount, CalculationSequenceNumeric will be '1' for all taxes. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>value</b> <b>[1..1]</b> : Value for this element.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private CalculationSequenceNumeric(CalculationSequenceNumericBuilder builder) {
         this.doc = builder.doc;

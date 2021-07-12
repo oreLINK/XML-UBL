@@ -152,12 +152,12 @@ Be sure to look at the cardinality of all the parameters of the elements. They a
 ## List of templates
         
 Caption :
-* ❌ This module/element is not compatible with this template
-* 🔴 This module/element is not yet implemented in this template.
-* 🟠 This module/element is currently being implemented and will be available in a future release.
-* 🟡 This module/element is available in the template but not all of its functionalities have been initialized.
-* 🟢 This module/element is available in the template with all its features.
 * 🔵 This module/element is mandatory in this template.
+* 🟢 This module/element is available in the template with all its features.
+* 🟡 This module/element is available in the template but not all of its functionalities have been initialized.
+* 🟠 This module/element is currently being implemented and will be available in a future release.
+* 🔴 This module/element is not yet implemented in this template.
+* ❌ This module/element is not compatible with this template
 
 ### Credit Note 2.0
 

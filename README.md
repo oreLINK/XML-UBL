@@ -26,13 +26,14 @@ For the moment, the .jar library is not available. To add XML-UBL to your projec
 
 All code has been documented and will be used by you when creating document, element and attributes. The syntax of the code documentation has been optimized for IntelliJ. Here is the example of the documentation for the `TaxTotal` element :
 
-* **Element "TaxTotal"** : *Element name.*
-* **use in CreditNoteLine [0..*]** : *List of parent elements in which this child element is used, as well as the cardinality of the child element in each parent element.*
-* **An association to TaxTotal** : *Element description.*
-* **for build() + load()** : *List of parameters required to generate this element, not to generate an object of this element. This is traditionally `documentLinked`, the document into which this element should be inserted, and `elementFather`, the element that will become the parent of this newly generated element.*
-* **for build()** : *List of parameters included in the generation of an object of this element. We indicate the expected type in square brackets, the name of the parameter, its cardinality, as well as a brief description of its usefulness.*
+| Name | Description |
+| ------- | ----------- |
+| **Element "TaxTotal"** | Element name. |
+| **An association to TaxTotal** | Element description. |
+| **for build() + load()** | List of parameters required to generate this element, not to generate an object of this element. This is traditionally `documentLinked`, the document into which this element should be inserted, and `elementFather`, the element that will become the parent of this newly generated element. |
+| **for build()** | List of parameters included in the generation of an object of this element. We indicate the expected type in square brackets, the name of the parameter, its cardinality, as well as a brief description of its usefulness. |
 
-![image](https://user-images.githubusercontent.com/35436186/123387437-10e32900-d598-11eb-8301-b13cb71f4e58.png)
+![image](https://user-images.githubusercontent.com/35436186/125311726-e9c87d80-e333-11eb-8077-4040f2215520.png)
 
 ## Utilisation
 

@@ -10,6 +10,9 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class TaxExclusiveAmount
+ */
 public class TaxExclusiveAmount {
 
     private Document doc;
@@ -19,7 +22,22 @@ public class TaxExclusiveAmount {
     private PatternCurrency patternCurrency;
 
     /**
-     * Documentation is coming...
+     * <h2>Element "TaxExclusiveAmount"</h2>
+     * <p>The total amount exclusive of taxes. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>value</b> <b>[1..1]</b> : Value for this element.</li>
+     *         <li>[PatternCurrency] <b>patternCurrency</b> <b>[0..1]</b> : Attributes available for this element.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private TaxExclusiveAmount(TaxExclusiveAmountBuilder builder) {
         this.doc = builder.doc;

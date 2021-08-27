@@ -22,7 +22,6 @@ public class PartyIdentification {
 
     /**
      * <h2>Element "PartyIdentification"</h2>
-     * <i>use in Party <b>[0..*]</b>.</i>
      * <p>An association to Party Identification. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

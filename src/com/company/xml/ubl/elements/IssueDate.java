@@ -21,7 +21,21 @@ public class IssueDate {
     private String value;
 
     /**
-     * Documentation is coming...
+     * <h2>Element "IssueDate"</h2>
+     * <p>The date assigned by the Creditor on which the Credit Note was issued. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>value</b> <b>[1..1]</b> : Value for this element.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private IssueDate(IssueDateBuilder builder) {
         this.doc = builder.doc;

@@ -10,6 +10,9 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class FirstName
+ */
 public class FirstName {
 
     private Document doc;
@@ -19,7 +22,22 @@ public class FirstName {
     private PatternLanguage patternLanguage;
 
     /**
-     * Documentation is coming...
+     * <h2>Element "FirstName"</h2>
+     * <p>A person's forename or first name. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>value</b> <b>[1..1]</b> : Value for this element.</li>
+     *         <li>[PatternLanguage] <b>patternLanguage</b> <b>[0..1]</b> : Attributes available for this element.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private FirstName(FirstNameBuilder builder) {
         this.doc = builder.doc;

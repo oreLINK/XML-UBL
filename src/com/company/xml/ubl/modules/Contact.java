@@ -27,7 +27,6 @@ public class Contact {
 
     /**
      * <h2>Element "Contact"</h2>
-     * <i>use in Party <b>[0..1]</b>.</i>
      * <p>An association to Contact. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

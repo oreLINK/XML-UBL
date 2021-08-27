@@ -21,7 +21,6 @@ public class Person {
 
     /**
      * <h2>Element "Person"</h2>
-     * <i>use in Party <b>[0..1]</b>.</i>
      * <p>An association to a person. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

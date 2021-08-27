@@ -15,6 +15,9 @@ import org.w3c.dom.Element;
 
 import java.util.List;
 
+/**
+ * Class UBLInvoice20
+ */
 public class UBLInvoice20 {
 
     private Document doc;
@@ -35,7 +38,34 @@ public class UBLInvoice20 {
     private List<InvoiceLine> invoiceLineList;
 
     /**
-     * Documentation is coming...
+     * <h2>Template "UBLInvoice20"</h2>
+     * <p>A document used to request payment. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[UBLVersionID] <b>ublVersionID</b> <b>[0..1]</b> : The earliest version of the UBL 2 schema for this document type that defines all of the elements that might be encountered in the current instance.</li>
+     *         <li>[CustomizationID] <b>customizationID</b> <b>[0..1]</b> : Identifies a user-defined customization of UBL for a specific use.</li>
+     *         <li>[ProfileID] <b>profileID</b> <b>[0..1]</b> : Identifies a user-defined profile of the customization of UBL being used.</li>
+     *         <li>[ID] <b>id</b> <b>[1..1]</b> : An identifier for the Credit Note assigned by the Creditor.</li>
+     *         <li>[IssueDate] <b>issueDate</b> <b>[1..1]</b> : The date assigned by the Creditor on which the Credit Note was issued.</li>
+     *         <li>[InvoiceTypeCode] <b>invoiceTypeCode</b> <b>[0..1]</b> : Code specifying the type of the Invoice.</li>
+     *         <li>[DocumentCurrencyCode] <b>documentCurrencyCode</b> <b>[0..1]</b> : The default currency for the Credit Note.</li>
+     *         <li>[OrderReference] <b>orderReference</b> <b>[0..1]</b> : An association to Order Reference.</li>
+     *         <li>[List] <b>additionalDocumentReferenceList</b> <b>[0..*]</b> : [AdditionalDocumentReference] elements list.</li>
+     *         <li>[AccountingSupplierParty] <b>accountingSupplierParty</b> <b>[1..1]</b> : An association to the Accounting Supplier Party.</li>
+     *         <li>[AccountingCustomerParty] <b>accountingCustomerParty</b> <b>[1..1]</b> : An association to the Accounting Customer Party.</li>
+     *         <li>[List] <b>paymentMeansList</b> <b>[0..*]</b> : [PaymentMeans] elements list.</li>
+     *         <li>[List] <b>taxTotalList</b> <b>[0..*]</b> : [TaxTotal] elements list.</li>
+     *         <li>[LegalMonetaryTotal] <b>legalMonetaryTotal</b> <b>[1..1]</b> : An association to the total amount payable on the Credit Note, including Allowances, Charges, and Taxes.</li>
+     *         <li>[List] <b>invoiceLineList</b> <b>[1..*]</b> : [InvoiceLine] elements list.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private UBLInvoice20(UBLInvoice20Builder builder) {
         this.doc = builder.doc;
@@ -166,9 +196,9 @@ public class UBLInvoice20 {
         Attr elementInvoice_Attr7 = new AttributeT(doc, elementInvoice, NamespacesName.XMLNS_SDT_ATTR.label, NamespacesName.XMLNS_SDT_IMPORT.label).load();
         Attr elementInvoice_Attr8 = new AttributeT(doc, elementInvoice, NamespacesName.XMLNS_UDT_ATTR.label, NamespacesName.XMLNS_UDT_IMPORT.label).load();
 
-        if(!Tips.stringIsNull(ublVersionID.getValue())){
+        if(!(ublVersionID == null)){
             if(!(ublVersionID.getPatternScheme() == null)){
-                Element elementUBLVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()
+                Element elementUBLVersionID = new UBLVersionID.UBLVersionIDBuilder()
                         .documentLinked(doc)
                         .elementFather(elementInvoice)
                         .value(ublVersionID.getValue())
@@ -183,14 +213,14 @@ public class UBLInvoice20 {
                                 .build())
                         .build().load();
             } else {
-                Element elementUBLVersionID = new UBLVersionID.ElementUBLVersionIDBuilder()
+                Element elementUBLVersionID = new UBLVersionID.UBLVersionIDBuilder()
                         .documentLinked(doc)
                         .elementFather(elementInvoice)
                         .value(ublVersionID.getValue())
                         .build().load();
             }
         }
-        if(!Tips.stringIsNull(customizationID.getValue())){
+        if(!(customizationID == null)){
             if(!(customizationID.getPatternScheme() == null)){
                 Element elementCustomizationID = new CustomizationID.CustomizationIDBuilder()
                         .documentLinked(doc)
@@ -214,7 +244,7 @@ public class UBLInvoice20 {
                         .build().load();
             }
         }
-        if(!Tips.stringIsNull(profileID.getValue())){
+        if(!(profileID == null)){
             if(!(profileID.getPatternScheme() == null)){
                 Element elementProfileID = new ProfileID.ProfileIDBuilder()
                         .documentLinked(doc)
@@ -328,7 +358,7 @@ public class UBLInvoice20 {
                     .id(id)
                     .build().load();
         }
-        if(!Tips.listIsNull(additionalDocumentReferenceList)){
+        if(!(additionalDocumentReferenceList == null)){
             for (AdditionalDocumentReference additionalDocumentReference : additionalDocumentReferenceList) {
                 Element elementAdditionalDocumentReference = new AdditionalDocumentReference.AdditionalDocumentReferenceBuilder()
                         .documentLinked(doc)
@@ -346,7 +376,7 @@ public class UBLInvoice20 {
                     .party(accountingSupplierParty.getParty())
                     .build().load();
         }
-        if(!Tips.listIsNull(paymentMeansList)){
+        if(!(paymentMeansList == null)){
             for (PaymentMeans paymentMeans : paymentMeansList) {
                 Element paymentMeans1 = new PaymentMeans.PaymentMeansBuilder()
                         .documentLinked(doc)
@@ -359,7 +389,7 @@ public class UBLInvoice20 {
                         .build().load();
             }
         }
-        if(!Tips.listIsNull(invoiceLineList)){
+        if(!(invoiceLineList == null)){
             for (InvoiceLine invoiceLine : invoiceLineList) {
                 Element invoiceLine1 = new InvoiceLine.InvoiceLineBuilder()
                         .documentLinked(doc)

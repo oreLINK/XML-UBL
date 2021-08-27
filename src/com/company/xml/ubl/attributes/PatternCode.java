@@ -1,11 +1,22 @@
 package com.company.xml.ubl.attributes;
 
+/**
+ * Class PatternFile
+ */
 public class PatternCode {
 
     private String unitCode;
 
     /**
-     * Documentation is coming...
+     * <h2>Attributes "PatternCode"</h2>
+     * <p>Contains :</p>
+     * <ul>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>unitCode</b> <b>[0..1]</b> : The unit of the quantity.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private PatternCode(PatternCodeBuilder builder) {
         this.unitCode = builder.currencyID;

@@ -1,5 +1,8 @@
 package com.company.xml.ubl.attributes;
 
+/**
+ * Class PatternFile
+ */
 public class PatternFile {
 
     private String format;
@@ -10,7 +13,20 @@ public class PatternFile {
     private String filename;
 
     /**
-     * Documentation is coming...
+     * <h2>Attributes "PatternScheme"</h2>
+     * <p>Contains :</p>
+     * <ul>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>format</b> <b>[0..1]</b> : The format of the binary content.</li>
+     *         <li>[String] <b>mimeCode</b> <b>[1..1]</b> : The mime type of the binary object.</li>
+     *         <li>[String] <b>encodingCode</b> <b>[0..1]</b> : Specifies the decoding algorithm of the binary object.</li>
+     *         <li>[String] <b>characterSetCode</b> <b>[0..1]</b> : The character set of the binary object if the mime type is text.</li>
+     *         <li>[String] <b>uri</b> <b>[0..1]</b> : The Uniform Resource Identifier that identifies where the binary object is located.</li>
+     *         <li>[String] <b>filename</b> <b>[0..1]</b> : The filename of the binary object.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private PatternFile(PatternFileBuilder builder) {
         this.format = builder.format;

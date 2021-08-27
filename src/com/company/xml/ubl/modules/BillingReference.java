@@ -18,8 +18,7 @@ public class BillingReference {
     private InvoiceDocumentReference invoiceDocumentReference;
 
     /**
-     * <h2>Element "BillingReference"</h2>
-     * <i>use in CreditNote <b>[0..*]</b>.</i>
+     * <h2>Module "BillingReference"</h2>
      * <p>An association to Billing Reference. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

@@ -22,7 +22,22 @@ public class ID {
     private PatternScheme patternScheme;
 
     /**
-     * Documentation is coming...
+     * <h2>Element "ID"</h2>
+     * <p>An identifier for the Credit Note assigned by the Creditor. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>value</b> <b>[1..1]</b> : Value for this element.</li>
+     *         <li>[PatternScheme] <b>patternScheme</b> <b>[0..1]</b> : Attributes available for this element.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private ID(IDBuilder builder) {
         this.doc = builder.doc;
@@ -99,7 +114,6 @@ public class ID {
 
     /**
      * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
-     *
      * @return the generated element
      */
     public Element load() {

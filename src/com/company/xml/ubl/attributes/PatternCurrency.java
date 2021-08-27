@@ -1,11 +1,22 @@
 package com.company.xml.ubl.attributes;
 
+/**
+ * Class PatternCurrency
+ */
 public class PatternCurrency {
 
     private String currencyID;
 
     /**
-     * Documentation is coming...
+     * <h2>Attributes "PatternCurrency"</h2>
+     * <p>Contains :</p>
+     * <ul>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>currencyID</b> <b>[0..1]</b> : The currency of the amount.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private PatternCurrency(PatternCurrencyBuilder builder) {
         this.currencyID = builder.currencyID;

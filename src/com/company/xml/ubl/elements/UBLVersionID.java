@@ -3,7 +3,6 @@ package com.company.xml.ubl.elements;
 import com.company.xml.ubl.attributes.PatternScheme;
 import com.company.xml.ubl.axioms.AttributeT;
 import com.company.xml.ubl.axioms.ElementT;
-import com.company.xml.ubl.axioms.Tips;
 import com.company.xml.ubl.data.AttributesName;
 import com.company.xml.ubl.data.ElementsName;
 import org.w3c.dom.Attr;
@@ -22,9 +21,24 @@ public class UBLVersionID {
     private PatternScheme patternScheme;
 
     /**
-     * Documentation is coming...
+     * <h2>Element "UBLVersionID"</h2>
+     * <p>The earliest version of the UBL 2 schema for this document type that defines all of the elements that might be encountered in the current instance. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>value</b> <b>[1..1]</b> : Value for this element.</li>
+     *         <li>[PatternScheme] <b>patternScheme</b> <b>[0..1]</b> : Attributes available for this element.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
-    private UBLVersionID(ElementUBLVersionIDBuilder builder) {
+    private UBLVersionID(UBLVersionIDBuilder builder) {
         this.doc = builder.doc;
         this.element = builder.element;
         this.value = builder.value;
@@ -32,30 +46,30 @@ public class UBLVersionID {
     }
 
     /**
-     * Builder ElementUBLVersionID
+     * Builder UBLVersionID
      */
-    public static class ElementUBLVersionIDBuilder {
+    public static class UBLVersionIDBuilder {
 
         private Document doc;
         private Element element;
         private String value;
         private PatternScheme patternScheme;
 
-        public ElementUBLVersionIDBuilder() {}
+        public UBLVersionIDBuilder() {}
 
-        public ElementUBLVersionIDBuilder documentLinked(Document doc){
+        public UBLVersionIDBuilder documentLinked(Document doc){
             this.doc = doc;
             return this;
         }
-        public ElementUBLVersionIDBuilder elementFather(Element element){
+        public UBLVersionIDBuilder elementFather(Element element){
             this.element = element;
             return this;
         }
-        public ElementUBLVersionIDBuilder value(String value){
+        public UBLVersionIDBuilder value(String value){
             this.value = value;
             return this;
         }
-        public ElementUBLVersionIDBuilder attributes(PatternScheme patternScheme){
+        public UBLVersionIDBuilder attributes(PatternScheme patternScheme){
             this.patternScheme = patternScheme;
             return this;
         }

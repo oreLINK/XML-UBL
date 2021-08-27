@@ -29,8 +29,7 @@ public class AdditionalDocumentReference {
     private Attachment attachment;
 
     /**
-     * <h2>Element "AdditionalDocumentReference"</h2>
-     * <i>use in CreditNote <b>[0..*]</b>.</i>
+     * <h2>Module "AdditionalDocumentReference"</h2>
      * <p>An associative reference to Additional Document. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

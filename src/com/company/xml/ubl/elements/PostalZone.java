@@ -10,6 +10,9 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class PostalZone
+ */
 public class PostalZone {
 
     private Document doc;
@@ -19,7 +22,22 @@ public class PostalZone {
     private PatternLanguage patternLanguage;
 
     /**
-     * Documentation is coming...
+     * <h2>Element "PostalZone"</h2>
+     * <p>The identifier for an addressable group of properties according to the relevant national postal service, such as a ZIP code or Post Code. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>value</b> <b>[1..1]</b> : Value for this element.</li>
+     *         <li>[PatternLanguage] <b>patternLanguage</b> <b>[0..1]</b> : Attributes available for this element.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private PostalZone(PostalZoneBuilder builder) {
         this.doc = builder.doc;

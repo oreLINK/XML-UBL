@@ -28,7 +28,6 @@ public class TaxCategory {
 
     /**
      * <h2>Element "TaxCategory"</h2>
-     * <i>use in TaxSubtotal <b>[1..1]</b>.</i>
      * <p>An association to Tax Category. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

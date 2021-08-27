@@ -13,16 +13,12 @@ import org.w3c.dom.Element;
  */
 public class InvoiceDocumentReference {
 
-    /*private Document doc;
-    private Element element;
-    private String id;*/
     private Document doc;
     private Element element;
     private ID id;
 
     /**
-     * <h2>Element "InvoiceDocumentReference"</h2>
-     * <i>use in BillingReference <b>[0..1]</b>.</i>
+     * <h2>Module "InvoiceDocumentReference"</h2>
      * <p>An associative reference to Invoice. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>
@@ -33,15 +29,12 @@ public class InvoiceDocumentReference {
      *     </li>
      *     <li><b>for build()</b>
      *     <ul>
-     *         <li>[String] <b>id</b> <b>[1..1]</b> : Identifies the document being referred to.</li>
+     *         <li>[ID] <b>id</b> <b>[1..1]</b> : Identifies the document being referred to.</li>
      *     </ul>
      *     </li>
      * </ul>
      */
     private InvoiceDocumentReference(InvoiceDocumentReferenceBuilder builder) {
-        /*this.doc = builder.doc;
-        this.element = builder.element;
-        this.id = builder.id;*/
         this.doc = builder.doc;
         this.element = builder.element;
         this.id = builder.id;
@@ -52,27 +45,12 @@ public class InvoiceDocumentReference {
      */
     public static class InvoiceDocumentReferenceBuilder {
 
-        /*private Document doc;
-        private Element element;
-        private String id;*/
         private Document doc;
         private Element element;
         private ID id;
 
         public InvoiceDocumentReferenceBuilder() {}
 
-        /*public InvoiceDocumentReferenceBuilder documentLinked(Document doc){
-            this.doc = doc;
-            return this;
-        }
-        public InvoiceDocumentReferenceBuilder elementFather(Element element){
-            this.element = element;
-            return this;
-        }
-        public InvoiceDocumentReferenceBuilder id(String id){
-            this.id = id;
-            return this;
-        }*/
         public InvoiceDocumentReferenceBuilder documentLinked(Document doc){
             this.doc = doc;
             return this;
@@ -92,10 +70,6 @@ public class InvoiceDocumentReference {
 
     }
 
-    /*public String getId() {
-        return id;
-    }*/
-
     public ID getId() {
         return id;
     }
@@ -104,13 +78,6 @@ public class InvoiceDocumentReference {
      * Function that will return a fully generated element (attributes, inheritances, other elements if there are any) on the chosen document and the defined parent element.
      * @return the generated element
      */
-    /*public Element load() {
-        Element elementInvoiceDocumentReference = new ElementT(doc, element, ElementsName.INVOICE_DOCUMENT_REFERENCE.label).load();
-        if(!Tips.stringIsNull(id)){
-            Element elementId = new ElementT(doc, elementInvoiceDocumentReference, ElementsName.INVOICE_DOCUMENT_REFERENCE_ID.label, id).load();
-        }
-        return elementInvoiceDocumentReference;
-    }*/
     public Element load() {
         Element elementInvoiceDocumentReference = new ElementT(doc, element, ElementsName.INVOICE_DOCUMENT_REFERENCE.label).load();
         if(!(id == null)) {

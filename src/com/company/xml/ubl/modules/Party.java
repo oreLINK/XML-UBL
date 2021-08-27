@@ -26,7 +26,6 @@ public class Party {
 
     /**
      * <h2>Element "Party"</h2>
-     * <i>use in AccountingCustomerParty <b>[0..1]</b>, AccountingSupplierParty <b>[0..1]</b>.</i>
      * <p>An association to Party. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

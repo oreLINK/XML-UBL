@@ -10,6 +10,9 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class AddressFormatCode
+ */
 public class AddressFormatCode {
 
     private Document doc;
@@ -19,7 +22,22 @@ public class AddressFormatCode {
     private PatternList patternList;
 
     /**
-     * Documentation is coming...
+     * <h2>Element "AddressFormatCode"</h2>
+     * <p>A code specifying the format of this address. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>value</b> <b>[1..1]</b> : Value for this element.</li>
+     *         <li>[PatternList] <b>patternList</b> <b>[0..1]</b> : Attributes available for this element.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private AddressFormatCode(AddressFormatCodeBuilder builder) {
         this.doc = builder.doc;

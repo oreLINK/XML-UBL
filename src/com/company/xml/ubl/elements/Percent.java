@@ -6,6 +6,9 @@ import com.company.xml.ubl.data.ElementsName;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Class Percent
+ */
 public class Percent {
 
     private Document doc;
@@ -14,7 +17,21 @@ public class Percent {
     private String value;
 
     /**
-     * Documentation is coming...
+     * <h2>Element "Percent"</h2>
+     * <p>The tax rate for the category, expressed as a percentage. Contains :</p>
+     * <ul>
+     *     <li><b>for build() + load()</b>
+     *     <ul>
+     *         <li>[Document] <b>documentLinked</b> : document in which this element must be written.</li>
+     *         <li>[Element] <b>elementFather</b> : parent element in which this element must be written.</li>
+     *     </ul>
+     *     </li>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>value</b> <b>[1..1]</b> : Value for this element.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private Percent(PercentBuilder builder) {
         this.doc = builder.doc;

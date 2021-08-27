@@ -19,7 +19,6 @@ public class CorporateRegistrationScheme {
 
     /**
      * <h2>Element "CorporateRegistrationScheme"</h2>
-     * <i>use in PartyLegalEntity <b>[0..1]</b>.</i>
      * <p>Associates the party with a Corporate Registration Scheme. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

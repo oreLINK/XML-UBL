@@ -19,7 +19,6 @@ public class SellersItemIdentification {
 
     /**
      * <h2>Element "SellersItemIdentification"</h2>
-     * <i>use in Item <b>[0..1]</b>.</i>
      * <p>Associates the item with its identification according to the seller's system. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>
@@ -30,7 +29,7 @@ public class SellersItemIdentification {
      *     </li>
      *     <li><b>for build()</b>
      *     <ul>
-     *         <li>[String] <b>id</b> <b>[1..1]</b> : An identifier for an item.</li>
+     *         <li>[ID] <b>id</b> <b>[1..1]</b> : An identifier for an item.</li>
      *     </ul>
      *     </li>
      * </ul>

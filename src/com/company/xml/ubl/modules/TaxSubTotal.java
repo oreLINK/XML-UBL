@@ -27,7 +27,6 @@ public class TaxSubTotal {
 
     /**
      * <h2>Element "TaxSubTotal"</h2>
-     * <i>use in TaxTotal <b>[0..*]</b>.</i>
      * <p>An association to Tax Subtotal. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

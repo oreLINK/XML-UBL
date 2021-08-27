@@ -22,7 +22,6 @@ public class Attachment {
 
     /**
      * <h2>Element "Attachment"</h2>
-     * <i>use in AdditionalDocumentReference <b>[0..1]</b>.</i>
      * <p>An attached document, externally referred to, referred to in the MIME location, or embedded. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

@@ -34,7 +34,6 @@ public class CreditNoteLine {
 
     /**
      * <h2>Element "CreditNoteLine"</h2>
-     * <i>use in CreditNote <b>[1..*]</b>.</i>
      * <p>An association to one or more Credit Note Lines. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

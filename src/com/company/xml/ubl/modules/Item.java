@@ -25,7 +25,6 @@ public class Item {
 
     /**
      * <h2>Element "Item"</h2>
-     * <i>use in CreditNoteLine <b>[0..1]</b>.</i>
      * <p>An association to Item. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>
@@ -36,9 +35,9 @@ public class Item {
      *     </li>
      *     <li><b>for build()</b>
      *     <ul>
-     *         <li>[String] <b>description</b> <b>[0..*]</b> : Free-form field that can be used to give a text description of the item.</li>
-     *         <li>[String] <b>name</b> <b>[0..1]</b> : A short name optionally given to an item, such as a name from a Catalogue, as distinct from a description.</li>
-     *         <li>[List] <b>sellersItemIdentificationList</b> <b>[0..1]</b> : [SellersItemIdentification] elements list.</li>
+     *         <li>[List] <b>descriptionList</b> <b>[0..*]</b> : [Description] elements list.</li>
+     *         <li>[Name] <b>name</b> <b>[0..1]</b> : A short name optionally given to an item, such as a name from a Catalogue, as distinct from a description.</li>
+     *         <li>[SellersItemIdentification] <b>sellersItemIdentification</b> <b>[0..1]</b> : Associates the item with its identification according to the seller's system.</li>
      *     </ul>
      *     </li>
      * </ul>

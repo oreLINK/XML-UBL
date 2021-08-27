@@ -1,7 +1,7 @@
 package com.company.xml.ubl.attributes;
 
 /**
- * Class Item
+ * Class PatternList
  */
 public class PatternList {
 
@@ -16,7 +16,23 @@ public class PatternList {
     private String listSchemeURI;
 
     /**
-     * Documentation is coming...
+     * <h2>Attributes "PatternList"</h2>
+     * <p>Contains :</p>
+     * <ul>
+     *     <li><b>for build()</b>
+     *     <ul>
+     *         <li>[String] <b>listID</b> <b>[0..1]</b> : No description.</li>
+     *         <li>[String] <b>listAgencyID</b> <b>[0..1]</b> : Defaults to the UN/EDIFACT data element 3055 code list.</li>
+     *         <li>[String] <b>listAgencyName</b> <b>[0..1]</b> : No description.</li>
+     *         <li>[String] <b>listName</b> <b>[0..1]</b> : No description.</li>
+     *         <li>[String] <b>listVersionID</b> <b>[0..1]</b> : No description.</li>
+     *         <li>[String] <b>name</b> <b>[0..1]</b> : No description.</li>
+     *         <li>[String] <b>languageID</b> <b>[0..1]</b> : No description.</li>
+     *         <li>[String] <b>listURI</b> <b>[0..1]</b> : No description.</li>
+     *         <li>[String] <b>listSchemeURI</b> <b>[0..1]</b> : No description.</li>
+     *     </ul>
+     *     </li>
+     * </ul>
      */
     private PatternList(PatternListBuilder builder) {
         this.listID = builder.listID;

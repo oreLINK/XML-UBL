@@ -30,7 +30,6 @@ public class RegistrationAddress {
 
     /**
      * <h2>Element "RegistrationAddress"</h2>
-     * <i>use in PartyLegalEntity <b>[0..1]</b>.</i>
      * <p>Associates with the registered address of the party within a Corporate Registration Scheme. Contains :</p>
      * <ul>
      *     <li><b>for build() + load()</b>

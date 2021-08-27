@@ -397,7 +397,7 @@ Caption :
 
 | Release | Description | Release date |
 | ------- | ----------- | ------------ |
-|  1.1.0  | 🟢 Generation of part of the Invoice 2.0 template.<br>🟡 Generation of part of the UBL CreditNote 2.0 template.<br>🟡 A more complete and easy-to-use README.<br>🟡 Complete code documentation.<br>🟣 Implementation of optional attributes and elements is no longer necessary. | *to come up* |
+|  1.1.0  | 🟢 Generation of part of the Invoice 2.0 template.<br>🟡 Generation of part of the UBL CreditNote 2.0 template.<br>🟡 A more complete and easy-to-use README.<br>🟡 Complete code documentation.<br>🟣 Implementation of optional attributes and elements is no longer necessary. | Aug. 27 2021 |
 |  1.0.0  | 🟢 Generation of a partially supported UBL CreditNote version 2.0 template (the most common modules, elements and attributes are available.<br>🟢 Complete code documentation. | Jun. 18 2021 |
     
 ## License
